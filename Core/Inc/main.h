@@ -31,7 +31,8 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "z_displ_ILI9XXX.h"
+#include "z_touch_xpt2046.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -74,8 +75,8 @@ void Error_Handler(void);
 #define TOUCH_INT_Pin GPIO_PIN_12
 #define TOUCH_INT_GPIO_Port GPIOD
 #define TOUCH_INT_EXTI_IRQn EXTI15_10_IRQn
-#define DISPL_LE_Pin GPIO_PIN_7
-#define DISPL_LE_GPIO_Port GPIOC
+#define DISPL_LED_Pin GPIO_PIN_7
+#define DISPL_LED_GPIO_Port GPIOC
 #define DISPL_CS_Pin GPIO_PIN_8
 #define DISPL_CS_GPIO_Port GPIOB
 

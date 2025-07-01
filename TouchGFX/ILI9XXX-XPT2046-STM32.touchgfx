@@ -1,0 +1,148 @@
+{
+  "Application": {
+    "Screens": [
+      {
+        "Name": "Main",
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "box1",
+            "Width": 320,
+            "Height": 480,
+            "Color": {
+              "Red": 122,
+              "Green": 83,
+              "Blue": 83
+            }
+          },
+          {
+            "Type": "Image",
+            "Name": "counterBackgroundImage",
+            "X": 88,
+            "Y": 93,
+            "Width": 152,
+            "Height": 154,
+            "RelativeFilename": "counter_box.png"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "countTxt",
+            "X": 87,
+            "Y": 126,
+            "Width": 152,
+            "Height": 89,
+            "TextId": "TextId1",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Wildcard1": {
+              "TextId": "__SingleUse_26CG",
+              "UseBuffer": true,
+              "BufferSize": 3
+            }
+          },
+          {
+            "Type": "Button",
+            "Name": "buttonUp",
+            "X": 23,
+            "Y": 370,
+            "Width": 130,
+            "Height": 56,
+            "Pressed": "up_btn_pressed.png",
+            "Released": "up_btn.png"
+          },
+          {
+            "Type": "Button",
+            "Name": "buttonDown",
+            "X": 174,
+            "Y": 370,
+            "Width": 130,
+            "Height": 56,
+            "Pressed": "down_btn_pressed.png",
+            "Released": "down_btn.png"
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "IncreaseValue",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonUp"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "increaseValue"
+            }
+          },
+          {
+            "InteractionName": "DecreaseValue",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonDown"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "decreaseValue"
+            }
+          }
+        ]
+      }
+    ],
+    "CustomContainerDefinitions": [],
+    "Name": "MyApplication",
+    "Resolution": {
+      "Width": 320,
+      "Height": 480
+    },
+    "SelectedColorDepth": 16,
+    "StartupScreenName": "Main",
+    "SelectedStartupLanguage": "GB",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "UIPath": ".",
+    "AvailableColorDepths": [
+      16
+    ],
+    "AvailableLCDs": {
+      "16": "LCD16bpp"
+    },
+    "AvailableSections": [
+      "ExtFlashSection",
+      "IntFlashSection"
+    ],
+    "AvailableResolutions": [
+      {
+        "Width": 320,
+        "Height": 480
+      }
+    ],
+    "PhysicalButtons": [],
+    "FrameworkFeatures": {
+      "LCD16bpp": {
+        "Id": "LCD16bpp",
+        "IsEnabled": true
+      }
+    },
+    "GenerateAssetsCommand": "make -f simulator/gcc/Makefile assets -j8",
+    "PostGenerateCommand": "touchgfx update_project --project-file=simulator/msvs/Application.vcxproj",
+    "PostGenerateTargetCommand": "touchgfx update_project",
+    "CompileSimulatorCommand": "make -f simulator/gcc/Makefile -j8",
+    "RunSimulatorCommand": "build\\bin\\simulator.exe",
+    "LandscapeSkinX": 0,
+    "LandscapeSkinY": 0,
+    "PortraitSkinX": 0,
+    "PortraitSkinY": 0,
+    "DisplayOrientation": "Portrait",
+    "Family": "STM32F4",
+    "SubFamily": "STM32F412",
+    "Toolchain": "STM32CubeIDE",
+    "Platform": "m4",
+    "ProjectFile": "../ILI9XXX-XPT2046-STM32.ioc",
+    "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
+    "OptionalComponents": [],
+    "AdditionalFeatures": []
+  },
+  "Version": "4.25.0"
+}
