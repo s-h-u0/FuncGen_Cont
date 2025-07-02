@@ -58,8 +58,8 @@
 /******************    STEP 2    *****************
  * which display are you using?
  *************************************************/
-#define ILI9341
-//#define ILI9488_V1
+//#define ILI9341
+#define ILI9488_V1
 //#define ILI9488_V2
 
 
@@ -78,7 +78,7 @@
  * when transferring data to/from DISPLAY or TOUCH
  * Keep in mind that Touch SPI Baudrate should be no more than 1 Mbps
  ***************************************************/
-#define DISPL_PRESCALER SPI_BAUDRATEPRESCALER_2     //prescaler assigned to display SPI port
+#define DISPL_PRESCALER SPI_BAUDRATEPRESCALER_4     //prescaler assigned to display SPI port
 #define TOUCH_PRESCALER SPI_BAUDRATEPRESCALER_256	//prescaler assigned to touch device SPI port
 
 
@@ -113,7 +113,7 @@
 #define BKLIT_T 					htim2			//timer used
 #define BKLIT_CHANNEL				TIM_CHANNEL_1	//channel used
 #define BKLIT_CCR					CCR1			//Capture-compare register used (same number as channel)
-#define BKLIT_STBY_LEVEL 			50				//Display backlight level when in stand-by (levels are CNT values)
+#define BKLIT_STBY_LEVEL 			1				//Display backlight level when in stand-by (levels are CNT values)
 #define BKLIT_INIT_LEVEL 			100				//Display backlight level on startup
 
 
@@ -151,7 +151,7 @@
  * TouchGFX buffers>2700bytes need BUFLEVEL 13
  * TouchGFX buffers>1300bytes need BUFLEVEL 12
 ***************************************************/
-#define BUFLEVEL 11
+#define BUFLEVEL 15
 
 /*|||||||| END OF USER/PROJECT PARAMETERS ||||||||*/
 

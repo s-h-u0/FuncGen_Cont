@@ -7,14 +7,18 @@
           {
             "Type": "Box",
             "Name": "box1",
-            "Width": 240,
-            "Height": 320
+            "Width": 320,
+            "Height": 480,
+            "Color": {
+              "Green": 15,
+              "Blue": 69
+            }
           },
           {
             "Type": "Image",
             "Name": "counterBackgroundImage",
-            "X": 44,
-            "Y": 29,
+            "X": 84,
+            "Y": 77,
             "Width": 152,
             "Height": 154,
             "RelativeFilename": "counter_box.png"
@@ -22,8 +26,8 @@
           {
             "Type": "TextArea",
             "Name": "countTxt",
-            "X": 44,
-            "Y": 54,
+            "X": 84,
+            "Y": 104,
             "Width": 152,
             "Height": 89,
             "TextId": "TextId1",
@@ -34,7 +38,7 @@
               "Blue": 255
             },
             "Wildcard1": {
-              "TextId": "__SingleUse_IAJN",
+              "TextId": "__SingleUse_4H5R",
               "UseBuffer": true,
               "BufferSize": 3
             }
@@ -42,8 +46,8 @@
           {
             "Type": "Button",
             "Name": "buttonUp",
-            "X": 55,
-            "Y": 199,
+            "X": 175,
+            "Y": 345,
             "Width": 130,
             "Height": 56,
             "Pressed": "up_btn_pressed.png",
@@ -52,8 +56,8 @@
           {
             "Type": "Button",
             "Name": "buttonDown",
-            "X": 55,
-            "Y": 255,
+            "X": 30,
+            "Y": 345,
             "Width": 130,
             "Height": 56,
             "Pressed": "down_btn_pressed.png",
@@ -89,8 +93,8 @@
     "CustomContainerDefinitions": [],
     "Name": "MyApplication",
     "Resolution": {
-      "Width": 240,
-      "Height": 320
+      "Width": 320,
+      "Height": 480
     },
     "SelectedColorDepth": 16,
     "StartupScreenName": "Main",
@@ -109,8 +113,8 @@
     ],
     "AvailableResolutions": [
       {
-        "Width": 240,
-        "Height": 320
+        "Width": 320,
+        "Height": 480
       }
     ],
     "PhysicalButtons": [],
@@ -134,7 +138,7 @@
     "SubFamily": "STM32F412",
     "Toolchain": "STM32CubeIDE",
     "Platform": "m4",
-    "ProjectFile": "../ILI9XXX-XPT2046-STM32.ioc",
+    "ProjectFile": "../ILI9XXX-XPT2046-STM33.ioc",
     "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
     "OptionalComponents": [],
     "AdditionalFeatures": []

@@ -19,6 +19,19 @@ RM := rm -rf
 -include TouchGFX/generated/gui_generated/src/main_screen/subdir.mk
 -include TouchGFX/generated/gui_generated/src/common/subdir.mk
 -include TouchGFX/generated/fonts/src/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/touchgfx/framework/source/platform/hal/simulator/sdl2/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/touchgfx/framework/source/platform/driver/touch/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/simulator/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/gui/src/model/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/gui/src/main_screen/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/gui/src/common/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/generated/texts/src/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/generated/simulator/src/video/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/generated/simulator/src/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/generated/images/src/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/generated/gui_generated/src/main_screen/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/generated/gui_generated/src/common/subdir.mk
+-include TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/subdir.mk
 -include TouchGFX/App/subdir.mk
 -include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
@@ -69,34 +82,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := ILI9XXX-XPT2046-STM32
+BUILD_ARTIFACT_NAME := ILI9488-XPT2046-STM32
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-ILI9XXX-XPT2046-STM32.elf \
+ILI9488-XPT2046-STM32.elf \
 
 MAP_FILES += \
-ILI9XXX-XPT2046-STM32.map \
+ILI9488-XPT2046-STM32.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-ILI9XXX-XPT2046-STM32.list \
+ILI9488-XPT2046-STM32.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: ILI9XXX-XPT2046-STM32.elf secondary-outputs
+main-build: ILI9488-XPT2046-STM32.elf secondary-outputs
 
 # Tool invocations
-ILI9XXX-XPT2046-STM32.elf ILI9XXX-XPT2046-STM32.map: $(OBJS) $(USER_OBJS) C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9XXX-XPT2046-STM32\STM32F412ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "ILI9XXX-XPT2046-STM32.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9XXX-XPT2046-STM32\STM32F412ZGTX_FLASH.ld" -Wl,-Map="ILI9XXX-XPT2046-STM32.map" -Wl,--gc-sections -static -L"C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9XXX-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+ILI9488-XPT2046-STM32.elf ILI9488-XPT2046-STM32.map: $(OBJS) $(USER_OBJS) C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\STM32F412ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "ILI9488-XPT2046-STM32.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\STM32F412ZGTX_FLASH.ld" -Wl,-Map="ILI9488-XPT2046-STM32.map" -Wl,--gc-sections -static -L"C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -105,14 +118,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-ILI9XXX-XPT2046-STM32.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "ILI9XXX-XPT2046-STM32.list"
+ILI9488-XPT2046-STM32.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "ILI9488-XPT2046-STM32.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) ILI9XXX-XPT2046-STM32.elf ILI9XXX-XPT2046-STM32.list ILI9XXX-XPT2046-STM32.map default.size.stdout
+	-$(RM) ILI9488-XPT2046-STM32.elf ILI9488-XPT2046-STM32.list ILI9488-XPT2046-STM32.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

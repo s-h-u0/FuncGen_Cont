@@ -101,6 +101,9 @@ void Displ_Transmit(GPIO_PinState DC_Status, uint8_t* data, uint16_t dataSize, u
 		data=dispBuffer1; 				//data (pointer to data to transfer via SPI) has to point to converted buffer
 		dataSize=(buf8Pos-dispBuffer1);	//and dataSize has to contain the converted buffer size
 
+
+
+
 #endif //Z_RGB565
 	}
 
@@ -408,6 +411,8 @@ void Displ_FillArea(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t col
 	uint8_t *buf8Pos=dispBuffer; 		//using a local pointer: changing values next
 
 	datasize = (area<(SIZEBUF-3) ? area : (SIZEBUF-3));  //as buf8Pos receives 3 bytes each cycle we must be sure that SIZEBUF will be not overridden in the next loop
+
+
 
 	k=0;
 	while ((buf8Pos-dispBuffer)<=datasize){
@@ -1125,6 +1130,7 @@ uint32_t  Displ_BackLight(uint8_t cmd) {
 #ifdef DISPLAY_DIMMING_MODE
 	static uint16_t memCCR1=0;  			//it stores CCR1 value while in stand-by
 #endif
+
 
 	switch (cmd) {
 	case 'Q':

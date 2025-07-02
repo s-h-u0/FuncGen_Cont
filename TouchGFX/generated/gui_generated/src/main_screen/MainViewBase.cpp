@@ -9,32 +9,32 @@
 MainViewBase::MainViewBase() :
     buttonCallback(this, &MainViewBase::buttonCallbackHandler)
 {
-    __background.setPosition(0, 0, 240, 320);
+    __background.setPosition(0, 0, 320, 480);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    box1.setPosition(0, 0, 240, 320);
-    box1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    box1.setPosition(0, 0, 320, 480);
+    box1.setColor(touchgfx::Color::getColorFromRGB(0, 15, 69));
     add(box1);
 
-    counterBackgroundImage.setXY(44, 29);
+    counterBackgroundImage.setXY(84, 77);
     counterBackgroundImage.setBitmap(touchgfx::Bitmap(BITMAP_COUNTER_BOX_ID));
     add(counterBackgroundImage);
 
-    countTxt.setPosition(44, 54, 152, 89);
+    countTxt.setPosition(84, 104, 152, 89);
     countTxt.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     countTxt.setLinespacing(0);
-    Unicode::snprintf(countTxtBuffer, COUNTTXT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_IAJN).getText());
+    Unicode::snprintf(countTxtBuffer, COUNTTXT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_4H5R).getText());
     countTxt.setWildcard(countTxtBuffer);
     countTxt.setTypedText(touchgfx::TypedText(T_TEXTID1));
     add(countTxt);
 
-    buttonUp.setXY(55, 199);
+    buttonUp.setXY(175, 345);
     buttonUp.setBitmaps(touchgfx::Bitmap(BITMAP_UP_BTN_ID), touchgfx::Bitmap(BITMAP_UP_BTN_PRESSED_ID));
     buttonUp.setAction(buttonCallback);
     add(buttonUp);
 
-    buttonDown.setXY(55, 255);
+    buttonDown.setXY(30, 345);
     buttonDown.setBitmaps(touchgfx::Bitmap(BITMAP_DOWN_BTN_ID), touchgfx::Bitmap(BITMAP_DOWN_BTN_PRESSED_ID));
     buttonDown.setAction(buttonCallback);
     add(buttonDown);

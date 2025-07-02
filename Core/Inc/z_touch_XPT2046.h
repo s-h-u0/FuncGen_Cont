@@ -105,13 +105,17 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
 #define BY -39.057f
 #endif
 
-#ifdef ILI9488_V1
-#define T_ROTATION_270
-#define AX 0.016f
-#define BX -20.0f
-#define AY 0.011f
-#define BY -15.0f
+
+#ifdef ILI9488_V1 //構成済　SN:6-4
+#define T_ROTATION_0
+#define AX -0.010560f
+#define BX 331.857483f
+#define AY 0.015808f
+#define BY -22.500736f
 #endif
+
+
+
 
 #ifdef ILI9488_V2
 #define T_ROTATION_0

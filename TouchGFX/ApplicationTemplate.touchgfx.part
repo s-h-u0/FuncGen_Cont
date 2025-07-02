@@ -1,7 +1,7 @@
 
 {
   "Application": {
-    "Name": "ILI9XXX-XPT2046-STM32",
+    "Name": "ILI9XXX-XPT2046-STM33",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "AvailableColorDepths": [ 16 ],
     "AvailableLCDs":
@@ -10,8 +10,8 @@
     },
     "AvailableResolutions": [
       {
-        "Width": 240,
-        "Height": 320
+        "Width": 320,
+        "Height": 480
       }
     ],
     "PostGenerateTargetCommand": "touchgfx update_project",
@@ -19,7 +19,7 @@
     "SubFamily": "STM32F412",
     "Platform": "m4",
     "Toolchain": "STM32CubeIDE",
-    "ProjectFile": "../ILI9XXX-XPT2046-STM32.ioc",
+    "ProjectFile": "../ILI9XXX-XPT2046-STM33.ioc",
     "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
     "OptionalComponents": [
     ],
