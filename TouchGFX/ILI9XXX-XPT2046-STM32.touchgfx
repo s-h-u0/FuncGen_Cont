@@ -7,19 +7,14 @@
           {
             "Type": "Box",
             "Name": "box1",
-            "Width": 320,
-            "Height": 480,
-            "Color": {
-              "Red": 122,
-              "Green": 83,
-              "Blue": 83
-            }
+            "Width": 240,
+            "Height": 320
           },
           {
             "Type": "Image",
             "Name": "counterBackgroundImage",
-            "X": 88,
-            "Y": 93,
+            "X": 44,
+            "Y": 29,
             "Width": 152,
             "Height": 154,
             "RelativeFilename": "counter_box.png"
@@ -27,8 +22,8 @@
           {
             "Type": "TextArea",
             "Name": "countTxt",
-            "X": 87,
-            "Y": 126,
+            "X": 44,
+            "Y": 54,
             "Width": 152,
             "Height": 89,
             "TextId": "TextId1",
@@ -39,7 +34,7 @@
               "Blue": 255
             },
             "Wildcard1": {
-              "TextId": "__SingleUse_26CG",
+              "TextId": "__SingleUse_IAJN",
               "UseBuffer": true,
               "BufferSize": 3
             }
@@ -47,8 +42,8 @@
           {
             "Type": "Button",
             "Name": "buttonUp",
-            "X": 23,
-            "Y": 370,
+            "X": 55,
+            "Y": 199,
             "Width": 130,
             "Height": 56,
             "Pressed": "up_btn_pressed.png",
@@ -57,8 +52,8 @@
           {
             "Type": "Button",
             "Name": "buttonDown",
-            "X": 174,
-            "Y": 370,
+            "X": 55,
+            "Y": 255,
             "Width": 130,
             "Height": 56,
             "Pressed": "down_btn_pressed.png",
@@ -94,8 +89,8 @@
     "CustomContainerDefinitions": [],
     "Name": "MyApplication",
     "Resolution": {
-      "Width": 320,
-      "Height": 480
+      "Width": 240,
+      "Height": 320
     },
     "SelectedColorDepth": 16,
     "StartupScreenName": "Main",
@@ -114,8 +109,8 @@
     ],
     "AvailableResolutions": [
       {
-        "Width": 320,
-        "Height": 480
+        "Width": 240,
+        "Height": 320
       }
     ],
     "PhysicalButtons": [],
@@ -144,5 +139,5 @@
     "OptionalComponents": [],
     "AdditionalFeatures": []
   },
-  "Version": "4.25.0"
+  "Version": "4.23.0"
 }

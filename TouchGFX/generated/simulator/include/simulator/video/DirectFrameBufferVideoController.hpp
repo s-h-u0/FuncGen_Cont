@@ -4,7 +4,6 @@
 #ifndef TOUCHGFX_DIRECTFRAMEBUFFERVIDEOCONTROLLER_HPP
 #define TOUCHGFX_DIRECTFRAMEBUFFERVIDEOCONTROLLER_HPP
 
-#include <touchgfx/transforms/DisplayTransformation.hpp>
 #include <touchgfx/widgets/VideoWidget.hpp>
 #include <simulator/video/MJPEGDecoder.hpp>
 #include <string.h>
@@ -227,8 +226,7 @@ public:
         if (mjpegDecoders[handle]->hasVideo())
         {
             uint8_t* wbuf = (uint8_t*)touchgfx::HAL::getInstance()->lockFrameBuffer();
-            touchgfx::Rect absolute = widget.getAbsoluteRect();
-            DisplayTransformation::transformDisplayToFrameBuffer(absolute);
+            const touchgfx::Rect& absolute = widget.getAbsoluteRect();
 
             // Get frame buffer pointer to upper left of widget in framebuffer coordinates
             switch(output_format)

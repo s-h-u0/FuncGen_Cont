@@ -3,7 +3,7 @@
   ******************************************************************************
   * File Name          : TouchGFXHAL.cpp
   ******************************************************************************
-  * This file was created by TouchGFX Generator 4.25.0. This file is only
+  * This file was created by TouchGFX Generator 4.23.0. This file is only
   * generated once! Delete this file from your project and re-generate code
   * using STM32CubeMX or change this file manually to update it.
   ******************************************************************************
@@ -45,8 +45,8 @@ void TouchGFXHAL::initialize()
 {
     // Calling parent implementation of initialize().
     //
-    // To overwrite the generated implementation, omit the call to the parent function
-    // and implement the needed functionality here.
+    // To overwrite the generated implementation, omit call to parent function
+    // and implemented needed functionality here.
     // Please note, HAL::initialize() must be called to initialize the framework.
 
     TouchGFXGeneratedHAL::initialize();
@@ -61,8 +61,8 @@ uint16_t* TouchGFXHAL::getTFTFrameBuffer() const
 {
     // Calling parent implementation of getTFTFrameBuffer().
     //
-    // To overwrite the generated implementation, omit the call to the parent function
-    // and implement the needed functionality here.
+    // To overwrite the generated implementation, omit call to parent function
+    // and implemented needed functionality here.
 
     return TouchGFXGeneratedHAL::getTFTFrameBuffer();
 }
@@ -76,8 +76,8 @@ void TouchGFXHAL::setTFTFrameBuffer(uint16_t* address)
 {
     // Calling parent implementation of setTFTFrameBuffer(uint16_t* address).
     //
-    // To overwrite the generated implementation, omit the call to the parent function
-    // and implement the needed functionality here.
+    // To overwrite the generated implementation, omit call to parent function
+    // and implemented needed functionality here.
 
     TouchGFXGeneratedHAL::setTFTFrameBuffer(address);
 }
@@ -93,11 +93,11 @@ void TouchGFXHAL::flushFrameBuffer(const touchgfx::Rect& rect)
 {
     // Calling parent implementation of flushFrameBuffer(const touchgfx::Rect& rect).
     //
-    // To overwrite the generated implementation, omit the call to the parent function
-    // and implement the needed functionality here.
+    // To overwrite the generated implementation, omit call to parent function
+    // and implemented needed functionality here.
     // Please note, HAL::flushFrameBuffer(const touchgfx::Rect& rect) must
     // be called to notify the touchgfx framework that flush has been performed.
-    // To calculate the start address of rect,
+    // To calculate he start adress of rect,
     // use advanceFrameBufferToRect(uint8_t* fbPtr, const touchgfx::Rect& rect)
     // defined in TouchGFXGeneratedHAL.cpp
 
@@ -117,8 +117,8 @@ void TouchGFXHAL::configureInterrupts()
 {
     // Calling parent implementation of configureInterrupts().
     //
-    // To overwrite the generated implementation, omit the call to the parent function
-    // and implement the needed functionality here.
+    // To overwrite the generated implementation, omit call to parent function
+    // and implemented needed functionality here.
 
     TouchGFXGeneratedHAL::configureInterrupts();
 }
@@ -130,8 +130,8 @@ void TouchGFXHAL::enableInterrupts()
 {
     // Calling parent implementation of enableInterrupts().
     //
-    // To overwrite the generated implementation, omit the call to the parent function
-    // and implement the needed functionality here.
+    // To overwrite the generated implementation, omit call to parent function
+    // and implemented needed functionality here.
 
     TouchGFXGeneratedHAL::enableInterrupts();
 }
@@ -143,8 +143,8 @@ void TouchGFXHAL::disableInterrupts()
 {
     // Calling parent implementation of disableInterrupts().
     //
-    // To overwrite the generated implementation, omit the call to the parent function
-    // and implement the needed functionality here.
+    // To overwrite the generated implementation, omit call to parent function
+    // and implemented needed functionality here.
 
     TouchGFXGeneratedHAL::disableInterrupts();
 }
@@ -157,8 +157,8 @@ void TouchGFXHAL::enableLCDControllerInterrupt()
 {
     // Calling parent implementation of enableLCDControllerInterrupt().
     //
-    // To overwrite the generated implementation, omit the call to the parent function
-    // and implement the needed functionality here.
+    // To overwrite the generated implementation, omit call to parent function
+    // and implemented needed functionality here.
 
     TouchGFXGeneratedHAL::enableLCDControllerInterrupt();
 }

@@ -58,9 +58,9 @@
 /******************    STEP 2    *****************
  * which display are you using?
  *************************************************/
-//#define ILI9341
+#define ILI9341
 //#define ILI9488_V1
-#define ILI9488_V2
+//#define ILI9488_V2
 
 
 /******************    STEP 3    ******************
@@ -78,7 +78,7 @@
  * when transferring data to/from DISPLAY or TOUCH
  * Keep in mind that Touch SPI Baudrate should be no more than 1 Mbps
  ***************************************************/
-#define DISPL_PRESCALER SPI_BAUDRATEPRESCALER_4     //prescaler assigned to display SPI port
+#define DISPL_PRESCALER SPI_BAUDRATEPRESCALER_2     //prescaler assigned to display SPI port
 #define TOUCH_PRESCALER SPI_BAUDRATEPRESCALER_256	//prescaler assigned to touch device SPI port
 
 

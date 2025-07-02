@@ -8,7 +8,7 @@
 ../Core/Src/z_displ_ILI9XXX.c:298:6:Displ_Orientation	5
 ../Core/Src/z_displ_ILI9XXX.c:330:6:HAL_SPI_ErrorCallback	2
 ../Core/Src/z_displ_ILI9XXX.c:341:6:HAL_SPI_TxCpltCallback	2
-../Core/Src/z_displ_ILI9XXX.c:361:6:Displ_FillArea	10
+../Core/Src/z_displ_ILI9XXX.c:361:6:Displ_FillArea	11
 ../Core/Src/z_displ_ILI9XXX.c:1123:11:Displ_BackLight	12
 ../Core/Src/z_displ_ILI9XXX.c:1192:5:touchgfxDisplayDriverTransmitActive	1
 ../Core/Src/z_displ_ILI9XXX.c:1206:6:touchgfxDisplayDriverTransmitBlock	1

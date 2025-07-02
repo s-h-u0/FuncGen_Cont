@@ -3,7 +3,7 @@
   ******************************************************************************
   * File Name          : STM32TouchController.cpp
   ******************************************************************************
-  * This file was created by TouchGFX Generator 4.25.0. This file is only
+  * This file was created by TouchGFX Generator 4.23.0. This file is only
   * generated once! Delete this file from your project and re-generate code
   * using STM32CubeMX or change this file manually to update it.
   ******************************************************************************
@@ -46,7 +46,6 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
      *
      */
 	return ((bool) Touch_TouchGFXSampleTouch(&x, &y));
-
 }
 
 /* USER CODE END STM32TouchController */

@@ -64,6 +64,8 @@ void Error_Handler(void);
 #define TOUCH_MISO_GPIO_Port GPIOC
 #define DISPL_MOSI_Pin GPIO_PIN_3
 #define DISPL_MOSI_GPIO_Port GPIOC
+#define DISPL_LED_Pin GPIO_PIN_0
+#define DISPL_LED_GPIO_Port GPIOA
 #define TOUCH_CS_Pin GPIO_PIN_7
 #define TOUCH_CS_GPIO_Port GPIOA
 #define DISPL_DC_Pin GPIO_PIN_0
@@ -75,8 +77,6 @@ void Error_Handler(void);
 #define TOUCH_INT_Pin GPIO_PIN_12
 #define TOUCH_INT_GPIO_Port GPIOD
 #define TOUCH_INT_EXTI_IRQn EXTI15_10_IRQn
-#define DISPL_LED_Pin GPIO_PIN_7
-#define DISPL_LED_GPIO_Port GPIOC
 #define DISPL_CS_Pin GPIO_PIN_8
 #define DISPL_CS_GPIO_Port GPIOB
 
