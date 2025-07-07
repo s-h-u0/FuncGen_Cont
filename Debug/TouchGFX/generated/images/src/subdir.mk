@@ -7,6 +7,7 @@
 CPP_SRCS += \
 ../TouchGFX/generated/images/src/BitmapDatabase.cpp \
 ../TouchGFX/generated/images/src/SVGDatabase.cpp \
+../TouchGFX/generated/images/src/image_bg.cpp \
 ../TouchGFX/generated/images/src/image_counter_box.cpp \
 ../TouchGFX/generated/images/src/image_down_btn.cpp \
 ../TouchGFX/generated/images/src/image_down_btn_disabled.cpp \
@@ -18,6 +19,7 @@ CPP_SRCS += \
 OBJS += \
 ./TouchGFX/generated/images/src/BitmapDatabase.o \
 ./TouchGFX/generated/images/src/SVGDatabase.o \
+./TouchGFX/generated/images/src/image_bg.o \
 ./TouchGFX/generated/images/src/image_counter_box.o \
 ./TouchGFX/generated/images/src/image_down_btn.o \
 ./TouchGFX/generated/images/src/image_down_btn_disabled.o \
@@ -29,6 +31,7 @@ OBJS += \
 CPP_DEPS += \
 ./TouchGFX/generated/images/src/BitmapDatabase.d \
 ./TouchGFX/generated/images/src/SVGDatabase.d \
+./TouchGFX/generated/images/src/image_bg.d \
 ./TouchGFX/generated/images/src/image_counter_box.d \
 ./TouchGFX/generated/images/src/image_down_btn.d \
 ./TouchGFX/generated/images/src/image_down_btn_disabled.d \
@@ -45,7 +48,7 @@ TouchGFX/generated/images/src/%.o TouchGFX/generated/images/src/%.su TouchGFX/ge
 clean: clean-TouchGFX-2f-generated-2f-images-2f-src
 
 clean-TouchGFX-2f-generated-2f-images-2f-src:
-	-$(RM) ./TouchGFX/generated/images/src/BitmapDatabase.cyclo ./TouchGFX/generated/images/src/BitmapDatabase.d ./TouchGFX/generated/images/src/BitmapDatabase.o ./TouchGFX/generated/images/src/BitmapDatabase.su ./TouchGFX/generated/images/src/SVGDatabase.cyclo ./TouchGFX/generated/images/src/SVGDatabase.d ./TouchGFX/generated/images/src/SVGDatabase.o ./TouchGFX/generated/images/src/SVGDatabase.su ./TouchGFX/generated/images/src/image_counter_box.cyclo ./TouchGFX/generated/images/src/image_counter_box.d ./TouchGFX/generated/images/src/image_counter_box.o ./TouchGFX/generated/images/src/image_counter_box.su ./TouchGFX/generated/images/src/image_down_btn.cyclo ./TouchGFX/generated/images/src/image_down_btn.d ./TouchGFX/generated/images/src/image_down_btn.o ./TouchGFX/generated/images/src/image_down_btn.su ./TouchGFX/generated/images/src/image_down_btn_disabled.cyclo ./TouchGFX/generated/images/src/image_down_btn_disabled.d ./TouchGFX/generated/images/src/image_down_btn_disabled.o ./TouchGFX/generated/images/src/image_down_btn_disabled.su ./TouchGFX/generated/images/src/image_down_btn_pressed.cyclo ./TouchGFX/generated/images/src/image_down_btn_pressed.d ./TouchGFX/generated/images/src/image_down_btn_pressed.o ./TouchGFX/generated/images/src/image_down_btn_pressed.su ./TouchGFX/generated/images/src/image_up_btn.cyclo ./TouchGFX/generated/images/src/image_up_btn.d ./TouchGFX/generated/images/src/image_up_btn.o ./TouchGFX/generated/images/src/image_up_btn.su ./TouchGFX/generated/images/src/image_up_btn_disabled.cyclo ./TouchGFX/generated/images/src/image_up_btn_disabled.d ./TouchGFX/generated/images/src/image_up_btn_disabled.o ./TouchGFX/generated/images/src/image_up_btn_disabled.su ./TouchGFX/generated/images/src/image_up_btn_pressed.cyclo ./TouchGFX/generated/images/src/image_up_btn_pressed.d ./TouchGFX/generated/images/src/image_up_btn_pressed.o ./TouchGFX/generated/images/src/image_up_btn_pressed.su
+	-$(RM) ./TouchGFX/generated/images/src/BitmapDatabase.cyclo ./TouchGFX/generated/images/src/BitmapDatabase.d ./TouchGFX/generated/images/src/BitmapDatabase.o ./TouchGFX/generated/images/src/BitmapDatabase.su ./TouchGFX/generated/images/src/SVGDatabase.cyclo ./TouchGFX/generated/images/src/SVGDatabase.d ./TouchGFX/generated/images/src/SVGDatabase.o ./TouchGFX/generated/images/src/SVGDatabase.su ./TouchGFX/generated/images/src/image_bg.cyclo ./TouchGFX/generated/images/src/image_bg.d ./TouchGFX/generated/images/src/image_bg.o ./TouchGFX/generated/images/src/image_bg.su ./TouchGFX/generated/images/src/image_counter_box.cyclo ./TouchGFX/generated/images/src/image_counter_box.d ./TouchGFX/generated/images/src/image_counter_box.o ./TouchGFX/generated/images/src/image_counter_box.su ./TouchGFX/generated/images/src/image_down_btn.cyclo ./TouchGFX/generated/images/src/image_down_btn.d ./TouchGFX/generated/images/src/image_down_btn.o ./TouchGFX/generated/images/src/image_down_btn.su ./TouchGFX/generated/images/src/image_down_btn_disabled.cyclo ./TouchGFX/generated/images/src/image_down_btn_disabled.d ./TouchGFX/generated/images/src/image_down_btn_disabled.o ./TouchGFX/generated/images/src/image_down_btn_disabled.su ./TouchGFX/generated/images/src/image_down_btn_pressed.cyclo ./TouchGFX/generated/images/src/image_down_btn_pressed.d ./TouchGFX/generated/images/src/image_down_btn_pressed.o ./TouchGFX/generated/images/src/image_down_btn_pressed.su ./TouchGFX/generated/images/src/image_up_btn.cyclo ./TouchGFX/generated/images/src/image_up_btn.d ./TouchGFX/generated/images/src/image_up_btn.o ./TouchGFX/generated/images/src/image_up_btn.su ./TouchGFX/generated/images/src/image_up_btn_disabled.cyclo ./TouchGFX/generated/images/src/image_up_btn_disabled.d ./TouchGFX/generated/images/src/image_up_btn_disabled.o ./TouchGFX/generated/images/src/image_up_btn_disabled.su ./TouchGFX/generated/images/src/image_up_btn_pressed.cyclo ./TouchGFX/generated/images/src/image_up_btn_pressed.d ./TouchGFX/generated/images/src/image_up_btn_pressed.o ./TouchGFX/generated/images/src/image_up_btn_pressed.su
 
 .PHONY: clean-TouchGFX-2f-generated-2f-images-2f-src
 

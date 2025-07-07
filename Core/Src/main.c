@@ -106,7 +106,7 @@ int main(void)
   MX_TIM2_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
-  Displ_Init(Displ_Orientat_0);			// initialize display controller - set orientation parameter as per TouchGFX setup
+  Displ_Init(Displ_Orientat_180);			// initialize display controller - set orientation parameter as per TouchGFX setup
   touchgfxSignalVSync();					// ask display syncronization
   Displ_BackLight('I');  					// initialize backlight
   /* USER CODE END 2 */

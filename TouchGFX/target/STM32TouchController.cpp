@@ -25,6 +25,7 @@
 #include <STM32TouchController.hpp>
 #include "main.h"
 
+
 void STM32TouchController::init()
 {
     /**
@@ -46,6 +47,7 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
      *
      */
 	return ((bool) Touch_TouchGFXSampleTouch(&x, &y));
+
 }
 
 /* USER CODE END STM32TouchController */

@@ -7,53 +7,53 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .text         0001ecf4  080001d0  080001d0  000011d0  2**4
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       000023ec  0801eec4  0801eec4  0001fec4  2**2
+  2 .rodata       00002400  0801eec4  0801eec4  0001fec4  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 FontFlashSection 000028cc  080212b0  080212b0  000222b0  2**2
+  3 FontFlashSection 000028cc  080212c4  080212c4  000222c4  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  4 FontSearchFlashSection 00000008  08023b7c  08023b7c  00024b7c  2**2
+  4 FontSearchFlashSection 00000008  08023b90  08023b90  00024b90  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 ExtFlashSection 00036160  08023b84  08023b84  00024b84  2**2
+  5 ExtFlashSection 00075d60  08023b98  08023b98  00024b98  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  6 TextFlashSection 00000018  08059ce4  08059ce4  0005ace4  2**2
+  6 TextFlashSection 00000018  080998f8  080998f8  0009a8f8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .ARM.extab    00000000  08059cfc  08059cfc  0005b0fc  2**0
+  7 .ARM.extab    00000000  08099910  08099910  0009b0fc  2**0
                   CONTENTS, READONLY
-  8 .ARM          00000008  08059cfc  08059cfc  0005acfc  2**2
+  8 .ARM          00000008  08099910  08099910  0009a910  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  9 .preinit_array 00000000  08059d04  08059d04  0005b0fc  2**0
+  9 .preinit_array 00000000  08099918  08099918  0009b0fc  2**0
                   CONTENTS, ALLOC, LOAD, DATA
- 10 .init_array   00000018  08059d04  08059d04  0005ad04  2**2
+ 10 .init_array   00000018  08099918  08099918  0009a918  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
- 11 .fini_array   0000000c  08059d1c  08059d1c  0005ad1c  2**2
+ 11 .fini_array   0000000c  08099930  08099930  0009a930  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
- 12 .data         000000fc  20000000  08059d28  0005b000  2**2
+ 12 .data         000000fc  20000000  0809993c  0009b000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
- 13 .bss          0000b4a0  200000fc  08059e24  0005b0fc  2**2
+ 13 .bss          0000b4a0  200000fc  08099a38  0009b0fc  2**2
                   ALLOC
- 14 ._user_heap_stack 00000604  2000b59c  08059e24  0005b59c  2**0
+ 14 ._user_heap_stack 00000604  2000b59c  08099a38  0009b59c  2**0
                   ALLOC
- 15 .ARM.attributes 00000030  00000000  00000000  0005b0fc  2**0
+ 15 .ARM.attributes 00000030  00000000  00000000  0009b0fc  2**0
                   CONTENTS, READONLY
- 16 .debug_info   0006efd2  00000000  00000000  0005b12c  2**0
+ 16 .debug_info   0006f083  00000000  00000000  0009b12c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_abbrev 0000d3d9  00000000  00000000  000ca0fe  2**0
+ 17 .debug_abbrev 0000d425  00000000  00000000  0010a1af  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_aranges 000025a8  00000000  00000000  000d74d8  2**3
+ 18 .debug_aranges 000025c0  00000000  00000000  001175d8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_rnglists 00001ba5  00000000  00000000  000d9a80  2**0
+ 19 .debug_rnglists 00001ba5  00000000  00000000  00119b98  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_macro  000285fd  00000000  00000000  000db625  2**0
+ 20 .debug_macro  00028617  00000000  00000000  0011b73d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line   0002976a  00000000  00000000  00103c22  2**0
+ 21 .debug_line   00029800  00000000  00000000  00143d54  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_str    000df29a  00000000  00000000  0012d38c  2**0
+ 22 .debug_str    000df2de  00000000  00000000  0016d554  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 23 .comment      000000c2  00000000  00000000  0020c626  2**0
+ 23 .comment      000000c2  00000000  00000000  0024c832  2**0
                   CONTENTS, READONLY
- 24 .debug_frame  0000a6b4  00000000  00000000  0020c6e8  2**2
+ 24 .debug_frame  0000a6b4  00000000  00000000  0024c8f4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 25 .debug_line_str 00000071  00000000  00000000  00216d9c  2**0
+ 25 .debug_line_str 00000071  00000000  00000000  00256fa8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -480,8 +480,8 @@ int main(void)
   MX_TouchGFX_Init();
  8000600:	f004 fcb0 	bl	8004f64 <MX_TouchGFX_Init>
   /* USER CODE BEGIN 2 */
-  Displ_Init(Displ_Orientat_0);			// initialize display controller - set orientation parameter as per TouchGFX setup
- 8000604:	2000      	movs	r0, #0
+  Displ_Init(Displ_Orientat_180);			// initialize display controller - set orientation parameter as per TouchGFX setup
+ 8000604:	2002      	movs	r0, #2
  8000606:	f000 fe31 	bl	800126c <Displ_Init>
   touchgfxSignalVSync();					// ask display syncronization
  800060a:	f008 fe71 	bl	80092f0 <touchgfxSignalVSync>
@@ -4095,7 +4095,7 @@ LoopFillZerobss:
   ldr r1, =_edata
  8001a80:	200000fc 	.word	0x200000fc
   ldr r2, =_sidata
- 8001a84:	08059d28 	.word	0x08059d28
+ 8001a84:	0809993c 	.word	0x0809993c
   ldr r2, =_sbss
  8001a88:	200000fc 	.word	0x200000fc
   ldr r4, =_ebss
@@ -13788,7 +13788,7 @@ public:
  8005040:	46bd      	mov	sp, r7
  8005042:	f85d 7b04 	ldr.w	r7, [sp], #4
  8005046:	4770      	bx	lr
- 8005048:	08020388 	.word	0x08020388
+ 8005048:	0802039c 	.word	0x0802039c
 
 0800504c <_ZN8touchgfx4FontD0Ev>:
     virtual ~Font()
@@ -14057,7 +14057,7 @@ class ConstFont : public Font
  8005196:	3708      	adds	r7, #8
  8005198:	46bd      	mov	sp, r7
  800519a:	bd80      	pop	{r7, pc}
- 800519c:	08020e90 	.word	0x08020e90
+ 800519c:	08020ea4 	.word	0x08020ea4
 
 080051a0 <_ZN8touchgfx9ConstFontD0Ev>:
  80051a0:	b580      	push	{r7, lr}
@@ -14527,9 +14527,9 @@ touchgfx::GeneratedFont& getFont_Asap_Regular_80_4bpp()
  8005488:	bd80      	pop	{r7, pc}
  800548a:	bf00      	nop
  800548c:	200082bc 	.word	0x200082bc
- 8005490:	08023b7c 	.word	0x08023b7c
- 8005494:	08023b80 	.word	0x08023b80
- 8005498:	08023af0 	.word	0x08023af0
+ 8005490:	08023b90 	.word	0x08023b90
+ 8005494:	08023b94 	.word	0x08023b94
+ 8005498:	08023b04 	.word	0x08023b04
  800549c:	20008290 	.word	0x20008290
  80054a0:	080053f1 	.word	0x080053f1
 
@@ -15077,7 +15077,7 @@ class Application : public UIEventListener
  8005762:	3708      	adds	r7, #8
  8005764:	46bd      	mov	sp, r7
  8005766:	bd80      	pop	{r7, pc}
- 8005768:	08020dd4 	.word	0x08020dd4
+ 8005768:	08020de8 	.word	0x08020de8
 
 0800576c <_ZN8touchgfx11ApplicationD0Ev>:
  800576c:	b580      	push	{r7, lr}
@@ -15461,13 +15461,13 @@ FrontendApplicationBase::FrontendApplicationBase(Model& m, FrontendHeap& heap)
  80059bc:	68ba      	ldr	r2, [r7, #8]
  80059be:	f8c3 2158 	str.w	r2, [r3, #344]	@ 0x158
 {
-    touchgfx::HAL::getInstance()->setDisplayOrientation(touchgfx::ORIENTATION_PORTRAIT);
+    touchgfx::HAL::getInstance()->setDisplayOrientation(touchgfx::ORIENTATION_LANDSCAPE);
  80059c2:	f7ff fc1f 	bl	8005204 <_ZN8touchgfx3HAL11getInstanceEv>
  80059c6:	4603      	mov	r3, r0
  80059c8:	681a      	ldr	r2, [r3, #0]
  80059ca:	3208      	adds	r2, #8
  80059cc:	6812      	ldr	r2, [r2, #0]
- 80059ce:	2101      	movs	r1, #1
+ 80059ce:	2100      	movs	r1, #0
  80059d0:	4618      	mov	r0, r3
  80059d2:	4790      	blx	r2
     touchgfx::Texts::setLanguage(GB);
@@ -16434,7 +16434,7 @@ public:
  800602a:	46bd      	mov	sp, r7
  800602c:	bd80      	pop	{r7, pc}
  800602e:	bf00      	nop
- 8006030:	08020e28 	.word	0x08020e28
+ 8006030:	08020e3c 	.word	0x08020e3c
 
 08006034 <_ZN8touchgfx8DrawableD1Ev>:
 
@@ -16455,7 +16455,7 @@ public:
  8006048:	46bd      	mov	sp, r7
  800604a:	f85d 7b04 	ldr.w	r7, [sp], #4
  800604e:	4770      	bx	lr
- 8006050:	08020e28 	.word	0x08020e28
+ 8006050:	08020e3c 	.word	0x08020e3c
 
 08006054 <_ZN8touchgfx8DrawableD0Ev>:
     virtual ~Drawable()
@@ -17096,7 +17096,7 @@ class Container : public Drawable
  800639a:	3708      	adds	r7, #8
  800639c:	46bd      	mov	sp, r7
  800639e:	bd80      	pop	{r7, pc}
- 80063a0:	080208a8 	.word	0x080208a8
+ 80063a0:	080208bc 	.word	0x080208bc
 
 080063a4 <_ZN8touchgfx9ContainerD0Ev>:
  80063a4:	b580      	push	{r7, lr}
@@ -17140,7 +17140,7 @@ public:
  80063e2:	46bd      	mov	sp, r7
  80063e4:	bd80      	pop	{r7, pc}
  80063e6:	bf00      	nop
- 80063e8:	08020f34 	.word	0x08020f34
+ 80063e8:	08020f48 	.word	0x08020f48
 
 080063ec <_ZN8touchgfx6ScreenD0Ev>:
     virtual ~Screen()
@@ -17377,7 +17377,7 @@ public:
  800653a:	46bd      	mov	sp, r7
  800653c:	bd80      	pop	{r7, pc}
  800653e:	bf00      	nop
- 8006540:	08020ba4 	.word	0x08020ba4
+ 8006540:	08020bb8 	.word	0x08020bb8
 
 08006544 <_ZN8touchgfx3Box8setColorENS_9colortypeE>:
      *
@@ -17446,7 +17446,7 @@ public:
  80065a2:	3708      	adds	r7, #8
  80065a4:	46bd      	mov	sp, r7
  80065a6:	bd80      	pop	{r7, pc}
- 80065a8:	08020d10 	.word	0x08020d10
+ 80065a8:	08020d24 	.word	0x08020d24
 
 080065ac <_ZN8touchgfx9TypedTextC1Et>:
     TypedText(const TypedTextId id = TYPED_TEXT_INVALID)
@@ -17533,7 +17533,7 @@ public:
  800664a:	3708      	adds	r7, #8
  800664c:	46bd      	mov	sp, r7
  800664e:	bd80      	pop	{r7, pc}
- 8006650:	08020b14 	.word	0x08020b14
+ 8006650:	08020b28 	.word	0x08020b28
 
 08006654 <_ZN8touchgfx8TextArea8setWidthEs>:
 
@@ -17885,7 +17885,7 @@ class TextArea : public Widget
  800687a:	46bd      	mov	sp, r7
  800687c:	bd80      	pop	{r7, pc}
  800687e:	bf00      	nop
- 8006880:	08020b14 	.word	0x08020b14
+ 8006880:	08020b28 	.word	0x08020b28
 
 08006884 <_ZN8touchgfx8TextAreaD0Ev>:
  8006884:	b580      	push	{r7, lr}
@@ -17928,7 +17928,7 @@ public:
  80068be:	3708      	adds	r7, #8
  80068c0:	46bd      	mov	sp, r7
  80068c2:	bd80      	pop	{r7, pc}
- 80068c4:	08020c80 	.word	0x08020c80
+ 80068c4:	08020c94 	.word	0x08020c94
 
 080068c8 <_ZNK8touchgfx24TextAreaWithWildcardBase17invalidateContentEv>:
 
@@ -17986,7 +17986,7 @@ class TextAreaWithWildcardBase : public TextArea
  8006912:	3708      	adds	r7, #8
  8006914:	46bd      	mov	sp, r7
  8006916:	bd80      	pop	{r7, pc}
- 8006918:	08020c80 	.word	0x08020c80
+ 8006918:	08020c94 	.word	0x08020c94
 
 0800691c <_ZN8touchgfx24TextAreaWithWildcardBaseD0Ev>:
  800691c:	b580      	push	{r7, lr}
@@ -18144,7 +18144,7 @@ public:
  80069fa:	46bd      	mov	sp, r7
  80069fc:	bd80      	pop	{r7, pc}
  80069fe:	bf00      	nop
- 8006a00:	08020aa4 	.word	0x08020aa4
+ 8006a00:	08020ab8 	.word	0x08020ab8
 
 08006a04 <_ZN8touchgfx14AbstractButton9setActionERNS_15GenericCallbackIRKS0_vvEE>:
      * @param  callback The callback to be executed. The callback will be executed with a
@@ -18187,7 +18187,7 @@ class AbstractButton : public Widget
  8006a3a:	3708      	adds	r7, #8
  8006a3c:	46bd      	mov	sp, r7
  8006a3e:	bd80      	pop	{r7, pc}
- 8006a40:	08020aa4 	.word	0x08020aa4
+ 8006a40:	08020ab8 	.word	0x08020ab8
 
 08006a44 <_ZN8touchgfx14AbstractButtonD0Ev>:
  8006a44:	b580      	push	{r7, lr}
@@ -18243,7 +18243,7 @@ public:
  8006aa2:	3708      	adds	r7, #8
  8006aa4:	46bd      	mov	sp, r7
  8006aa6:	bd80      	pop	{r7, pc}
- 8006aa8:	08020c0c 	.word	0x08020c0c
+ 8006aa8:	08020c20 	.word	0x08020c20
 
 08006aac <_ZN12MainViewBase13increaseValueEv>:
     virtual void setupScreen();
@@ -18332,7 +18332,7 @@ class Box : public Widget
  8006b32:	3708      	adds	r7, #8
  8006b34:	46bd      	mov	sp, r7
  8006b36:	bd80      	pop	{r7, pc}
- 8006b38:	08020ba4 	.word	0x08020ba4
+ 8006b38:	08020bb8 	.word	0x08020bb8
 
 08006b3c <_ZN8touchgfx3BoxD0Ev>:
  8006b3c:	b580      	push	{r7, lr}
@@ -18367,7 +18367,7 @@ class Image : public Widget
  8006b76:	3708      	adds	r7, #8
  8006b78:	46bd      	mov	sp, r7
  8006b7a:	bd80      	pop	{r7, pc}
- 8006b7c:	08020d10 	.word	0x08020d10
+ 8006b7c:	08020d24 	.word	0x08020d24
 
 08006b80 <_ZN8touchgfx5ImageD0Ev>:
  8006b80:	b580      	push	{r7, lr}
@@ -18437,7 +18437,7 @@ class Button : public AbstractButton
  8006bfe:	3708      	adds	r7, #8
  8006c00:	46bd      	mov	sp, r7
  8006c02:	bd80      	pop	{r7, pc}
- 8006c04:	08020c0c 	.word	0x08020c0c
+ 8006c04:	08020c20 	.word	0x08020c20
 
 08006c08 <_ZN8touchgfx6ButtonD0Ev>:
  8006c08:	b580      	push	{r7, lr}
@@ -18505,7 +18505,7 @@ MainViewBase::MainViewBase() :
  8006c74:	697b      	ldr	r3, [r7, #20]
  8006c76:	4618      	mov	r0, r3
  8006c78:	f000 fa5e 	bl	8007138 <_ZN8touchgfx4ViewI13MainPresenterEC1Ev>
- 8006c7c:	4a99      	ldr	r2, [pc, #612]	@ (8006ee4 <_ZN12MainViewBaseC1Ev+0x278>)
+ 8006c7c:	4a9a      	ldr	r2, [pc, #616]	@ (8006ee8 <_ZN12MainViewBaseC1Ev+0x27c>)
  8006c7e:	697b      	ldr	r3, [r7, #20]
  8006c80:	601a      	str	r2, [r3, #0]
  8006c82:	697b      	ldr	r3, [r7, #20]
@@ -18540,7 +18540,7 @@ MainViewBase::MainViewBase() :
  8006cd4:	f7ff fec6 	bl	8006a64 <_ZN8touchgfx6ButtonC1Ev>
  8006cd8:	697b      	ldr	r3, [r7, #20]
  8006cda:	f503 70c0 	add.w	r0, r3, #384	@ 0x180
- 8006cde:	4b82      	ldr	r3, [pc, #520]	@ (8006ee8 <_ZN12MainViewBaseC1Ev+0x27c>)
+ 8006cde:	4b83      	ldr	r3, [pc, #524]	@ (8006eec <_ZN12MainViewBaseC1Ev+0x280>)
  8006ce0:	627b      	str	r3, [r7, #36]	@ 0x24
  8006ce2:	2300      	movs	r3, #0
  8006ce4:	62bb      	str	r3, [r7, #40]	@ 0x28
@@ -18549,12 +18549,12 @@ MainViewBase::MainViewBase() :
  8006cec:	6979      	ldr	r1, [r7, #20]
  8006cee:	f000 fa49 	bl	8007184 <_ZN8touchgfx8CallbackI12MainViewBaseRKNS_14AbstractButtonEvvEC1EPS1_MS1_FvS4_E>
 {
-    __background.setPosition(0, 0, 320, 480);
+    __background.setPosition(0, 0, 480, 320);
  8006cf2:	697b      	ldr	r3, [r7, #20]
  8006cf4:	f103 0040 	add.w	r0, r3, #64	@ 0x40
- 8006cf8:	f44f 73f0 	mov.w	r3, #480	@ 0x1e0
+ 8006cf8:	f44f 73a0 	mov.w	r3, #320	@ 0x140
  8006cfc:	9300      	str	r3, [sp, #0]
- 8006cfe:	f44f 73a0 	mov.w	r3, #320	@ 0x140
+ 8006cfe:	f44f 73f0 	mov.w	r3, #480	@ 0x1e0
  8006d02:	2200      	movs	r2, #0
  8006d04:	2100      	movs	r1, #0
  8006d06:	f7ff f9d3 	bl	80060b0 <_ZN8touchgfx8Drawable11setPositionEssss>
@@ -18597,23 +18597,23 @@ MainViewBase::MainViewBase() :
  8006d58:	4610      	mov	r0, r2
  8006d5a:	f7ff fb8b 	bl	8006474 <_ZN8touchgfx6Screen3addERNS_8DrawableE>
 
-    box1.setPosition(0, 0, 320, 480);
+    box1.setPosition(0, 0, 480, 320);
  8006d5e:	697b      	ldr	r3, [r7, #20]
  8006d60:	f103 006c 	add.w	r0, r3, #108	@ 0x6c
- 8006d64:	f44f 73f0 	mov.w	r3, #480	@ 0x1e0
+ 8006d64:	f44f 73a0 	mov.w	r3, #320	@ 0x140
  8006d68:	9300      	str	r3, [sp, #0]
- 8006d6a:	f44f 73a0 	mov.w	r3, #320	@ 0x140
+ 8006d6a:	f44f 73f0 	mov.w	r3, #480	@ 0x1e0
  8006d6e:	2200      	movs	r2, #0
  8006d70:	2100      	movs	r1, #0
  8006d72:	f7ff f99d 	bl	80060b0 <_ZN8touchgfx8Drawable11setPositionEssss>
-    box1.setColor(touchgfx::Color::getColorFromRGB(0, 15, 69));
+    box1.setColor(touchgfx::Color::getColorFromRGB(97, 0, 0));
  8006d76:	697b      	ldr	r3, [r7, #20]
  8006d78:	f103 046c 	add.w	r4, r3, #108	@ 0x6c
- 8006d7c:	2300      	movs	r3, #0
+ 8006d7c:	2361      	movs	r3, #97	@ 0x61
  8006d7e:	f887 3064 	strb.w	r3, [r7, #100]	@ 0x64
- 8006d82:	230f      	movs	r3, #15
+ 8006d82:	2300      	movs	r3, #0
  8006d84:	f887 3063 	strb.w	r3, [r7, #99]	@ 0x63
- 8006d88:	2345      	movs	r3, #69	@ 0x45
+ 8006d88:	2300      	movs	r3, #0
  8006d8a:	f887 3062 	strb.w	r3, [r7, #98]	@ 0x62
  8006d8e:	f897 3064 	ldrb.w	r3, [r7, #100]	@ 0x64
  8006d92:	041a      	lsls	r2, r3, #16
@@ -18639,243 +18639,243 @@ MainViewBase::MainViewBase() :
  8006dc4:	4610      	mov	r0, r2
  8006dc6:	f7ff fb55 	bl	8006474 <_ZN8touchgfx6Screen3addERNS_8DrawableE>
 
-    counterBackgroundImage.setXY(84, 77);
+    counterBackgroundImage.setXY(293, 59);
  8006dca:	697b      	ldr	r3, [r7, #20]
  8006dcc:	3398      	adds	r3, #152	@ 0x98
- 8006dce:	224d      	movs	r2, #77	@ 0x4d
- 8006dd0:	2154      	movs	r1, #84	@ 0x54
- 8006dd2:	4618      	mov	r0, r3
- 8006dd4:	f7ff f9ab 	bl	800612e <_ZN8touchgfx8Drawable5setXYEss>
+ 8006dce:	223b      	movs	r2, #59	@ 0x3b
+ 8006dd0:	f240 1125 	movw	r1, #293	@ 0x125
+ 8006dd4:	4618      	mov	r0, r3
+ 8006dd6:	f7ff f9aa 	bl	800612e <_ZN8touchgfx8Drawable5setXYEss>
     counterBackgroundImage.setBitmap(touchgfx::Bitmap(BITMAP_COUNTER_BOX_ID));
- 8006dd8:	697b      	ldr	r3, [r7, #20]
- 8006dda:	f103 0498 	add.w	r4, r3, #152	@ 0x98
- 8006dde:	f107 032c 	add.w	r3, r7, #44	@ 0x2c
- 8006de2:	2100      	movs	r1, #0
- 8006de4:	4618      	mov	r0, r3
- 8006de6:	f7ff f8e5 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
- 8006dea:	f107 032c 	add.w	r3, r7, #44	@ 0x2c
- 8006dee:	4619      	mov	r1, r3
- 8006df0:	4620      	mov	r0, r4
- 8006df2:	f004 fc01 	bl	800b5f8 <_ZN8touchgfx5Image9setBitmapERKNS_6BitmapE>
+ 8006dda:	697b      	ldr	r3, [r7, #20]
+ 8006ddc:	f103 0498 	add.w	r4, r3, #152	@ 0x98
+ 8006de0:	f107 032c 	add.w	r3, r7, #44	@ 0x2c
+ 8006de4:	2101      	movs	r1, #1
+ 8006de6:	4618      	mov	r0, r3
+ 8006de8:	f7ff f8e4 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
+ 8006dec:	f107 032c 	add.w	r3, r7, #44	@ 0x2c
+ 8006df0:	4619      	mov	r1, r3
+ 8006df2:	4620      	mov	r0, r4
+ 8006df4:	f004 fc00 	bl	800b5f8 <_ZN8touchgfx5Image9setBitmapERKNS_6BitmapE>
     add(counterBackgroundImage);
- 8006df6:	697a      	ldr	r2, [r7, #20]
- 8006df8:	697b      	ldr	r3, [r7, #20]
- 8006dfa:	3398      	adds	r3, #152	@ 0x98
- 8006dfc:	4619      	mov	r1, r3
- 8006dfe:	4610      	mov	r0, r2
- 8006e00:	f7ff fb38 	bl	8006474 <_ZN8touchgfx6Screen3addERNS_8DrawableE>
+ 8006df8:	697a      	ldr	r2, [r7, #20]
+ 8006dfa:	697b      	ldr	r3, [r7, #20]
+ 8006dfc:	3398      	adds	r3, #152	@ 0x98
+ 8006dfe:	4619      	mov	r1, r3
+ 8006e00:	4610      	mov	r0, r2
+ 8006e02:	f7ff fb37 	bl	8006474 <_ZN8touchgfx6Screen3addERNS_8DrawableE>
 
-    countTxt.setPosition(84, 104, 152, 89);
- 8006e04:	697b      	ldr	r3, [r7, #20]
- 8006e06:	f103 00c4 	add.w	r0, r3, #196	@ 0xc4
- 8006e0a:	2359      	movs	r3, #89	@ 0x59
- 8006e0c:	9300      	str	r3, [sp, #0]
- 8006e0e:	2398      	movs	r3, #152	@ 0x98
- 8006e10:	2268      	movs	r2, #104	@ 0x68
- 8006e12:	2154      	movs	r1, #84	@ 0x54
- 8006e14:	f7ff f94c 	bl	80060b0 <_ZN8touchgfx8Drawable11setPositionEssss>
+    countTxt.setPosition(293, 87, 152, 89);
+ 8006e06:	697b      	ldr	r3, [r7, #20]
+ 8006e08:	f103 00c4 	add.w	r0, r3, #196	@ 0xc4
+ 8006e0c:	2359      	movs	r3, #89	@ 0x59
+ 8006e0e:	9300      	str	r3, [sp, #0]
+ 8006e10:	2398      	movs	r3, #152	@ 0x98
+ 8006e12:	2257      	movs	r2, #87	@ 0x57
+ 8006e14:	f240 1125 	movw	r1, #293	@ 0x125
+ 8006e18:	f7ff f94a 	bl	80060b0 <_ZN8touchgfx8Drawable11setPositionEssss>
     countTxt.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
- 8006e18:	697b      	ldr	r3, [r7, #20]
- 8006e1a:	f103 04c4 	add.w	r4, r3, #196	@ 0xc4
- 8006e1e:	23ff      	movs	r3, #255	@ 0xff
- 8006e20:	f887 3067 	strb.w	r3, [r7, #103]	@ 0x67
- 8006e24:	23ff      	movs	r3, #255	@ 0xff
- 8006e26:	f887 3066 	strb.w	r3, [r7, #102]	@ 0x66
- 8006e2a:	23ff      	movs	r3, #255	@ 0xff
- 8006e2c:	f887 3065 	strb.w	r3, [r7, #101]	@ 0x65
- 8006e30:	f897 3067 	ldrb.w	r3, [r7, #103]	@ 0x67
- 8006e34:	041a      	lsls	r2, r3, #16
- 8006e36:	f897 3066 	ldrb.w	r3, [r7, #102]	@ 0x66
- 8006e3a:	021b      	lsls	r3, r3, #8
- 8006e3c:	431a      	orrs	r2, r3
- 8006e3e:	f897 3065 	ldrb.w	r3, [r7, #101]	@ 0x65
- 8006e42:	4313      	orrs	r3, r2
- 8006e44:	f043 427f 	orr.w	r2, r3, #4278190080	@ 0xff000000
- 8006e48:	f107 0350 	add.w	r3, r7, #80	@ 0x50
- 8006e4c:	4611      	mov	r1, r2
- 8006e4e:	4618      	mov	r0, r3
- 8006e50:	f7ff f86a 	bl	8005f28 <_ZN8touchgfx9colortypeC1Em>
- 8006e54:	6d3b      	ldr	r3, [r7, #80]	@ 0x50
- 8006e56:	66bc      	str	r4, [r7, #104]	@ 0x68
- 8006e58:	61fb      	str	r3, [r7, #28]
+ 8006e1c:	697b      	ldr	r3, [r7, #20]
+ 8006e1e:	f103 04c4 	add.w	r4, r3, #196	@ 0xc4
+ 8006e22:	23ff      	movs	r3, #255	@ 0xff
+ 8006e24:	f887 3067 	strb.w	r3, [r7, #103]	@ 0x67
+ 8006e28:	23ff      	movs	r3, #255	@ 0xff
+ 8006e2a:	f887 3066 	strb.w	r3, [r7, #102]	@ 0x66
+ 8006e2e:	23ff      	movs	r3, #255	@ 0xff
+ 8006e30:	f887 3065 	strb.w	r3, [r7, #101]	@ 0x65
+ 8006e34:	f897 3067 	ldrb.w	r3, [r7, #103]	@ 0x67
+ 8006e38:	041a      	lsls	r2, r3, #16
+ 8006e3a:	f897 3066 	ldrb.w	r3, [r7, #102]	@ 0x66
+ 8006e3e:	021b      	lsls	r3, r3, #8
+ 8006e40:	431a      	orrs	r2, r3
+ 8006e42:	f897 3065 	ldrb.w	r3, [r7, #101]	@ 0x65
+ 8006e46:	4313      	orrs	r3, r2
+ 8006e48:	f043 427f 	orr.w	r2, r3, #4278190080	@ 0xff000000
+ 8006e4c:	f107 0350 	add.w	r3, r7, #80	@ 0x50
+ 8006e50:	4611      	mov	r1, r2
+ 8006e52:	4618      	mov	r0, r3
+ 8006e54:	f7ff f868 	bl	8005f28 <_ZN8touchgfx9colortypeC1Em>
+ 8006e58:	6d3b      	ldr	r3, [r7, #80]	@ 0x50
+ 8006e5a:	66bc      	str	r4, [r7, #104]	@ 0x68
+ 8006e5c:	61fb      	str	r3, [r7, #28]
         color = newColor;
- 8006e5a:	6ebb      	ldr	r3, [r7, #104]	@ 0x68
- 8006e5c:	69fa      	ldr	r2, [r7, #28]
- 8006e5e:	631a      	str	r2, [r3, #48]	@ 0x30
+ 8006e5e:	6ebb      	ldr	r3, [r7, #104]	@ 0x68
+ 8006e60:	69fa      	ldr	r2, [r7, #28]
+ 8006e62:	631a      	str	r2, [r3, #48]	@ 0x30
     }
- 8006e60:	bf00      	nop
+ 8006e64:	bf00      	nop
     countTxt.setLinespacing(0);
- 8006e62:	697b      	ldr	r3, [r7, #20]
- 8006e64:	33c4      	adds	r3, #196	@ 0xc4
- 8006e66:	673b      	str	r3, [r7, #112]	@ 0x70
- 8006e68:	2300      	movs	r3, #0
- 8006e6a:	f8a7 306e 	strh.w	r3, [r7, #110]	@ 0x6e
+ 8006e66:	697b      	ldr	r3, [r7, #20]
+ 8006e68:	33c4      	adds	r3, #196	@ 0xc4
+ 8006e6a:	673b      	str	r3, [r7, #112]	@ 0x70
+ 8006e6c:	2300      	movs	r3, #0
+ 8006e6e:	f8a7 306e 	strh.w	r3, [r7, #110]	@ 0x6e
         linespace = space;
- 8006e6e:	6f3b      	ldr	r3, [r7, #112]	@ 0x70
- 8006e70:	f8b7 206e 	ldrh.w	r2, [r7, #110]	@ 0x6e
- 8006e74:	869a      	strh	r2, [r3, #52]	@ 0x34
+ 8006e72:	6f3b      	ldr	r3, [r7, #112]	@ 0x70
+ 8006e74:	f8b7 206e 	ldrh.w	r2, [r7, #110]	@ 0x6e
+ 8006e78:	869a      	strh	r2, [r3, #52]	@ 0x34
         boundingArea = calculateBoundingArea();
- 8006e76:	6f3b      	ldr	r3, [r7, #112]	@ 0x70
- 8006e78:	681b      	ldr	r3, [r3, #0]
- 8006e7a:	3384      	adds	r3, #132	@ 0x84
+ 8006e7a:	6f3b      	ldr	r3, [r7, #112]	@ 0x70
  8006e7c:	681b      	ldr	r3, [r3, #0]
- 8006e7e:	6f3c      	ldr	r4, [r7, #112]	@ 0x70
- 8006e80:	463a      	mov	r2, r7
- 8006e82:	6f39      	ldr	r1, [r7, #112]	@ 0x70
- 8006e84:	4610      	mov	r0, r2
- 8006e86:	4798      	blx	r3
- 8006e88:	f104 033c 	add.w	r3, r4, #60	@ 0x3c
- 8006e8c:	463a      	mov	r2, r7
- 8006e8e:	ca07      	ldmia	r2, {r0, r1, r2}
- 8006e90:	e883 0007 	stmia.w	r3, {r0, r1, r2}
+ 8006e7e:	3384      	adds	r3, #132	@ 0x84
+ 8006e80:	681b      	ldr	r3, [r3, #0]
+ 8006e82:	6f3c      	ldr	r4, [r7, #112]	@ 0x70
+ 8006e84:	463a      	mov	r2, r7
+ 8006e86:	6f39      	ldr	r1, [r7, #112]	@ 0x70
+ 8006e88:	4610      	mov	r0, r2
+ 8006e8a:	4798      	blx	r3
+ 8006e8c:	f104 033c 	add.w	r3, r4, #60	@ 0x3c
+ 8006e90:	463a      	mov	r2, r7
+ 8006e92:	ca07      	ldmia	r2, {r0, r1, r2}
+ 8006e94:	e883 0007 	stmia.w	r3, {r0, r1, r2}
     }
- 8006e94:	bf00      	nop
-    Unicode::snprintf(countTxtBuffer, COUNTTXT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_4H5R).getText());
- 8006e96:	697b      	ldr	r3, [r7, #20]
- 8006e98:	f503 74bc 	add.w	r4, r3, #376	@ 0x178
- 8006e9c:	f107 0330 	add.w	r3, r7, #48	@ 0x30
- 8006ea0:	2101      	movs	r1, #1
- 8006ea2:	4618      	mov	r0, r3
- 8006ea4:	f7ff fb82 	bl	80065ac <_ZN8touchgfx9TypedTextC1Et>
+ 8006e98:	bf00      	nop
+    Unicode::snprintf(countTxtBuffer, COUNTTXT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_W2FX).getText());
+ 8006e9a:	697b      	ldr	r3, [r7, #20]
+ 8006e9c:	f503 74bc 	add.w	r4, r3, #376	@ 0x178
+ 8006ea0:	f107 0330 	add.w	r3, r7, #48	@ 0x30
+ 8006ea4:	2101      	movs	r1, #1
+ 8006ea6:	4618      	mov	r0, r3
+ 8006ea8:	f7ff fb80 	bl	80065ac <_ZN8touchgfx9TypedTextC1Et>
         assert(typedTexts != 0 && "TypedText database has not been initialized.");
- 8006ea8:	4b10      	ldr	r3, [pc, #64]	@ (8006eec <_ZN12MainViewBaseC1Ev+0x280>)
- 8006eaa:	681b      	ldr	r3, [r3, #0]
- 8006eac:	2b00      	cmp	r3, #0
- 8006eae:	d105      	bne.n	8006ebc <_ZN12MainViewBaseC1Ev+0x250>
- 8006eb0:	4b0f      	ldr	r3, [pc, #60]	@ (8006ef0 <_ZN12MainViewBaseC1Ev+0x284>)
- 8006eb2:	4a10      	ldr	r2, [pc, #64]	@ (8006ef4 <_ZN12MainViewBaseC1Ev+0x288>)
- 8006eb4:	2160      	movs	r1, #96	@ 0x60
- 8006eb6:	4810      	ldr	r0, [pc, #64]	@ (8006ef8 <_ZN12MainViewBaseC1Ev+0x28c>)
- 8006eb8:	f016 ffda 	bl	801de70 <__assert_func>
- 8006ebc:	f107 0330 	add.w	r3, r7, #48	@ 0x30
- 8006ec0:	677b      	str	r3, [r7, #116]	@ 0x74
+ 8006eac:	4b10      	ldr	r3, [pc, #64]	@ (8006ef0 <_ZN12MainViewBaseC1Ev+0x284>)
+ 8006eae:	681b      	ldr	r3, [r3, #0]
+ 8006eb0:	2b00      	cmp	r3, #0
+ 8006eb2:	d105      	bne.n	8006ec0 <_ZN12MainViewBaseC1Ev+0x254>
+ 8006eb4:	4b0f      	ldr	r3, [pc, #60]	@ (8006ef4 <_ZN12MainViewBaseC1Ev+0x288>)
+ 8006eb6:	4a10      	ldr	r2, [pc, #64]	@ (8006ef8 <_ZN12MainViewBaseC1Ev+0x28c>)
+ 8006eb8:	2160      	movs	r1, #96	@ 0x60
+ 8006eba:	4810      	ldr	r0, [pc, #64]	@ (8006efc <_ZN12MainViewBaseC1Ev+0x290>)
+ 8006ebc:	f016 ffd8 	bl	801de70 <__assert_func>
+ 8006ec0:	f107 0330 	add.w	r3, r7, #48	@ 0x30
+ 8006ec4:	677b      	str	r3, [r7, #116]	@ 0x74
         return typedTextId < numberOfTypedTexts;
- 8006ec2:	6f7b      	ldr	r3, [r7, #116]	@ 0x74
- 8006ec4:	889a      	ldrh	r2, [r3, #4]
- 8006ec6:	4b0d      	ldr	r3, [pc, #52]	@ (8006efc <_ZN12MainViewBaseC1Ev+0x290>)
- 8006ec8:	881b      	ldrh	r3, [r3, #0]
- 8006eca:	429a      	cmp	r2, r3
- 8006ecc:	bf34      	ite	cc
- 8006ece:	2301      	movcc	r3, #1
- 8006ed0:	2300      	movcs	r3, #0
- 8006ed2:	b2db      	uxtb	r3, r3
+ 8006ec6:	6f7b      	ldr	r3, [r7, #116]	@ 0x74
+ 8006ec8:	889a      	ldrh	r2, [r3, #4]
+ 8006eca:	4b0d      	ldr	r3, [pc, #52]	@ (8006f00 <_ZN12MainViewBaseC1Ev+0x294>)
+ 8006ecc:	881b      	ldrh	r3, [r3, #0]
+ 8006ece:	429a      	cmp	r2, r3
+ 8006ed0:	bf34      	ite	cc
+ 8006ed2:	2301      	movcc	r3, #1
+ 8006ed4:	2300      	movcs	r3, #0
+ 8006ed6:	b2db      	uxtb	r3, r3
         assert(hasValidId() && "typedTextId larger than numberOfTypedTexts.");
- 8006ed4:	2b00      	cmp	r3, #0
- 8006ed6:	d115      	bne.n	8006f04 <_ZN12MainViewBaseC1Ev+0x298>
- 8006ed8:	4b09      	ldr	r3, [pc, #36]	@ (8006f00 <_ZN12MainViewBaseC1Ev+0x294>)
- 8006eda:	4a06      	ldr	r2, [pc, #24]	@ (8006ef4 <_ZN12MainViewBaseC1Ev+0x288>)
- 8006edc:	2161      	movs	r1, #97	@ 0x61
- 8006ede:	4806      	ldr	r0, [pc, #24]	@ (8006ef8 <_ZN12MainViewBaseC1Ev+0x28c>)
- 8006ee0:	f016 ffc6 	bl	801de70 <__assert_func>
- 8006ee4:	08020164 	.word	0x08020164
- 8006ee8:	080070f7 	.word	0x080070f7
- 8006eec:	2000a9bc 	.word	0x2000a9bc
- 8006ef0:	0801f1b4 	.word	0x0801f1b4
- 8006ef4:	0801f2b8 	.word	0x0801f2b8
- 8006ef8:	0801f234 	.word	0x0801f234
- 8006efc:	2000a9c0 	.word	0x2000a9c0
- 8006f00:	0801f278 	.word	0x0801f278
+ 8006ed8:	2b00      	cmp	r3, #0
+ 8006eda:	d115      	bne.n	8006f08 <_ZN12MainViewBaseC1Ev+0x29c>
+ 8006edc:	4b09      	ldr	r3, [pc, #36]	@ (8006f04 <_ZN12MainViewBaseC1Ev+0x298>)
+ 8006ede:	4a06      	ldr	r2, [pc, #24]	@ (8006ef8 <_ZN12MainViewBaseC1Ev+0x28c>)
+ 8006ee0:	2161      	movs	r1, #97	@ 0x61
+ 8006ee2:	4806      	ldr	r0, [pc, #24]	@ (8006efc <_ZN12MainViewBaseC1Ev+0x290>)
+ 8006ee4:	f016 ffc4 	bl	801de70 <__assert_func>
+ 8006ee8:	08020164 	.word	0x08020164
+ 8006eec:	080070f7 	.word	0x080070f7
+ 8006ef0:	2000a9bc 	.word	0x2000a9bc
+ 8006ef4:	0801f1b4 	.word	0x0801f1b4
+ 8006ef8:	0801f2b8 	.word	0x0801f2b8
+ 8006efc:	0801f234 	.word	0x0801f234
+ 8006f00:	2000a9c0 	.word	0x2000a9c0
+ 8006f04:	0801f278 	.word	0x0801f278
         return texts->getText(typedTextId);
- 8006f04:	4b50      	ldr	r3, [pc, #320]	@ (8007048 <_ZN12MainViewBaseC1Ev+0x3dc>)
- 8006f06:	681b      	ldr	r3, [r3, #0]
- 8006f08:	8eba      	ldrh	r2, [r7, #52]	@ 0x34
- 8006f0a:	4611      	mov	r1, r2
- 8006f0c:	4618      	mov	r0, r3
- 8006f0e:	f000 fb63 	bl	80075d8 <_ZNK8touchgfx5Texts7getTextEt>
- 8006f12:	4603      	mov	r3, r0
- 8006f14:	bf00      	nop
- 8006f16:	4a4d      	ldr	r2, [pc, #308]	@ (800704c <_ZN12MainViewBaseC1Ev+0x3e0>)
- 8006f18:	2103      	movs	r1, #3
- 8006f1a:	4620      	mov	r0, r4
- 8006f1c:	f009 f9be 	bl	801029c <_ZN8touchgfx7Unicode8snprintfEPttPKcz>
- 8006f20:	f107 0330 	add.w	r3, r7, #48	@ 0x30
- 8006f24:	4618      	mov	r0, r3
- 8006f26:	f7fe f979 	bl	800521c <_ZN8touchgfx9TypedTextD1Ev>
+ 8006f08:	4b4f      	ldr	r3, [pc, #316]	@ (8007048 <_ZN12MainViewBaseC1Ev+0x3dc>)
+ 8006f0a:	681b      	ldr	r3, [r3, #0]
+ 8006f0c:	8eba      	ldrh	r2, [r7, #52]	@ 0x34
+ 8006f0e:	4611      	mov	r1, r2
+ 8006f10:	4618      	mov	r0, r3
+ 8006f12:	f000 fb61 	bl	80075d8 <_ZNK8touchgfx5Texts7getTextEt>
+ 8006f16:	4603      	mov	r3, r0
+ 8006f18:	bf00      	nop
+ 8006f1a:	4a4c      	ldr	r2, [pc, #304]	@ (800704c <_ZN12MainViewBaseC1Ev+0x3e0>)
+ 8006f1c:	2103      	movs	r1, #3
+ 8006f1e:	4620      	mov	r0, r4
+ 8006f20:	f009 f9bc 	bl	801029c <_ZN8touchgfx7Unicode8snprintfEPttPKcz>
+ 8006f24:	f107 0330 	add.w	r3, r7, #48	@ 0x30
+ 8006f28:	4618      	mov	r0, r3
+ 8006f2a:	f7fe f977 	bl	800521c <_ZN8touchgfx9TypedTextD1Ev>
     countTxt.setWildcard(countTxtBuffer);
- 8006f2a:	697b      	ldr	r3, [r7, #20]
- 8006f2c:	f103 02c4 	add.w	r2, r3, #196	@ 0xc4
- 8006f30:	697b      	ldr	r3, [r7, #20]
- 8006f32:	f503 73bc 	add.w	r3, r3, #376	@ 0x178
- 8006f36:	4619      	mov	r1, r3
- 8006f38:	4610      	mov	r0, r2
- 8006f3a:	f7ff fd2f 	bl	800699c <_ZN8touchgfx23TextAreaWithOneWildcard11setWildcardEPKt>
+ 8006f2e:	697b      	ldr	r3, [r7, #20]
+ 8006f30:	f103 02c4 	add.w	r2, r3, #196	@ 0xc4
+ 8006f34:	697b      	ldr	r3, [r7, #20]
+ 8006f36:	f503 73bc 	add.w	r3, r3, #376	@ 0x178
+ 8006f3a:	4619      	mov	r1, r3
+ 8006f3c:	4610      	mov	r0, r2
+ 8006f3e:	f7ff fd2d 	bl	800699c <_ZN8touchgfx23TextAreaWithOneWildcard11setWildcardEPKt>
     countTxt.setTypedText(touchgfx::TypedText(T_TEXTID1));
- 8006f3e:	697b      	ldr	r3, [r7, #20]
- 8006f40:	f103 04c4 	add.w	r4, r3, #196	@ 0xc4
- 8006f44:	f107 0338 	add.w	r3, r7, #56	@ 0x38
- 8006f48:	2100      	movs	r1, #0
- 8006f4a:	4618      	mov	r0, r3
- 8006f4c:	f7ff fb2e 	bl	80065ac <_ZN8touchgfx9TypedTextC1Et>
- 8006f50:	f107 0338 	add.w	r3, r7, #56	@ 0x38
- 8006f54:	4619      	mov	r1, r3
- 8006f56:	4620      	mov	r0, r4
- 8006f58:	f004 f9dc 	bl	800b314 <_ZN8touchgfx8TextArea12setTypedTextERKNS_9TypedTextE>
- 8006f5c:	f107 0338 	add.w	r3, r7, #56	@ 0x38
- 8006f60:	4618      	mov	r0, r3
- 8006f62:	f7fe f95b 	bl	800521c <_ZN8touchgfx9TypedTextD1Ev>
+ 8006f42:	697b      	ldr	r3, [r7, #20]
+ 8006f44:	f103 04c4 	add.w	r4, r3, #196	@ 0xc4
+ 8006f48:	f107 0338 	add.w	r3, r7, #56	@ 0x38
+ 8006f4c:	2100      	movs	r1, #0
+ 8006f4e:	4618      	mov	r0, r3
+ 8006f50:	f7ff fb2c 	bl	80065ac <_ZN8touchgfx9TypedTextC1Et>
+ 8006f54:	f107 0338 	add.w	r3, r7, #56	@ 0x38
+ 8006f58:	4619      	mov	r1, r3
+ 8006f5a:	4620      	mov	r0, r4
+ 8006f5c:	f004 f9da 	bl	800b314 <_ZN8touchgfx8TextArea12setTypedTextERKNS_9TypedTextE>
+ 8006f60:	f107 0338 	add.w	r3, r7, #56	@ 0x38
+ 8006f64:	4618      	mov	r0, r3
+ 8006f66:	f7fe f959 	bl	800521c <_ZN8touchgfx9TypedTextD1Ev>
     add(countTxt);
- 8006f66:	697a      	ldr	r2, [r7, #20]
- 8006f68:	697b      	ldr	r3, [r7, #20]
- 8006f6a:	33c4      	adds	r3, #196	@ 0xc4
- 8006f6c:	4619      	mov	r1, r3
- 8006f6e:	4610      	mov	r0, r2
- 8006f70:	f7ff fa80 	bl	8006474 <_ZN8touchgfx6Screen3addERNS_8DrawableE>
+ 8006f6a:	697a      	ldr	r2, [r7, #20]
+ 8006f6c:	697b      	ldr	r3, [r7, #20]
+ 8006f6e:	33c4      	adds	r3, #196	@ 0xc4
+ 8006f70:	4619      	mov	r1, r3
+ 8006f72:	4610      	mov	r0, r2
+ 8006f74:	f7ff fa7e 	bl	8006474 <_ZN8touchgfx6Screen3addERNS_8DrawableE>
 
-    buttonUp.setXY(175, 345);
- 8006f74:	697b      	ldr	r3, [r7, #20]
- 8006f76:	f503 7388 	add.w	r3, r3, #272	@ 0x110
- 8006f7a:	f240 1259 	movw	r2, #345	@ 0x159
- 8006f7e:	21af      	movs	r1, #175	@ 0xaf
- 8006f80:	4618      	mov	r0, r3
- 8006f82:	f7ff f8d4 	bl	800612e <_ZN8touchgfx8Drawable5setXYEss>
+    buttonUp.setXY(52, 59);
+ 8006f78:	697b      	ldr	r3, [r7, #20]
+ 8006f7a:	f503 7388 	add.w	r3, r3, #272	@ 0x110
+ 8006f7e:	223b      	movs	r2, #59	@ 0x3b
+ 8006f80:	2134      	movs	r1, #52	@ 0x34
+ 8006f82:	4618      	mov	r0, r3
+ 8006f84:	f7ff f8d3 	bl	800612e <_ZN8touchgfx8Drawable5setXYEss>
     buttonUp.setBitmaps(touchgfx::Bitmap(BITMAP_UP_BTN_ID), touchgfx::Bitmap(BITMAP_UP_BTN_PRESSED_ID));
- 8006f86:	697b      	ldr	r3, [r7, #20]
- 8006f88:	f503 7488 	add.w	r4, r3, #272	@ 0x110
- 8006f8c:	f107 0340 	add.w	r3, r7, #64	@ 0x40
- 8006f90:	2104      	movs	r1, #4
- 8006f92:	4618      	mov	r0, r3
- 8006f94:	f7ff f80e 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
- 8006f98:	f107 0344 	add.w	r3, r7, #68	@ 0x44
- 8006f9c:	2106      	movs	r1, #6
- 8006f9e:	4618      	mov	r0, r3
- 8006fa0:	f7ff f808 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
- 8006fa4:	f107 0244 	add.w	r2, r7, #68	@ 0x44
- 8006fa8:	f107 0340 	add.w	r3, r7, #64	@ 0x40
- 8006fac:	4619      	mov	r1, r3
- 8006fae:	4620      	mov	r0, r4
- 8006fb0:	f004 fa02 	bl	800b3b8 <_ZN8touchgfx6Button10setBitmapsERKNS_6BitmapES3_>
+ 8006f88:	697b      	ldr	r3, [r7, #20]
+ 8006f8a:	f503 7488 	add.w	r4, r3, #272	@ 0x110
+ 8006f8e:	f107 0340 	add.w	r3, r7, #64	@ 0x40
+ 8006f92:	2105      	movs	r1, #5
+ 8006f94:	4618      	mov	r0, r3
+ 8006f96:	f7ff f80d 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
+ 8006f9a:	f107 0344 	add.w	r3, r7, #68	@ 0x44
+ 8006f9e:	2107      	movs	r1, #7
+ 8006fa0:	4618      	mov	r0, r3
+ 8006fa2:	f7ff f807 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
+ 8006fa6:	f107 0244 	add.w	r2, r7, #68	@ 0x44
+ 8006faa:	f107 0340 	add.w	r3, r7, #64	@ 0x40
+ 8006fae:	4619      	mov	r1, r3
+ 8006fb0:	4620      	mov	r0, r4
+ 8006fb2:	f004 fa01 	bl	800b3b8 <_ZN8touchgfx6Button10setBitmapsERKNS_6BitmapES3_>
     buttonUp.setAction(buttonCallback);
- 8006fb4:	697b      	ldr	r3, [r7, #20]
- 8006fb6:	f503 7288 	add.w	r2, r3, #272	@ 0x110
- 8006fba:	697b      	ldr	r3, [r7, #20]
- 8006fbc:	f503 73c0 	add.w	r3, r3, #384	@ 0x180
- 8006fc0:	4619      	mov	r1, r3
- 8006fc2:	4610      	mov	r0, r2
- 8006fc4:	f7ff fd1e 	bl	8006a04 <_ZN8touchgfx14AbstractButton9setActionERNS_15GenericCallbackIRKS0_vvEE>
+ 8006fb6:	697b      	ldr	r3, [r7, #20]
+ 8006fb8:	f503 7288 	add.w	r2, r3, #272	@ 0x110
+ 8006fbc:	697b      	ldr	r3, [r7, #20]
+ 8006fbe:	f503 73c0 	add.w	r3, r3, #384	@ 0x180
+ 8006fc2:	4619      	mov	r1, r3
+ 8006fc4:	4610      	mov	r0, r2
+ 8006fc6:	f7ff fd1d 	bl	8006a04 <_ZN8touchgfx14AbstractButton9setActionERNS_15GenericCallbackIRKS0_vvEE>
     add(buttonUp);
- 8006fc8:	697a      	ldr	r2, [r7, #20]
- 8006fca:	697b      	ldr	r3, [r7, #20]
- 8006fcc:	f503 7388 	add.w	r3, r3, #272	@ 0x110
- 8006fd0:	4619      	mov	r1, r3
- 8006fd2:	4610      	mov	r0, r2
- 8006fd4:	f7ff fa4e 	bl	8006474 <_ZN8touchgfx6Screen3addERNS_8DrawableE>
+ 8006fca:	697a      	ldr	r2, [r7, #20]
+ 8006fcc:	697b      	ldr	r3, [r7, #20]
+ 8006fce:	f503 7388 	add.w	r3, r3, #272	@ 0x110
+ 8006fd2:	4619      	mov	r1, r3
+ 8006fd4:	4610      	mov	r0, r2
+ 8006fd6:	f7ff fa4d 	bl	8006474 <_ZN8touchgfx6Screen3addERNS_8DrawableE>
 
-    buttonDown.setXY(30, 345);
- 8006fd8:	697b      	ldr	r3, [r7, #20]
- 8006fda:	f503 73a2 	add.w	r3, r3, #324	@ 0x144
- 8006fde:	f240 1259 	movw	r2, #345	@ 0x159
- 8006fe2:	211e      	movs	r1, #30
+    buttonDown.setXY(52, 157);
+ 8006fda:	697b      	ldr	r3, [r7, #20]
+ 8006fdc:	f503 73a2 	add.w	r3, r3, #324	@ 0x144
+ 8006fe0:	229d      	movs	r2, #157	@ 0x9d
+ 8006fe2:	2134      	movs	r1, #52	@ 0x34
  8006fe4:	4618      	mov	r0, r3
  8006fe6:	f7ff f8a2 	bl	800612e <_ZN8touchgfx8Drawable5setXYEss>
     buttonDown.setBitmaps(touchgfx::Bitmap(BITMAP_DOWN_BTN_ID), touchgfx::Bitmap(BITMAP_DOWN_BTN_PRESSED_ID));
  8006fea:	697b      	ldr	r3, [r7, #20]
  8006fec:	f503 74a2 	add.w	r4, r3, #324	@ 0x144
  8006ff0:	f107 0348 	add.w	r3, r7, #72	@ 0x48
- 8006ff4:	2101      	movs	r1, #1
+ 8006ff4:	2102      	movs	r1, #2
  8006ff6:	4618      	mov	r0, r3
  8006ff8:	f7fe ffdc 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
  8006ffc:	f107 034c 	add.w	r3, r7, #76	@ 0x4c
- 8007000:	2103      	movs	r1, #3
+ 8007000:	2104      	movs	r1, #4
  8007002:	4618      	mov	r0, r3
  8007004:	f7fe ffd6 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
  8007008:	f107 024c 	add.w	r2, r7, #76	@ 0x4c
@@ -19256,7 +19256,7 @@ uint16_t getInstanceSize()
  80072a4:	b480      	push	{r7}
  80072a6:	af00      	add	r7, sp, #0
     return (uint16_t)(sizeof(bitmap_database) / sizeof(touchgfx::Bitmap::BitmapData));
- 80072a8:	2307      	movs	r3, #7
+ 80072a8:	2308      	movs	r3, #8
 }
  80072aa:	4618      	mov	r0, r3
  80072ac:	46bd      	mov	sp, r7
@@ -19758,9 +19758,9 @@ void touchgfx::Texts::setLanguage(touchgfx::LanguageId id)
  80075bc:	200082c0 	.word	0x200082c0
  80075c0:	200082c8 	.word	0x200082c8
  80075c4:	200082cc 	.word	0x200082cc
- 80075c8:	08059cec 	.word	0x08059cec
- 80075cc:	08059ce4 	.word	0x08059ce4
- 80075d0:	08059cf8 	.word	0x08059cf8
+ 80075c8:	08099900 	.word	0x08099900
+ 80075cc:	080998f8 	.word	0x080998f8
+ 80075d0:	0809990c 	.word	0x0809990c
  80075d4:	200082c4 	.word	0x200082c4
 
 080075d8 <_ZNK8touchgfx5Texts7getTextEt>:
@@ -19878,7 +19878,7 @@ public:
  800766e:	3708      	adds	r7, #8
  8007670:	46bd      	mov	sp, r7
  8007672:	bd80      	pop	{r7, pc}
- 8007674:	080203ec 	.word	0x080203ec
+ 8007674:	08020400 	.word	0x08020400
 
 08007678 <_ZN19FrontendApplicationD0Ev>:
  8007678:	b580      	push	{r7, lr}
@@ -19946,7 +19946,7 @@ FrontendApplication::FrontendApplication(Model& m, FrontendHeap& heap)
  80076e2:	3710      	adds	r7, #16
  80076e4:	46bd      	mov	sp, r7
  80076e6:	bd80      	pop	{r7, pc}
- 80076e8:	080203ec 	.word	0x080203ec
+ 80076e8:	08020400 	.word	0x08020400
 
 080076ec <_ZN8touchgfx9Presenter8activateEv>:
      * Place initialization code for the Presenter here.
@@ -20005,7 +20005,7 @@ FrontendApplication::FrontendApplication(Model& m, FrontendHeap& heap)
  8007728:	46bd      	mov	sp, r7
  800772a:	f85d 7b04 	ldr.w	r7, [sp], #4
  800772e:	4770      	bx	lr
- 8007730:	08020478 	.word	0x08020478
+ 8007730:	0802048c 	.word	0x0802048c
 
 08007734 <_ZN8touchgfx9PresenterD0Ev>:
     virtual ~Presenter()
@@ -20045,7 +20045,7 @@ protected:
  8007768:	46bd      	mov	sp, r7
  800776a:	f85d 7b04 	ldr.w	r7, [sp], #4
  800776e:	4770      	bx	lr
- 8007770:	08020478 	.word	0x08020478
+ 8007770:	0802048c 	.word	0x0802048c
 
 08007774 <_ZN13ModelListenerC1Ev>:
     ModelListener() : model(0) {}
@@ -20066,7 +20066,7 @@ protected:
  8007790:	f85d 7b04 	ldr.w	r7, [sp], #4
  8007794:	4770      	bx	lr
  8007796:	bf00      	nop
- 8007798:	08020468 	.word	0x08020468
+ 8007798:	0802047c 	.word	0x0802047c
 
 0800779c <_ZN13ModelListenerD1Ev>:
     virtual ~ModelListener() {}
@@ -20083,7 +20083,7 @@ protected:
  80077b0:	46bd      	mov	sp, r7
  80077b2:	f85d 7b04 	ldr.w	r7, [sp], #4
  80077b6:	4770      	bx	lr
- 80077b8:	08020468 	.word	0x08020468
+ 80077b8:	0802047c 	.word	0x0802047c
 
 080077bc <_ZN13ModelListenerD0Ev>:
  80077bc:	b580      	push	{r7, lr}
@@ -20130,8 +20130,8 @@ protected:
  8007806:	3708      	adds	r7, #8
  8007808:	46bd      	mov	sp, r7
  800780a:	bd80      	pop	{r7, pc}
- 800780c:	08020440 	.word	0x08020440
- 8007810:	08020458 	.word	0x08020458
+ 800780c:	08020454 	.word	0x08020454
+ 8007810:	0802046c 	.word	0x0802046c
 
 08007814 <_ZThn4_N13MainPresenterD1Ev>:
  8007814:	f1a0 0004 	sub.w	r0, r0, #4
@@ -20193,8 +20193,8 @@ MainPresenter::MainPresenter(MainView& v)
  8007876:	3708      	adds	r7, #8
  8007878:	46bd      	mov	sp, r7
  800787a:	bd80      	pop	{r7, pc}
- 800787c:	08020440 	.word	0x08020440
- 8007880:	08020458 	.word	0x08020458
+ 800787c:	08020454 	.word	0x08020454
+ 8007880:	0802046c 	.word	0x0802046c
 
 08007884 <_ZN13MainPresenter8activateEv>:
 
@@ -20248,7 +20248,7 @@ public:
  80078c6:	3708      	adds	r7, #8
  80078c8:	46bd      	mov	sp, r7
  80078ca:	bd80      	pop	{r7, pc}
- 80078cc:	08020490 	.word	0x08020490
+ 80078cc:	080204a4 	.word	0x080204a4
 
 080078d0 <_ZN8MainViewD0Ev>:
  80078d0:	b580      	push	{r7, lr}
@@ -20292,7 +20292,7 @@ MainView::MainView() : count(0) {}
  8007916:	3708      	adds	r7, #8
  8007918:	46bd      	mov	sp, r7
  800791a:	bd80      	pop	{r7, pc}
- 800791c:	08020490 	.word	0x08020490
+ 800791c:	080204a4 	.word	0x080204a4
 
 08007920 <_ZN8MainView11setupScreenEv>:
 
@@ -20406,11 +20406,11 @@ void MainView::updateGFXElements()
  80079d6:	687b      	ldr	r3, [r7, #4]
  80079d8:	f503 7488 	add.w	r4, r3, #272	@ 0x110
  80079dc:	f107 0308 	add.w	r3, r7, #8
- 80079e0:	2104      	movs	r1, #4
+ 80079e0:	2105      	movs	r1, #5
  80079e2:	4618      	mov	r0, r3
  80079e4:	f7fe fae6 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
  80079e8:	f107 030c 	add.w	r3, r7, #12
- 80079ec:	2106      	movs	r1, #6
+ 80079ec:	2107      	movs	r1, #7
  80079ee:	4618      	mov	r0, r3
  80079f0:	f7fe fae0 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
  80079f4:	f107 020c 	add.w	r2, r7, #12
@@ -20432,11 +20432,11 @@ void MainView::updateGFXElements()
  8007a14:	687b      	ldr	r3, [r7, #4]
  8007a16:	f503 7488 	add.w	r4, r3, #272	@ 0x110
  8007a1a:	f107 0310 	add.w	r3, r7, #16
- 8007a1e:	2105      	movs	r1, #5
+ 8007a1e:	2106      	movs	r1, #6
  8007a20:	4618      	mov	r0, r3
  8007a22:	f7fe fac7 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
  8007a26:	f107 0314 	add.w	r3, r7, #20
- 8007a2a:	2105      	movs	r1, #5
+ 8007a2a:	2106      	movs	r1, #6
  8007a2c:	4618      	mov	r0, r3
  8007a2e:	f7fe fac1 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
  8007a32:	f107 0214 	add.w	r2, r7, #20
@@ -20461,11 +20461,11 @@ void MainView::updateGFXElements()
  8007a5a:	687b      	ldr	r3, [r7, #4]
  8007a5c:	f503 74a2 	add.w	r4, r3, #324	@ 0x144
  8007a60:	f107 0318 	add.w	r3, r7, #24
- 8007a64:	2101      	movs	r1, #1
+ 8007a64:	2102      	movs	r1, #2
  8007a66:	4618      	mov	r0, r3
  8007a68:	f7fe faa4 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
  8007a6c:	f107 031c 	add.w	r3, r7, #28
- 8007a70:	2103      	movs	r1, #3
+ 8007a70:	2104      	movs	r1, #4
  8007a72:	4618      	mov	r0, r3
  8007a74:	f7fe fa9e 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
  8007a78:	f107 021c 	add.w	r2, r7, #28
@@ -20487,11 +20487,11 @@ void MainView::updateGFXElements()
  8007a98:	687b      	ldr	r3, [r7, #4]
  8007a9a:	f503 74a2 	add.w	r4, r3, #324	@ 0x144
  8007a9e:	f107 0320 	add.w	r3, r7, #32
- 8007aa2:	2102      	movs	r1, #2
+ 8007aa2:	2103      	movs	r1, #3
  8007aa4:	4618      	mov	r0, r3
  8007aa6:	f7fe fa85 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
  8007aaa:	f107 0324 	add.w	r3, r7, #36	@ 0x24
- 8007aae:	2102      	movs	r1, #2
+ 8007aae:	2103      	movs	r1, #3
  8007ab0:	4618      	mov	r0, r3
  8007ab2:	f7fe fa7f 	bl	8005fb4 <_ZN8touchgfx6BitmapC1Et>
  8007ab6:	f107 0224 	add.w	r2, r7, #36	@ 0x24
@@ -20588,7 +20588,7 @@ public:
  8007b48:	46bd      	mov	sp, r7
  8007b4a:	f85d 7b04 	ldr.w	r7, [sp], #4
  8007b4e:	4770      	bx	lr
- 8007b50:	080204e4 	.word	0x080204e4
+ 8007b50:	080204f8 	.word	0x080204f8
 
 08007b54 <_ZN8touchgfx15TouchControllerD0Ev>:
     virtual ~TouchController()
@@ -20609,9 +20609,9 @@ public:
  8007b72:	bd80      	pop	{r7, pc}
 
 08007b74 <_ZN20STM32TouchController4initEv>:
-
 #include <STM32TouchController.hpp>
 #include "main.h"
+
 
 void STM32TouchController::init()
 {
@@ -20655,6 +20655,7 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
  8007ba2:	2301      	movne	r3, #1
  8007ba4:	2300      	moveq	r3, #0
  8007ba6:	b2db      	uxtb	r3, r3
+
 }
  8007ba8:	4618      	mov	r0, r3
  8007baa:	3710      	adds	r7, #16
@@ -20683,7 +20684,7 @@ class STM32TouchController : public touchgfx::TouchController
  8007bca:	3708      	adds	r7, #8
  8007bcc:	46bd      	mov	sp, r7
  8007bce:	bd80      	pop	{r7, pc}
- 8007bd0:	080204cc 	.word	0x080204cc
+ 8007bd0:	080204e0 	.word	0x080204e0
 
 08007bd4 <_ZN20STM32TouchControllerD0Ev>:
  8007bd4:	b580      	push	{r7, lr}
@@ -20864,7 +20865,7 @@ void GPIO::toggle(GPIO_ID id)
  8007cc0:	46bd      	mov	sp, r7
  8007cc2:	f85d 7b04 	ldr.w	r7, [sp], #4
  8007cc6:	4770      	bx	lr
- 8007cc8:	08020944 	.word	0x08020944
+ 8007cc8:	08020958 	.word	0x08020958
 
 08007ccc <_ZN8touchgfx3HALD0Ev>:
     virtual ~HAL()
@@ -21473,7 +21474,7 @@ class TouchGFXGeneratedHAL : public touchgfx::HAL
  8008012:	3708      	adds	r7, #8
  8008014:	46bd      	mov	sp, r7
  8008016:	bd80      	pop	{r7, pc}
- 8008018:	0802075c 	.word	0x0802075c
+ 8008018:	08020770 	.word	0x08020770
 
 0800801c <_ZN20TouchGFXGeneratedHALD0Ev>:
  800801c:	b580      	push	{r7, lr}
@@ -21804,7 +21805,7 @@ class TouchGFXHAL : public TouchGFXGeneratedHAL
  800818e:	3708      	adds	r7, #8
  8008190:	46bd      	mov	sp, r7
  8008192:	bd80      	pop	{r7, pc}
- 8008194:	080204fc 	.word	0x080204fc
+ 8008194:	08020510 	.word	0x08020510
 
 08008198 <_ZN11TouchGFXHALD0Ev>:
  8008198:	b580      	push	{r7, lr}
@@ -22081,7 +22082,7 @@ void OSWrappers::waitForVSync()
  8008304:	46bd      	mov	sp, r7
  8008306:	f85d 7b04 	ldr.w	r7, [sp], #4
  800830a:	4770      	bx	lr
- 800830c:	08020638 	.word	0x08020638
+ 800830c:	0802064c 	.word	0x0802064c
 
 08008310 <_ZN8touchgfx9DMA_QueueD0Ev>:
     virtual ~DMA_Queue()
@@ -22161,7 +22162,7 @@ void OSWrappers::waitForVSync()
  8008370:	46bd      	mov	sp, r7
  8008372:	f85d 7b04 	ldr.w	r7, [sp], #4
  8008376:	4770      	bx	lr
- 8008378:	08020a30 	.word	0x08020a30
+ 8008378:	08020a44 	.word	0x08020a44
 
 0800837c <_ZN8touchgfx13DMA_InterfaceD0Ev>:
     virtual ~DMA_Interface()
@@ -22214,7 +22215,7 @@ void OSWrappers::waitForVSync()
  80083c4:	46bd      	mov	sp, r7
  80083c6:	f85d 7b04 	ldr.w	r7, [sp], #4
  80083ca:	4770      	bx	lr
- 80083cc:	08020a30 	.word	0x08020a30
+ 80083cc:	08020a44 	.word	0x08020a44
 
 080083d0 <_ZN8STM32DMA18signalDMAInterruptEv>:
     /**
@@ -22271,7 +22272,7 @@ class LockFreeDMA_Queue : public DMA_Queue
  8008412:	3708      	adds	r7, #8
  8008414:	46bd      	mov	sp, r7
  8008416:	bd80      	pop	{r7, pc}
- 8008418:	08020a80 	.word	0x08020a80
+ 8008418:	08020a94 	.word	0x08020a94
 
 0800841c <_ZN8touchgfx17LockFreeDMA_QueueD0Ev>:
  800841c:	b580      	push	{r7, lr}
@@ -22350,7 +22351,7 @@ STM32DMA::STM32DMA()
  8008496:	46bd      	mov	sp, r7
  8008498:	bd80      	pop	{r7, pc}
  800849a:	bf00      	nop
- 800849c:	080205e8 	.word	0x080205e8
+ 800849c:	080205fc 	.word	0x080205fc
 
 080084a0 <_ZN8STM32DMA11getBlitCapsEv>:
 
@@ -22433,7 +22434,7 @@ class STM32DMA : public touchgfx::DMA_Interface
  8008526:	46bd      	mov	sp, r7
  8008528:	bd80      	pop	{r7, pc}
  800852a:	bf00      	nop
- 800852c:	080205e8 	.word	0x080205e8
+ 800852c:	080205fc 	.word	0x080205fc
 
 08008530 <_ZN8STM32DMAD0Ev>:
  8008530:	b580      	push	{r7, lr}
@@ -22524,7 +22525,7 @@ class STM32DMA : public touchgfx::DMA_Interface
  80085a4:	f85d 7b04 	ldr.w	r7, [sp], #4
  80085a8:	4770      	bx	lr
  80085aa:	bf00      	nop
- 80085ac:	08020720 	.word	0x08020720
+ 80085ac:	08020734 	.word	0x08020734
 
 080085b0 <_ZN8touchgfx7MVPHeapD1Ev>:
 
@@ -22545,7 +22546,7 @@ class STM32DMA : public touchgfx::DMA_Interface
  80085c4:	46bd      	mov	sp, r7
  80085c6:	f85d 7b04 	ldr.w	r7, [sp], #4
  80085ca:	4770      	bx	lr
- 80085cc:	08020720 	.word	0x08020720
+ 80085cc:	08020734 	.word	0x08020734
 
 080085d0 <_ZN8touchgfx7MVPHeapD0Ev>:
     virtual ~MVPHeap()
@@ -22587,7 +22588,7 @@ class STM32DMA : public touchgfx::DMA_Interface
  8008604:	46bd      	mov	sp, r7
  8008606:	f85d 7b04 	ldr.w	r7, [sp], #4
  800860a:	4770      	bx	lr
- 800860c:	08020d7c 	.word	0x08020d7c
+ 800860c:	08020d90 	.word	0x08020d90
 
 08008610 <_ZN8touchgfx3LCDD0Ev>:
     virtual ~LCD()
@@ -22917,7 +22918,7 @@ public:
  800883a:	3710      	adds	r7, #16
  800883c:	46bd      	mov	sp, r7
  800883e:	bd80      	pop	{r7, pc}
- 8008840:	08020944 	.word	0x08020944
+ 8008840:	08020958 	.word	0x08020958
  8008844:	aaaaaaab 	.word	0xaaaaaaab
  8008848:	2000a96c 	.word	0x2000a96c
  800884c:	2000a960 	.word	0x2000a960
@@ -22980,7 +22981,7 @@ protected:
  80088a6:	46bd      	mov	sp, r7
  80088a8:	bd80      	pop	{r7, pc}
  80088aa:	bf00      	nop
- 80088ac:	0802070c 	.word	0x0802070c
+ 80088ac:	08020720 	.word	0x08020720
 
 080088b0 <_ZN16FrontendHeapBaseD1Ev>:
 class FrontendHeapBase : public touchgfx::MVPHeap
@@ -22999,7 +23000,7 @@ class FrontendHeapBase : public touchgfx::MVPHeap
  80088ca:	3708      	adds	r7, #8
  80088cc:	46bd      	mov	sp, r7
  80088ce:	bd80      	pop	{r7, pc}
- 80088d0:	0802070c 	.word	0x0802070c
+ 80088d0:	08020720 	.word	0x08020720
 
 080088d4 <_ZN16FrontendHeapBaseD0Ev>:
  80088d4:	b580      	push	{r7, lr}
@@ -23039,7 +23040,7 @@ class Partition : public AbstractPartition
  800890e:	3708      	adds	r7, #8
  8008910:	46bd      	mov	sp, r7
  8008912:	bd80      	pop	{r7, pc}
- 8008914:	080206d8 	.word	0x080206d8
+ 8008914:	080206ec 	.word	0x080206ec
 
 08008918 <_ZN8touchgfx9PartitionINS_4meta8TypeListI13MainPresenterNS2_INS1_3NilES4_EEEELt1EED0Ev>:
  8008918:	b580      	push	{r7, lr}
@@ -23073,7 +23074,7 @@ class Partition : public AbstractPartition
  8008952:	3708      	adds	r7, #8
  8008954:	46bd      	mov	sp, r7
  8008956:	bd80      	pop	{r7, pc}
- 8008958:	080206a4 	.word	0x080206a4
+ 8008958:	080206b8 	.word	0x080206b8
 
 0800895c <_ZN8touchgfx9PartitionINS_4meta8TypeListI8MainViewNS2_INS1_3NilES4_EEEELt1EED0Ev>:
  800895c:	b580      	push	{r7, lr}
@@ -23108,7 +23109,7 @@ class Partition : public AbstractPartition
  800899a:	3708      	adds	r7, #8
  800899c:	46bd      	mov	sp, r7
  800899e:	bd80      	pop	{r7, pc}
- 80089a0:	08020670 	.word	0x08020670
+ 80089a0:	08020684 	.word	0x08020684
 
 080089a4 <_ZN8touchgfx9PartitionINS_4meta8TypeListINS_12NoTransitionENS2_INS1_3NilES4_EEEELt1EED0Ev>:
  80089a4:	b580      	push	{r7, lr}
@@ -23164,7 +23165,7 @@ class FrontendHeap : public FrontendHeapBase
  8008a0a:	3708      	adds	r7, #8
  8008a0c:	46bd      	mov	sp, r7
  8008a0e:	bd80      	pop	{r7, pc}
- 8008a10:	0802065c 	.word	0x0802065c
+ 8008a10:	08020670 	.word	0x08020670
 
 08008a14 <_ZN12FrontendHeapD0Ev>:
  8008a14:	b580      	push	{r7, lr}
@@ -23254,7 +23255,7 @@ class FrontendHeap : public FrontendHeapBase
  8008aba:	3708      	adds	r7, #8
  8008abc:	46bd      	mov	sp, r7
  8008abe:	bd80      	pop	{r7, pc}
- 8008ac0:	080206d8 	.word	0x080206d8
+ 8008ac0:	080206ec 	.word	0x080206ec
 
 08008ac4 <_ZN8touchgfx9PartitionINS_4meta8TypeListI8MainViewNS2_INS1_3NilES4_EEEELt1EEC1Ev>:
  8008ac4:	b580      	push	{r7, lr}
@@ -23272,7 +23273,7 @@ class FrontendHeap : public FrontendHeapBase
  8008ade:	3708      	adds	r7, #8
  8008ae0:	46bd      	mov	sp, r7
  8008ae2:	bd80      	pop	{r7, pc}
- 8008ae4:	080206a4 	.word	0x080206a4
+ 8008ae4:	080206b8 	.word	0x080206b8
 
 08008ae8 <_ZN8touchgfx9PartitionINS_4meta8TypeListINS_12NoTransitionENS2_INS1_3NilES4_EEEELt1EEC1Ev>:
  8008ae8:	b580      	push	{r7, lr}
@@ -23290,7 +23291,7 @@ class FrontendHeap : public FrontendHeapBase
  8008b02:	3708      	adds	r7, #8
  8008b04:	46bd      	mov	sp, r7
  8008b06:	bd80      	pop	{r7, pc}
- 8008b08:	08020670 	.word	0x08020670
+ 8008b08:	08020684 	.word	0x08020684
 
 08008b0c <_ZN12FrontendHeapC1Ev>:
     Partition< CombinedTransitionTypes, 1 > transitions;
@@ -23359,7 +23360,7 @@ private:
  8008b92:	46bd      	mov	sp, r7
  8008b94:	bd90      	pop	{r4, r7, pc}
  8008b96:	bf00      	nop
- 8008b98:	0802065c 	.word	0x0802065c
+ 8008b98:	08020670 	.word	0x08020670
 
 08008b9c <_ZN20TouchGFXGeneratedHALC1ERN8touchgfx13DMA_InterfaceERNS0_3LCDERNS0_15TouchControllerEtt>:
     TouchGFXGeneratedHAL(touchgfx::DMA_Interface& dma, touchgfx::LCD& display, touchgfx::TouchController& tc, uint16_t width, uint16_t height) :
@@ -23390,7 +23391,7 @@ private:
  8008bca:	46bd      	mov	sp, r7
  8008bcc:	bd80      	pop	{r7, pc}
  8008bce:	bf00      	nop
- 8008bd0:	0802075c 	.word	0x0802075c
+ 8008bd0:	08020770 	.word	0x08020770
 
 08008bd4 <_ZN11TouchGFXHALC1ERN8touchgfx13DMA_InterfaceERNS0_3LCDERNS0_15TouchControllerEtt>:
     TouchGFXHAL(touchgfx::DMA_Interface& dma, touchgfx::LCD& display, touchgfx::TouchController& tc, uint16_t width, uint16_t height) : TouchGFXGeneratedHAL(dma, display, tc, width, height)
@@ -23420,7 +23421,7 @@ private:
  8008c02:	46bd      	mov	sp, r7
  8008c04:	bd80      	pop	{r7, pc}
  8008c06:	bf00      	nop
- 8008c08:	080204fc 	.word	0x080204fc
+ 8008c08:	08020510 	.word	0x08020510
 
 08008c0c <_ZN8touchgfx15TouchControllerC1Ev>:
 class TouchController
@@ -23437,7 +23438,7 @@ class TouchController
  8008c20:	46bd      	mov	sp, r7
  8008c22:	f85d 7b04 	ldr.w	r7, [sp], #4
  8008c26:	4770      	bx	lr
- 8008c28:	080204e4 	.word	0x080204e4
+ 8008c28:	080204f8 	.word	0x080204f8
 
 08008c2c <_ZN20STM32TouchControllerC1Ev>:
 {
@@ -23459,7 +23460,7 @@ public:
  8008c46:	3708      	adds	r7, #8
  8008c48:	46bd      	mov	sp, r7
  8008c4a:	bd80      	pop	{r7, pc}
- 8008c4c:	080204cc 	.word	0x080204cc
+ 8008c4c:	080204e0 	.word	0x080204e0
 
 08008c50 <touchgfx_init>:
 static ApplicationFontProvider fontProvider;
@@ -23608,7 +23609,7 @@ class LCD16bpp : public LCD
  8008d32:	3708      	adds	r7, #8
  8008d34:	46bd      	mov	sp, r7
  8008d36:	bd80      	pop	{r7, pc}
- 8008d38:	080211ec 	.word	0x080211ec
+ 8008d38:	08021200 	.word	0x08021200
 
 08008d3c <_ZN8touchgfx8LCD16bppD0Ev>:
  8008d3c:	b580      	push	{r7, lr}
@@ -23926,7 +23927,7 @@ protected:
  8008f2c:	46bd      	mov	sp, r7
  8008f2e:	f85d 7b04 	ldr.w	r7, [sp], #4
  8008f32:	4770      	bx	lr
- 8008f34:	08020848 	.word	0x08020848
+ 8008f34:	0802085c 	.word	0x0802085c
 
 08008f38 <_ZN8touchgfx20FrameBufferAllocatorD0Ev>:
     virtual ~FrameBufferAllocator()
@@ -24582,7 +24583,7 @@ class FrameBufferAllocator
  800931c:	46bd      	mov	sp, r7
  800931e:	f85d 7b04 	ldr.w	r7, [sp], #4
  8009322:	4770      	bx	lr
- 8009324:	08020848 	.word	0x08020848
+ 8009324:	0802085c 	.word	0x0802085c
 
 08009328 <_ZN8touchgfx18ManyBlockAllocatorILm2880ELm3ELm2EEC1Ev>:
  */
@@ -24653,7 +24654,7 @@ public:
  800939e:	46bd      	mov	sp, r7
  80093a0:	bdb0      	pop	{r4, r5, r7, pc}
  80093a2:	bf00      	nop
- 80093a4:	08020730 	.word	0x08020730
+ 80093a4:	08020744 	.word	0x08020744
 
 080093a8 <_ZN8touchgfx18ManyBlockAllocatorILm2880ELm3ELm2EED1Ev>:
 class ManyBlockAllocator : public FrameBufferAllocator
@@ -24672,7 +24673,7 @@ class ManyBlockAllocator : public FrameBufferAllocator
  80093c2:	3708      	adds	r7, #8
  80093c4:	46bd      	mov	sp, r7
  80093c6:	bd80      	pop	{r7, pc}
- 80093c8:	08020730 	.word	0x08020730
+ 80093c8:	08020744 	.word	0x08020744
 
 080093cc <_ZN8touchgfx18ManyBlockAllocatorILm2880ELm3ELm2EED0Ev>:
  80093cc:	b580      	push	{r7, lr}
@@ -25278,7 +25279,7 @@ class ManyBlockAllocator : public FrameBufferAllocator
  8009836:	8082      	strh	r2, [r0, #4]
  8009838:	4770      	bx	lr
  800983a:	bf00      	nop
- 800983c:	08020874 	.word	0x08020874
+ 800983c:	08020888 	.word	0x08020888
 
 08009840 <_ZN8touchgfx9Container13getFirstChildEv>:
  8009840:	6a80      	ldr	r0, [r0, #40]	@ 0x28
@@ -26801,7 +26802,7 @@ class ManyBlockAllocator : public FrameBufferAllocator
  800a696:	e7b3      	b.n	800a600 <_ZN8touchgfx3HAL8blitCopyEPKtPKhttttthbtNS_6Bitmap12BitmapFormatES6_b+0x28>
  800a698:	2304      	movs	r3, #4
  800a69a:	e7b1      	b.n	800a600 <_ZN8touchgfx3HAL8blitCopyEPKtPKhttttthbtNS_6Bitmap12BitmapFormatES6_b+0x28>
- 800a69c:	08020930 	.word	0x08020930
+ 800a69c:	08020944 	.word	0x08020944
 
 0800a6a0 <_ZN8touchgfx3HAL8blitFillENS_9colortypeEtttthtNS_6Bitmap12BitmapFormatEb>:
  800a6a0:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -26851,7 +26852,7 @@ class ManyBlockAllocator : public FrameBufferAllocator
  800a724:	4798      	blx	r3
  800a726:	b00b      	add	sp, #44	@ 0x2c
  800a728:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
- 800a72c:	08020930 	.word	0x08020930
+ 800a72c:	08020944 	.word	0x08020944
 
 0800a730 <_ZNK8touchgfx3HAL13getDstAddressEttPt>:
  800a730:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -26874,7 +26875,7 @@ class ManyBlockAllocator : public FrameBufferAllocator
  800a758:	fb04 6000 	mla	r0, r4, r0, r6
  800a75c:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
  800a760:	2000a966 	.word	0x2000a966
- 800a764:	08020930 	.word	0x08020930
+ 800a764:	08020944 	.word	0x08020944
 
 0800a768 <_ZN8touchgfx3HAL13blitCopyGlyphEPKhtttttNS_9colortypeEhNS_14BlitOperationsEb>:
  800a768:	b5f0      	push	{r4, r5, r6, r7, lr}
@@ -27366,7 +27367,7 @@ class ManyBlockAllocator : public FrameBufferAllocator
  800abb8:	e9c0 2203 	strd	r2, r2, [r0, #12]
  800abbc:	bd10      	pop	{r4, pc}
  800abbe:	bf00      	nop
- 800abc0:	08020a80 	.word	0x08020a80
+ 800abc0:	08020a94 	.word	0x08020a94
 
 0800abc4 <_ZN8touchgfx13DMA_Interface15isDmaQueueEmptyEv>:
  800abc4:	6840      	ldr	r0, [r0, #4]
@@ -31346,7 +31347,7 @@ class ManyBlockAllocator : public FrameBufferAllocator
  800d290:	f001 fb8e 	bl	800e9b0 <_ZN8touchgfx6Screen4drawEv>
  800d294:	e7ec      	b.n	800d270 <_ZN8touchgfx11ApplicationC1Ev+0x50>
  800d296:	bf00      	nop
- 800d298:	08020dd4 	.word	0x08020dd4
+ 800d298:	08020de8 	.word	0x08020de8
  800d29c:	b5e8b5cd 	.word	0xb5e8b5cd
  800d2a0:	f407a5c2 	.word	0xf407a5c2
  800d2a4:	2000a9a8 	.word	0x2000a9a8
@@ -33232,7 +33233,7 @@ class ManyBlockAllocator : public FrameBufferAllocator
  800e5a2:	4b01      	ldr	r3, [pc, #4]	@ (800e5a8 <_ZN8touchgfx9ConstFontC1EPKNS_9GlyphNodeEttthhhhhhtt+0x4c>)
  800e5a4:	6003      	str	r3, [r0, #0]
  800e5a6:	bd30      	pop	{r4, r5, pc}
- 800e5a8:	08020e90 	.word	0x08020e90
+ 800e5a8:	08020ea4 	.word	0x08020ea4
 
 0800e5ac <_ZNK8touchgfx9ConstFont4findEt>:
  800e5ac:	b5f0      	push	{r4, r5, r6, r7, lr}
@@ -33415,7 +33416,7 @@ class ManyBlockAllocator : public FrameBufferAllocator
  800e70a:	b007      	add	sp, #28
  800e70c:	bd30      	pop	{r4, r5, pc}
  800e70e:	bf00      	nop
- 800e710:	08020f20 	.word	0x08020f20
+ 800e710:	08020f34 	.word	0x08020f34
 
 0800e714 <_ZN8touchgfx6Screen16handleClickEventERKNS_10ClickEventE>:
  800e714:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -33482,7 +33483,7 @@ class ManyBlockAllocator : public FrameBufferAllocator
  800e7ae:	e9c4 660c 	strd	r6, r6, [r4, #48]	@ 0x30
  800e7b2:	b00a      	add	sp, #40	@ 0x28
  800e7b4:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
- 800e7b8:	08020ef8 	.word	0x08020ef8
+ 800e7b8:	08020f0c 	.word	0x08020f0c
 
 0800e7bc <_ZN8touchgfx6Screen15handleDragEventERKNS_9DragEventE>:
  800e7bc:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -33584,8 +33585,8 @@ class ManyBlockAllocator : public FrameBufferAllocator
  800e8a8:	b008      	add	sp, #32
  800e8aa:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
  800e8ae:	bf00      	nop
- 800e8b0:	08020ef8 	.word	0x08020ef8
- 800e8b4:	08020f0c 	.word	0x08020f0c
+ 800e8b0:	08020f0c 	.word	0x08020f0c
+ 800e8b4:	08020f20 	.word	0x08020f20
 
 0800e8b8 <_ZN8touchgfx8Drawable20getCachedVisibleRectEv>:
  800e8b8:	b537      	push	{r0, r1, r2, r4, r5, lr}
@@ -33685,8 +33686,8 @@ class ManyBlockAllocator : public FrameBufferAllocator
  800e99a:	4798      	blx	r3
  800e99c:	4620      	mov	r0, r4
  800e99e:	bd70      	pop	{r4, r5, r6, pc}
- 800e9a0:	08020f34 	.word	0x08020f34
- 800e9a4:	080208a8 	.word	0x080208a8
+ 800e9a0:	08020f48 	.word	0x08020f48
+ 800e9a4:	080208bc 	.word	0x080208bc
  800e9a8:	2000a962 	.word	0x2000a962
  800e9ac:	2000a960 	.word	0x2000a960
 
@@ -42977,7 +42978,7 @@ class ManyBlockAllocator : public FrameBufferAllocator
  8014a1e:	e9c0 221f 	strd	r2, r2, [r0, #124]	@ 0x7c
  8014a22:	e9c0 2221 	strd	r2, r2, [r0, #132]	@ 0x84
  8014a26:	4770      	bx	lr
- 8014a28:	080211ec 	.word	0x080211ec
+ 8014a28:	08021200 	.word	0x08021200
 
 08014a2c <_ZN8touchgfx8LCD16bpp16blitCopyARGB8888EPKmRKNS_4RectES5_h>:
  8014a2c:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -45779,7 +45780,7 @@ class ManyBlockAllocator : public FrameBufferAllocator
  801680e:	bf00      	nop
  8016810:	2000aa00 	.word	0x2000aa00
  8016814:	2000aa74 	.word	0x2000aa74
- 8016818:	08020fa0 	.word	0x08020fa0
+ 8016818:	08020fb4 	.word	0x08020fb4
  801681c:	20000000 	.word	0x20000000
  8016820:	08012d39 	.word	0x08012d39
 
@@ -55828,7 +55829,7 @@ class ManyBlockAllocator : public FrameBufferAllocator
  801dd38:	73a0      	strb	r0, [r4, #14]
  801dd3a:	b004      	add	sp, #16
  801dd3c:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
- 801dd40:	08020f0c 	.word	0x08020f0c
+ 801dd40:	08020f20 	.word	0x08020f20
 
 0801dd44 <_ZN8touchgfx8Gestures18registerClickEventENS_10ClickEvent14ClickEventTypeEtt>:
  801dd44:	b5f0      	push	{r4, r5, r6, r7, lr}
@@ -55901,8 +55902,8 @@ class ManyBlockAllocator : public FrameBufferAllocator
  801ddfa:	73a1      	strb	r1, [r4, #14]
  801ddfc:	e7e5      	b.n	801ddca <_ZN8touchgfx8Gestures18registerClickEventENS_10ClickEvent14ClickEventTypeEtt+0x86>
  801ddfe:	bf00      	nop
- 801de00:	08020ef8 	.word	0x08020ef8
- 801de04:	08020f20 	.word	0x08020f20
+ 801de00:	08020f0c 	.word	0x08020f0c
+ 801de04:	08020f34 	.word	0x08020f34
 
 0801de08 <__aeabi_atexit>:
  801de08:	460b      	mov	r3, r1
@@ -55986,9 +55987,9 @@ class ManyBlockAllocator : public FrameBufferAllocator
  801de98:	e7f3      	b.n	801de82 <__assert_func+0x12>
  801de9a:	bf00      	nop
  801de9c:	200000a8 	.word	0x200000a8
- 801dea0:	0802123c 	.word	0x0802123c
- 801dea4:	08021249 	.word	0x08021249
- 801dea8:	08021277 	.word	0x08021277
+ 801dea0:	08021250 	.word	0x08021250
+ 801dea4:	0802125d 	.word	0x0802125d
+ 801dea8:	0802128b 	.word	0x0802128b
 
 0801deac <atexit>:
  801deac:	2300      	movs	r3, #0
@@ -56611,10 +56612,10 @@ class ManyBlockAllocator : public FrameBufferAllocator
  801e402:	4798      	blx	r3
  801e404:	3601      	adds	r6, #1
  801e406:	e7f2      	b.n	801e3ee <__libc_init_array+0x1e>
- 801e408:	08059d04 	.word	0x08059d04
- 801e40c:	08059d04 	.word	0x08059d04
- 801e410:	08059d04 	.word	0x08059d04
- 801e414:	08059d1c 	.word	0x08059d1c
+ 801e408:	08099918 	.word	0x08099918
+ 801e40c:	08099918 	.word	0x08099918
+ 801e410:	08099918 	.word	0x08099918
+ 801e414:	08099930 	.word	0x08099930
 
 0801e418 <__retarget_lock_init_recursive>:
  801e418:	4770      	bx	lr
@@ -56705,7 +56706,7 @@ class ManyBlockAllocator : public FrameBufferAllocator
  801e4e0:	200000f8 	.word	0x200000f8
  801e4e4:	2000b490 	.word	0x2000b490
  801e4e8:	2000b404 	.word	0x2000b404
- 801e4ec:	080212ac 	.word	0x080212ac
+ 801e4ec:	080212c0 	.word	0x080212c0
  801e4f0:	0801deb9 	.word	0x0801deb9
 
 0801e4f4 <_free_r>:
@@ -57043,11 +57044,11 @@ class ManyBlockAllocator : public FrameBufferAllocator
  801e7f0:	4630      	mov	r0, r6
  801e7f2:	f000 f879 	bl	801e8e8 <_printf_i>
  801e7f6:	e7e4      	b.n	801e7c2 <_vfiprintf_r+0x1e6>
- 801e7f8:	08021278 	.word	0x08021278
- 801e7fc:	08021282 	.word	0x08021282
+ 801e7f8:	0802128c 	.word	0x0802128c
+ 801e7fc:	08021296 	.word	0x08021296
  801e800:	00000000 	.word	0x00000000
  801e804:	0801e5b7 	.word	0x0801e5b7
- 801e808:	0802127e 	.word	0x0802127e
+ 801e808:	08021292 	.word	0x08021292
 
 0801e80c <_printf_common>:
  801e80c:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -57376,8 +57377,8 @@ class ManyBlockAllocator : public FrameBufferAllocator
  801eb14:	2500      	movs	r5, #0
  801eb16:	f104 0619 	add.w	r6, r4, #25
  801eb1a:	e7f5      	b.n	801eb08 <_printf_i+0x220>
- 801eb1c:	08021289 	.word	0x08021289
- 801eb20:	0802129a 	.word	0x0802129a
+ 801eb1c:	0802129d 	.word	0x0802129d
+ 801eb20:	080212ae 	.word	0x080212ae
 
 0801eb24 <__sflush_r>:
  801eb24:	f9b1 200c 	ldrsh.w	r2, [r1, #12]

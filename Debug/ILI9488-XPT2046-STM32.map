@@ -4734,6 +4734,8 @@ Discarded input sections
                 0x00000000       0x20 ./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o
  .text._ZN8touchgfx9TypedTextD0Ev
                 0x00000000       0x20 ./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o
+ .rodata._ZL12BITMAP_BG_ID
+                0x00000000        0x2 ./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o
  .rodata._ZL21BITMAP_COUNTER_BOX_ID
                 0x00000000        0x2 ./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o
  .rodata._ZL18BITMAP_DOWN_BTN_ID
@@ -4832,6 +4834,8 @@ Discarded input sections
  .rodata._ZN8touchgfxL14BITMAP_INVALIDE
                 0x00000000        0x2 ./TouchGFX/generated/images/src/BitmapDatabase.o
  .rodata._ZN8touchgfxL10BLOCK_SIZEE
+                0x00000000        0x2 ./TouchGFX/generated/images/src/BitmapDatabase.o
+ .rodata._ZL12BITMAP_BG_ID
                 0x00000000        0x2 ./TouchGFX/generated/images/src/BitmapDatabase.o
  .rodata._ZL21BITMAP_COUNTER_BOX_ID
                 0x00000000        0x2 ./TouchGFX/generated/images/src/BitmapDatabase.o
@@ -4934,6 +4938,13 @@ Discarded input sections
  .debug_frame   0x00000000       0x50 ./TouchGFX/generated/images/src/SVGDatabase.o
  .ARM.attributes
                 0x00000000       0x34 ./TouchGFX/generated/images/src/SVGDatabase.o
+ .group         0x00000000        0xc ./TouchGFX/generated/images/src/image_bg.o
+ .group         0x00000000        0xc ./TouchGFX/generated/images/src/image_bg.o
+ .text          0x00000000        0x0 ./TouchGFX/generated/images/src/image_bg.o
+ .data          0x00000000        0x0 ./TouchGFX/generated/images/src/image_bg.o
+ .bss           0x00000000        0x0 ./TouchGFX/generated/images/src/image_bg.o
+ .debug_macro   0x00000000      0xbb0 ./TouchGFX/generated/images/src/image_bg.o
+ .debug_macro   0x00000000       0xa3 ./TouchGFX/generated/images/src/image_bg.o
  .group         0x00000000        0xc ./TouchGFX/generated/images/src/image_counter_box.o
  .group         0x00000000        0xc ./TouchGFX/generated/images/src/image_counter_box.o
  .text          0x00000000        0x0 ./TouchGFX/generated/images/src/image_counter_box.o
@@ -5644,6 +5655,8 @@ Discarded input sections
  .text._ZN8touchgfx6Screen14handleKeyEventEh
                 0x00000000       0x18 ./TouchGFX/gui/src/main_screen/MainView.o
  .rodata._ZN8touchgfxL18TYPED_TEXT_INVALIDE
+                0x00000000        0x2 ./TouchGFX/gui/src/main_screen/MainView.o
+ .rodata._ZL12BITMAP_BG_ID
                 0x00000000        0x2 ./TouchGFX/gui/src/main_screen/MainView.o
  .rodata._ZL21BITMAP_COUNTER_BOX_ID
                 0x00000000        0x2 ./TouchGFX/gui/src/main_screen/MainView.o
@@ -6723,6 +6736,8 @@ Discarded input sections
                 0x00000000       0x22 ./TouchGFX/target/generated/TouchGFXConfiguration.o
  .text._ZN19FrontendApplication15handleTickEventEv
                 0x00000000       0x24 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+ .rodata._ZL12BITMAP_BG_ID
+                0x00000000        0x2 ./TouchGFX/target/generated/TouchGFXConfiguration.o
  .rodata._ZL21BITMAP_COUNTER_BOX_ID
                 0x00000000        0x2 ./TouchGFX/target/generated/TouchGFXConfiguration.o
  .rodata._ZL18BITMAP_DOWN_BTN_ID
@@ -8448,6 +8463,7 @@ LOAD ./TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o
 LOAD ./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o
 LOAD ./TouchGFX/generated/images/src/BitmapDatabase.o
 LOAD ./TouchGFX/generated/images/src/SVGDatabase.o
+LOAD ./TouchGFX/generated/images/src/image_bg.o
 LOAD ./TouchGFX/generated/images/src/image_counter_box.o
 LOAD ./TouchGFX/generated/images/src/image_down_btn.o
 LOAD ./TouchGFX/generated/images/src/image_down_btn_disabled.o
@@ -11705,7 +11721,7 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
 .iplt           0x0801eec4        0x0
  .iplt          0x0801eec4        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.rodata         0x0801eec4     0x23ec
+.rodata         0x0801eec4     0x2400
                 0x0801eec4                        . = ALIGN (0x4)
  *(.rodata)
  .rodata        0x0801eec4        0x6 ./Core/Src/z_displ_ILI9XXX.o
@@ -11783,342 +11799,345 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                 0x0802028c       0x68 ./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o
                 0x0802028c                vtable for touchgfx::Widget
  .rodata._ZL15bitmap_database
-                0x080202f4       0x8c ./TouchGFX/generated/images/src/BitmapDatabase.o
+                0x080202f4       0xa0 ./TouchGFX/generated/images/src/BitmapDatabase.o
  .rodata._ZTVN8touchgfx4FontE
-                0x08020380       0x64 ./TouchGFX/generated/texts/src/Texts.o
-                0x08020380                vtable for touchgfx::Font
+                0x08020394       0x64 ./TouchGFX/generated/texts/src/Texts.o
+                0x08020394                vtable for touchgfx::Font
  .rodata._ZTV19FrontendApplication
-                0x080203e4       0x54 ./TouchGFX/gui/src/common/FrontendApplication.o
-                0x080203e4                vtable for FrontendApplication
+                0x080203f8       0x54 ./TouchGFX/gui/src/common/FrontendApplication.o
+                0x080203f8                vtable for FrontendApplication
  .rodata._ZTV13MainPresenter
-                0x08020438       0x28 ./TouchGFX/gui/src/main_screen/MainPresenter.o
-                0x08020438                vtable for MainPresenter
+                0x0802044c       0x28 ./TouchGFX/gui/src/main_screen/MainPresenter.o
+                0x0802044c                vtable for MainPresenter
  .rodata._ZTV13ModelListener
-                0x08020460       0x10 ./TouchGFX/gui/src/main_screen/MainPresenter.o
-                0x08020460                vtable for ModelListener
+                0x08020474       0x10 ./TouchGFX/gui/src/main_screen/MainPresenter.o
+                0x08020474                vtable for ModelListener
  .rodata._ZTVN8touchgfx9PresenterE
-                0x08020470       0x18 ./TouchGFX/gui/src/main_screen/MainPresenter.o
-                0x08020470                vtable for touchgfx::Presenter
+                0x08020484       0x18 ./TouchGFX/gui/src/main_screen/MainPresenter.o
+                0x08020484                vtable for touchgfx::Presenter
  .rodata._ZTV8MainView
-                0x08020488       0x3c ./TouchGFX/gui/src/main_screen/MainView.o
-                0x08020488                vtable for MainView
+                0x0802049c       0x3c ./TouchGFX/gui/src/main_screen/MainView.o
+                0x0802049c                vtable for MainView
  .rodata._ZTV20STM32TouchController
-                0x080204c4       0x18 ./TouchGFX/target/STM32TouchController.o
-                0x080204c4                vtable for STM32TouchController
+                0x080204d8       0x18 ./TouchGFX/target/STM32TouchController.o
+                0x080204d8                vtable for STM32TouchController
  .rodata._ZTVN8touchgfx15TouchControllerE
-                0x080204dc       0x18 ./TouchGFX/target/STM32TouchController.o
-                0x080204dc                vtable for touchgfx::TouchController
+                0x080204f0       0x18 ./TouchGFX/target/STM32TouchController.o
+                0x080204f0                vtable for touchgfx::TouchController
  .rodata._ZTV11TouchGFXHAL
-                0x080204f4       0xec ./TouchGFX/target/TouchGFXHAL.o
-                0x080204f4                vtable for TouchGFXHAL
+                0x08020508       0xec ./TouchGFX/target/TouchGFXHAL.o
+                0x08020508                vtable for TouchGFXHAL
  .rodata._ZTV8STM32DMA
-                0x080205e0       0x50 ./TouchGFX/target/generated/STM32DMA.o
-                0x080205e0                vtable for STM32DMA
+                0x080205f4       0x50 ./TouchGFX/target/generated/STM32DMA.o
+                0x080205f4                vtable for STM32DMA
  .rodata._ZTVN8touchgfx9DMA_QueueE
-                0x08020630       0x24 ./TouchGFX/target/generated/STM32DMA.o
-                0x08020630                vtable for touchgfx::DMA_Queue
+                0x08020644       0x24 ./TouchGFX/target/generated/STM32DMA.o
+                0x08020644                vtable for touchgfx::DMA_Queue
  .rodata._ZTV12FrontendHeap
-                0x08020654       0x14 ./TouchGFX/target/generated/TouchGFXConfiguration.o
-                0x08020654                vtable for FrontendHeap
+                0x08020668       0x14 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+                0x08020668                vtable for FrontendHeap
  .rodata._ZTVN8touchgfx9PartitionINS_4meta8TypeListINS_12NoTransitionENS2_INS1_3NilES4_EEEELt1EEE
-                0x08020668       0x34 ./TouchGFX/target/generated/TouchGFXConfiguration.o
-                0x08020668                vtable for touchgfx::Partition<touchgfx::meta::TypeList<touchgfx::NoTransition, touchgfx::meta::TypeList<touchgfx::meta::Nil, touchgfx::meta::Nil> >, (unsigned short)1>
+                0x0802067c       0x34 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+                0x0802067c                vtable for touchgfx::Partition<touchgfx::meta::TypeList<touchgfx::NoTransition, touchgfx::meta::TypeList<touchgfx::meta::Nil, touchgfx::meta::Nil> >, (unsigned short)1>
  .rodata._ZTVN8touchgfx9PartitionINS_4meta8TypeListI8MainViewNS2_INS1_3NilES4_EEEELt1EEE
-                0x0802069c       0x34 ./TouchGFX/target/generated/TouchGFXConfiguration.o
-                0x0802069c                vtable for touchgfx::Partition<touchgfx::meta::TypeList<MainView, touchgfx::meta::TypeList<touchgfx::meta::Nil, touchgfx::meta::Nil> >, (unsigned short)1>
+                0x080206b0       0x34 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+                0x080206b0                vtable for touchgfx::Partition<touchgfx::meta::TypeList<MainView, touchgfx::meta::TypeList<touchgfx::meta::Nil, touchgfx::meta::Nil> >, (unsigned short)1>
  .rodata._ZTVN8touchgfx9PartitionINS_4meta8TypeListI13MainPresenterNS2_INS1_3NilES4_EEEELt1EEE
-                0x080206d0       0x34 ./TouchGFX/target/generated/TouchGFXConfiguration.o
-                0x080206d0                vtable for touchgfx::Partition<touchgfx::meta::TypeList<MainPresenter, touchgfx::meta::TypeList<touchgfx::meta::Nil, touchgfx::meta::Nil> >, (unsigned short)1>
+                0x080206e4       0x34 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+                0x080206e4                vtable for touchgfx::Partition<touchgfx::meta::TypeList<MainPresenter, touchgfx::meta::TypeList<touchgfx::meta::Nil, touchgfx::meta::Nil> >, (unsigned short)1>
  .rodata._ZTV16FrontendHeapBase
-                0x08020704       0x14 ./TouchGFX/target/generated/TouchGFXConfiguration.o
-                0x08020704                vtable for FrontendHeapBase
+                0x08020718       0x14 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+                0x08020718                vtable for FrontendHeapBase
  .rodata._ZTVN8touchgfx7MVPHeapE
-                0x08020718       0x10 ./TouchGFX/target/generated/TouchGFXConfiguration.o
-                0x08020718                vtable for touchgfx::MVPHeap
+                0x0802072c       0x10 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+                0x0802072c                vtable for touchgfx::MVPHeap
  .rodata._ZTVN8touchgfx18ManyBlockAllocatorILm2880ELm3ELm2EEE
-                0x08020728       0x2c ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
-                0x08020728                vtable for touchgfx::ManyBlockAllocator<2880ul, 3ul, 2ul>
+                0x0802073c       0x2c ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
+                0x0802073c                vtable for touchgfx::ManyBlockAllocator<2880ul, 3ul, 2ul>
  .rodata._ZTV20TouchGFXGeneratedHAL
-                0x08020754       0xec ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
-                0x08020754                vtable for TouchGFXGeneratedHAL
+                0x08020768       0xec ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
+                0x08020768                vtable for TouchGFXGeneratedHAL
  .rodata._ZTVN8touchgfx20FrameBufferAllocatorE
-                0x08020840       0x2c ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
-                0x08020840                vtable for touchgfx::FrameBufferAllocator
+                0x08020854       0x2c ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
+                0x08020854                vtable for touchgfx::FrameBufferAllocator
  .rodata._ZTVN8touchgfx17AbstractPartitionE
-                0x0802086c       0x34 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(AbstractPartition.o)
-                0x0802086c                vtable for touchgfx::AbstractPartition
+                0x08020880       0x34 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(AbstractPartition.o)
+                0x08020880                vtable for touchgfx::AbstractPartition
  .rodata._ZTVN8touchgfx9ContainerE
-                0x080208a0       0x90 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Container.o)
-                0x080208a0                vtable for touchgfx::Container
+                0x080208b4       0x90 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Container.o)
+                0x080208b4                vtable for touchgfx::Container
  .rodata.CSWTCH.180
-                0x08020930        0xc C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(HAL.o)
+                0x08020944        0xc C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(HAL.o)
  .rodata._ZTVN8touchgfx3HALE
-                0x0802093c       0xec C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(HAL.o)
-                0x0802093c                vtable for touchgfx::HAL
+                0x08020950       0xec C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(HAL.o)
+                0x08020950                vtable for touchgfx::HAL
  .rodata._ZTVN8touchgfx13DMA_InterfaceE
-                0x08020a28       0x50 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(DMA.o)
-                0x08020a28                vtable for touchgfx::DMA_Interface
+                0x08020a3c       0x50 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(DMA.o)
+                0x08020a3c                vtable for touchgfx::DMA_Interface
  .rodata._ZTVN8touchgfx17LockFreeDMA_QueueE
-                0x08020a78       0x24 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(DMA.o)
-                0x08020a78                vtable for touchgfx::LockFreeDMA_Queue
+                0x08020a8c       0x24 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(DMA.o)
+                0x08020a8c                vtable for touchgfx::LockFreeDMA_Queue
  .rodata._ZTVN8touchgfx14AbstractButtonE
-                0x08020a9c       0x70 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(AbstractButton.o)
-                0x08020a9c                vtable for touchgfx::AbstractButton
+                0x08020ab0       0x70 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(AbstractButton.o)
+                0x08020ab0                vtable for touchgfx::AbstractButton
  .rodata._ZTVN8touchgfx8TextAreaE
-                0x08020b0c       0x90 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TextArea.o)
-                0x08020b0c                vtable for touchgfx::TextArea
+                0x08020b20       0x90 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TextArea.o)
+                0x08020b20                vtable for touchgfx::TextArea
  .rodata._ZTVN8touchgfx3BoxE
-                0x08020b9c       0x68 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Box.o)
-                0x08020b9c                vtable for touchgfx::Box
+                0x08020bb0       0x68 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Box.o)
+                0x08020bb0                vtable for touchgfx::Box
  .rodata._ZTVN8touchgfx6ButtonE
-                0x08020c04       0x74 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Button.o)
-                0x08020c04                vtable for touchgfx::Button
+                0x08020c18       0x74 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Button.o)
+                0x08020c18                vtable for touchgfx::Button
  .rodata._ZTVN8touchgfx24TextAreaWithWildcardBaseE
-                0x08020c78       0x90 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TextAreaWithWildcard.o)
-                0x08020c78                vtable for touchgfx::TextAreaWithWildcardBase
+                0x08020c8c       0x90 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TextAreaWithWildcard.o)
+                0x08020c8c                vtable for touchgfx::TextAreaWithWildcardBase
  .rodata._ZTVN8touchgfx5ImageE
-                0x08020d08       0x6c C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Image.o)
-                0x08020d08                vtable for touchgfx::Image
+                0x08020d1c       0x6c C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Image.o)
+                0x08020d1c                vtable for touchgfx::Image
  .rodata._ZTVN8touchgfx3LCDE
-                0x08020d74       0x58 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD.o)
-                0x08020d74                vtable for touchgfx::LCD
+                0x08020d88       0x58 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD.o)
+                0x08020d88                vtable for touchgfx::LCD
  .rodata._ZTVN8touchgfx11ApplicationE
-                0x08020dcc       0x54 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Application.o)
-                0x08020dcc                vtable for touchgfx::Application
+                0x08020de0       0x54 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Application.o)
+                0x08020de0                vtable for touchgfx::Application
  .rodata._ZTVN8touchgfx8DrawableE
-                0x08020e20       0x68 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Drawable.o)
-                0x08020e20                vtable for touchgfx::Drawable
+                0x08020e34       0x68 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Drawable.o)
+                0x08020e34                vtable for touchgfx::Drawable
  .rodata._ZTVN8touchgfx9ConstFontE
-                0x08020e88       0x68 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(ConstFont.o)
-                0x08020e88                vtable for touchgfx::ConstFont
+                0x08020e9c       0x68 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(ConstFont.o)
+                0x08020e9c                vtable for touchgfx::ConstFont
  .rodata._ZTVN8touchgfx10ClickEventE
-                0x08020ef0       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Screen.o)
-                0x08020ef0                vtable for touchgfx::ClickEvent
- .rodata._ZTVN8touchgfx9DragEventE
                 0x08020f04       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Screen.o)
-                0x08020f04                vtable for touchgfx::DragEvent
- .rodata._ZTVN8touchgfx12GestureEventE
+                0x08020f04                vtable for touchgfx::ClickEvent
+ .rodata._ZTVN8touchgfx9DragEventE
                 0x08020f18       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Screen.o)
-                0x08020f18                vtable for touchgfx::GestureEvent
+                0x08020f18                vtable for touchgfx::DragEvent
+ .rodata._ZTVN8touchgfx12GestureEventE
+                0x08020f2c       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Screen.o)
+                0x08020f2c                vtable for touchgfx::GestureEvent
  .rodata._ZTVN8touchgfx6ScreenE
-                0x08020f2c       0x34 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Screen.o)
-                0x08020f2c                vtable for touchgfx::Screen
+                0x08020f40       0x34 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Screen.o)
+                0x08020f40                vtable for touchgfx::Screen
  .rodata._ZTVN8touchgfx8LCD16bpp17DecompressorL8_L4E
-                0x08020f60       0x1c C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08020f60                vtable for touchgfx::LCD16bpp::DecompressorL8_L4
+                0x08020f74       0x1c C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
+                0x08020f74                vtable for touchgfx::LCD16bpp::DecompressorL8_L4
  .rodata._ZTVN8touchgfx8LCD16bpp18DecompressorL8_RLEE
-                0x08020f7c       0x1c C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08020f7c                vtable for touchgfx::LCD16bpp::DecompressorL8_RLE
+                0x08020f90       0x1c C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
+                0x08020f90                vtable for touchgfx::LCD16bpp::DecompressorL8_RLE
  .rodata._ZTVN8touchgfx8LCD16bpp19DecompressorL8_LZW9E
-                0x08020f98       0x1c C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08020f98                vtable for touchgfx::LCD16bpp::DecompressorL8_LZW9
+                0x08020fac       0x1c C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
+                0x08020fac                vtable for touchgfx::LCD16bpp::DecompressorL8_LZW9
  .rodata._ZTVN8touchgfx8LCD16bpp35TextureMapper_A4_NearestNeighbor_GAE
-                0x08020fb4       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08020fb4                vtable for touchgfx::LCD16bpp::TextureMapper_A4_NearestNeighbor_GA
- .rodata._ZTVN8touchgfx8LCD16bpp37TextureMapper_A4_NearestNeighbor_NoGAE
                 0x08020fc8       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08020fc8                vtable for touchgfx::LCD16bpp::TextureMapper_A4_NearestNeighbor_NoGA
- .rodata._ZTVN8touchgfx8LCD16bpp41TextureMapper_A4_BilinearInterpolation_GAE
+                0x08020fc8                vtable for touchgfx::LCD16bpp::TextureMapper_A4_NearestNeighbor_GA
+ .rodata._ZTVN8touchgfx8LCD16bpp37TextureMapper_A4_NearestNeighbor_NoGAE
                 0x08020fdc       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08020fdc                vtable for touchgfx::LCD16bpp::TextureMapper_A4_BilinearInterpolation_GA
- .rodata._ZTVN8touchgfx8LCD16bpp43TextureMapper_A4_BilinearInterpolation_NoGAE
+                0x08020fdc                vtable for touchgfx::LCD16bpp::TextureMapper_A4_NearestNeighbor_NoGA
+ .rodata._ZTVN8touchgfx8LCD16bpp41TextureMapper_A4_BilinearInterpolation_GAE
                 0x08020ff0       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08020ff0                vtable for touchgfx::LCD16bpp::TextureMapper_A4_BilinearInterpolation_NoGA
- .rodata._ZTVN8touchgfx8LCD16bpp46TextureMapper_RGB565_Opaque_NearestNeighbor_GAE
+                0x08020ff0                vtable for touchgfx::LCD16bpp::TextureMapper_A4_BilinearInterpolation_GA
+ .rodata._ZTVN8touchgfx8LCD16bpp43TextureMapper_A4_BilinearInterpolation_NoGAE
                 0x08021004       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08021004                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_Opaque_NearestNeighbor_GA
- .rodata._ZTVN8touchgfx8LCD16bpp48TextureMapper_RGB565_Opaque_NearestNeighbor_NoGAE
+                0x08021004                vtable for touchgfx::LCD16bpp::TextureMapper_A4_BilinearInterpolation_NoGA
+ .rodata._ZTVN8touchgfx8LCD16bpp46TextureMapper_RGB565_Opaque_NearestNeighbor_GAE
                 0x08021018       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08021018                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_Opaque_NearestNeighbor_NoGA
- .rodata._ZTVN8touchgfx8LCD16bpp49TextureMapper_L8_RGB565_Opaque_NearestNeighbor_GAE
+                0x08021018                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_Opaque_NearestNeighbor_GA
+ .rodata._ZTVN8touchgfx8LCD16bpp48TextureMapper_RGB565_Opaque_NearestNeighbor_NoGAE
                 0x0802102c       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x0802102c                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB565_Opaque_NearestNeighbor_GA
- .rodata._ZTVN8touchgfx8LCD16bpp49TextureMapper_L8_RGB888_Opaque_NearestNeighbor_GAE
+                0x0802102c                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_Opaque_NearestNeighbor_NoGA
+ .rodata._ZTVN8touchgfx8LCD16bpp49TextureMapper_L8_RGB565_Opaque_NearestNeighbor_GAE
                 0x08021040       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08021040                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB888_Opaque_NearestNeighbor_GA
- .rodata._ZTVN8touchgfx8LCD16bpp49TextureMapper_RGB565_NonOpaque_NearestNeighbor_GAE
+                0x08021040                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB565_Opaque_NearestNeighbor_GA
+ .rodata._ZTVN8touchgfx8LCD16bpp49TextureMapper_L8_RGB888_Opaque_NearestNeighbor_GAE
                 0x08021054       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08021054                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_NonOpaque_NearestNeighbor_GA
- .rodata._ZTVN8touchgfx8LCD16bpp51TextureMapper_ARGB8888_NonOpaque_NearestNeighbor_GAE
+                0x08021054                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB888_Opaque_NearestNeighbor_GA
+ .rodata._ZTVN8touchgfx8LCD16bpp49TextureMapper_RGB565_NonOpaque_NearestNeighbor_GAE
                 0x08021068       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08021068                vtable for touchgfx::LCD16bpp::TextureMapper_ARGB8888_NonOpaque_NearestNeighbor_GA
- .rodata._ZTVN8touchgfx8LCD16bpp51TextureMapper_L8_RGB565_Opaque_NearestNeighbor_NoGAE
+                0x08021068                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_NonOpaque_NearestNeighbor_GA
+ .rodata._ZTVN8touchgfx8LCD16bpp51TextureMapper_ARGB8888_NonOpaque_NearestNeighbor_GAE
                 0x0802107c       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x0802107c                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB565_Opaque_NearestNeighbor_NoGA
- .rodata._ZTVN8touchgfx8LCD16bpp51TextureMapper_L8_RGB888_Opaque_NearestNeighbor_NoGAE
+                0x0802107c                vtable for touchgfx::LCD16bpp::TextureMapper_ARGB8888_NonOpaque_NearestNeighbor_GA
+ .rodata._ZTVN8touchgfx8LCD16bpp51TextureMapper_L8_RGB565_Opaque_NearestNeighbor_NoGAE
                 0x08021090       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08021090                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB888_Opaque_NearestNeighbor_NoGA
- .rodata._ZTVN8touchgfx8LCD16bpp51TextureMapper_RGB565_NonOpaque_NearestNeighbor_NoGAE
+                0x08021090                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB565_Opaque_NearestNeighbor_NoGA
+ .rodata._ZTVN8touchgfx8LCD16bpp51TextureMapper_L8_RGB888_Opaque_NearestNeighbor_NoGAE
                 0x080210a4       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x080210a4                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_NonOpaque_NearestNeighbor_NoGA
- .rodata._ZTVN8touchgfx8LCD16bpp52TextureMapper_RGB565_Opaque_BilinearInterpolation_GAE
+                0x080210a4                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB888_Opaque_NearestNeighbor_NoGA
+ .rodata._ZTVN8touchgfx8LCD16bpp51TextureMapper_RGB565_NonOpaque_NearestNeighbor_NoGAE
                 0x080210b8       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x080210b8                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_Opaque_BilinearInterpolation_GA
- .rodata._ZTVN8touchgfx8LCD16bpp53TextureMapper_ARGB8888_NonOpaque_NearestNeighbor_NoGAE
+                0x080210b8                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_NonOpaque_NearestNeighbor_NoGA
+ .rodata._ZTVN8touchgfx8LCD16bpp52TextureMapper_RGB565_Opaque_BilinearInterpolation_GAE
                 0x080210cc       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x080210cc                vtable for touchgfx::LCD16bpp::TextureMapper_ARGB8888_NonOpaque_NearestNeighbor_NoGA
- .rodata._ZTVN8touchgfx8LCD16bpp54TextureMapper_L8_ARGB8888_NonOpaque_NearestNeighbor_GAE
+                0x080210cc                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_Opaque_BilinearInterpolation_GA
+ .rodata._ZTVN8touchgfx8LCD16bpp53TextureMapper_ARGB8888_NonOpaque_NearestNeighbor_NoGAE
                 0x080210e0       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x080210e0                vtable for touchgfx::LCD16bpp::TextureMapper_L8_ARGB8888_NonOpaque_NearestNeighbor_GA
- .rodata._ZTVN8touchgfx8LCD16bpp54TextureMapper_RGB565_Opaque_BilinearInterpolation_NoGAE
+                0x080210e0                vtable for touchgfx::LCD16bpp::TextureMapper_ARGB8888_NonOpaque_NearestNeighbor_NoGA
+ .rodata._ZTVN8touchgfx8LCD16bpp54TextureMapper_L8_ARGB8888_NonOpaque_NearestNeighbor_GAE
                 0x080210f4       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x080210f4                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_Opaque_BilinearInterpolation_NoGA
- .rodata._ZTVN8touchgfx8LCD16bpp55TextureMapper_L8_RGB565_Opaque_BilinearInterpolation_GAE
+                0x080210f4                vtable for touchgfx::LCD16bpp::TextureMapper_L8_ARGB8888_NonOpaque_NearestNeighbor_GA
+ .rodata._ZTVN8touchgfx8LCD16bpp54TextureMapper_RGB565_Opaque_BilinearInterpolation_NoGAE
                 0x08021108       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08021108                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB565_Opaque_BilinearInterpolation_GA
- .rodata._ZTVN8touchgfx8LCD16bpp55TextureMapper_L8_RGB888_Opaque_BilinearInterpolation_GAE
+                0x08021108                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_Opaque_BilinearInterpolation_NoGA
+ .rodata._ZTVN8touchgfx8LCD16bpp55TextureMapper_L8_RGB565_Opaque_BilinearInterpolation_GAE
                 0x0802111c       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x0802111c                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB888_Opaque_BilinearInterpolation_GA
- .rodata._ZTVN8touchgfx8LCD16bpp55TextureMapper_RGB565_NonOpaque_BilinearInterpolation_GAE
+                0x0802111c                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB565_Opaque_BilinearInterpolation_GA
+ .rodata._ZTVN8touchgfx8LCD16bpp55TextureMapper_L8_RGB888_Opaque_BilinearInterpolation_GAE
                 0x08021130       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08021130                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_NonOpaque_BilinearInterpolation_GA
- .rodata._ZTVN8touchgfx8LCD16bpp56TextureMapper_L8_ARGB8888_NonOpaque_NearestNeighbor_NoGAE
+                0x08021130                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB888_Opaque_BilinearInterpolation_GA
+ .rodata._ZTVN8touchgfx8LCD16bpp55TextureMapper_RGB565_NonOpaque_BilinearInterpolation_GAE
                 0x08021144       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08021144                vtable for touchgfx::LCD16bpp::TextureMapper_L8_ARGB8888_NonOpaque_NearestNeighbor_NoGA
- .rodata._ZTVN8touchgfx8LCD16bpp57TextureMapper_ARGB8888_NonOpaque_BilinearInterpolation_GAE
+                0x08021144                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_NonOpaque_BilinearInterpolation_GA
+ .rodata._ZTVN8touchgfx8LCD16bpp56TextureMapper_L8_ARGB8888_NonOpaque_NearestNeighbor_NoGAE
                 0x08021158       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08021158                vtable for touchgfx::LCD16bpp::TextureMapper_ARGB8888_NonOpaque_BilinearInterpolation_GA
- .rodata._ZTVN8touchgfx8LCD16bpp57TextureMapper_L8_RGB565_Opaque_BilinearInterpolation_NoGAE
+                0x08021158                vtable for touchgfx::LCD16bpp::TextureMapper_L8_ARGB8888_NonOpaque_NearestNeighbor_NoGA
+ .rodata._ZTVN8touchgfx8LCD16bpp57TextureMapper_ARGB8888_NonOpaque_BilinearInterpolation_GAE
                 0x0802116c       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x0802116c                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB565_Opaque_BilinearInterpolation_NoGA
- .rodata._ZTVN8touchgfx8LCD16bpp57TextureMapper_L8_RGB888_Opaque_BilinearInterpolation_NoGAE
+                0x0802116c                vtable for touchgfx::LCD16bpp::TextureMapper_ARGB8888_NonOpaque_BilinearInterpolation_GA
+ .rodata._ZTVN8touchgfx8LCD16bpp57TextureMapper_L8_RGB565_Opaque_BilinearInterpolation_NoGAE
                 0x08021180       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08021180                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB888_Opaque_BilinearInterpolation_NoGA
- .rodata._ZTVN8touchgfx8LCD16bpp57TextureMapper_RGB565_NonOpaque_BilinearInterpolation_NoGAE
+                0x08021180                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB565_Opaque_BilinearInterpolation_NoGA
+ .rodata._ZTVN8touchgfx8LCD16bpp57TextureMapper_L8_RGB888_Opaque_BilinearInterpolation_NoGAE
                 0x08021194       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x08021194                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_NonOpaque_BilinearInterpolation_NoGA
- .rodata._ZTVN8touchgfx8LCD16bpp59TextureMapper_ARGB8888_NonOpaque_BilinearInterpolation_NoGAE
+                0x08021194                vtable for touchgfx::LCD16bpp::TextureMapper_L8_RGB888_Opaque_BilinearInterpolation_NoGA
+ .rodata._ZTVN8touchgfx8LCD16bpp57TextureMapper_RGB565_NonOpaque_BilinearInterpolation_NoGAE
                 0x080211a8       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x080211a8                vtable for touchgfx::LCD16bpp::TextureMapper_ARGB8888_NonOpaque_BilinearInterpolation_NoGA
- .rodata._ZTVN8touchgfx8LCD16bpp60TextureMapper_L8_ARGB8888_NonOpaque_BilinearInterpolation_GAE
+                0x080211a8                vtable for touchgfx::LCD16bpp::TextureMapper_RGB565_NonOpaque_BilinearInterpolation_NoGA
+ .rodata._ZTVN8touchgfx8LCD16bpp59TextureMapper_ARGB8888_NonOpaque_BilinearInterpolation_NoGAE
                 0x080211bc       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x080211bc                vtable for touchgfx::LCD16bpp::TextureMapper_L8_ARGB8888_NonOpaque_BilinearInterpolation_GA
- .rodata._ZTVN8touchgfx8LCD16bpp62TextureMapper_L8_ARGB8888_NonOpaque_BilinearInterpolation_NoGAE
+                0x080211bc                vtable for touchgfx::LCD16bpp::TextureMapper_ARGB8888_NonOpaque_BilinearInterpolation_NoGA
+ .rodata._ZTVN8touchgfx8LCD16bpp60TextureMapper_L8_ARGB8888_NonOpaque_BilinearInterpolation_GAE
                 0x080211d0       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x080211d0                vtable for touchgfx::LCD16bpp::TextureMapper_L8_ARGB8888_NonOpaque_BilinearInterpolation_NoGA
+                0x080211d0                vtable for touchgfx::LCD16bpp::TextureMapper_L8_ARGB8888_NonOpaque_BilinearInterpolation_GA
+ .rodata._ZTVN8touchgfx8LCD16bpp62TextureMapper_L8_ARGB8888_NonOpaque_BilinearInterpolation_NoGAE
+                0x080211e4       0x14 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
+                0x080211e4                vtable for touchgfx::LCD16bpp::TextureMapper_L8_ARGB8888_NonOpaque_BilinearInterpolation_NoGA
  .rodata._ZTVN8touchgfx8LCD16bppE
-                0x080211e4       0x58 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
-                0x080211e4                vtable for touchgfx::LCD16bpp
+                0x080211f8       0x58 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
+                0x080211f8                vtable for touchgfx::LCD16bpp
  .rodata.__assert_func.str1.1
-                0x0802123c       0x6f C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-assert.o)
+                0x08021250       0x6f C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-assert.o)
                                  0x3d (size before relaxing)
- *fill*         0x080212ab        0x1 
+ *fill*         0x080212bf        0x1 
  .rodata.__on_exit_args
-                0x080212ac        0x4 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-on_exit_args.o)
-                0x080212ac                __on_exit_args
+                0x080212c0        0x4 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-on_exit_args.o)
+                0x080212c0                __on_exit_args
  .rodata._vfprintf_r.str1.1
-                0x080212b0       0x11 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-vfprintf.o)
+                0x080212c4       0x11 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-vfprintf.o)
  .rodata._printf_i.str1.1
-                0x080212b0       0x22 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-vfprintf_i.o)
-                0x080212d4                        . = ALIGN (0x4)
+                0x080212c4       0x22 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-vfprintf_i.o)
+                0x080212e8                        . = ALIGN (0x4)
 
 FontFlashSection
-                0x080212b0     0x28cc
+                0x080212c4     0x28cc
  FontFlashSection
-                0x080212b0     0x2840 ./TouchGFX/generated/fonts/src/Font_Asap_Regular_80_4bpp_0.o
-                0x080212b0                unicodes_Asap_Regular_80_4bpp_0
+                0x080212c4     0x2840 ./TouchGFX/generated/fonts/src/Font_Asap_Regular_80_4bpp_0.o
+                0x080212c4                unicodes_Asap_Regular_80_4bpp_0
  FontFlashSection
-                0x08023af0       0x8c ./TouchGFX/generated/fonts/src/Table_Asap_Regular_80_4bpp.o
-                0x08023af0                glyphs_Asap_Regular_80_4bpp
+                0x08023b04       0x8c ./TouchGFX/generated/fonts/src/Table_Asap_Regular_80_4bpp.o
+                0x08023b04                glyphs_Asap_Regular_80_4bpp
 
 FontSearchFlashSection
-                0x08023b7c        0x8
+                0x08023b90        0x8
  FontSearchFlashSection
-                0x08023b7c        0x4 ./TouchGFX/generated/fonts/src/Kerning_Asap_Regular_80_4bpp.o
-                0x08023b7c                kerning_Asap_Regular_80_4bpp
+                0x08023b90        0x4 ./TouchGFX/generated/fonts/src/Kerning_Asap_Regular_80_4bpp.o
+                0x08023b90                kerning_Asap_Regular_80_4bpp
  FontSearchFlashSection
-                0x08023b80        0x4 ./TouchGFX/generated/fonts/src/Table_Asap_Regular_80_4bpp.o
-                0x08023b80                unicodes_Asap_Regular_80_4bpp
+                0x08023b94        0x4 ./TouchGFX/generated/fonts/src/Table_Asap_Regular_80_4bpp.o
+                0x08023b94                unicodes_Asap_Regular_80_4bpp
 
 ExtFlashSection
-                0x08023b84    0x36160
+                0x08023b98    0x75d60
  ExtFlashSection
-                0x08023b84     0xb6e0 ./TouchGFX/generated/images/src/image_counter_box.o
-                0x08023b84                image_counter_box
+                0x08023b98    0x3fc00 ./TouchGFX/generated/images/src/image_bg.o
+                0x08023b98                image_bg
  ExtFlashSection
-                0x0802f264     0x71c0 ./TouchGFX/generated/images/src/image_down_btn.o
-                0x0802f264                image_down_btn
+                0x08063798     0xb6e0 ./TouchGFX/generated/images/src/image_counter_box.o
+                0x08063798                image_counter_box
  ExtFlashSection
-                0x08036424     0x71c0 ./TouchGFX/generated/images/src/image_down_btn_disabled.o
-                0x08036424                image_down_btn_disabled
+                0x0806ee78     0x71c0 ./TouchGFX/generated/images/src/image_down_btn.o
+                0x0806ee78                image_down_btn
  ExtFlashSection
-                0x0803d5e4     0x71c0 ./TouchGFX/generated/images/src/image_down_btn_pressed.o
-                0x0803d5e4                image_down_btn_pressed
+                0x08076038     0x71c0 ./TouchGFX/generated/images/src/image_down_btn_disabled.o
+                0x08076038                image_down_btn_disabled
  ExtFlashSection
-                0x080447a4     0x71c0 ./TouchGFX/generated/images/src/image_up_btn.o
-                0x080447a4                image_up_btn
+                0x0807d1f8     0x71c0 ./TouchGFX/generated/images/src/image_down_btn_pressed.o
+                0x0807d1f8                image_down_btn_pressed
  ExtFlashSection
-                0x0804b964     0x71c0 ./TouchGFX/generated/images/src/image_up_btn_disabled.o
-                0x0804b964                image_up_btn_disabled
+                0x080843b8     0x71c0 ./TouchGFX/generated/images/src/image_up_btn.o
+                0x080843b8                image_up_btn
  ExtFlashSection
-                0x08052b24     0x71c0 ./TouchGFX/generated/images/src/image_up_btn_pressed.o
-                0x08052b24                image_up_btn_pressed
+                0x0808b578     0x71c0 ./TouchGFX/generated/images/src/image_up_btn_disabled.o
+                0x0808b578                image_up_btn_disabled
+ ExtFlashSection
+                0x08092738     0x71c0 ./TouchGFX/generated/images/src/image_up_btn_pressed.o
+                0x08092738                image_up_btn_pressed
 
 TextFlashSection
-                0x08059ce4       0x18
+                0x080998f8       0x18
  TextFlashSection
-                0x08059ce4        0x8 ./TouchGFX/generated/texts/src/LanguageGb.o
-                0x08059ce4                indicesGb
+                0x080998f8        0x8 ./TouchGFX/generated/texts/src/LanguageGb.o
+                0x080998f8                indicesGb
  TextFlashSection
-                0x08059cec        0x8 ./TouchGFX/generated/texts/src/Texts.o
-                0x08059cec                texts_all_languages
+                0x08099900        0x8 ./TouchGFX/generated/texts/src/Texts.o
+                0x08099900                texts_all_languages
  TextFlashSection
-                0x08059cf4        0x8 ./TouchGFX/generated/texts/src/TypedTextDatabase.o
-                0x08059cf4                typedText_database_DEFAULT
-                0x08059cf8                typedTextDatabaseArray
+                0x08099908        0x8 ./TouchGFX/generated/texts/src/TypedTextDatabase.o
+                0x08099908                typedText_database_DEFAULT
+                0x0809990c                typedTextDatabaseArray
 
-.ARM.extab      0x08059cfc        0x0
-                0x08059cfc                        . = ALIGN (0x4)
+.ARM.extab      0x08099910        0x0
+                0x08099910                        . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08059cfc                        . = ALIGN (0x4)
+                0x08099910                        . = ALIGN (0x4)
 
-.ARM            0x08059cfc        0x8
-                0x08059cfc                        . = ALIGN (0x4)
-                0x08059cfc                        __exidx_start = .
+.ARM            0x08099910        0x8
+                0x08099910                        . = ALIGN (0x4)
+                0x08099910                        __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x08059cfc        0x8 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memchr.o)
- .ARM.exidx     0x08059d04        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+ .ARM.exidx     0x08099910        0x8 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memchr.o)
+ .ARM.exidx     0x08099918        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
                                   0x8 (size before relaxing)
-                0x08059d04                        __exidx_end = .
-                0x08059d04                        . = ALIGN (0x4)
+                0x08099918                        __exidx_end = .
+                0x08099918                        . = ALIGN (0x4)
 
-.preinit_array  0x08059d04        0x0
-                0x08059d04                        . = ALIGN (0x4)
-                0x08059d04                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x08099918        0x0
+                0x08099918                        . = ALIGN (0x4)
+                0x08099918                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x08059d04                        PROVIDE (__preinit_array_end = .)
-                0x08059d04                        . = ALIGN (0x4)
+                0x08099918                        PROVIDE (__preinit_array_end = .)
+                0x08099918                        . = ALIGN (0x4)
 
-.init_array     0x08059d04       0x18
-                0x08059d04                        . = ALIGN (0x4)
-                0x08059d04                        PROVIDE (__init_array_start = .)
+.init_array     0x08099918       0x18
+                0x08099918                        . = ALIGN (0x4)
+                0x08099918                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x08059d04        0x4 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
- .init_array    0x08059d08        0x4 ./TouchGFX/generated/texts/src/TypedTextDatabase.o
- .init_array    0x08059d0c        0x4 ./TouchGFX/target/generated/TouchGFXConfiguration.o
- .init_array    0x08059d10        0x4 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
- .init_array    0x08059d14        0x4 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD.o)
- .init_array    0x08059d18        0x4 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Application.o)
-                0x08059d1c                        PROVIDE (__init_array_end = .)
-                0x08059d1c                        . = ALIGN (0x4)
+ .init_array    0x08099918        0x4 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .init_array    0x0809991c        0x4 ./TouchGFX/generated/texts/src/TypedTextDatabase.o
+ .init_array    0x08099920        0x4 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+ .init_array    0x08099924        0x4 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
+ .init_array    0x08099928        0x4 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD.o)
+ .init_array    0x0809992c        0x4 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Application.o)
+                0x08099930                        PROVIDE (__init_array_end = .)
+                0x08099930                        . = ALIGN (0x4)
 
-.fini_array     0x08059d1c        0xc
-                0x08059d1c                        . = ALIGN (0x4)
+.fini_array     0x08099930        0xc
+                0x08099930                        . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08059d1c        0x4 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
- .fini_array    0x08059d20        0x4 ./TouchGFX/target/generated/TouchGFXConfiguration.o
- .fini_array    0x08059d24        0x4 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
+ .fini_array    0x08099930        0x4 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .fini_array    0x08099934        0x4 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+ .fini_array    0x08099938        0x4 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
                 [!provide]                        PROVIDE (__fini_array_end = .)
-                0x08059d28                        . = ALIGN (0x4)
-                0x08059d28                        _sidata = LOADADDR (.data)
+                0x0809993c                        . = ALIGN (0x4)
+                0x0809993c                        _sidata = LOADADDR (.data)
 
-.rel.dyn        0x08059d28        0x0
- .rel.iplt      0x08059d28        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+.rel.dyn        0x0809993c        0x0
+ .rel.iplt      0x0809993c        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.data           0x20000000       0xfc load address 0x08059d28
+.data           0x20000000       0xfc load address 0x0809993c
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -12228,11 +12247,11 @@ TextFlashSection
                 0x200000fc                        . = ALIGN (0x4)
                 0x200000fc                        _edata = .
 
-.igot.plt       0x200000fc        0x0 load address 0x08059e24
+.igot.plt       0x200000fc        0x0 load address 0x08099a38
  .igot.plt      0x200000fc        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
                 0x200000fc                        . = ALIGN (0x4)
 
-.bss            0x200000fc     0xb4a0 load address 0x08059e24
+.bss            0x200000fc     0xb4a0 load address 0x08099a38
                 0x200000fc                        _sbss = .
                 0x200000fc                        __bss_start__ = _sbss
  *(.bss)
@@ -12523,7 +12542,7 @@ TextFlashSection
                 0x2000b59c                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x2000b59c      0x604 load address 0x08059e24
+                0x2000b59c      0x604 load address 0x08099a38
                 0x2000b5a0                        . = ALIGN (0x8)
  *fill*         0x2000b59c        0x4 
                 [!provide]                        PROVIDE (end = .)
@@ -12609,206 +12628,208 @@ TextFlashSection
  .ARM.attributes
                 0x0000065b       0x34 ./TouchGFX/generated/images/src/BitmapDatabase.o
  .ARM.attributes
-                0x0000068f       0x34 ./TouchGFX/generated/images/src/image_counter_box.o
+                0x0000068f       0x34 ./TouchGFX/generated/images/src/image_bg.o
  .ARM.attributes
-                0x000006c3       0x34 ./TouchGFX/generated/images/src/image_down_btn.o
+                0x000006c3       0x34 ./TouchGFX/generated/images/src/image_counter_box.o
  .ARM.attributes
-                0x000006f7       0x34 ./TouchGFX/generated/images/src/image_down_btn_disabled.o
+                0x000006f7       0x34 ./TouchGFX/generated/images/src/image_down_btn.o
  .ARM.attributes
-                0x0000072b       0x34 ./TouchGFX/generated/images/src/image_down_btn_pressed.o
+                0x0000072b       0x34 ./TouchGFX/generated/images/src/image_down_btn_disabled.o
  .ARM.attributes
-                0x0000075f       0x34 ./TouchGFX/generated/images/src/image_up_btn.o
+                0x0000075f       0x34 ./TouchGFX/generated/images/src/image_down_btn_pressed.o
  .ARM.attributes
-                0x00000793       0x34 ./TouchGFX/generated/images/src/image_up_btn_disabled.o
+                0x00000793       0x34 ./TouchGFX/generated/images/src/image_up_btn.o
  .ARM.attributes
-                0x000007c7       0x34 ./TouchGFX/generated/images/src/image_up_btn_pressed.o
+                0x000007c7       0x34 ./TouchGFX/generated/images/src/image_up_btn_disabled.o
  .ARM.attributes
-                0x000007fb       0x34 ./TouchGFX/generated/texts/src/LanguageGb.o
+                0x000007fb       0x34 ./TouchGFX/generated/images/src/image_up_btn_pressed.o
  .ARM.attributes
-                0x0000082f       0x34 ./TouchGFX/generated/texts/src/Texts.o
+                0x0000082f       0x34 ./TouchGFX/generated/texts/src/LanguageGb.o
  .ARM.attributes
-                0x00000863       0x34 ./TouchGFX/generated/texts/src/TypedTextDatabase.o
+                0x00000863       0x34 ./TouchGFX/generated/texts/src/Texts.o
  .ARM.attributes
-                0x00000897       0x34 ./TouchGFX/gui/src/common/FrontendApplication.o
+                0x00000897       0x34 ./TouchGFX/generated/texts/src/TypedTextDatabase.o
  .ARM.attributes
-                0x000008cb       0x34 ./TouchGFX/gui/src/main_screen/MainPresenter.o
+                0x000008cb       0x34 ./TouchGFX/gui/src/common/FrontendApplication.o
  .ARM.attributes
-                0x000008ff       0x34 ./TouchGFX/gui/src/main_screen/MainView.o
+                0x000008ff       0x34 ./TouchGFX/gui/src/main_screen/MainPresenter.o
  .ARM.attributes
-                0x00000933       0x34 ./TouchGFX/gui/src/model/Model.o
+                0x00000933       0x34 ./TouchGFX/gui/src/main_screen/MainView.o
  .ARM.attributes
-                0x00000967       0x34 ./TouchGFX/target/STM32TouchController.o
+                0x00000967       0x34 ./TouchGFX/gui/src/model/Model.o
  .ARM.attributes
-                0x0000099b       0x34 ./TouchGFX/target/TouchGFXGPIO.o
+                0x0000099b       0x34 ./TouchGFX/target/STM32TouchController.o
  .ARM.attributes
-                0x000009cf       0x34 ./TouchGFX/target/TouchGFXHAL.o
+                0x000009cf       0x34 ./TouchGFX/target/TouchGFXGPIO.o
  .ARM.attributes
-                0x00000a03       0x34 ./TouchGFX/target/generated/OSWrappers.o
+                0x00000a03       0x34 ./TouchGFX/target/TouchGFXHAL.o
  .ARM.attributes
-                0x00000a37       0x34 ./TouchGFX/target/generated/STM32DMA.o
+                0x00000a37       0x34 ./TouchGFX/target/generated/OSWrappers.o
  .ARM.attributes
-                0x00000a6b       0x34 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+                0x00000a6b       0x34 ./TouchGFX/target/generated/STM32DMA.o
  .ARM.attributes
-                0x00000a9f       0x34 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
+                0x00000a9f       0x34 ./TouchGFX/target/generated/TouchGFXConfiguration.o
  .ARM.attributes
-                0x00000ad3       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(AbstractPartition.o)
+                0x00000ad3       0x34 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
  .ARM.attributes
-                0x00000b0c       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Container.o)
+                0x00000b07       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(AbstractPartition.o)
  .ARM.attributes
-                0x00000b45       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(HAL.o)
+                0x00000b40       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Container.o)
  .ARM.attributes
-                0x00000b7e       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(DMA.o)
+                0x00000b79       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(HAL.o)
  .ARM.attributes
-                0x00000bb7       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(AbstractButton.o)
+                0x00000bb2       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(DMA.o)
  .ARM.attributes
-                0x00000bf0       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TextArea.o)
+                0x00000beb       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(AbstractButton.o)
  .ARM.attributes
-                0x00000c29       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Box.o)
+                0x00000c24       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TextArea.o)
  .ARM.attributes
-                0x00000c62       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Button.o)
+                0x00000c5d       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Box.o)
  .ARM.attributes
-                0x00000c9b       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TextAreaWithWildcard.o)
+                0x00000c96       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Button.o)
  .ARM.attributes
-                0x00000cd4       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Image.o)
+                0x00000ccf       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TextAreaWithWildcard.o)
  .ARM.attributes
-                0x00000d0d       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD.o)
+                0x00000d08       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Image.o)
  .ARM.attributes
-                0x00000d46       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TouchCalibration.o)
+                0x00000d41       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD.o)
  .ARM.attributes
-                0x00000d7f       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(DisplayTransformation.o)
+                0x00000d7a       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TouchCalibration.o)
  .ARM.attributes
-                0x00000db8       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Application.o)
+                0x00000db3       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(DisplayTransformation.o)
  .ARM.attributes
-                0x00000df1       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TypedText.o)
+                0x00000dec       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Application.o)
  .ARM.attributes
-                0x00000e2a       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Font.o)
+                0x00000e25       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TypedText.o)
  .ARM.attributes
-                0x00000e63       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Drawable.o)
+                0x00000e5e       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Font.o)
  .ARM.attributes
-                0x00000e9c       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(ConstFont.o)
+                0x00000e97       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Drawable.o)
  .ARM.attributes
-                0x00000ed5       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Screen.o)
+                0x00000ed0       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(ConstFont.o)
  .ARM.attributes
-                0x00000f0e       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TextProvider.o)
+                0x00000f09       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Screen.o)
  .ARM.attributes
-                0x00000f47       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TextureMapTypes.o)
+                0x00000f42       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TextProvider.o)
  .ARM.attributes
-                0x00000f80       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Unicode.o)
+                0x00000f7b       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(TextureMapTypes.o)
  .ARM.attributes
-                0x00000fb9       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(FontManager.o)
+                0x00000fb4       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Unicode.o)
  .ARM.attributes
-                0x00000ff2       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Bitmap.o)
+                0x00000fed       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(FontManager.o)
  .ARM.attributes
-                0x0000102b       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
+                0x00001026       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Bitmap.o)
  .ARM.attributes
-                0x00001064       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(stm32_crc_lock.o)
+                0x0000105f       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(LCD16bpp.o)
  .ARM.attributes
-                0x0000109d       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Gestures.o)
+                0x00001098       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(stm32_crc_lock.o)
  .ARM.attributes
-                0x000010d6       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(atexit_arm.o)
+                0x000010d1       0x39 C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc\libtouchgfx-float-abi-hard.a(Gestures.o)
  .ARM.attributes
-                0x0000110a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(del_ops.o)
+                0x0000110a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(atexit_arm.o)
  .ARM.attributes
-                0x0000113e       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(guard.o)
+                0x0000113e       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(del_ops.o)
  .ARM.attributes
-                0x00001172       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(pure.o)
+                0x00001172       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(guard.o)
  .ARM.attributes
-                0x000011a6       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(del_op.o)
+                0x000011a6       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(pure.o)
  .ARM.attributes
-                0x000011da       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(eh_terminate.o)
+                0x000011da       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(del_op.o)
  .ARM.attributes
-                0x0000120e       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(eh_term_handler.o)
+                0x0000120e       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(eh_terminate.o)
  .ARM.attributes
-                0x00001242       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-abort.o)
+                0x00001242       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++_nano.a(eh_term_handler.o)
  .ARM.attributes
-                0x00001276       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-assert.o)
+                0x00001276       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-abort.o)
  .ARM.attributes
-                0x000012aa       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-atexit.o)
+                0x000012aa       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-assert.o)
  .ARM.attributes
-                0x000012de       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-malloc.o)
+                0x000012de       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-atexit.o)
  .ARM.attributes
-                0x00001312       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
+                0x00001312       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-malloc.o)
  .ARM.attributes
-                0x00001346       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mlock.o)
+                0x00001346       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
  .ARM.attributes
-                0x0000137a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-cxa_atexit.o)
+                0x0000137a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mlock.o)
  .ARM.attributes
-                0x000013ae       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-findfp.o)
+                0x000013ae       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-cxa_atexit.o)
  .ARM.attributes
-                0x000013e2       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-fprintf.o)
+                0x000013e2       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-findfp.o)
  .ARM.attributes
-                0x00001416       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-fwalk.o)
+                0x00001416       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-fprintf.o)
  .ARM.attributes
-                0x0000144a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-stdio.o)
+                0x0000144a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-fwalk.o)
  .ARM.attributes
-                0x0000147e       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
+                0x0000147e       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-stdio.o)
  .ARM.attributes
-                0x000014b2       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signal.o)
+                0x000014b2       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
  .ARM.attributes
-                0x000014e6       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-closer.o)
+                0x000014e6       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signal.o)
  .ARM.attributes
-                0x0000151a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-reent.o)
+                0x0000151a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-closer.o)
  .ARM.attributes
-                0x0000154e       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-impure.o)
+                0x0000154e       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-reent.o)
  .ARM.attributes
-                0x00001582       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lseekr.o)
+                0x00001582       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-impure.o)
  .ARM.attributes
-                0x000015b6       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-readr.o)
+                0x000015b6       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lseekr.o)
  .ARM.attributes
-                0x000015ea       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signalr.o)
+                0x000015ea       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-readr.o)
  .ARM.attributes
-                0x0000161e       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-sbrkr.o)
+                0x0000161e       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signalr.o)
  .ARM.attributes
-                0x00001652       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-writer.o)
+                0x00001652       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-sbrkr.o)
  .ARM.attributes
-                0x00001686       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-errno.o)
+                0x00001686       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-writer.o)
  .ARM.attributes
-                0x000016ba       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
+                0x000016ba       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-errno.o)
  .ARM.attributes
-                0x000016ee       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
+                0x000016ee       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
  .ARM.attributes
-                0x00001722       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memcpy-stub.o)
+                0x00001722       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
  .ARM.attributes
-                0x00001756       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-__atexit.o)
+                0x00001756       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memcpy-stub.o)
  .ARM.attributes
-                0x0000178a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-__call_atexit.o)
+                0x0000178a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-__atexit.o)
  .ARM.attributes
-                0x000017be       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-freer.o)
+                0x000017be       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-__call_atexit.o)
  .ARM.attributes
-                0x000017f2       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-on_exit_args.o)
+                0x000017f2       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-freer.o)
  .ARM.attributes
-                0x00001826       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-vfprintf.o)
+                0x00001826       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-on_exit_args.o)
  .ARM.attributes
-                0x0000185a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-vfprintf_i.o)
+                0x0000185a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-vfprintf.o)
  .ARM.attributes
-                0x0000188e       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-fflush.o)
+                0x0000188e       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-vfprintf_i.o)
  .ARM.attributes
-                0x000018c2       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-wbuf.o)
+                0x000018c2       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-fflush.o)
  .ARM.attributes
-                0x000018f6       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-wsetup.o)
+                0x000018f6       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-wbuf.o)
  .ARM.attributes
-                0x0000192a       0x1c C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memchr.o)
+                0x0000192a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-wsetup.o)
  .ARM.attributes
-                0x00001946       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-makebuf.o)
+                0x0000195e       0x1c C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memchr.o)
  .ARM.attributes
-                0x0000197a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-fstatr.o)
+                0x0000197a       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-makebuf.o)
  .ARM.attributes
-                0x000019ae       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-isattyr.o)
+                0x000019ae       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-fstatr.o)
  .ARM.attributes
-                0x000019e2       0x22 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
+                0x000019e2       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-isattyr.o)
  .ARM.attributes
-                0x00001a04       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+                0x00001a16       0x22 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
  .ARM.attributes
-                0x00001a38       0x22 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
+                0x00001a38       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
  .ARM.attributes
-                0x00001a5a       0x22 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
+                0x00001a6c       0x22 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x00001a8e       0x22 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
 OUTPUT(ILI9488-XPT2046-STM32.elf elf32-littlearm)
 LOAD linker stubs
 LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a
 LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a
 LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a
 
-.debug_info     0x00000000    0x6efd2
+.debug_info     0x00000000    0x6f083
  .debug_info    0x00000000     0x1604 ./Core/Src/main.o
  .debug_info    0x00001604     0x1202 ./Core/Src/stm32f4xx_hal_msp.o
  .debug_info    0x00002806      0x6bf ./Core/Src/stm32f4xx_it.o
@@ -12838,31 +12859,32 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_info    0x00020097      0x6bb ./TouchGFX/generated/fonts/src/Kerning_Asap_Regular_80_4bpp.o
  .debug_info    0x00020752     0x14c9 ./TouchGFX/generated/fonts/src/Table_Asap_Regular_80_4bpp.o
  .debug_info    0x00021c1b     0xb963 ./TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o
- .debug_info    0x0002d57e     0x7550 ./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o
- .debug_info    0x00034ace      0xe2a ./TouchGFX/generated/images/src/BitmapDatabase.o
- .debug_info    0x000358f8       0x5f ./TouchGFX/generated/images/src/image_counter_box.o
- .debug_info    0x00035957       0x5f ./TouchGFX/generated/images/src/image_down_btn.o
- .debug_info    0x000359b6       0x5f ./TouchGFX/generated/images/src/image_down_btn_disabled.o
- .debug_info    0x00035a15       0x5f ./TouchGFX/generated/images/src/image_down_btn_pressed.o
- .debug_info    0x00035a74       0x5f ./TouchGFX/generated/images/src/image_up_btn.o
- .debug_info    0x00035ad3       0x5f ./TouchGFX/generated/images/src/image_up_btn_disabled.o
- .debug_info    0x00035b32       0x5f ./TouchGFX/generated/images/src/image_up_btn_pressed.o
- .debug_info    0x00035b91      0x208 ./TouchGFX/generated/texts/src/LanguageGb.o
- .debug_info    0x00035d99     0x3e84 ./TouchGFX/generated/texts/src/Texts.o
- .debug_info    0x00039c1d     0x164e ./TouchGFX/generated/texts/src/TypedTextDatabase.o
- .debug_info    0x0003b26b     0x3cb0 ./TouchGFX/gui/src/common/FrontendApplication.o
- .debug_info    0x0003ef1b     0x5d43 ./TouchGFX/gui/src/main_screen/MainPresenter.o
- .debug_info    0x00044c5e     0x5dec ./TouchGFX/gui/src/main_screen/MainView.o
- .debug_info    0x0004aa4a      0x380 ./TouchGFX/gui/src/model/Model.o
- .debug_info    0x0004adca      0x4a7 ./TouchGFX/target/STM32TouchController.o
- .debug_info    0x0004b271      0x208 ./TouchGFX/target/TouchGFXGPIO.o
- .debug_info    0x0004b479     0x70b2 ./TouchGFX/target/TouchGFXHAL.o
- .debug_info    0x0005252b     0x6657 ./TouchGFX/target/generated/OSWrappers.o
- .debug_info    0x00058b82     0x1040 ./TouchGFX/target/generated/STM32DMA.o
- .debug_info    0x00059bc2     0xb9d0 ./TouchGFX/target/generated/TouchGFXConfiguration.o
- .debug_info    0x00065592     0x9a40 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
+ .debug_info    0x0002d57e     0x7560 ./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o
+ .debug_info    0x00034ade      0xe46 ./TouchGFX/generated/images/src/BitmapDatabase.o
+ .debug_info    0x00035924       0x61 ./TouchGFX/generated/images/src/image_bg.o
+ .debug_info    0x00035985       0x5f ./TouchGFX/generated/images/src/image_counter_box.o
+ .debug_info    0x000359e4       0x5f ./TouchGFX/generated/images/src/image_down_btn.o
+ .debug_info    0x00035a43       0x5f ./TouchGFX/generated/images/src/image_down_btn_disabled.o
+ .debug_info    0x00035aa2       0x5f ./TouchGFX/generated/images/src/image_down_btn_pressed.o
+ .debug_info    0x00035b01       0x5f ./TouchGFX/generated/images/src/image_up_btn.o
+ .debug_info    0x00035b60       0x5f ./TouchGFX/generated/images/src/image_up_btn_disabled.o
+ .debug_info    0x00035bbf       0x5f ./TouchGFX/generated/images/src/image_up_btn_pressed.o
+ .debug_info    0x00035c1e      0x208 ./TouchGFX/generated/texts/src/LanguageGb.o
+ .debug_info    0x00035e26     0x3e84 ./TouchGFX/generated/texts/src/Texts.o
+ .debug_info    0x00039caa     0x164e ./TouchGFX/generated/texts/src/TypedTextDatabase.o
+ .debug_info    0x0003b2f8     0x3cb0 ./TouchGFX/gui/src/common/FrontendApplication.o
+ .debug_info    0x0003efa8     0x5d43 ./TouchGFX/gui/src/main_screen/MainPresenter.o
+ .debug_info    0x00044ceb     0x5dfe ./TouchGFX/gui/src/main_screen/MainView.o
+ .debug_info    0x0004aae9      0x380 ./TouchGFX/gui/src/model/Model.o
+ .debug_info    0x0004ae69      0x4a7 ./TouchGFX/target/STM32TouchController.o
+ .debug_info    0x0004b310      0x208 ./TouchGFX/target/TouchGFXGPIO.o
+ .debug_info    0x0004b518     0x70b2 ./TouchGFX/target/TouchGFXHAL.o
+ .debug_info    0x000525ca     0x6657 ./TouchGFX/target/generated/OSWrappers.o
+ .debug_info    0x00058c21     0x1040 ./TouchGFX/target/generated/STM32DMA.o
+ .debug_info    0x00059c61     0xb9e2 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+ .debug_info    0x00065643     0x9a40 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
 
-.debug_abbrev   0x00000000     0xd3d9
+.debug_abbrev   0x00000000     0xd425
  .debug_abbrev  0x00000000      0x2e4 ./Core/Src/main.o
  .debug_abbrev  0x000002e4      0x297 ./Core/Src/stm32f4xx_hal_msp.o
  .debug_abbrev  0x0000057b      0x19d ./Core/Src/stm32f4xx_it.o
@@ -12894,29 +12916,30 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_abbrev  0x00005385      0xd79 ./TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o
  .debug_abbrev  0x000060fe      0xb40 ./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o
  .debug_abbrev  0x00006c3e      0x36d ./TouchGFX/generated/images/src/BitmapDatabase.o
- .debug_abbrev  0x00006fab       0x4c ./TouchGFX/generated/images/src/image_counter_box.o
- .debug_abbrev  0x00006ff7       0x4c ./TouchGFX/generated/images/src/image_down_btn.o
- .debug_abbrev  0x00007043       0x4c ./TouchGFX/generated/images/src/image_down_btn_disabled.o
- .debug_abbrev  0x0000708f       0x4c ./TouchGFX/generated/images/src/image_down_btn_pressed.o
- .debug_abbrev  0x000070db       0x4c ./TouchGFX/generated/images/src/image_up_btn.o
- .debug_abbrev  0x00007127       0x4c ./TouchGFX/generated/images/src/image_up_btn_disabled.o
- .debug_abbrev  0x00007173       0x4c ./TouchGFX/generated/images/src/image_up_btn_pressed.o
- .debug_abbrev  0x000071bf       0xc6 ./TouchGFX/generated/texts/src/LanguageGb.o
- .debug_abbrev  0x00007285      0x8dd ./TouchGFX/generated/texts/src/Texts.o
- .debug_abbrev  0x00007b62      0x511 ./TouchGFX/generated/texts/src/TypedTextDatabase.o
- .debug_abbrev  0x00008073      0x854 ./TouchGFX/gui/src/common/FrontendApplication.o
- .debug_abbrev  0x000088c7      0x966 ./TouchGFX/gui/src/main_screen/MainPresenter.o
- .debug_abbrev  0x0000922d      0x9d2 ./TouchGFX/gui/src/main_screen/MainView.o
- .debug_abbrev  0x00009bff      0x1dc ./TouchGFX/gui/src/model/Model.o
- .debug_abbrev  0x00009ddb      0x28d ./TouchGFX/target/STM32TouchController.o
- .debug_abbrev  0x0000a068      0x150 ./TouchGFX/target/TouchGFXGPIO.o
- .debug_abbrev  0x0000a1b8      0x973 ./TouchGFX/target/TouchGFXHAL.o
- .debug_abbrev  0x0000ab2b      0x8f2 ./TouchGFX/target/generated/OSWrappers.o
- .debug_abbrev  0x0000b41d      0x4c2 ./TouchGFX/target/generated/STM32DMA.o
- .debug_abbrev  0x0000b8df      0xd80 ./TouchGFX/target/generated/TouchGFXConfiguration.o
- .debug_abbrev  0x0000c65f      0xd7a ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
+ .debug_abbrev  0x00006fab       0x4c ./TouchGFX/generated/images/src/image_bg.o
+ .debug_abbrev  0x00006ff7       0x4c ./TouchGFX/generated/images/src/image_counter_box.o
+ .debug_abbrev  0x00007043       0x4c ./TouchGFX/generated/images/src/image_down_btn.o
+ .debug_abbrev  0x0000708f       0x4c ./TouchGFX/generated/images/src/image_down_btn_disabled.o
+ .debug_abbrev  0x000070db       0x4c ./TouchGFX/generated/images/src/image_down_btn_pressed.o
+ .debug_abbrev  0x00007127       0x4c ./TouchGFX/generated/images/src/image_up_btn.o
+ .debug_abbrev  0x00007173       0x4c ./TouchGFX/generated/images/src/image_up_btn_disabled.o
+ .debug_abbrev  0x000071bf       0x4c ./TouchGFX/generated/images/src/image_up_btn_pressed.o
+ .debug_abbrev  0x0000720b       0xc6 ./TouchGFX/generated/texts/src/LanguageGb.o
+ .debug_abbrev  0x000072d1      0x8dd ./TouchGFX/generated/texts/src/Texts.o
+ .debug_abbrev  0x00007bae      0x511 ./TouchGFX/generated/texts/src/TypedTextDatabase.o
+ .debug_abbrev  0x000080bf      0x854 ./TouchGFX/gui/src/common/FrontendApplication.o
+ .debug_abbrev  0x00008913      0x966 ./TouchGFX/gui/src/main_screen/MainPresenter.o
+ .debug_abbrev  0x00009279      0x9d2 ./TouchGFX/gui/src/main_screen/MainView.o
+ .debug_abbrev  0x00009c4b      0x1dc ./TouchGFX/gui/src/model/Model.o
+ .debug_abbrev  0x00009e27      0x28d ./TouchGFX/target/STM32TouchController.o
+ .debug_abbrev  0x0000a0b4      0x150 ./TouchGFX/target/TouchGFXGPIO.o
+ .debug_abbrev  0x0000a204      0x973 ./TouchGFX/target/TouchGFXHAL.o
+ .debug_abbrev  0x0000ab77      0x8f2 ./TouchGFX/target/generated/OSWrappers.o
+ .debug_abbrev  0x0000b469      0x4c2 ./TouchGFX/target/generated/STM32DMA.o
+ .debug_abbrev  0x0000b92b      0xd80 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+ .debug_abbrev  0x0000c6ab      0xd7a ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
 
-.debug_aranges  0x00000000     0x25a8
+.debug_aranges  0x00000000     0x25c0
  .debug_aranges
                 0x00000000       0x60 ./Core/Src/main.o
  .debug_aranges
@@ -12980,47 +13003,49 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_aranges
                 0x000018c0       0x28 ./TouchGFX/generated/images/src/BitmapDatabase.o
  .debug_aranges
-                0x000018e8       0x18 ./TouchGFX/generated/images/src/image_counter_box.o
+                0x000018e8       0x18 ./TouchGFX/generated/images/src/image_bg.o
  .debug_aranges
-                0x00001900       0x18 ./TouchGFX/generated/images/src/image_down_btn.o
+                0x00001900       0x18 ./TouchGFX/generated/images/src/image_counter_box.o
  .debug_aranges
-                0x00001918       0x18 ./TouchGFX/generated/images/src/image_down_btn_disabled.o
+                0x00001918       0x18 ./TouchGFX/generated/images/src/image_down_btn.o
  .debug_aranges
-                0x00001930       0x18 ./TouchGFX/generated/images/src/image_down_btn_pressed.o
+                0x00001930       0x18 ./TouchGFX/generated/images/src/image_down_btn_disabled.o
  .debug_aranges
-                0x00001948       0x18 ./TouchGFX/generated/images/src/image_up_btn.o
+                0x00001948       0x18 ./TouchGFX/generated/images/src/image_down_btn_pressed.o
  .debug_aranges
-                0x00001960       0x18 ./TouchGFX/generated/images/src/image_up_btn_disabled.o
+                0x00001960       0x18 ./TouchGFX/generated/images/src/image_up_btn.o
  .debug_aranges
-                0x00001978       0x18 ./TouchGFX/generated/images/src/image_up_btn_pressed.o
+                0x00001978       0x18 ./TouchGFX/generated/images/src/image_up_btn_disabled.o
  .debug_aranges
-                0x00001990       0x18 ./TouchGFX/generated/texts/src/LanguageGb.o
+                0x00001990       0x18 ./TouchGFX/generated/images/src/image_up_btn_pressed.o
  .debug_aranges
-                0x000019a8       0xc0 ./TouchGFX/generated/texts/src/Texts.o
+                0x000019a8       0x18 ./TouchGFX/generated/texts/src/LanguageGb.o
  .debug_aranges
-                0x00001a68       0x50 ./TouchGFX/generated/texts/src/TypedTextDatabase.o
+                0x000019c0       0xc0 ./TouchGFX/generated/texts/src/Texts.o
  .debug_aranges
-                0x00001ab8      0x108 ./TouchGFX/gui/src/common/FrontendApplication.o
+                0x00001a80       0x50 ./TouchGFX/generated/texts/src/TypedTextDatabase.o
  .debug_aranges
-                0x00001bc0       0x90 ./TouchGFX/gui/src/main_screen/MainPresenter.o
+                0x00001ad0      0x108 ./TouchGFX/gui/src/common/FrontendApplication.o
  .debug_aranges
-                0x00001c50       0x80 ./TouchGFX/gui/src/main_screen/MainView.o
+                0x00001bd8       0x90 ./TouchGFX/gui/src/main_screen/MainPresenter.o
  .debug_aranges
-                0x00001cd0       0x28 ./TouchGFX/gui/src/model/Model.o
+                0x00001c68       0x80 ./TouchGFX/gui/src/main_screen/MainView.o
  .debug_aranges
-                0x00001cf8       0x48 ./TouchGFX/target/STM32TouchController.o
+                0x00001ce8       0x28 ./TouchGFX/gui/src/model/Model.o
  .debug_aranges
-                0x00001d40       0x40 ./TouchGFX/target/TouchGFXGPIO.o
+                0x00001d10       0x48 ./TouchGFX/target/STM32TouchController.o
  .debug_aranges
-                0x00001d80      0x140 ./TouchGFX/target/TouchGFXHAL.o
+                0x00001d58       0x40 ./TouchGFX/target/TouchGFXGPIO.o
  .debug_aranges
-                0x00001ec0       0x78 ./TouchGFX/target/generated/OSWrappers.o
+                0x00001d98      0x140 ./TouchGFX/target/TouchGFXHAL.o
  .debug_aranges
-                0x00001f38       0xb0 ./TouchGFX/target/generated/STM32DMA.o
+                0x00001ed8       0x78 ./TouchGFX/target/generated/OSWrappers.o
  .debug_aranges
-                0x00001fe8      0x360 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+                0x00001f50       0xb0 ./TouchGFX/target/generated/STM32DMA.o
  .debug_aranges
-                0x00002348      0x260 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
+                0x00002000      0x360 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+ .debug_aranges
+                0x00002360      0x260 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
 
 .debug_rnglists
                 0x00000000     0x1ba5
@@ -13109,7 +13134,7 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_rnglists
                 0x000019d8      0x1cd ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
 
-.debug_macro    0x00000000    0x285fd
+.debug_macro    0x00000000    0x28617
  .debug_macro   0x00000000      0x2d7 ./Core/Src/main.o
  .debug_macro   0x000002d7      0xad8 ./Core/Src/main.o
  .debug_macro   0x00000daf      0x2a1 ./Core/Src/main.o
@@ -13255,31 +13280,32 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_macro   0x00024411       0x16 ./TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o
  .debug_macro   0x00024427      0x402 ./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o
  .debug_macro   0x00024829       0xc7 ./TouchGFX/generated/images/src/BitmapDatabase.o
- .debug_macro   0x000248f0       0x1a ./TouchGFX/generated/images/src/image_counter_box.o
- .debug_macro   0x0002490a       0x1a ./TouchGFX/generated/images/src/image_down_btn.o
- .debug_macro   0x00024924       0x1a ./TouchGFX/generated/images/src/image_down_btn_disabled.o
- .debug_macro   0x0002493e       0x1a ./TouchGFX/generated/images/src/image_down_btn_pressed.o
- .debug_macro   0x00024958       0x1a ./TouchGFX/generated/images/src/image_up_btn.o
- .debug_macro   0x00024972       0x1a ./TouchGFX/generated/images/src/image_up_btn_disabled.o
- .debug_macro   0x0002498c       0x1a ./TouchGFX/generated/images/src/image_up_btn_pressed.o
- .debug_macro   0x000249a6       0xcc ./TouchGFX/generated/texts/src/LanguageGb.o
- .debug_macro   0x00024a72      0x2f5 ./TouchGFX/generated/texts/src/Texts.o
- .debug_macro   0x00024d67      0x102 ./TouchGFX/generated/texts/src/TypedTextDatabase.o
- .debug_macro   0x00024e69      0x36c ./TouchGFX/gui/src/common/FrontendApplication.o
- .debug_macro   0x000251d5      0x3ee ./TouchGFX/gui/src/main_screen/MainPresenter.o
- .debug_macro   0x000255c3      0x3fc ./TouchGFX/gui/src/main_screen/MainView.o
- .debug_macro   0x000259bf       0xe0 ./TouchGFX/gui/src/model/Model.o
- .debug_macro   0x00025a9f      0x301 ./TouchGFX/target/STM32TouchController.o
- .debug_macro   0x00025da0     0x1011 ./TouchGFX/target/STM32TouchController.o
- .debug_macro   0x00026db1      0x2dc ./TouchGFX/target/TouchGFXGPIO.o
- .debug_macro   0x0002708d      0x2eb ./TouchGFX/target/TouchGFXHAL.o
- .debug_macro   0x00027378      0x45e ./TouchGFX/target/generated/OSWrappers.o
- .debug_macro   0x000277d6       0x56 ./TouchGFX/target/generated/OSWrappers.o
- .debug_macro   0x0002782c      0x1f1 ./TouchGFX/target/generated/STM32DMA.o
- .debug_macro   0x00027a1d      0x60e ./TouchGFX/target/generated/TouchGFXConfiguration.o
- .debug_macro   0x0002802b      0x5d2 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
+ .debug_macro   0x000248f0       0x1a ./TouchGFX/generated/images/src/image_bg.o
+ .debug_macro   0x0002490a       0x1a ./TouchGFX/generated/images/src/image_counter_box.o
+ .debug_macro   0x00024924       0x1a ./TouchGFX/generated/images/src/image_down_btn.o
+ .debug_macro   0x0002493e       0x1a ./TouchGFX/generated/images/src/image_down_btn_disabled.o
+ .debug_macro   0x00024958       0x1a ./TouchGFX/generated/images/src/image_down_btn_pressed.o
+ .debug_macro   0x00024972       0x1a ./TouchGFX/generated/images/src/image_up_btn.o
+ .debug_macro   0x0002498c       0x1a ./TouchGFX/generated/images/src/image_up_btn_disabled.o
+ .debug_macro   0x000249a6       0x1a ./TouchGFX/generated/images/src/image_up_btn_pressed.o
+ .debug_macro   0x000249c0       0xcc ./TouchGFX/generated/texts/src/LanguageGb.o
+ .debug_macro   0x00024a8c      0x2f5 ./TouchGFX/generated/texts/src/Texts.o
+ .debug_macro   0x00024d81      0x102 ./TouchGFX/generated/texts/src/TypedTextDatabase.o
+ .debug_macro   0x00024e83      0x36c ./TouchGFX/gui/src/common/FrontendApplication.o
+ .debug_macro   0x000251ef      0x3ee ./TouchGFX/gui/src/main_screen/MainPresenter.o
+ .debug_macro   0x000255dd      0x3fc ./TouchGFX/gui/src/main_screen/MainView.o
+ .debug_macro   0x000259d9       0xe0 ./TouchGFX/gui/src/model/Model.o
+ .debug_macro   0x00025ab9      0x301 ./TouchGFX/target/STM32TouchController.o
+ .debug_macro   0x00025dba     0x1011 ./TouchGFX/target/STM32TouchController.o
+ .debug_macro   0x00026dcb      0x2dc ./TouchGFX/target/TouchGFXGPIO.o
+ .debug_macro   0x000270a7      0x2eb ./TouchGFX/target/TouchGFXHAL.o
+ .debug_macro   0x00027392      0x45e ./TouchGFX/target/generated/OSWrappers.o
+ .debug_macro   0x000277f0       0x56 ./TouchGFX/target/generated/OSWrappers.o
+ .debug_macro   0x00027846      0x1f1 ./TouchGFX/target/generated/STM32DMA.o
+ .debug_macro   0x00027a37      0x60e ./TouchGFX/target/generated/TouchGFXConfiguration.o
+ .debug_macro   0x00028045      0x5d2 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
 
-.debug_line     0x00000000    0x2976a
+.debug_line     0x00000000    0x29800
  .debug_line    0x00000000      0xb3a ./Core/Src/main.o
  .debug_line    0x00000b3a      0xa4b ./Core/Src/stm32f4xx_hal_msp.o
  .debug_line    0x00001585      0x9de ./Core/Src/stm32f4xx_it.o
@@ -13311,82 +13337,84 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_line    0x000173ac     0x19c4 ./TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o
  .debug_line    0x00018d70     0x1f2d ./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o
  .debug_line    0x0001ac9d      0x613 ./TouchGFX/generated/images/src/BitmapDatabase.o
- .debug_line    0x0001b2b0       0x9f ./TouchGFX/generated/images/src/image_counter_box.o
- .debug_line    0x0001b34f       0x9c ./TouchGFX/generated/images/src/image_down_btn.o
- .debug_line    0x0001b3eb       0xa5 ./TouchGFX/generated/images/src/image_down_btn_disabled.o
- .debug_line    0x0001b490       0xa4 ./TouchGFX/generated/images/src/image_down_btn_pressed.o
- .debug_line    0x0001b534       0x9a ./TouchGFX/generated/images/src/image_up_btn.o
- .debug_line    0x0001b5ce       0xa3 ./TouchGFX/generated/images/src/image_up_btn_disabled.o
- .debug_line    0x0001b671       0xa2 ./TouchGFX/generated/images/src/image_up_btn_pressed.o
- .debug_line    0x0001b713      0x5ab ./TouchGFX/generated/texts/src/LanguageGb.o
- .debug_line    0x0001bcbe      0xfb3 ./TouchGFX/generated/texts/src/Texts.o
- .debug_line    0x0001cc71      0x73a ./TouchGFX/generated/texts/src/TypedTextDatabase.o
- .debug_line    0x0001d3ab     0x12ef ./TouchGFX/gui/src/common/FrontendApplication.o
- .debug_line    0x0001e69a     0x11f6 ./TouchGFX/gui/src/main_screen/MainPresenter.o
- .debug_line    0x0001f890     0x1318 ./TouchGFX/gui/src/main_screen/MainView.o
- .debug_line    0x00020ba8      0x609 ./TouchGFX/gui/src/model/Model.o
- .debug_line    0x000211b1      0xa4c ./TouchGFX/target/STM32TouchController.o
- .debug_line    0x00021bfd      0x9ad ./TouchGFX/target/TouchGFXGPIO.o
- .debug_line    0x000225aa     0x103e ./TouchGFX/target/TouchGFXHAL.o
- .debug_line    0x000235e8     0x1053 ./TouchGFX/target/generated/OSWrappers.o
- .debug_line    0x0002463b      0xa71 ./TouchGFX/target/generated/STM32DMA.o
- .debug_line    0x000250ac     0x2325 ./TouchGFX/target/generated/TouchGFXConfiguration.o
- .debug_line    0x000273d1     0x2399 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
+ .debug_line    0x0001b2b0       0x96 ./TouchGFX/generated/images/src/image_bg.o
+ .debug_line    0x0001b346       0x9f ./TouchGFX/generated/images/src/image_counter_box.o
+ .debug_line    0x0001b3e5       0x9c ./TouchGFX/generated/images/src/image_down_btn.o
+ .debug_line    0x0001b481       0xa5 ./TouchGFX/generated/images/src/image_down_btn_disabled.o
+ .debug_line    0x0001b526       0xa4 ./TouchGFX/generated/images/src/image_down_btn_pressed.o
+ .debug_line    0x0001b5ca       0x9a ./TouchGFX/generated/images/src/image_up_btn.o
+ .debug_line    0x0001b664       0xa3 ./TouchGFX/generated/images/src/image_up_btn_disabled.o
+ .debug_line    0x0001b707       0xa2 ./TouchGFX/generated/images/src/image_up_btn_pressed.o
+ .debug_line    0x0001b7a9      0x5ab ./TouchGFX/generated/texts/src/LanguageGb.o
+ .debug_line    0x0001bd54      0xfb3 ./TouchGFX/generated/texts/src/Texts.o
+ .debug_line    0x0001cd07      0x73a ./TouchGFX/generated/texts/src/TypedTextDatabase.o
+ .debug_line    0x0001d441     0x12ef ./TouchGFX/gui/src/common/FrontendApplication.o
+ .debug_line    0x0001e730     0x11f6 ./TouchGFX/gui/src/main_screen/MainPresenter.o
+ .debug_line    0x0001f926     0x1318 ./TouchGFX/gui/src/main_screen/MainView.o
+ .debug_line    0x00020c3e      0x609 ./TouchGFX/gui/src/model/Model.o
+ .debug_line    0x00021247      0xa4c ./TouchGFX/target/STM32TouchController.o
+ .debug_line    0x00021c93      0x9ad ./TouchGFX/target/TouchGFXGPIO.o
+ .debug_line    0x00022640     0x103e ./TouchGFX/target/TouchGFXHAL.o
+ .debug_line    0x0002367e     0x1053 ./TouchGFX/target/generated/OSWrappers.o
+ .debug_line    0x000246d1      0xa71 ./TouchGFX/target/generated/STM32DMA.o
+ .debug_line    0x00025142     0x2325 ./TouchGFX/target/generated/TouchGFXConfiguration.o
+ .debug_line    0x00027467     0x2399 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
 
-.debug_str      0x00000000    0xdf29a
- .debug_str     0x00000000    0xdf29a ./Core/Src/main.o
+.debug_str      0x00000000    0xdf2de
+ .debug_str     0x00000000    0xdf2de ./Core/Src/main.o
                               0xc024c (size before relaxing)
- .debug_str     0x000df29a    0xbfedb ./Core/Src/stm32f4xx_hal_msp.o
- .debug_str     0x000df29a    0xbf4a0 ./Core/Src/stm32f4xx_it.o
- .debug_str     0x000df29a     0x99ed ./Core/Src/syscalls.o
- .debug_str     0x000df29a     0x778b ./Core/Src/sysmem.o
- .debug_str     0x000df29a    0xbb46e ./Core/Src/system_stm32f4xx.o
- .debug_str     0x000df29a    0xbfa1c ./Core/Src/z_displ_ILI9XXX.o
- .debug_str     0x000df29a    0xbfbe8 ./Core/Src/z_touch_XPT2046.o
- .debug_str     0x000df29a       0x8d ./Core/Startup/startup_stm32f412zgtx.o
- .debug_str     0x000df29a    0xbbfcc ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
- .debug_str     0x000df29a    0xbbd24 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
- .debug_str     0x000df29a    0xbb478 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_crc.o
- .debug_str     0x000df29a    0xbb864 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
- .debug_str     0x000df29a    0xbb5ef ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
- .debug_str     0x000df29a    0xbb8a7 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
- .debug_str     0x000df29a    0xbb7a7 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.o
- .debug_str     0x000df29a    0xbbd08 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.o
- .debug_str     0x000df29a    0xbc7d4 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.o
- .debug_str     0x000df29a    0xbbfe0 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o
- .debug_str     0x000df29a     0x2efd ./TouchGFX/App/app_touchgfx.o
- .debug_str     0x000df29a     0x619b ./TouchGFX/generated/fonts/src/ApplicationFontProvider.o
- .debug_str     0x000df29a     0x7219 ./TouchGFX/generated/fonts/src/CachedFont.o
- .debug_str     0x000df29a    0x122b0 ./TouchGFX/generated/fonts/src/CompressedFontCache.o
- .debug_str     0x000df29a     0xd6e6 ./TouchGFX/generated/fonts/src/FontCache.o
- .debug_str     0x000df29a     0x4e0e ./TouchGFX/generated/fonts/src/Font_Asap_Regular_80_4bpp_0.o
- .debug_str     0x000df29a     0xd24b ./TouchGFX/generated/fonts/src/GeneratedFont.o
- .debug_str     0x000df29a     0x550f ./TouchGFX/generated/fonts/src/Kerning_Asap_Regular_80_4bpp.o
- .debug_str     0x000df29a     0x64a5 ./TouchGFX/generated/fonts/src/Table_Asap_Regular_80_4bpp.o
- .debug_str     0x000df29a    0x19239 ./TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o
- .debug_str     0x000df29a    0x1197d ./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o
- .debug_str     0x000df29a     0x61c5 ./TouchGFX/generated/images/src/BitmapDatabase.o
- .debug_str     0x000df29a     0x38a5 ./TouchGFX/generated/images/src/image_counter_box.o
- .debug_str     0x000df29a     0x389f ./TouchGFX/generated/images/src/image_down_btn.o
- .debug_str     0x000df29a     0x38b1 ./TouchGFX/generated/images/src/image_down_btn_disabled.o
- .debug_str     0x000df29a     0x38af ./TouchGFX/generated/images/src/image_down_btn_pressed.o
- .debug_str     0x000df29a     0x389b ./TouchGFX/generated/images/src/image_up_btn.o
- .debug_str     0x000df29a     0x38ad ./TouchGFX/generated/images/src/image_up_btn_disabled.o
- .debug_str     0x000df29a     0x38ab ./TouchGFX/generated/images/src/image_up_btn_pressed.o
- .debug_str     0x000df29a     0x4f40 ./TouchGFX/generated/texts/src/LanguageGb.o
- .debug_str     0x000df29a     0xe16b ./TouchGFX/generated/texts/src/Texts.o
- .debug_str     0x000df29a     0x6771 ./TouchGFX/generated/texts/src/TypedTextDatabase.o
- .debug_str     0x000df29a     0xe1ed ./TouchGFX/gui/src/common/FrontendApplication.o
- .debug_str     0x000df29a    0x10d1b ./TouchGFX/gui/src/main_screen/MainPresenter.o
- .debug_str     0x000df29a    0x10d88 ./TouchGFX/gui/src/main_screen/MainView.o
- .debug_str     0x000df29a     0x4f90 ./TouchGFX/gui/src/model/Model.o
- .debug_str     0x000df29a    0xbfe2b ./TouchGFX/target/STM32TouchController.o
- .debug_str     0x000df29a    0xbf55a ./TouchGFX/target/TouchGFXGPIO.o
- .debug_str     0x000df29a    0x1255b ./TouchGFX/target/TouchGFXHAL.o
- .debug_str     0x000df29a    0xc9284 ./TouchGFX/target/generated/OSWrappers.o
- .debug_str     0x000df29a     0x9e38 ./TouchGFX/target/generated/STM32DMA.o
- .debug_str     0x000df29a    0xd0300 ./TouchGFX/target/generated/TouchGFXConfiguration.o
- .debug_str     0x000df29a    0xcc7a9 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
+ .debug_str     0x000df2de    0xbfedb ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_str     0x000df2de    0xbf4a0 ./Core/Src/stm32f4xx_it.o
+ .debug_str     0x000df2de     0x99ed ./Core/Src/syscalls.o
+ .debug_str     0x000df2de     0x778b ./Core/Src/sysmem.o
+ .debug_str     0x000df2de    0xbb46e ./Core/Src/system_stm32f4xx.o
+ .debug_str     0x000df2de    0xbfa1c ./Core/Src/z_displ_ILI9XXX.o
+ .debug_str     0x000df2de    0xbfbe8 ./Core/Src/z_touch_XPT2046.o
+ .debug_str     0x000df2de       0x8d ./Core/Startup/startup_stm32f412zgtx.o
+ .debug_str     0x000df2de    0xbbfcc ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
+ .debug_str     0x000df2de    0xbbd24 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
+ .debug_str     0x000df2de    0xbb478 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_crc.o
+ .debug_str     0x000df2de    0xbb864 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
+ .debug_str     0x000df2de    0xbb5ef ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
+ .debug_str     0x000df2de    0xbb8a7 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
+ .debug_str     0x000df2de    0xbb7a7 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.o
+ .debug_str     0x000df2de    0xbbd08 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.o
+ .debug_str     0x000df2de    0xbc7d4 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.o
+ .debug_str     0x000df2de    0xbbfe0 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o
+ .debug_str     0x000df2de     0x2efd ./TouchGFX/App/app_touchgfx.o
+ .debug_str     0x000df2de     0x619b ./TouchGFX/generated/fonts/src/ApplicationFontProvider.o
+ .debug_str     0x000df2de     0x7219 ./TouchGFX/generated/fonts/src/CachedFont.o
+ .debug_str     0x000df2de    0x122b0 ./TouchGFX/generated/fonts/src/CompressedFontCache.o
+ .debug_str     0x000df2de     0xd6e6 ./TouchGFX/generated/fonts/src/FontCache.o
+ .debug_str     0x000df2de     0x4e0e ./TouchGFX/generated/fonts/src/Font_Asap_Regular_80_4bpp_0.o
+ .debug_str     0x000df2de     0xd24b ./TouchGFX/generated/fonts/src/GeneratedFont.o
+ .debug_str     0x000df2de     0x550f ./TouchGFX/generated/fonts/src/Kerning_Asap_Regular_80_4bpp.o
+ .debug_str     0x000df2de     0x64a5 ./TouchGFX/generated/fonts/src/Table_Asap_Regular_80_4bpp.o
+ .debug_str     0x000df2de    0x19239 ./TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o
+ .debug_str     0x000df2de    0x1198a ./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o
+ .debug_str     0x000df2de     0x61db ./TouchGFX/generated/images/src/BitmapDatabase.o
+ .debug_str     0x000df2de     0x3893 ./TouchGFX/generated/images/src/image_bg.o
+ .debug_str     0x000df2de     0x38a5 ./TouchGFX/generated/images/src/image_counter_box.o
+ .debug_str     0x000df2de     0x389f ./TouchGFX/generated/images/src/image_down_btn.o
+ .debug_str     0x000df2de     0x38b1 ./TouchGFX/generated/images/src/image_down_btn_disabled.o
+ .debug_str     0x000df2de     0x38af ./TouchGFX/generated/images/src/image_down_btn_pressed.o
+ .debug_str     0x000df2de     0x389b ./TouchGFX/generated/images/src/image_up_btn.o
+ .debug_str     0x000df2de     0x38ad ./TouchGFX/generated/images/src/image_up_btn_disabled.o
+ .debug_str     0x000df2de     0x38ab ./TouchGFX/generated/images/src/image_up_btn_pressed.o
+ .debug_str     0x000df2de     0x4f40 ./TouchGFX/generated/texts/src/LanguageGb.o
+ .debug_str     0x000df2de     0xe16b ./TouchGFX/generated/texts/src/Texts.o
+ .debug_str     0x000df2de     0x6771 ./TouchGFX/generated/texts/src/TypedTextDatabase.o
+ .debug_str     0x000df2de     0xe1ed ./TouchGFX/gui/src/common/FrontendApplication.o
+ .debug_str     0x000df2de    0x10d1b ./TouchGFX/gui/src/main_screen/MainPresenter.o
+ .debug_str     0x000df2de    0x10d95 ./TouchGFX/gui/src/main_screen/MainView.o
+ .debug_str     0x000df2de     0x4f90 ./TouchGFX/gui/src/model/Model.o
+ .debug_str     0x000df2de    0xbfe2b ./TouchGFX/target/STM32TouchController.o
+ .debug_str     0x000df2de    0xbf55a ./TouchGFX/target/TouchGFXGPIO.o
+ .debug_str     0x000df2de    0x1255b ./TouchGFX/target/TouchGFXHAL.o
+ .debug_str     0x000df2de    0xc9284 ./TouchGFX/target/generated/OSWrappers.o
+ .debug_str     0x000df2de     0x9e38 ./TouchGFX/target/generated/STM32DMA.o
+ .debug_str     0x000df2de    0xd030d ./TouchGFX/target/generated/TouchGFXConfiguration.o
+ .debug_str     0x000df2de    0xcc7a9 ./TouchGFX/target/generated/TouchGFXGeneratedHAL.o
 
 .comment        0x00000000       0xc2
  .comment       0x00000000       0xc2 ./Core/Src/main.o
@@ -13420,6 +13448,7 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .comment       0x000000c2       0x44 ./TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o
  .comment       0x000000c2       0x44 ./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o
  .comment       0x000000c2       0x44 ./TouchGFX/generated/images/src/BitmapDatabase.o
+ .comment       0x000000c2       0x44 ./TouchGFX/generated/images/src/image_bg.o
  .comment       0x000000c2       0x44 ./TouchGFX/generated/images/src/image_counter_box.o
  .comment       0x000000c2       0x44 ./TouchGFX/generated/images/src/image_down_btn.o
  .comment       0x000000c2       0x44 ./TouchGFX/generated/images/src/image_down_btn_disabled.o

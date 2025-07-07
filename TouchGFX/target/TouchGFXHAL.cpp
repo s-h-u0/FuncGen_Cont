@@ -22,6 +22,7 @@
 
 #include <TouchGFXHAL.hpp>
 
+
 /* USER CODE BEGIN TouchGFXHAL.cpp */
 
 using namespace touchgfx;

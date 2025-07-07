@@ -40,6 +40,7 @@
 "./TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.o"
 "./TouchGFX/generated/images/src/BitmapDatabase.o"
 "./TouchGFX/generated/images/src/SVGDatabase.o"
+"./TouchGFX/generated/images/src/image_bg.o"
 "./TouchGFX/generated/images/src/image_counter_box.o"
 "./TouchGFX/generated/images/src/image_down_btn.o"
 "./TouchGFX/generated/images/src/image_down_btn_disabled.o"

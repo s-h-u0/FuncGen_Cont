@@ -7,18 +7,17 @@
           {
             "Type": "Box",
             "Name": "box1",
-            "Width": 320,
-            "Height": 480,
+            "Width": 480,
+            "Height": 320,
             "Color": {
-              "Green": 15,
-              "Blue": 69
+              "Red": 97
             }
           },
           {
             "Type": "Image",
             "Name": "counterBackgroundImage",
-            "X": 84,
-            "Y": 77,
+            "X": 293,
+            "Y": 59,
             "Width": 152,
             "Height": 154,
             "RelativeFilename": "counter_box.png"
@@ -26,8 +25,8 @@
           {
             "Type": "TextArea",
             "Name": "countTxt",
-            "X": 84,
-            "Y": 104,
+            "X": 293,
+            "Y": 87,
             "Width": 152,
             "Height": 89,
             "TextId": "TextId1",
@@ -38,7 +37,7 @@
               "Blue": 255
             },
             "Wildcard1": {
-              "TextId": "__SingleUse_4H5R",
+              "TextId": "__SingleUse_W2FX",
               "UseBuffer": true,
               "BufferSize": 3
             }
@@ -46,8 +45,8 @@
           {
             "Type": "Button",
             "Name": "buttonUp",
-            "X": 175,
-            "Y": 345,
+            "X": 52,
+            "Y": 59,
             "Width": 130,
             "Height": 56,
             "Pressed": "up_btn_pressed.png",
@@ -56,8 +55,8 @@
           {
             "Type": "Button",
             "Name": "buttonDown",
-            "X": 30,
-            "Y": 345,
+            "X": 52,
+            "Y": 157,
             "Width": 130,
             "Height": 56,
             "Pressed": "down_btn_pressed.png",
@@ -125,20 +124,23 @@
       }
     },
     "GenerateAssetsCommand": "make -f simulator/gcc/Makefile assets -j8",
+    "GenerateAssetsCommandOverride": "",
     "PostGenerateCommand": "touchgfx update_project --project-file=simulator/msvs/Application.vcxproj",
     "PostGenerateTargetCommand": "touchgfx update_project",
     "CompileSimulatorCommand": "make -f simulator/gcc/Makefile -j8",
+    "CompileSimulatorCommandOverride": "",
     "RunSimulatorCommand": "build\\bin\\simulator.exe",
+    "RunSimulatorCommandOverride": "",
     "LandscapeSkinX": 0,
     "LandscapeSkinY": 0,
     "PortraitSkinX": 0,
     "PortraitSkinY": 0,
-    "DisplayOrientation": "Portrait",
+    "DisplayOrientation": "Landscape",
     "Family": "STM32F4",
     "SubFamily": "STM32F412",
     "Toolchain": "STM32CubeIDE",
     "Platform": "m4",
-    "ProjectFile": "../ILI9XXX-XPT2046-STM33.ioc",
+    "ProjectFile": "../ILI9488-XPT2046-STM32.ioc",
     "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
     "OptionalComponents": [],
     "AdditionalFeatures": []
