@@ -13,17 +13,20 @@ MainViewBase::MainViewBase() :
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    backgroundImage.setXY(0, 0);
-    backgroundImage.setBitmap(touchgfx::Bitmap(BITMAP_BG_ID));
+    box1.setPosition(0, 0, 480, 320);
+    box1.setColor(touchgfx::Color::getColorFromRGB(6, 8, 20));
+    add(box1);
+
+    backgroundImage.setXY(0, 25);
+    backgroundImage.setBitmap(touchgfx::Bitmap(BITMAP_MOVIE2_ID));
     add(backgroundImage);
 
     blueImage.setXY(100, 80);
     blueImage.setBitmap(touchgfx::Bitmap(BITMAP_IMAGE00_ID));
     add(blueImage);
 
-    yellowImage.setXY(280, 80);
+    yellowImage.setXY(281, 80);
     yellowImage.setBitmap(touchgfx::Bitmap(BITMAP_IMAGE01_ID));
-    yellowImage.setAlpha(100);
     add(yellowImage);
 
     verticalSlider.setXY(30, 40);
@@ -34,11 +37,11 @@ MainViewBase::MainViewBase() :
     verticalSlider.setStopValueCallback(sliderValueConfirmedCallback);
     add(verticalSlider);
 
-    horizontalSlider.setXY(210, 200);
+    horizontalSlider.setXY(233, 216);
     horizontalSlider.setBitmaps(touchgfx::Bitmap(BITMAP_SLIDER_BACKGROUND_ID), touchgfx::Bitmap(BITMAP_SLIDER_BACKGROUND_FILLED_ID), touchgfx::Bitmap(BITMAP_SLIDER_KNOB_CIRCLE_ID));
     horizontalSlider.setupHorizontalSlider(14, 14, 0, 0, 194);
     horizontalSlider.setValueRange(0, 255);
-    horizontalSlider.setValue(100);
+    horizontalSlider.setValue(0);
     horizontalSlider.setNewValueCallback(sliderValueChangedCallback);
     add(horizontalSlider);
 }

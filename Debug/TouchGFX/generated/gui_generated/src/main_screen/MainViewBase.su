@@ -54,12 +54,12 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/Slider.hpp:40:7:virtual touchgfx::Slider::~Slider()	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:290:8:touchgfx::Callback<MainViewBase, const touchgfx::Slider&, int>::~Callback()	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:290:8:virtual touchgfx::Callback<MainViewBase, const touchgfx::Slider&, int>::~Callback()	16	static
-../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:8:1:MainViewBase::MainViewBase()	104	static
-../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:46:1:MainViewBase::~MainViewBase()	16	static
-../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:46:1:virtual MainViewBase::~MainViewBase()	16	static
-../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:51:6:virtual void MainViewBase::setupScreen()	16	static
-../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:56:6:void MainViewBase::sliderValueChangedCallbackHandler(const touchgfx::Slider&, int)	24	static
-../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:67:6:void MainViewBase::sliderValueConfirmedCallbackHandler(const touchgfx::Slider&, int)	24	static
+../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:8:1:MainViewBase::MainViewBase()	112	static
+../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:49:1:MainViewBase::~MainViewBase()	16	static
+../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:49:1:virtual MainViewBase::~MainViewBase()	16	static
+../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:54:6:virtual void MainViewBase::setupScreen()	16	static
+../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:59:6:void MainViewBase::sliderValueChangedCallbackHandler(const touchgfx::Slider&, int)	24	static
+../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:70:6:void MainViewBase::sliderValueConfirmedCallbackHandler(const touchgfx::Slider&, int)	24	static
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:39:5:touchgfx::View<T>::View() [with T = MainPresenter]	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:90:7:constexpr touchgfx::GenericCallback<const touchgfx::Slider&, int>::GenericCallback()	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:306:5:touchgfx::Callback<dest_type, T1, T2, void>::Callback(dest_type*, void (dest_type::*)(T1, T2)) [with dest_type = MainViewBase; T1 = const touchgfx::Slider&; T2 = int]	24	static

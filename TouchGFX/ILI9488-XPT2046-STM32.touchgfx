@@ -5,11 +5,23 @@
         "Name": "Main",
         "Components": [
           {
+            "Type": "Box",
+            "Name": "box1",
+            "Width": 480,
+            "Height": 320,
+            "Color": {
+              "Red": 6,
+              "Green": 8,
+              "Blue": 20
+            }
+          },
+          {
             "Type": "Image",
             "Name": "backgroundImage",
+            "Y": 25,
             "Width": 480,
-            "Height": 272,
-            "RelativeFilename": "bg.png"
+            "Height": 270,
+            "RelativeFilename": "movie2.png"
           },
           {
             "Type": "Image",
@@ -23,12 +35,11 @@
           {
             "Type": "Image",
             "Name": "yellowImage",
-            "X": 280,
+            "X": 281,
             "Y": 80,
             "Width": 100,
             "Height": 100,
-            "RelativeFilename": "image01.png",
-            "Alpha": 100
+            "RelativeFilename": "image01.png"
           },
           {
             "Type": "Slider",
@@ -49,8 +60,8 @@
           {
             "Type": "Slider",
             "Name": "horizontalSlider",
-            "X": 210,
-            "Y": 200,
+            "X": 233,
+            "Y": 216,
             "Width": 229,
             "Height": 35,
             "IsHorizontalSlider": true,
@@ -60,8 +71,7 @@
             "BackgroundX": 14,
             "BackgroundY": 14,
             "IndicatorMax": 194,
-            "ValueMax": 255,
-            "InitValue": 100
+            "ValueMax": 255
           }
         ],
         "Interactions": [

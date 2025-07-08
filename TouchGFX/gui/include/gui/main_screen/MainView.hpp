@@ -15,6 +15,7 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
 
+
     virtual void sliderValueChanged(int value) override;
 protected:
 };
