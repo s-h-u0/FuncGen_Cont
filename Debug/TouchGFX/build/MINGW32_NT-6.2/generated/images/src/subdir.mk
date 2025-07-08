@@ -7,6 +7,7 @@
 O_SRCS += \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/images/src/BitmapDatabase.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/images/src/SVGDatabase.o \
+../TouchGFX/build/MINGW32_NT-6.2/generated/images/src/image_DCAC.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/images/src/image_bg.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/images/src/image_black_arrow.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/images/src/image_black_arrow_up.o \

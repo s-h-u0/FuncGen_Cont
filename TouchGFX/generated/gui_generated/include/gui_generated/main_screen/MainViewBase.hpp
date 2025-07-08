@@ -10,6 +10,8 @@
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/containers/Slider.hpp>
+#include <touchgfx/widgets/Gauge.hpp>
+#include <touchgfx/widgets/canvas/PainterRGB565Bitmap.hpp>
 
 class MainViewBase : public touchgfx::View<MainPresenter>
 {
@@ -37,24 +39,27 @@ protected:
     touchgfx::Box __background;
     touchgfx::Box box1;
     touchgfx::Image backgroundImage;
-    touchgfx::Image blueImage;
-    touchgfx::Image yellowImage;
-    touchgfx::Slider verticalSlider;
     touchgfx::Slider horizontalSlider;
+    touchgfx::Gauge gauge1;
+    touchgfx::PainterRGB565Bitmap gauge1Painter;
 
 private:
+
+    /*
+     * Canvas Buffer Size
+     */
+    static const uint32_t CANVAS_BUFFER_SIZE = 7200;
+    uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
 
     /*
      * Callback Declarations
      */
     touchgfx::Callback<MainViewBase, const touchgfx::Slider&, int> sliderValueChangedCallback;
-    touchgfx::Callback<MainViewBase, const touchgfx::Slider&, int> sliderValueConfirmedCallback;
 
     /*
      * Callback Handler Declarations
      */
     void sliderValueChangedCallbackHandler(const touchgfx::Slider& src, int value);
-    void sliderValueConfirmedCallbackHandler(const touchgfx::Slider& src, int value);
 
 };
 

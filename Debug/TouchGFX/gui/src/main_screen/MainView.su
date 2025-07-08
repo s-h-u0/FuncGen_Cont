@@ -5,6 +5,6 @@
 ../TouchGFX/gui/include/gui/main_screen/MainView.hpp:14:13:MainView::~MainView()	16	static
 ../TouchGFX/gui/include/gui/main_screen/MainView.hpp:14:13:virtual MainView::~MainView()	16	static
 ../TouchGFX/gui/src/main_screen/MainView.cpp:4:1:MainView::MainView()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:6:6:virtual void MainView::setupScreen()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:11:6:virtual void MainView::tearDownScreen()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:16:6:virtual void MainView::sliderValueChanged(int)	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:10:6:virtual void MainView::setupScreen()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:15:6:virtual void MainView::tearDownScreen()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:20:6:virtual void MainView::sliderValueChanged(int)	24	static

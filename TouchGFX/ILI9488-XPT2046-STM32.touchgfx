@@ -3,6 +3,7 @@
     "Screens": [
       {
         "Name": "Main",
+        "CanvasBufferSize": 7200,
         "Components": [
           {
             "Type": "Box",
@@ -24,44 +25,10 @@
             "RelativeFilename": "movie2.png"
           },
           {
-            "Type": "Image",
-            "Name": "blueImage",
-            "X": 100,
-            "Y": 80,
-            "Width": 100,
-            "Height": 100,
-            "RelativeFilename": "image00.png"
-          },
-          {
-            "Type": "Image",
-            "Name": "yellowImage",
-            "X": 281,
-            "Y": 80,
-            "Width": 100,
-            "Height": 100,
-            "RelativeFilename": "image01.png"
-          },
-          {
-            "Type": "Slider",
-            "Name": "verticalSlider",
-            "X": 30,
-            "Y": 40,
-            "Width": 35,
-            "Height": 211,
-            "BackgroundUnselected": "slider_background_vertical.png",
-            "BackgroundSelected": "slider_background_vertical_filled.png",
-            "Indicator": "slider_knob_shape.png",
-            "BackgroundX": 15,
-            "BackgroundY": 22,
-            "IndicatorMax": 176,
-            "ValueMax": 255,
-            "InitValue": 180
-          },
-          {
             "Type": "Slider",
             "Name": "horizontalSlider",
-            "X": 233,
-            "Y": 216,
+            "X": 244,
+            "Y": 237,
             "Width": 229,
             "Height": 35,
             "IsHorizontalSlider": true,
@@ -72,6 +39,43 @@
             "BackgroundY": 14,
             "IndicatorMax": 194,
             "ValueMax": 255
+          },
+          {
+            "Type": "Gauge",
+            "Name": "gauge1",
+            "X": 298,
+            "Y": 117,
+            "Width": 120,
+            "Height": 120,
+            "Preset": "alternate_theme\\presets\\gauges\\tiny\\active_filled.json",
+            "FileNameBackground": "__generated\\alternate_theme_images_widgets_gauge_tiny_backgrounds_active_filled.png",
+            "RotationCenterX": 60.0,
+            "RotationCenterY": 60.0,
+            "StartAngle": -119.0,
+            "EndAngle": 122.0,
+            "RangeMax": 100.0,
+            "Easing": "Linear",
+            "EasingOption": "In",
+            "FileNameNeedle": "__generated\\alternate_theme_images_widgets_gauge_tiny_needles_rough.png",
+            "NeedleRotationCenterX": 5.0,
+            "NeedleRotationCenterY": 33.0,
+            "NeedleMovingRenderingAlgorithm": "Bilinear Interpolation",
+            "NeedleSteadyRenderingAlgorithm": "Bilinear Interpolation",
+            "UseArc": true,
+            "FileNameArc": "__generated\\alternate_theme_images_widgets_gauge_tiny_fillers_swoop.png",
+            "ArcColor": {
+              "Red": 20,
+              "Green": 151,
+              "Blue": 197
+            },
+            "SetArcPosition": true,
+            "ArcX": 12.0,
+            "ArcY": 12.0,
+            "ArcWidth": 95.0,
+            "ArcHeight": 71.0,
+            "ArcRadius": 50.0,
+            "ArcLineWidth": 49.0,
+            "ArcCapStyle": "Butt"
           }
         ],
         "Interactions": [
@@ -84,17 +88,6 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "sliderValueChanged"
-            }
-          },
-          {
-            "InteractionName": "verticalSliderMove",
-            "Trigger": {
-              "Type": "TriggerSliderValueConfirmed",
-              "TriggerComponent": "verticalSlider"
-            },
-            "Action": {
-              "Type": "ActionExecuteCode",
-              "Code": "blueImage.setAlpha(value);\r\nblueImage.invalidate();"
             }
           }
         ]
