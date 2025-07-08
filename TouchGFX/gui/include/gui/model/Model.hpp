@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 
+#include <touchgfx/Utils.hpp>
 
 class ModelListener;
 

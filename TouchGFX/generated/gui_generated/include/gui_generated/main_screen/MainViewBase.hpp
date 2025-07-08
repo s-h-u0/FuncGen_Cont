@@ -9,10 +9,7 @@
 #include <gui/main_screen/MainPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/Image.hpp>
-#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
-#include <touchgfx/containers/buttons/Buttons.hpp>
-#include <touchgfx/widgets/TextArea.hpp>
-#include <touchgfx/widgets/Button.hpp>
+#include <touchgfx/containers/Slider.hpp>
 
 class MainViewBase : public touchgfx::View<MainPresenter>
 {
@@ -24,19 +21,7 @@ public:
     /*
      * Virtual Action Handlers
      */
-    virtual void toggleButtonPressed()
-    {
-        // Override and implement this function in Main
-    }
-    virtual void touchButtonPressed()
-    {
-        // Override and implement this function in Main
-    }
-    virtual void clickButtonPressed()
-    {
-        // Override and implement this function in Main
-    }
-    virtual void repeatButtonPressed()
+    virtual void sliderValueChanged(int value)
     {
         // Override and implement this function in Main
     }
@@ -51,37 +36,24 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Image backgroundImage;
-    touchgfx::Image counterBackgroundImage;
-    touchgfx::TextAreaWithOneWildcard countTxt;
-    touchgfx::TextButtonStyle< touchgfx::IconButtonStyle< touchgfx::ImageButtonStyle< touchgfx::RepeatButtonTrigger >  >  >  repeatButton;
-    touchgfx::TextButtonStyle< touchgfx::ImageButtonStyle< touchgfx::ClickButtonTrigger >  >  clickButton;
-    touchgfx::IconButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::TouchButtonTrigger >  >  touchButton;
-    touchgfx::TextButtonStyle< touchgfx::ToggleButtonTrigger >  toggleButton;
-    touchgfx::TextArea clickLabel;
-    touchgfx::TextArea touchLabel;
-    touchgfx::TextArea repeatLabel;
-    touchgfx::TextArea toggleLabel;
-    touchgfx::Button button1;
-
-    /*
-     * Wildcard Buffers
-     */
-    static const uint16_t COUNTTXT_SIZE = 3;
-    touchgfx::Unicode::UnicodeChar countTxtBuffer[COUNTTXT_SIZE];
+    touchgfx::Image blueImage;
+    touchgfx::Image yellowImage;
+    touchgfx::Slider verticalSlider;
+    touchgfx::Slider horizontalSlider;
 
 private:
 
     /*
      * Callback Declarations
      */
-    touchgfx::Callback<MainViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
-    touchgfx::Callback<MainViewBase, const touchgfx::AbstractButton&> buttonCallback;
+    touchgfx::Callback<MainViewBase, const touchgfx::Slider&, int> sliderValueChangedCallback;
+    touchgfx::Callback<MainViewBase, const touchgfx::Slider&, int> sliderValueConfirmedCallback;
 
     /*
      * Callback Handler Declarations
      */
-    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
-    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
+    void sliderValueChangedCallbackHandler(const touchgfx::Slider& src, int value);
+    void sliderValueConfirmedCallbackHandler(const touchgfx::Slider& src, int value);
 
 };
 

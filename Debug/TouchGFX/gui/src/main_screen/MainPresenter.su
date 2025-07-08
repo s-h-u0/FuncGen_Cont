@@ -9,5 +9,5 @@
 ../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:28:13:MainPresenter::~MainPresenter()	16	static
 ../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:28:13:virtual MainPresenter::~MainPresenter()	16	static
 ../TouchGFX/gui/src/main_screen/MainPresenter.cpp:4:1:MainPresenter::MainPresenter(MainView&)	16	static
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:10:6:virtual void MainPresenter::activate()	16	static
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:15:6:virtual void MainPresenter::deactivate()	16	static
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:9:6:virtual void MainPresenter::activate()	16	static
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:13:6:virtual void MainPresenter::deactivate()	16	static

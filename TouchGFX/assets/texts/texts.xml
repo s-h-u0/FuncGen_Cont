@@ -4,66 +4,11 @@
     <Language Id="GB" />
   </Languages>
   <Texts>
-    <TextGroup Id="Group1">
-      <Text Id="numberText" Alignment="Center" TypographyId="Default">
-        <Translation Language="GB">&lt;number&gt;</Translation>
-      </Text>
-      <Text Id="__SingleUse_LPS6" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">25</Translation>
-      </Text>
-      <Text Id="__SingleUse_6AJN" Alignment="Center" TypographyId="ButtonDown">
-        <Translation Language="GB">DOWN</Translation>
-      </Text>
-      <Text Id="__SingleUse_9HT8" Alignment="Center" TypographyId="ButtonDown">
-        <Translation Language="GB">UP</Translation>
-      </Text>
-      <Text Id="__SingleUse_5YSQ" Alignment="Left" TypographyId="Label">
-        <Translation Language="GB">Click Button</Translation>
-      </Text>
-      <Text Id="__SingleUse_IMRV" Alignment="Left" TypographyId="Label">
-        <Translation Language="GB">Touch Button</Translation>
-      </Text>
-      <Text Id="__SingleUse_EJ8L" Alignment="Left" TypographyId="Label">
-        <Translation Language="GB">Repeat Button</Translation>
-      </Text>
-      <Text Id="__SingleUse_3VOX" Alignment="Left" TypographyId="Label">
-        <Translation Language="GB">Toggle Button (touch text)</Translation>
-      </Text>
-      <Text Id="toggleButtonWhite" Alignment="Center" TypographyId="ButtonDown">
-        <Translation Language="GB">White</Translation>
-      </Text>
-      <Text Id="toggleButtonOrange" Alignment="Center" TypographyId="ButtonDown">
-        <Translation Language="GB">Orange</Translation>
-      </Text>
-    </TextGroup>
-    <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_CTF4" Alignment="Center" TypographyId="ButtonDown">
-        <Translation Language="GB">PG14</Translation>
-      </Text>
-      <Text Id="__SingleUse_PUQW" Alignment="Center" TypographyId="ButtonDown">
-        <Translation Language="GB">Next</Translation>
-      </Text>
-      <Text Id="__SingleUse_3KWD" Alignment="Center" TypographyId="ButtonDown">
-        <Translation Language="GB">LED OFF</Translation>
-      </Text>
-      <Text Id="__SingleUse_IVSR" Alignment="Center" TypographyId="ButtonDown">
-        <Translation Language="GB">LED ON</Translation>
-      </Text>
-    </TextGroup>
+    <TextGroup Id="Group1" />
   </Texts>
   <Typographies>
-    <Typography Id="Default" Font="Asap-Regular.ttf" Size="80" Bpp="4" IsVector="no" Direction="LTR" WildcardCharacters="-+,." WildcardCharacterRanges="0-9" />
-    <Typography Id="ButtonDown" Font="seguibl.ttf" Size="25" Bpp="4" IsVector="no" Direction="RTL" FallbackCharacter="?" />
-    <Typography Id="Label" Font="Asap-Regular.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Typography_00" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Typography_01" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Typography_02" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Typography_03" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Typography_04" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Typography_05" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Typography_06" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Typography_07" Font="ariblk.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Typography_08" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Typography_09" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>

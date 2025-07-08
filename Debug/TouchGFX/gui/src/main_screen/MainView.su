@@ -1,27 +1,10 @@
-../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Types.hpp:91:5:touchgfx::colortype::colortype(uint32_t)	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Types.hpp:114:5:touchgfx::colortype::operator uint32_t() const	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:293:13:int16_t touchgfx::Drawable::getWidth() const	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:303:13:int16_t touchgfx::Drawable::getHeight() const	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:413:10:void touchgfx::Drawable::setWidthHeight(int16_t, int16_t)	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:452:10:void touchgfx::Drawable::setWidthHeight(const touchgfx::Drawable&)	24	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:525:10:void touchgfx::Drawable::setTouchable(bool)	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	16	static
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:115:18:virtual void touchgfx::Screen::tearDownScreen()	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:144:18:virtual void touchgfx::Screen::handleTickEvent()	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:59:5:touchgfx::TypedText::TypedText(touchgfx::TypedTextId)	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:108:33:const touchgfx::Unicode::UnicodeChar* touchgfx::TextAreaWithOneWildcard::getWildcard() const	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/AbstractButtonContainer.hpp:51:10:void touchgfx::AbstractButtonContainer::setPressed(bool)	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/AbstractButtonContainer.hpp:70:10:void touchgfx::AbstractButtonContainer::setAlpha(uint8_t)	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/AbstractButtonContainer.hpp:77:13:uint8_t touchgfx::AbstractButtonContainer::getAlpha() const	16	static
-../TouchGFX/gui/include/gui/main_screen/MainView.hpp:11:13:MainView::~MainView()	16	static
-../TouchGFX/gui/include/gui/main_screen/MainView.hpp:11:13:virtual MainView::~MainView()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:6:1:MainView::MainView()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:10:6:virtual void MainView::setupScreen()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:14:6:virtual void MainView::tearDownScreen()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:18:6:virtual void MainView::clickButtonPressed()	24	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:47:6:virtual void MainView::touchButtonPressed()	24	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:77:6:virtual void MainView::repeatButtonPressed()	24	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:106:6:virtual void MainView::toggleButtonPressed()	96	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:67:10:void touchgfx::TextButtonStyle<T>::setText(touchgfx::TypedText) [with T = touchgfx::ToggleButtonTrigger]	16	static
+../TouchGFX/gui/include/gui/main_screen/MainView.hpp:14:13:MainView::~MainView()	16	static
+../TouchGFX/gui/include/gui/main_screen/MainView.hpp:14:13:virtual MainView::~MainView()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:4:1:MainView::MainView()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:6:6:virtual void MainView::setupScreen()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:11:6:virtual void MainView::tearDownScreen()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:16:6:virtual void MainView::sliderValueChanged(int)	16	static

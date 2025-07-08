@@ -14,7 +14,7 @@ uint16_t touchgfx::Font::getStringWidth(const touchgfx::Unicode::UnicodeChar* te
 {
     va_list pArg;
     va_start(pArg, text);
-    uint16_t width = getStringWidthRTL(TEXT_DIRECTION_LTR, text, pArg);
+    uint16_t width = getStringWidthLTR(TEXT_DIRECTION_LTR, text, pArg);
     va_end(pArg);
     return width;
 }
@@ -23,14 +23,13 @@ uint16_t touchgfx::Font::getStringWidth(touchgfx::TextDirection textDirection, c
 {
     va_list pArg;
     va_start(pArg, text);
-    uint16_t width = getStringWidthRTL(textDirection, text, pArg);
+    uint16_t width = getStringWidthLTR(textDirection, text, pArg);
     va_end(pArg);
     return width;
 }
 
 touchgfx::Unicode::UnicodeChar touchgfx::TextProvider::getNextLigature(TextDirection direction)
 {
-    nextCharacters.replaceAt0(unicodeConverter(direction));
     if (fontGsubTable && nextCharacters.peekChar())
     {
         substituteGlyphs();
@@ -46,14 +45,13 @@ touchgfx::Unicode::UnicodeChar touchgfx::TextProvider::getNextLigature(TextDirec
 void touchgfx::TextProvider::initializeInternal()
 {
     fillInputBuffer();
-    unicodeConverterInit();
 }
 
 void touchgfx::LCD::drawString(touchgfx::Rect widgetArea, const touchgfx::Rect& invalidatedArea, const touchgfx::LCD::StringVisuals& stringVisuals, const touchgfx::Unicode::UnicodeChar* format, ...)
 {
     va_list pArg;
     va_start(pArg, format);
-    drawStringRTL(widgetArea, invalidatedArea, stringVisuals, format, pArg);
+    drawStringLTR(widgetArea, invalidatedArea, stringVisuals, format, pArg);
     va_end(pArg);
 }
 
@@ -62,20 +60,7 @@ extern const touchgfx::TypedText::TypedTextData* const typedTextDatabaseArray[];
 
 TEXT_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::Unicode::UnicodeChar texts_all_languages[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
-    0x54, 0x6f, 0x67, 0x67, 0x6c, 0x65, 0x20, 0x42, 0x75, 0x74, 0x74, 0x6f, 0x6e, 0x20, 0x28, 0x74, 0x6f, 0x75, 0x63, 0x68, 0x20, 0x74, 0x65, 0x78, 0x74, 0x29, 0x0, // @0 "Toggle Button (touch text)"
-    0x52, 0x65, 0x70, 0x65, 0x61, 0x74, 0x20, 0x42, 0x75, 0x74, 0x74, 0x6f, 0x6e, 0x0, // @27 "Repeat Button"
-    0x43, 0x6c, 0x69, 0x63, 0x6b, 0x20, 0x42, 0x75, 0x74, 0x74, 0x6f, 0x6e, 0x0, // @41 "Click Button"
-    0x54, 0x6f, 0x75, 0x63, 0x68, 0x20, 0x42, 0x75, 0x74, 0x74, 0x6f, 0x6e, 0x0, // @54 "Touch Button"
-    0x2, 0x0, // @67 "<>"
-    0x4c, 0x45, 0x44, 0x20, 0x4f, 0x46, 0x46, 0x0, // @69 "LED OFF"
-    0x4c, 0x45, 0x44, 0x20, 0x4f, 0x4e, 0x0, // @77 "LED ON"
-    0x4f, 0x72, 0x61, 0x6e, 0x67, 0x65, 0x0, // @84 "Orange"
-    0x57, 0x68, 0x69, 0x74, 0x65, 0x0, // @91 "White"
-    0x44, 0x4f, 0x57, 0x4e, 0x0, // @97 "DOWN"
-    0x4e, 0x65, 0x78, 0x74, 0x0, // @102 "Next"
-    0x50, 0x47, 0x31, 0x34, 0x0, // @107 "PG14"
-    0x32, 0x35, 0x0, // @112 "25"
-    0x55, 0x50, 0x0 // @115 "UP"
+    0 // No texts in application
 };
 
 TEXT_LOCATION_FLASH_PRAGMA

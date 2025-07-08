@@ -4,11 +4,10 @@
 #include <gui_generated/main_screen/MainViewBase.hpp>
 #include <touchgfx/Color.hpp>
 #include <images/BitmapDatabase.hpp>
-#include <texts/TextKeysAndLanguages.hpp>
 
 MainViewBase::MainViewBase() :
-    flexButtonCallback(this, &MainViewBase::flexButtonCallbackHandler),
-    buttonCallback(this, &MainViewBase::buttonCallbackHandler)
+    sliderValueChangedCallback(this, &MainViewBase::sliderValueChangedCallbackHandler),
+    sliderValueConfirmedCallback(this, &MainViewBase::sliderValueConfirmedCallbackHandler)
 {
     __background.setPosition(0, 0, 480, 320);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -18,84 +17,30 @@ MainViewBase::MainViewBase() :
     backgroundImage.setBitmap(touchgfx::Bitmap(BITMAP_BG_ID));
     add(backgroundImage);
 
-    counterBackgroundImage.setXY(293, 80);
-    counterBackgroundImage.setBitmap(touchgfx::Bitmap(BITMAP_COUNTER_BOX_ID));
-    add(counterBackgroundImage);
+    blueImage.setXY(100, 80);
+    blueImage.setBitmap(touchgfx::Bitmap(BITMAP_IMAGE00_ID));
+    add(blueImage);
 
-    countTxt.setPosition(293, 104, 152, 90);
-    countTxt.setColor(touchgfx::Color::getColorFromRGB(222, 222, 222));
-    countTxt.setLinespacing(0);
-    Unicode::snprintf(countTxtBuffer, COUNTTXT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_LPS6).getText());
-    countTxt.setWildcard(countTxtBuffer);
-    countTxt.setTypedText(touchgfx::TypedText(T_NUMBERTEXT));
-    add(countTxt);
+    yellowImage.setXY(280, 80);
+    yellowImage.setBitmap(touchgfx::Bitmap(BITMAP_IMAGE01_ID));
+    yellowImage.setAlpha(100);
+    add(yellowImage);
 
-    repeatButton.setDelay(18);
-    repeatButton.setInterval(18);
-    repeatButton.setBitmaps(Bitmap(BITMAP_BTN_LONG_ID), Bitmap(BITMAP_BTN_LONG_PRESSED_ID));
-    repeatButton.setBitmapXY(0, 0);
-    repeatButton.setIconBitmaps(Bitmap(BITMAP_BLACK_ARROW_ID), Bitmap(BITMAP_ORANGE_ARROW_ID));
-    repeatButton.setIconXY(136, 20);
-    repeatButton.setText(TypedText(T___SINGLEUSE_6AJN));
-    repeatButton.setTextPosition(-28, 13, 200, 56);
-    repeatButton.setTextColors(touchgfx::Color::getColorFromRGB(70, 70, 70), touchgfx::Color::getColorFromRGB(231, 154, 9));
-    repeatButton.setAction(flexButtonCallback);
-    repeatButton.setPosition(50, 177, 200, 56);
-    add(repeatButton);
+    verticalSlider.setXY(30, 40);
+    verticalSlider.setBitmaps(touchgfx::Bitmap(BITMAP_SLIDER_BACKGROUND_VERTICAL_ID), touchgfx::Bitmap(BITMAP_SLIDER_BACKGROUND_VERTICAL_FILLED_ID), touchgfx::Bitmap(BITMAP_SLIDER_KNOB_SHAPE_ID));
+    verticalSlider.setupVerticalSlider(15, 22, 0, 0, 176);
+    verticalSlider.setValueRange(0, 255);
+    verticalSlider.setValue(180);
+    verticalSlider.setStopValueCallback(sliderValueConfirmedCallback);
+    add(verticalSlider);
 
-    clickButton.setBitmaps(Bitmap(BITMAP_SMALL_BTN_ID), Bitmap(BITMAP_SMALL_BTN_PRESSED_ID));
-    clickButton.setBitmapXY(0, 0);
-    clickButton.setText(TypedText(T___SINGLEUSE_9HT8));
-    clickButton.setTextPosition(-2, 12, 100, 56);
-    clickButton.setTextColors(touchgfx::Color::getColorFromRGB(70, 70, 70), touchgfx::Color::getColorFromRGB(231, 154, 9));
-    clickButton.setAction(flexButtonCallback);
-    clickButton.setPosition(35, 64, 100, 56);
-    add(clickButton);
-
-    touchButton.setBoxWithBorderPosition(0, 0, 100, 56);
-    touchButton.setBorderSize(5);
-    touchButton.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(222, 222, 222), touchgfx::Color::getColorFromRGB(40, 58, 64), touchgfx::Color::getColorFromRGB(54, 62, 65), touchgfx::Color::getColorFromRGB(95, 103, 109));
-    touchButton.setIconBitmaps(Bitmap(BITMAP_BLACK_ARROW_UP_ID), Bitmap(BITMAP_ORANGE_ARROW_UP_ID));
-    touchButton.setIconXY(34, 19);
-    touchButton.setAction(flexButtonCallback);
-    touchButton.setPosition(165, 64, 100, 56);
-    add(touchButton);
-
-    toggleButton.setText(TypedText(T_TOGGLEBUTTONWHITE));
-    toggleButton.setTextPosition(0, 0, 152, 36);
-    toggleButton.setTextColors(touchgfx::Color::getColorFromRGB(222, 222, 222), touchgfx::Color::getColorFromRGB(231, 154, 9));
-    toggleButton.setAction(flexButtonCallback);
-    toggleButton.setPosition(293, 41, 152, 36);
-    add(toggleButton);
-
-    clickLabel.setXY(45, 43);
-    clickLabel.setColor(touchgfx::Color::getColorFromRGB(222, 222, 222));
-    clickLabel.setLinespacing(0);
-    clickLabel.setTypedText(touchgfx::TypedText(T___SINGLEUSE_5YSQ));
-    add(clickLabel);
-
-    touchLabel.setXY(171, 43);
-    touchLabel.setColor(touchgfx::Color::getColorFromRGB(222, 222, 222));
-    touchLabel.setLinespacing(0);
-    touchLabel.setTypedText(touchgfx::TypedText(T___SINGLEUSE_IMRV));
-    add(touchLabel);
-
-    repeatLabel.setXY(103, 156);
-    repeatLabel.setColor(touchgfx::Color::getColorFromRGB(222, 222, 222));
-    repeatLabel.setLinespacing(0);
-    repeatLabel.setTypedText(touchgfx::TypedText(T___SINGLEUSE_EJ8L));
-    add(repeatLabel);
-
-    toggleLabel.setXY(283, 20);
-    toggleLabel.setColor(touchgfx::Color::getColorFromRGB(222, 222, 222));
-    toggleLabel.setLinespacing(0);
-    toggleLabel.setTypedText(touchgfx::TypedText(T___SINGLEUSE_3VOX));
-    add(toggleLabel);
-
-    button1.setXY(210, 254);
-    button1.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_ACTION_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_PRESSED_ID));
-    button1.setAction(buttonCallback);
-    add(button1);
+    horizontalSlider.setXY(210, 200);
+    horizontalSlider.setBitmaps(touchgfx::Bitmap(BITMAP_SLIDER_BACKGROUND_ID), touchgfx::Bitmap(BITMAP_SLIDER_BACKGROUND_FILLED_ID), touchgfx::Bitmap(BITMAP_SLIDER_KNOB_CIRCLE_ID));
+    horizontalSlider.setupHorizontalSlider(14, 14, 0, 0, 194);
+    horizontalSlider.setValueRange(0, 255);
+    horizontalSlider.setValue(100);
+    horizontalSlider.setNewValueCallback(sliderValueChangedCallback);
+    add(horizontalSlider);
 }
 
 MainViewBase::~MainViewBase()
@@ -108,45 +53,25 @@ void MainViewBase::setupScreen()
 
 }
 
-void MainViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
+void MainViewBase::sliderValueChangedCallbackHandler(const touchgfx::Slider& src, int value)
 {
-    if (&src == &toggleButton)
+    if (&src == &horizontalSlider)
     {
-        //toggleButtonInteraction
-        //When toggleButton clicked call virtual function
-        //Call toggleButtonPressed
-        toggleButtonPressed();
-    }
-    if (&src == &touchButton)
-    {
-        //touchButtonInteraction
-        //When touchButton clicked call virtual function
-        //Call touchButtonPressed
-        touchButtonPressed();
-    }
-    if (&src == &clickButton)
-    {
-        //clickButtonInteraction
-        //When clickButton clicked call virtual function
-        //Call clickButtonPressed
-        clickButtonPressed();
-    }
-    if (&src == &repeatButton)
-    {
-        //repeatButtonInteraction
-        //When repeatButton clicked call virtual function
-        //Call repeatButtonPressed
-        repeatButtonPressed();
+        //horizontalSliderMove
+        //When horizontalSlider value changed call virtual function
+        //Call sliderValueChanged
+        sliderValueChanged(value);
     }
 }
 
-void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
+void MainViewBase::sliderValueConfirmedCallbackHandler(const touchgfx::Slider& src, int value)
 {
-    if (&src == &button1)
+    if (&src == &verticalSlider)
     {
-        //Interaction1
-        //When button1 clicked change screen to Screen2
-        //Go to Screen2 with no screen transition
-        application().gotoScreen2ScreenNoTransition();
+        //verticalSliderMove
+        //When verticalSlider value confirmed execute C++ code
+        //Execute C++ code
+        blueImage.setAlpha(value);
+        blueImage.invalidate();
     }
 }

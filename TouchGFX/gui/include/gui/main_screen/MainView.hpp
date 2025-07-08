@@ -3,6 +3,9 @@
 
 #include <gui_generated/main_screen/MainViewBase.hpp>
 #include <gui/main_screen/MainPresenter.hpp>
+#include "main.h"
+
+
 
 class MainView : public MainViewBase
 {
@@ -12,12 +15,8 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
 
-    virtual void repeatButtonPressed();
-    virtual void clickButtonPressed();
-    virtual void touchButtonPressed();
-    virtual void toggleButtonPressed();
-
-private:
+    virtual void sliderValueChanged(int value) override;
+protected:
 };
 
 #endif // MAIN_VIEW_HPP

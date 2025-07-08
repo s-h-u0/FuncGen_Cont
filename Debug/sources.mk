@@ -61,14 +61,11 @@ TouchGFX/build/MINGW32_NT-6.2/touchgfx/framework/source/platform/hal/simulator/s
 TouchGFX/generated/fonts/src \
 TouchGFX/generated/gui_generated/src/common \
 TouchGFX/generated/gui_generated/src/main_screen \
-TouchGFX/generated/gui_generated/src/screen2_screen \
 TouchGFX/generated/images/src \
-TouchGFX/generated/images/src/__generated \
 TouchGFX/generated/texts/src \
 TouchGFX/gui/src/common \
 TouchGFX/gui/src/main_screen \
 TouchGFX/gui/src/model \
-TouchGFX/gui/src/screen2_screen \
 TouchGFX/target \
 TouchGFX/target/generated \
 
