@@ -8,16 +8,16 @@ class MainView : public MainViewBase
 {
 public:
     MainView();
-    ~MainView() {};
+    virtual ~MainView() {}
     virtual void setupScreen();
-    virtual void increaseValue();
-    virtual void decreaseValue();
+    virtual void tearDownScreen();
 
-    void updateGFXElements();
-protected:
+    virtual void repeatButtonPressed();
+    virtual void clickButtonPressed();
+    virtual void touchButtonPressed();
+    virtual void toggleButtonPressed();
 
 private:
-    uint8_t count;
 };
 
 #endif // MAIN_VIEW_HPP

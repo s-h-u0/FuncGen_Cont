@@ -10,6 +10,18 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE;
 // Remap all strings
 TEXT_LOCATION_FLASH_PRAGMA
 KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
-    0, // T_TEXTID1: "<>"
-    2  // T___SINGLEUSE_W2FX: "0"
+    67,  // T_NUMBERTEXT: "<>"
+    112, // T___SINGLEUSE_LPS6: "25"
+    97,  // T___SINGLEUSE_6AJN: "DOWN"
+    115, // T___SINGLEUSE_9HT8: "UP"
+    41,  // T___SINGLEUSE_5YSQ: "Click Button"
+    54,  // T___SINGLEUSE_IMRV: "Touch Button"
+    27,  // T___SINGLEUSE_EJ8L: "Repeat Button"
+    0,   // T___SINGLEUSE_3VOX: "Toggle Button (touch text)"
+    91,  // T_TOGGLEBUTTONWHITE: "White"
+    84,  // T_TOGGLEBUTTONORANGE: "Orange"
+    107, // T___SINGLEUSE_CTF4: "PG14"
+    102, // T___SINGLEUSE_PUQW: "Next"
+    69,  // T___SINGLEUSE_3KWD: "LED OFF"
+    77   // T___SINGLEUSE_IVSR: "LED ON"
 };

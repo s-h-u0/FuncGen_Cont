@@ -2,79 +2,73 @@
  * 	z_touch_XPT2046.h
  *	rel. TouchGFX.1.30
  *
- *  Created on: 05 giu 2023
- *      Author: mauro
+ *  作成日: 2023年6月5日
+ *      著者: mauro
  *
- *  licensing: https://github.com/maudeve-it/ILI9XXX-XPT2046-STM32/blob/c097f0e7d569845c1cf98e8d930f2224e427fd54/LICENSE
+ *  ライセンス: https://github.com/maudeve-it/ILI9XXX-XPT2046-STM32/blob/c097f0e7d569845c1cf98e8d930f2224e427fd54/LICENSE
  *
- *  Installing and using this library follow instruction on: https://github.com/maudeve-it/ILI9XXX-XPT2046-STM32
+ *  このライブラリをインストールおよび使用するには、以下の手順に従ってください:
+ *  https://github.com/maudeve-it/ILI9XXX-XPT2046-STM32 を参照
  *
- *  WARNING:
- *	in main.h put the #insert of this file BELOW the #insert of z_displ_ILIxxxx.h
+ *  警告:
+ *	main.h のインクルードは z_displ_ILIxxxx.h のインクルードの下に配置してください
  *
- *  If using TouchGFX,
- *  you have also to add the below include:
-#include "main.h"
- *  into STM32TouchController.cpp file
- *  changing also sampleTouch()
- *  as shown here:
-bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
-{
-	return ((bool) Touch_TouchGFXSampleTouch(&x, &y));
-}
+ *  TouchGFX を使用する場合は、STM32TouchController.cpp 内に
+ *  #include "main.h"
+ *  を追加し、sampleTouch() を以下のように変更してください:
  *
- *  see also z_displ_ili9XXX.h
+ *  bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
+ *  {
+ *      return ((bool) Touch_TouchGFXSampleTouch(&x, &y));
+ *  }
  *
+ *  詳細は z_displ_ili9XXX.h も参照してください
  */
 #ifndef __XPT2046_H
 #define __XPT2046_H
 
 
-/*||||||||||| USER/PROJECT PARAMETERS |||||||||||*/
+/*||||||||||| ユーザー／プロジェクト設定 |||||||||||*/
 
 /*****************     STEP 1      *****************
- **************** PORT PARAMETERS *****************
- ** properly set the below the 2 defines to address
- ********  the SPI port defined on CubeMX *********/
+ **************** ポート設定パラメータ ************
+ ** CubeMX で定義した SPI ポートに合わせて以下を設定してください **
+ ***********************************************/
 
 #define TOUCH_SPI_PORT 	hspi2
 #define TOUCH_SPI 		SPI2
 
 
+
 /*****************     STEP 2      *****************
- **********   KEY REPEAT FOR TOUCHGFX   ***********
- * used only in TouchGFX integration
- * - set a value above 0 defining the timeout (ms)
- *   before starting key repeat, reading touch sensor
- * - set 0 disabling key repeat (single pulse)
- * - set -1 for a continuous touch needed by
- *   "dragging" widgets
- * (see GitHub page indicated on top for details)
+ **********   TouchGFX キーリピート設定   ***********
+ * TouchGFX 統合時のみ使用します
+ * - 0 より大きい値: キーリピートが始まるまでのタイムアウト(ms)
+ * - 0: キーリピート無効(単一タッチ)
+ * - -1: "ドラッグ" ウィジェット用に連続タッチ
+ * (詳細は上記 GitHub ページ参照)
  **************************************************/
 #define DELAY_TO_KEY_REPEAT -1
 
-/*|||||||| END OF USER/PROJECT PARAMETERS ||||||||*/
+/*|||||||| 設定ここまで ||||||||*/
 
 
 
-
-/*|||||||||||||| DEVICE PARAMETERS |||||||||||||||||*/
-/* you should need to change nothing from here on */
+/*|||||||||||||| デバイスパラメータ |||||||||||||||||*/
+/* 以降、通常は変更不要です */
 
 /**************************************************
- * this is the command to send to XPT2046 asking to
- * poll axis and return corresponging value.
- ****************************************	**********/
+ *  XPT2046 に軸ポーリングコマンドを送信する際のコマンド
+ **************************************************/
 #define X_AXIS		0xD0
 #define Y_AXIS		0x90
 #define Z_AXIS		0xB0
 
 
 /**********************************************************************************
- *	polling XPT2046 axis, the returning value exceeding the below limit
- *	indicates there is no touch. WARNING: a "random within limit" value is returned
- *	sometimes (often) even if there is no touch, so at least two consecutive r
- *	eadings must be performed to confirm a touch
+ *  XPT2046 から返ってくる値が以下の閾値を超えると、タッチなしと判定されます。
+ *  注意: タッチなしでも乱数的に範囲内の値が返ることがあるので、
+ *  タッチ判定には少なくとも連続２回の読み取りを行ってください
  **********************************************************************************/
 #ifdef ILI9341
 #define X_THRESHOLD		0x0200	//below threeshold there is no touch
@@ -87,14 +81,12 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
 
 
 /**********************************************************************************
- ***************************** CALIBRATION PARAMETERS *****************************
+ ***************************** キャリブレーション係数 *****************************
  **********************************************************************************
- * parameters for the linear conversion from a touch sensor reading, to
- * the XY display position
- * using the formula:
+ * タッチセンサの読み取り値を画面座標に変換する線形式の係数
+ * 数式:
  * Xdispl = AX * Xtouch + BX
  * Ydispl = AY * Ytouch + BY
- *
  **********************************************************************************/
 
 #ifdef ILI9341
@@ -129,11 +121,9 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
 
 
 /**********************************************************************************
- * parameters screen/touch orientation: set the touch orientation to the corresponding
- * screen orientation:
- * on ILI9341 0° on touch correspond to 0° of the screen
- * on ILI9341 0° on touch correspond to 270° of the screen
- * set also the size of a 0° row and a 90° row (a 0° height)
+ * 画面／タッチの向き設定:
+ * T_ROTATION_xxx が有効な場合、
+ * タッチの 0°／90°／180°／270° をそれぞれどの画面回転に対応させるかを定義
  **********************************************************************************/
 #ifdef T_ROTATION_0
 #define TOUCH0 			Displ_Orientat_0
@@ -173,27 +163,29 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
 
 
 
-/*|||||||||||||| INTERFACE PARAMETERS |||||||||||||||||*/
+/*|||||||||||||| インターフェースパラメータ |||||||||||||||||*/
 
 /**********************************************************************************
- * next parameters are used only in TouchGFX: in Touch_TouchGFXSampleTouch() and
- * Touch_GotATouch(), helping in using dragging widgets like scrolling lists
- * You can try to change the below parameters only if your display looses quality or over-used
+ * TouchGFX 統合時に使用されるパラメータ:
+ * Touch_TouchGFXSampleTouch() および Touch_GotATouch() 内での
+ * ドラッグスクロールなどの挙動に影響します。
+ * ディスプレイが荒れたり、動作が重たくなった場合に調整可能です。
  **********************************************************************************/
-#define TOUCHGFX_TIMING 60		//delay between 2 consecutive Touch_GotATouch(2)readings		(0=disabled)
-#define TOUCHGFX_SENSITIVITY 1  //square of X pixels size having the same value					(1 disabled)
-#define TOUCHGFX_MOVAVG 1		//makes position based on average of the last X readings		(1 disabled)
-#define TOUCHGFX_REPEAT_IT 0	// after a long touch (dragging) repeat X times last position	(0=disabled)
+
+#define TOUCHGFX_TIMING    60   // 連続読み取り間隔 (ms)
+#define TOUCHGFX_SENSITIVITY 1  // 同じ値と見なすピクセル² (1: 無効)
+#define TOUCHGFX_MOVAVG   1    // 移動平均サンプル数 (1: 無効)
+#define TOUCHGFX_REPEAT_IT 0   // 長押し後に繰り返す回数 (0: 無効)
 #if DELAY_TO_KEY_REPEAT==-1
-#define TOUCHGFX_REPEAT_NO 0	// after a REPEAT_IT repeat X times a no touch					(0=disabled)
+#define TOUCHGFX_REPEAT_NO 0   // REPEAT_IT 後のノータッチ繰り返し (0: 無効)
 #else
-#define TOUCHGFX_REPEAT_NO 5	// after a REPEAT_IT repeat X times a no touch					(0=disabled)
+#define TOUCHGFX_REPEAT_NO 0   // REPEAT_IT 後のノータッチ繰り返し (0: 無効)
 #endif
 
-/*||||||||||| END OF INTERFACE PARAMETERS ||||||||||||*/
+/*||||||||||| ここまでインターフェース設定 ||||||||||||*/
 
 
-/*|||||||||||||| FUNCTION DECLARATIONS |||||||||||||||||*/
+/*|||||||||||||| 関数宣言 |||||||||||||||||*/
 
 void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin);
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);

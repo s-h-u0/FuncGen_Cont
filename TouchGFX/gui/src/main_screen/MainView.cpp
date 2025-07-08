@@ -1,56 +1,120 @@
 #include <gui/main_screen/MainView.hpp>
 #include "BitmapDatabase.hpp"
+#include <touchgfx/Color.hpp>
+#include <texts/TextKeysAndLanguages.hpp>
 
-const uint8_t UPPER_LIMIT = 42;
-const uint8_t LOWER_LIMIT = 0;
-
-
-MainView::MainView() : count(0) {}
+MainView::MainView()
+{
+}
 
 void MainView::setupScreen()
 {
-    updateGFXElements();
 }
 
-void MainView::increaseValue()
+void MainView::tearDownScreen()
 {
-    count = (count++ > UPPER_LIMIT) ? UPPER_LIMIT : count;
-    updateGFXElements();
 }
 
-void MainView::decreaseValue()
+void MainView::clickButtonPressed()
 {
-    count = (count-- <= LOWER_LIMIT) ? LOWER_LIMIT : count;
-    updateGFXElements();
-}
-
-void MainView::updateGFXElements()
-{
-    //Counter text area GFX uptade.
-    Unicode::snprintf(countTxtBuffer, 3, "%d", count);
-    //Button GFX update and touchable.
-    if (count < UPPER_LIMIT)
+    int tmpVal = Unicode::atoi(countTxt.getWildcard());
+    if (tmpVal <= 50)
     {
-        buttonUp.setBitmaps(Bitmap(BITMAP_UP_BTN_ID), Bitmap(BITMAP_UP_BTN_PRESSED_ID));
-        buttonUp.setTouchable(true);
+        tmpVal++;
+        Unicode::snprintf(countTxtBuffer, COUNTTXT_SIZE, "%d", tmpVal);
+        countTxt.invalidate();
+        if (repeatButton.getAlpha() == 100)
+        {
+            repeatButton.setAlpha(255);
+            repeatButton.setTouchable(true);
+            repeatButton.invalidate();
+        }
+        if (tmpVal == 50)
+        {
+            clickButton.setAlpha(100);
+            clickButton.setTouchable(false);
+            clickButton.setPressed(false);
+            clickButton.invalidate();
+
+            touchButton.setAlpha(100);
+            touchButton.setTouchable(false);
+            touchButton.setPressed(false);
+            touchButton.invalidate();
+        }
+    }
+}
+
+void MainView::touchButtonPressed()
+{
+    int tmpVal = Unicode::atoi(countTxt.getWildcard());
+    if (tmpVal <= 50)
+    {
+        tmpVal++;
+        Unicode::snprintf(countTxtBuffer, COUNTTXT_SIZE, "%d", tmpVal);
+        countTxt.invalidate();
+        if (repeatButton.getAlpha() == 100)
+        {
+            repeatButton.setAlpha(255);
+            repeatButton.setTouchable(true);
+            repeatButton.invalidate();
+        }
+
+        if (tmpVal == 50)
+        {
+            clickButton.setAlpha(100);
+            clickButton.setTouchable(false);
+            clickButton.setPressed(false);
+            clickButton.invalidate();
+
+            touchButton.setAlpha(100);
+            touchButton.setTouchable(false);
+            touchButton.setPressed(false);
+            touchButton.invalidate();
+        }
+    }
+}
+
+void MainView::repeatButtonPressed()
+{
+    int tmpVal = Unicode::atoi(countTxt.getWildcard());
+    if (tmpVal >= 0)
+    {
+        tmpVal--;
+        Unicode::snprintf(countTxtBuffer, COUNTTXT_SIZE, "%d", tmpVal);
+        countTxt.invalidate();
+        if (clickButton.getAlpha() == 100)
+        {
+            clickButton.setAlpha(255);
+            clickButton.setTouchable(true);
+            clickButton.invalidate();
+
+            touchButton.setAlpha(255);
+            touchButton.setTouchable(true);
+            touchButton.invalidate();
+        }
+
+        if (tmpVal <= 0)
+        {
+            repeatButton.setAlpha(100);
+            repeatButton.setTouchable(false);
+            repeatButton.setPressed(false);
+            repeatButton.invalidate();
+        }
+    }
+}
+
+void MainView::toggleButtonPressed()
+{
+    if (countTxt.getColor() == Color::getColorFromRGB(222, 222, 222))
+    {
+        countTxt.setColor(Color::getColorFromRGB(231, 154, 9));
+        toggleButton.setText(TypedText(T_TOGGLEBUTTONORANGE));
     }
     else
     {
-        buttonUp.setBitmaps(Bitmap(BITMAP_UP_BTN_DISABLED_ID), Bitmap(BITMAP_UP_BTN_DISABLED_ID));
-        buttonUp.setTouchable(false);
+        countTxt.setColor(Color::getColorFromRGB(222, 222, 222));
+        toggleButton.setText(TypedText(T_TOGGLEBUTTONWHITE));
     }
-    if (count > LOWER_LIMIT)
-    {
-        buttonDown.setBitmaps(Bitmap(BITMAP_DOWN_BTN_ID), Bitmap(BITMAP_DOWN_BTN_PRESSED_ID));
-        buttonDown.setTouchable(true);
-    }
-    else
-    {
-        buttonDown.setBitmaps(Bitmap(BITMAP_DOWN_BTN_DISABLED_ID), Bitmap(BITMAP_DOWN_BTN_DISABLED_ID));
-        buttonDown.setTouchable(false);
-    }
-    // Invalidate all GFX area, which will result in it being redrawn in next tick.
     countTxt.invalidate();
-    buttonUp.invalidate();
-    buttonDown.invalidate();
+    toggleButton.invalidate();
 }

@@ -10,6 +10,8 @@
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/containers/buttons/Buttons.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/Button.hpp>
 
 class MainViewBase : public touchgfx::View<MainPresenter>
@@ -22,11 +24,19 @@ public:
     /*
      * Virtual Action Handlers
      */
-    virtual void increaseValue()
+    virtual void toggleButtonPressed()
     {
         // Override and implement this function in Main
     }
-    virtual void decreaseValue()
+    virtual void touchButtonPressed()
+    {
+        // Override and implement this function in Main
+    }
+    virtual void clickButtonPressed()
+    {
+        // Override and implement this function in Main
+    }
+    virtual void repeatButtonPressed()
     {
         // Override and implement this function in Main
     }
@@ -40,11 +50,18 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::Box box1;
+    touchgfx::Image backgroundImage;
     touchgfx::Image counterBackgroundImage;
     touchgfx::TextAreaWithOneWildcard countTxt;
-    touchgfx::Button buttonUp;
-    touchgfx::Button buttonDown;
+    touchgfx::TextButtonStyle< touchgfx::IconButtonStyle< touchgfx::ImageButtonStyle< touchgfx::RepeatButtonTrigger >  >  >  repeatButton;
+    touchgfx::TextButtonStyle< touchgfx::ImageButtonStyle< touchgfx::ClickButtonTrigger >  >  clickButton;
+    touchgfx::IconButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::TouchButtonTrigger >  >  touchButton;
+    touchgfx::TextButtonStyle< touchgfx::ToggleButtonTrigger >  toggleButton;
+    touchgfx::TextArea clickLabel;
+    touchgfx::TextArea touchLabel;
+    touchgfx::TextArea repeatLabel;
+    touchgfx::TextArea toggleLabel;
+    touchgfx::Button button1;
 
     /*
      * Wildcard Buffers
@@ -57,11 +74,13 @@ private:
     /*
      * Callback Declarations
      */
+    touchgfx::Callback<MainViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
     touchgfx::Callback<MainViewBase, const touchgfx::AbstractButton&> buttonCallback;
 
     /*
      * Callback Handler Declarations
      */
+    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };

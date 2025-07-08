@@ -1,7 +1,6 @@
 #ifndef MODEL_HPP
 #define MODEL_HPP
 
-#include <touchgfx/Utils.hpp>
 #include <stdint.h>
 
 

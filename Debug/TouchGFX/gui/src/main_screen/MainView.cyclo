@@ -1,13 +1,27 @@
-../Middlewares/ST/touchgfx/framework/include/touchgfx/Bitmap.hpp:136:5:touchgfx::Bitmap::Bitmap(touchgfx::BitmapId)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Types.hpp:91:5:touchgfx::colortype::colortype(uint32_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Types.hpp:114:5:touchgfx::colortype::operator uint32_t() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:293:13:int16_t touchgfx::Drawable::getWidth() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:303:13:int16_t touchgfx::Drawable::getHeight() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:413:10:void touchgfx::Drawable::setWidthHeight(int16_t, int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:452:10:void touchgfx::Drawable::setWidthHeight(const touchgfx::Drawable&)	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:525:10:void touchgfx::Drawable::setTouchable(bool)	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:115:18:virtual void touchgfx::Screen::tearDownScreen()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:144:18:virtual void touchgfx::Screen::handleTickEvent()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	1
-../TouchGFX/gui/include/gui/main_screen/MainView.hpp:11:5:MainView::~MainView()	1
-../TouchGFX/gui/include/gui/main_screen/MainView.hpp:11:5:virtual MainView::~MainView()	1
-../TouchGFX/gui/src/main_screen/MainView.cpp:8:1:MainView::MainView()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:59:5:touchgfx::TypedText::TypedText(touchgfx::TypedTextId)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:108:33:const touchgfx::Unicode::UnicodeChar* touchgfx::TextAreaWithOneWildcard::getWildcard() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/AbstractButtonContainer.hpp:51:10:void touchgfx::AbstractButtonContainer::setPressed(bool)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/AbstractButtonContainer.hpp:70:10:void touchgfx::AbstractButtonContainer::setAlpha(uint8_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/AbstractButtonContainer.hpp:77:13:uint8_t touchgfx::AbstractButtonContainer::getAlpha() const	1
+../TouchGFX/gui/include/gui/main_screen/MainView.hpp:11:13:MainView::~MainView()	1
+../TouchGFX/gui/include/gui/main_screen/MainView.hpp:11:13:virtual MainView::~MainView()	1
+../TouchGFX/gui/src/main_screen/MainView.cpp:6:1:MainView::MainView()	1
 ../TouchGFX/gui/src/main_screen/MainView.cpp:10:6:virtual void MainView::setupScreen()	1
-../TouchGFX/gui/src/main_screen/MainView.cpp:15:6:virtual void MainView::increaseValue()	2
-../TouchGFX/gui/src/main_screen/MainView.cpp:21:6:virtual void MainView::decreaseValue()	2
-../TouchGFX/gui/src/main_screen/MainView.cpp:27:6:void MainView::updateGFXElements()	3
+../TouchGFX/gui/src/main_screen/MainView.cpp:14:6:virtual void MainView::tearDownScreen()	1
+../TouchGFX/gui/src/main_screen/MainView.cpp:18:6:virtual void MainView::clickButtonPressed()	4
+../TouchGFX/gui/src/main_screen/MainView.cpp:47:6:virtual void MainView::touchButtonPressed()	4
+../TouchGFX/gui/src/main_screen/MainView.cpp:77:6:virtual void MainView::repeatButtonPressed()	4
+../TouchGFX/gui/src/main_screen/MainView.cpp:106:6:virtual void MainView::toggleButtonPressed()	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:67:10:void touchgfx::TextButtonStyle<T>::setText(touchgfx::TypedText) [with T = touchgfx::ToggleButtonTrigger]	1
