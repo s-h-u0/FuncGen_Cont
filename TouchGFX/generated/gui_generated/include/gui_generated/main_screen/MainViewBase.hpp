@@ -8,10 +8,8 @@
 #include <mvp/View.hpp>
 #include <gui/main_screen/MainPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/widgets/Image.hpp>
-#include <touchgfx/containers/Slider.hpp>
-#include <touchgfx/widgets/Gauge.hpp>
-#include <touchgfx/widgets/canvas/PainterRGB565Bitmap.hpp>
+#include <touchgfx/containers/SlideMenu.hpp>
+#include <touchgfx/widgets/Button.hpp>
 
 class MainViewBase : public touchgfx::View<MainPresenter>
 {
@@ -21,12 +19,13 @@ public:
     virtual void setupScreen();
 
     /*
-     * Virtual Action Handlers
+     * Custom Actions
      */
-    virtual void sliderValueChanged(int value)
+    virtual void collapseAllOtherSlideMenu(const touchgfx::SlideMenu& value)
     {
-        // Override and implement this function in Main
+        // Override and implement this function in Screen1
     }
+    
 
 protected:
     FrontendApplication& application() {
@@ -38,28 +37,26 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Box box1;
-    touchgfx::Image backgroundImage;
-    touchgfx::Slider horizontalSlider;
-    touchgfx::Gauge gauge1;
-    touchgfx::PainterRGB565Bitmap gauge1Painter;
+    touchgfx::SlideMenu slideMenuLeft;
+    touchgfx::Button button1;
+    touchgfx::Button button2;
+    touchgfx::Button button3;
+    touchgfx::Button button4;
+    touchgfx::Button button5;
 
 private:
 
     /*
-     * Canvas Buffer Size
-     */
-    static const uint32_t CANVAS_BUFFER_SIZE = 7200;
-    uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
-
-    /*
      * Callback Declarations
      */
-    touchgfx::Callback<MainViewBase, const touchgfx::Slider&, int> sliderValueChangedCallback;
+    touchgfx::Callback<MainViewBase, const touchgfx::SlideMenu&> slideMenuStateChangedCallback;
+    touchgfx::Callback<MainViewBase, const touchgfx::AbstractButton&> buttonCallback;
 
     /*
      * Callback Handler Declarations
      */
-    void sliderValueChangedCallbackHandler(const touchgfx::Slider& src, int value);
+    void slideMenuStateChangedCallbackHandler(const touchgfx::SlideMenu& src);
+    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 

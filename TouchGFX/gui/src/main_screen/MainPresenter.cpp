@@ -4,12 +4,15 @@
 MainPresenter::MainPresenter(MainView& v)
     : view(v)
 {
+
 }
 
 void MainPresenter::activate()
 {
+
 }
 
 void MainPresenter::deactivate()
 {
+
 }

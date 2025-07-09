@@ -23,6 +23,11 @@ public:
     // Main
     void gotoMainScreenNoTransition();
 
+    void gotoMainScreenBlockTransition();
+
+    // Screen2
+    void gotoScreen2ScreenNoTransition();
+
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
     FrontendHeap& frontendHeap;
@@ -30,6 +35,11 @@ protected:
 
     // Main
     void gotoMainScreenNoTransitionImpl();
+
+    void gotoMainScreenBlockTransitionImpl();
+
+    // Screen2
+    void gotoScreen2ScreenNoTransitionImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

@@ -48,7 +48,7 @@
  * - -1: "ドラッグ" ウィジェット用に連続タッチ
  * (詳細は上記 GitHub ページ参照)
  **************************************************/
-#define DELAY_TO_KEY_REPEAT -1
+#define DELAY_TO_KEY_REPEAT 0
 
 /*|||||||| 設定ここまで ||||||||*/
 
@@ -172,7 +172,7 @@
  * ディスプレイが荒れたり、動作が重たくなった場合に調整可能です。
  **********************************************************************************/
 
-#define TOUCHGFX_TIMING    60   // 連続読み取り間隔 (ms)
+#define TOUCHGFX_TIMING    20   // 連続読み取り間隔 (ms)
 #define TOUCHGFX_SENSITIVITY 1  // 同じ値と見なすピクセル² (1: 無効)
 #define TOUCHGFX_MOVAVG   1    // 移動平均サンプル数 (1: 無効)
 #define TOUCHGFX_REPEAT_IT 0   // 長押し後に繰り返す回数 (0: 無効)

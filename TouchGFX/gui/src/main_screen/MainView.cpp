@@ -1,15 +1,26 @@
-#include "main.h"
 #include <gui/main_screen/MainView.hpp>
 
+
 MainView::MainView()
-    : MainViewBase()  // ベースクラスのコンストラクタ呼び出し
 {
-    // 必要ならここで自分側の初期化を。
+
 }
 
 void MainView::setupScreen()
 {
     MainViewBase::setupScreen();
+
+    // アニメーションを短く
+    slideMenuLeft.setAnimationDuration(4);                        // 8フレーム ≒0.13s
+
+    // イージングを線形補間に変更
+    slideMenuLeft.setAnimationEasingEquation(
+        touchgfx::EasingEquations::linearEaseNone);               // ← 正しい関数名と列挙名
+
+    // 初期状態を「畳まれた」状態に
+    slideMenuLeft.setState(touchgfx::SlideMenu::COLLAPSED);
+
+    slideMenuLeft.setExpandedStateTimeout(0);      // 0 ⇒ 無限
 }
 
 void MainView::tearDownScreen()
@@ -17,12 +28,10 @@ void MainView::tearDownScreen()
     MainViewBase::tearDownScreen();
 }
 
-void MainView::sliderValueChanged(int sliderValue)
+void MainView::collapseAllOtherSlideMenu(const touchgfx::SlideMenu& value)
 {
-    // 例：PWM とゲージの更新
-    __HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_1, sliderValue);
-
-    int mapped = sliderValue * 50 / 255;  // 0–255 → 0–50 に線形マッピング
-    gauge1.setValue(mapped);
-    gauge1.invalidate();
+    if (&value != &slideMenuLeft)
+    {
+        slideMenuLeft.animateToState(SlideMenu::COLLAPSED);
+    }
 }

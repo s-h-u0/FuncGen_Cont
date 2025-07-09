@@ -3,8 +3,6 @@
 
 #include <stdint.h>
 
-#include <touchgfx/Utils.hpp>
-
 class ModelListener;
 
 /**
@@ -46,4 +44,4 @@ protected:
     ModelListener* modelListener;
 };
 
-#endif /* MODEL_HPP */
+#endif // MODEL_HPP

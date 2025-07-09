@@ -1,11 +1,8 @@
-#ifndef MAIN_VIEW_HPP
-#define MAIN_VIEW_HPP
+#ifndef MAINVIEW_HPP
+#define MAINVIEW_HPP
 
 #include <gui_generated/main_screen/MainViewBase.hpp>
 #include <gui/main_screen/MainPresenter.hpp>
-#include "main.h"
-
-
 
 class MainView : public MainViewBase
 {
@@ -14,10 +11,8 @@ public:
     virtual ~MainView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
-
-
-    virtual void sliderValueChanged(int value) override;
+    void collapseAllOtherSlideMenu(const touchgfx::SlideMenu& value);
 protected:
 };
 
-#endif // MAIN_VIEW_HPP
+#endif // MAINVIEW_HPP

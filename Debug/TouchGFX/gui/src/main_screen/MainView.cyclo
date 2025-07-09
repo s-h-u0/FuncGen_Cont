@@ -2,9 +2,9 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:115:18:virtual void touchgfx::Screen::tearDownScreen()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:144:18:virtual void touchgfx::Screen::handleTickEvent()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	1
-../TouchGFX/gui/include/gui/main_screen/MainView.hpp:14:13:MainView::~MainView()	1
-../TouchGFX/gui/include/gui/main_screen/MainView.hpp:14:13:virtual MainView::~MainView()	1
+../TouchGFX/gui/include/gui/main_screen/MainView.hpp:11:13:MainView::~MainView()	1
+../TouchGFX/gui/include/gui/main_screen/MainView.hpp:11:13:virtual MainView::~MainView()	1
 ../TouchGFX/gui/src/main_screen/MainView.cpp:4:1:MainView::MainView()	1
-../TouchGFX/gui/src/main_screen/MainView.cpp:10:6:virtual void MainView::setupScreen()	1
-../TouchGFX/gui/src/main_screen/MainView.cpp:15:6:virtual void MainView::tearDownScreen()	1
-../TouchGFX/gui/src/main_screen/MainView.cpp:20:6:virtual void MainView::sliderValueChanged(int)	1
+../TouchGFX/gui/src/main_screen/MainView.cpp:9:6:virtual void MainView::setupScreen()	1
+../TouchGFX/gui/src/main_screen/MainView.cpp:26:6:virtual void MainView::tearDownScreen()	1
+../TouchGFX/gui/src/main_screen/MainView.cpp:31:6:virtual void MainView::collapseAllOtherSlideMenu(const touchgfx::SlideMenu&)	2

@@ -1,5 +1,5 @@
-#ifndef MAIN_PRESENTER_HPP
-#define MAIN_PRESENTER_HPP
+#ifndef MAINPRESENTER_HPP
+#define MAINPRESENTER_HPP
 
 #include <gui/model/ModelListener.hpp>
 #include <mvp/Presenter.hpp>
@@ -8,7 +8,7 @@ using namespace touchgfx;
 
 class MainView;
 
-class MainPresenter : public Presenter, public ModelListener
+class MainPresenter : public touchgfx::Presenter, public ModelListener
 {
 public:
     MainPresenter(MainView& v);
@@ -33,4 +33,4 @@ private:
     MainView& view;
 };
 
-#endif // MAIN_PRESENTER_HPP
+#endif // MAINPRESENTER_HPP

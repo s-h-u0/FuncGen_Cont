@@ -13,6 +13,7 @@ O_SRCS += \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Font_Asap_Regular_15_4bpp_0.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Font_Asap_Regular_80_4bpp_0.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Font_ariblk_20_4bpp_0.o \
+../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Font_seguibl_21_4bpp_0.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Font_seguibl_25_4bpp_0.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Font_verdana_10_4bpp_0.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Font_verdana_20_4bpp_0.o \
@@ -28,6 +29,7 @@ O_SRCS += \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Table_Asap_Regular_15_4bpp.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Table_Asap_Regular_80_4bpp.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Table_ariblk_20_4bpp.o \
+../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Table_seguibl_21_4bpp.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Table_seguibl_25_4bpp.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Table_verdana_10_4bpp.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Table_verdana_20_4bpp.o \

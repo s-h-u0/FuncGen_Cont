@@ -31,4 +31,4 @@ protected:
     Model* model;
 };
 
-#endif /* MODELLISTENER_HPP */
+#endif // MODELLISTENER_HPP

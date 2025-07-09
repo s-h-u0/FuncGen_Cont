@@ -3,6 +3,172 @@
     "Screens": [
       {
         "Name": "Main",
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "box1",
+            "Width": 480,
+            "Height": 320,
+            "Color": {
+              "Red": 3,
+              "Green": 8,
+              "Blue": 23
+            }
+          },
+          {
+            "Type": "SlideMenu",
+            "Name": "slideMenuLeft",
+            "Width": 74,
+            "Height": 272,
+            "FileNameBackground": "left_slide_menu_background.png",
+            "UseButton": true,
+            "FileNameButtonPressed": "left_slide_menu_button.png",
+            "FileNameButtonReleased": "left_slide_menu_button.png",
+            "ButtonX": 50,
+            "ButtonY": 101,
+            "State": "Collapsed",
+            "ExpandDirection": "East",
+            "Easing": "Cubic",
+            "EasingOption": "InOut",
+            "AnimationDuration": 300,
+            "VisiblePixelsWhenCollapsed": 25,
+            "ExpandedStateTimeout": 3000,
+            "Components": [
+              {
+                "Type": "Button",
+                "Name": "button1",
+                "X": -1,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "fhase.png",
+                "Released": "fhase.png"
+              },
+              {
+                "Type": "Button",
+                "Name": "button2",
+                "X": -1,
+                "Y": 50,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "freq.png",
+                "Released": "freq.png"
+              },
+              {
+                "Type": "Button",
+                "Name": "button3",
+                "Y": 100,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "voltage.png",
+                "Released": "voltage.png"
+              },
+              {
+                "Type": "Button",
+                "Name": "button4",
+                "Y": 150,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "menu_button_pressed_03.png",
+                "Released": "menu_button_03.png"
+              },
+              {
+                "Type": "Button",
+                "Name": "button5",
+                "X": -1,
+                "Y": 200,
+                "Width": 50,
+                "Height": 50,
+                "Pressed": "menu_button_pressed_04.png",
+                "Released": "menu_button_04.png"
+              }
+            ]
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction4",
+            "Trigger": {
+              "Type": "TriggerSlideMenuStateChanged",
+              "TriggerComponent": "slideMenuLeft"
+            },
+            "Action": {
+              "Type": "ActionCustom2",
+              "ActionCustomTypeName": "Call Main collapseAllOtherSlideMenu",
+              "ParameterValue": "src",
+              "ActionComponent": "Main"
+            }
+          },
+          {
+            "InteractionName": "Interaction5",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "button1"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Screen2"
+            }
+          },
+          {
+            "InteractionName": "Interaction6",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "button2"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Screen2"
+            }
+          },
+          {
+            "InteractionName": "Interaction7",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "button3"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Screen2"
+            }
+          },
+          {
+            "InteractionName": "Interaction8",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "button4"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Screen2"
+            }
+          },
+          {
+            "InteractionName": "Interaction9",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "button5"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Screen2"
+            }
+          }
+        ],
+        "CustomActions": [
+          {
+            "Name": "collapseAllOtherSlideMenu",
+            "HasValue": true,
+            "ValueType": "const touchgfx::SlideMenu&"
+          }
+        ]
+      },
+      {
+        "Name": "Screen2",
         "CanvasBufferSize": 7200,
         "Components": [
           {
@@ -11,86 +177,176 @@
             "Width": 480,
             "Height": 320,
             "Color": {
-              "Red": 6,
-              "Green": 8,
-              "Blue": 20
+              "Red": 207,
+              "Green": 31,
+              "Blue": 31
             }
           },
           {
-            "Type": "Image",
-            "Name": "backgroundImage",
-            "Y": 25,
-            "Width": 480,
-            "Height": 270,
-            "RelativeFilename": "movie2.png"
-          },
-          {
-            "Type": "Slider",
-            "Name": "horizontalSlider",
-            "X": 244,
-            "Y": 237,
-            "Width": 229,
-            "Height": 35,
-            "IsHorizontalSlider": true,
-            "BackgroundUnselected": "slider_background.png",
-            "BackgroundSelected": "slider_background_filled.png",
-            "Indicator": "slider_knob_circle.png",
-            "BackgroundX": 14,
-            "BackgroundY": 14,
-            "IndicatorMax": 194,
-            "ValueMax": 255
-          },
-          {
-            "Type": "Gauge",
-            "Name": "gauge1",
-            "X": 298,
-            "Y": 117,
-            "Width": 120,
-            "Height": 120,
-            "Preset": "alternate_theme\\presets\\gauges\\tiny\\active_filled.json",
-            "FileNameBackground": "__generated\\alternate_theme_images_widgets_gauge_tiny_backgrounds_active_filled.png",
-            "RotationCenterX": 60.0,
-            "RotationCenterY": 60.0,
-            "StartAngle": -119.0,
-            "EndAngle": 122.0,
-            "RangeMax": 100.0,
-            "Easing": "Linear",
-            "EasingOption": "In",
-            "FileNameNeedle": "__generated\\alternate_theme_images_widgets_gauge_tiny_needles_rough.png",
-            "NeedleRotationCenterX": 5.0,
-            "NeedleRotationCenterY": 33.0,
-            "NeedleMovingRenderingAlgorithm": "Bilinear Interpolation",
-            "NeedleSteadyRenderingAlgorithm": "Bilinear Interpolation",
-            "UseArc": true,
-            "FileNameArc": "__generated\\alternate_theme_images_widgets_gauge_tiny_fillers_swoop.png",
-            "ArcColor": {
-              "Red": 20,
-              "Green": 151,
-              "Blue": 197
+            "Type": "FlexButton",
+            "Name": "flexButton1",
+            "X": 84,
+            "Y": 41,
+            "Width": 50,
+            "Height": 50,
+            "ButtonTrigger": {
+              "Type": "TouchButtonTrigger"
             },
-            "SetArcPosition": true,
-            "ArcX": 12.0,
-            "ArcY": 12.0,
-            "ArcWidth": 95.0,
-            "ArcHeight": 71.0,
-            "ArcRadius": 50.0,
-            "ArcLineWidth": 49.0,
-            "ArcCapStyle": "Butt"
+            "ButtonStyles": [
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "Width": 50,
+                "Height": 50,
+                "LockToFlexButtonSize": true,
+                "BorderSize": 5,
+                "ColorReleased": {
+                  "Green": 102,
+                  "Blue": 153
+                },
+                "ColorPressed": {
+                  "Green": 153,
+                  "Blue": 204
+                },
+                "ColorBorderReleased": {
+                  "Green": 51,
+                  "Blue": 102
+                },
+                "ColorBorderPressed": {
+                  "Red": 51,
+                  "Green": 102,
+                  "Blue": 153
+                }
+              }
+            ]
+          },
+          {
+            "Type": "CircleProgress",
+            "Name": "circleProgress1",
+            "X": 34,
+            "Y": 116,
+            "Width": 150,
+            "Height": 150,
+            "Color": {
+              "Green": 240,
+              "Blue": 255
+            },
+            "CenterX": 75.0,
+            "CenterY": 75.0,
+            "Radius": 65.0,
+            "LineWidth": 20.0,
+            "EndAngle": 360.0,
+            "CapPrecision": "Butt",
+            "Preset": "alternate_theme\\presets\\circleprogress\\active_medium.json",
+            "FileNameBackground": "__generated\\alternate_theme_images_widgets_circleprogress_backgrounds_medium.png",
+            "ProgressRangeMax": 100,
+            "ProgressInitialValue": 60
+          },
+          {
+            "Type": "TextProgress",
+            "Name": "textProgress1",
+            "X": 218,
+            "Y": 75,
+            "Width": 175,
+            "Height": 50,
+            "TextId": "__SingleUse_KZM8",
+            "Color": {
+              "Red": 12,
+              "Green": 27,
+              "Blue": 55
+            },
+            "Preset": "alternate_theme\\presets\\textprogress\\rounded.json",
+            "FileNameBackground": "__generated\\alternate_theme_images_widgets_textprogress_backgrounds_rounded_light.png",
+            "IndicatorPositionX": 12,
+            "IndicatorPositionY": 10,
+            "IndicatorPositionWidth": 150,
+            "IndicatorPositionHeight": 30,
+            "ProgressRangeMax": 100,
+            "ProgressInitialValue": 60
+          },
+          {
+            "Type": "LineProgress",
+            "Name": "lineProgress1",
+            "X": 195,
+            "Y": 150,
+            "Width": 265,
+            "Height": 159,
+            "FileNameProgress": "__generated\\alternate_theme_images_widgets_lineprogress_fillers_plain_normal_medium_active_30.png",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "StartX": 2.0,
+            "StartY": 154.0,
+            "EndY": 4.0,
+            "EndX": 262.0,
+            "LineWidth": 10.0,
+            "LineEndingStyle": "Butt",
+            "Preset": "alternate_theme\\presets\\lineprogress\\images\\plain\\normal\\medium_active_30.json",
+            "FileNameBackground": "__generated\\alternate_theme_images_widgets_lineprogress_backgrounds_image_plain_normal_medium_30.png",
+            "ProgressRangeMax": 100,
+            "ProgressInitialValue": 60
           }
         ],
         "Interactions": [
           {
-            "InteractionName": "horizontalSliderMove",
+            "InteractionName": "Interaction1",
             "Trigger": {
-              "Type": "TriggerSliderValueChanged",
-              "TriggerComponent": "horizontalSlider"
+              "Type": "TriggerClicked",
+              "TriggerComponent": "flexButton1"
             },
             "Action": {
-              "Type": "ActionCustom",
-              "FunctionName": "sliderValueChanged"
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionBlock",
+              "ActionComponent": "Main"
             }
           }
         ]
+      },
+      {
+        "Name": "Screen3",
+        "Components": [
+          {
+            "Type": "TextArea",
+            "Name": "textArea1",
+            "X": 102,
+            "Y": 119,
+            "Width": 92,
+            "Height": 20,
+            "TextId": "__SingleUse_9ZIQ",
+            "TextRotation": "0",
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea2",
+            "X": 102,
+            "Y": 68,
+            "Width": 92,
+            "Height": 20,
+            "TextId": "__SingleUse_VKCK",
+            "TextRotation": "0",
+            "AutoSize": true
+          },
+          {
+            "Type": "TextureMapper",
+            "Name": "textureMapper1",
+            "X": 304,
+            "Y": 145,
+            "Width": 152,
+            "Height": 152,
+            "RenderingAlgorithm": "Nearest-neighbor",
+            "FileNameImage": "__generated\\alternate_theme_images_logos_touchgfx_gradient_smooth.png",
+            "LockBitmapToCenter": true,
+            "Scale": 1.0,
+            "LockOrigoToCenter": true,
+            "XOrigo": 76.0,
+            "YOrigo": 76.0,
+            "ZOrigo": 1000.0,
+            "CameraDistance": 1000.0
+          }
+        ],
+        "Interactions": []
       }
     ],
     "CustomContainerDefinitions": [],

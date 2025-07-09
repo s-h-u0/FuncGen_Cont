@@ -135,7 +135,7 @@ uint16_t Touch_PollAxis(uint8_t axis) {
  *********************************************************************************/
 uint8_t Touch_PollTouch(){
 
-const uint8_t pollingLevel=4;
+const uint8_t pollingLevel=1;
 uint8_t k;
 uint32_t touch;
 
@@ -160,7 +160,7 @@ uint32_t touch;
  *********************************************************************************/
 void Touch_GetXYtouch(uint16_t *x, uint16_t *y, uint8_t *isTouch){
 
-const uint8_t pollingLevel=4;
+const uint8_t pollingLevel=1;
 //sTouchData XYposition;
 uint8_t k;
 
@@ -278,7 +278,7 @@ uint8_t Touch_WaitForUntouch(uint16_t delay) {
 		if (Touch_PollAxis(X_AXIS)<=X_THRESHOLD)
 			pen_up=1;
 		if (pen_up) {            //	Pen is now up: reset Touch_PenDown anyway.
-			HAL_Delay(10);		// pen is Up just now: wait just a few
+			HAL_Delay(2);		// pen is Up just now: wait just a few
 			Touch_PenDown=0;
 			return 1;
 		}
