@@ -25,7 +25,7 @@ public:
      */
     virtual void deactivate();
 
-    virtual ~MainPresenter() {};
+    virtual ~MainPresenter() {}
 
 private:
     MainPresenter();

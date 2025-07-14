@@ -23,10 +23,8 @@ public:
     // Main
     void gotoMainScreenNoTransition();
 
-    void gotoMainScreenBlockTransition();
-
-    // Screen2
-    void gotoScreen2ScreenNoTransition();
+    // Keyboard
+    void gotoKeyboardScreenNoTransition();
 
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
@@ -36,10 +34,8 @@ protected:
     // Main
     void gotoMainScreenNoTransitionImpl();
 
-    void gotoMainScreenBlockTransitionImpl();
-
-    // Screen2
-    void gotoScreen2ScreenNoTransitionImpl();
+    // Keyboard
+    void gotoKeyboardScreenNoTransitionImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

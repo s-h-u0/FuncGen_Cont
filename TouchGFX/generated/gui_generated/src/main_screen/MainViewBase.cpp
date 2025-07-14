@@ -4,58 +4,157 @@
 #include <gui_generated/main_screen/MainViewBase.hpp>
 #include <touchgfx/Color.hpp>
 #include <images/BitmapDatabase.hpp>
+#include <texts/TextKeysAndLanguages.hpp>
 
 MainViewBase::MainViewBase() :
-    slideMenuStateChangedCallback(this, &MainViewBase::slideMenuStateChangedCallbackHandler),
     buttonCallback(this, &MainViewBase::buttonCallbackHandler)
 {
     __background.setPosition(0, 0, 480, 320);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    box1.setPosition(0, 0, 480, 320);
-    box1.setColor(touchgfx::Color::getColorFromRGB(3, 8, 23));
-    add(box1);
+    BG_Main.setPosition(0, 0, 480, 320);
+    BG_Main.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
+    add(BG_Main);
 
-    slideMenuLeft.setXY(0, 0);
-    slideMenuLeft.setup(touchgfx::SlideMenu::EAST,
-        touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BACKGROUND_ID),
-        touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BUTTON_ID),
-        touchgfx::Bitmap(BITMAP_LEFT_SLIDE_MENU_BUTTON_ID),
-        0, 0, 50, 101);
-    slideMenuLeft.setState(touchgfx::SlideMenu::COLLAPSED);
-    slideMenuLeft.setVisiblePixelsWhenCollapsed(25);
-    slideMenuLeft.setHiddenPixelsWhenExpanded(0);
-    slideMenuLeft.setAnimationEasingEquation(touchgfx::EasingEquations::cubicEaseInOut);
-    slideMenuLeft.setAnimationDuration(18);
-    slideMenuLeft.setExpandedStateTimeout(180);
-    slideMenuLeft.setStateChangedCallback(slideMenuStateChangedCallback);
-    button1.setXY(-1, 0);
-    button1.setBitmaps(touchgfx::Bitmap(BITMAP_FHASE_ID), touchgfx::Bitmap(BITMAP_FHASE_ID));
-    button1.setAction(buttonCallback);
-    slideMenuLeft.add(button1);
+    toggleButton_Run.setXY(365, 133);
+    toggleButton_Run.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_LARGE_ROUND_SMALL_ON_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_LARGE_ROUND_SMALL_OFF_LIGHT_ID));
+    add(toggleButton_Run);
 
-    button2.setXY(-1, 50);
-    button2.setBitmaps(touchgfx::Bitmap(BITMAP_FREQ_ID), touchgfx::Bitmap(BITMAP_FREQ_ID));
-    button2.setAction(buttonCallback);
-    slideMenuLeft.add(button2);
+    button_Volt.setXY(200, 58);
+    button_Volt.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_60_TINY_ROUNDED_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_60_TINY_ROUNDED_DISABLED_ID));
+    button_Volt.setAction(buttonCallback);
+    add(button_Volt);
 
-    button3.setXY(0, 100);
-    button3.setBitmaps(touchgfx::Bitmap(BITMAP_VOLTAGE_ID), touchgfx::Bitmap(BITMAP_VOLTAGE_ID));
-    button3.setAction(buttonCallback);
-    slideMenuLeft.add(button3);
+    button_Curr.setXY(200, 151);
+    button_Curr.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_60_TINY_ROUNDED_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_60_TINY_ROUNDED_DISABLED_ID));
+    button_Curr.setAction(buttonCallback);
+    add(button_Curr);
 
-    button4.setXY(0, 150);
-    button4.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_BUTTON_03_ID), touchgfx::Bitmap(BITMAP_MENU_BUTTON_PRESSED_03_ID));
-    button4.setAction(buttonCallback);
-    slideMenuLeft.add(button4);
+    button_Phas.setXY(200, 245);
+    button_Phas.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_60_TINY_ROUNDED_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_60_TINY_ROUNDED_DISABLED_ID));
+    button_Phas.setAction(buttonCallback);
+    add(button_Phas);
 
-    button5.setXY(-1, 200);
-    button5.setBitmaps(touchgfx::Bitmap(BITMAP_MENU_BUTTON_04_ID), touchgfx::Bitmap(BITMAP_MENU_BUTTON_PRESSED_04_ID));
-    button5.setAction(buttonCallback);
-    slideMenuLeft.add(button5);
+    boxWithB_MaesVolt.setPosition(5, 58, 145, 60);
+    boxWithB_MaesVolt.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
+    boxWithB_MaesVolt.setBorderColor(touchgfx::Color::getColorFromRGB(110, 236, 255));
+    boxWithB_MaesVolt.setBorderSize(5);
+    add(boxWithB_MaesVolt);
 
-    add(slideMenuLeft);
+    boxWithB_MaesCurr.setPosition(5, 151, 145, 60);
+    boxWithB_MaesCurr.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
+    boxWithB_MaesCurr.setBorderColor(touchgfx::Color::getColorFromRGB(110, 236, 255));
+    boxWithB_MaesCurr.setBorderSize(5);
+    add(boxWithB_MaesCurr);
+
+    boxWithB_MaesPhas.setPosition(5, 245, 145, 60);
+    boxWithB_MaesPhas.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
+    boxWithB_MaesPhas.setBorderColor(touchgfx::Color::getColorFromRGB(110, 236, 255));
+    boxWithB_MaesPhas.setBorderSize(5);
+    add(boxWithB_MaesPhas);
+
+    MeasureValue.setXY(10, 9);
+    MeasureValue.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    MeasureValue.setLinespacing(0);
+    MeasureValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_TQG0));
+    add(MeasureValue);
+
+    Meas_Volt_label.setXY(5, 40);
+    Meas_Volt_label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 99));
+    Meas_Volt_label.setLinespacing(0);
+    Meas_Volt_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_FO9X));
+    add(Meas_Volt_label);
+
+    Meas_Curr_label.setXY(5, 133);
+    Meas_Curr_label.setColor(touchgfx::Color::getColorFromRGB(241, 138, 255));
+    Meas_Curr_label.setLinespacing(0);
+    Meas_Curr_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Y15L));
+    add(Meas_Curr_label);
+
+    Meas_Phas_label.setXY(5, 227);
+    Meas_Phas_label.setColor(touchgfx::Color::getColorFromRGB(128, 157, 255));
+    Meas_Phas_label.setLinespacing(0);
+    Meas_Phas_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_AP1H));
+    add(Meas_Phas_label);
+
+    boxWithB_SetVolt.setPosition(200, 58, 145, 60);
+    boxWithB_SetVolt.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
+    boxWithB_SetVolt.setBorderColor(touchgfx::Color::getColorFromRGB(110, 236, 255));
+    boxWithB_SetVolt.setBorderSize(5);
+    add(boxWithB_SetVolt);
+
+    boxWithB_SetCurr.setPosition(200, 151, 144, 60);
+    boxWithB_SetCurr.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
+    boxWithB_SetCurr.setBorderColor(touchgfx::Color::getColorFromRGB(110, 236, 255));
+    boxWithB_SetCurr.setBorderSize(5);
+    add(boxWithB_SetCurr);
+
+    boxWithB_SetPhas.setPosition(200, 245, 144, 60);
+    boxWithB_SetPhas.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
+    boxWithB_SetPhas.setBorderColor(touchgfx::Color::getColorFromRGB(110, 236, 255));
+    boxWithB_SetPhas.setBorderSize(5);
+    add(boxWithB_SetPhas);
+
+    Val_Meas_Phas.setXY(41, 260);
+    Val_Meas_Phas.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Val_Meas_Phas.setLinespacing(0);
+    Val_Meas_Phas.setTypedText(touchgfx::TypedText(T___SINGLEUSE_WN51));
+    add(Val_Meas_Phas);
+
+    Val_Meas_Curr.setXY(41, 166);
+    Val_Meas_Curr.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Val_Meas_Curr.setLinespacing(0);
+    Val_Meas_Curr.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HNTL));
+    add(Val_Meas_Curr);
+
+    Val_Meas_Volt.setXY(33, 73);
+    Val_Meas_Volt.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Val_Meas_Volt.setLinespacing(0);
+    Val_Meas_Volt.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YVKD));
+    add(Val_Meas_Volt);
+
+    Val_Set_Volt.setXY(228, 73);
+    Val_Set_Volt.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Val_Set_Volt.setLinespacing(0);
+    Val_Set_Volt.setTypedText(touchgfx::TypedText(T___SINGLEUSE_211V));
+    add(Val_Set_Volt);
+
+    Val_Set_Curr.setXY(236, 163);
+    Val_Set_Curr.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Val_Set_Curr.setLinespacing(0);
+    Val_Set_Curr.setTypedText(touchgfx::TypedText(T___SINGLEUSE_LDGT));
+    add(Val_Set_Curr);
+
+    Val_Set_Phas.setXY(236, 260);
+    Val_Set_Phas.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Val_Set_Phas.setLinespacing(0);
+    Val_Set_Phas.setTypedText(touchgfx::TypedText(T___SINGLEUSE_VR8I));
+    add(Val_Set_Phas);
+
+    SetValue.setXY(225, 9);
+    SetValue.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    SetValue.setLinespacing(0);
+    SetValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Y6WD));
+    add(SetValue);
+
+    Set_Volt_label.setXY(200, 40);
+    Set_Volt_label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 99));
+    Set_Volt_label.setLinespacing(0);
+    Set_Volt_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_UVF8));
+    add(Set_Volt_label);
+
+    Set_Curr_label.setXY(200, 133);
+    Set_Curr_label.setColor(touchgfx::Color::getColorFromRGB(241, 138, 255));
+    Set_Curr_label.setLinespacing(0);
+    Set_Curr_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SP74));
+    add(Set_Curr_label);
+
+    Set_Phas_label.setXY(200, 227);
+    Set_Phas_label.setColor(touchgfx::Color::getColorFromRGB(128, 157, 255));
+    Set_Phas_label.setLinespacing(0);
+    Set_Phas_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_XPDK));
+    add(Set_Phas_label);
 }
 
 MainViewBase::~MainViewBase()
@@ -68,52 +167,27 @@ void MainViewBase::setupScreen()
 
 }
 
-void MainViewBase::slideMenuStateChangedCallbackHandler(const touchgfx::SlideMenu& src)
-{
-    if (&src == &slideMenuLeft)
-    {
-        //Interaction4
-        //When slideMenuLeft state changed call collapseAllOtherSlideMenu on Main
-        //Call collapseAllOtherSlideMenu
-        collapseAllOtherSlideMenu(src);
-    }
-}
-
 void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
 {
-    if (&src == &button1)
+    if (&src == &button_Volt)
     {
-        //Interaction5
-        //When button1 clicked change screen to Screen2
-        //Go to Screen2 with no screen transition
-        application().gotoScreen2ScreenNoTransition();
+        //Interaction1
+        //When button_Volt clicked change screen to Keyboard
+        //Go to Keyboard with no screen transition
+        application().gotoKeyboardScreenNoTransition();
     }
-    if (&src == &button2)
+    if (&src == &button_Curr)
     {
-        //Interaction6
-        //When button2 clicked change screen to Screen2
-        //Go to Screen2 with no screen transition
-        application().gotoScreen2ScreenNoTransition();
+        //Interaction2
+        //When button_Curr clicked change screen to Keyboard
+        //Go to Keyboard with no screen transition
+        application().gotoKeyboardScreenNoTransition();
     }
-    if (&src == &button3)
+    if (&src == &button_Phas)
     {
-        //Interaction7
-        //When button3 clicked change screen to Screen2
-        //Go to Screen2 with no screen transition
-        application().gotoScreen2ScreenNoTransition();
-    }
-    if (&src == &button4)
-    {
-        //Interaction8
-        //When button4 clicked change screen to Screen2
-        //Go to Screen2 with no screen transition
-        application().gotoScreen2ScreenNoTransition();
-    }
-    if (&src == &button5)
-    {
-        //Interaction9
-        //When button5 clicked change screen to Screen2
-        //Go to Screen2 with no screen transition
-        application().gotoScreen2ScreenNoTransition();
+        //Interaction3
+        //When button_Phas clicked change screen to Keyboard
+        //Go to Keyboard with no screen transition
+        application().gotoKeyboardScreenNoTransition();
     }
 }

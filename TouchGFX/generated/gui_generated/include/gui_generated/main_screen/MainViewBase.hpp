@@ -8,8 +8,11 @@
 #include <mvp/View.hpp>
 #include <gui/main_screen/MainPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/containers/SlideMenu.hpp>
+#include <touchgfx/widgets/ToggleButton.hpp>
 #include <touchgfx/widgets/Button.hpp>
+#include <touchgfx/widgets/BoxWithBorder.hpp>
+#include <touchgfx/mixins/ClickListener.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
 
 class MainViewBase : public touchgfx::View<MainPresenter>
 {
@@ -17,15 +20,6 @@ public:
     MainViewBase();
     virtual ~MainViewBase();
     virtual void setupScreen();
-
-    /*
-     * Custom Actions
-     */
-    virtual void collapseAllOtherSlideMenu(const touchgfx::SlideMenu& value)
-    {
-        // Override and implement this function in Screen1
-    }
-    
 
 protected:
     FrontendApplication& application() {
@@ -36,26 +30,42 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::Box box1;
-    touchgfx::SlideMenu slideMenuLeft;
-    touchgfx::Button button1;
-    touchgfx::Button button2;
-    touchgfx::Button button3;
-    touchgfx::Button button4;
-    touchgfx::Button button5;
+    touchgfx::Box BG_Main;
+    touchgfx::ToggleButton toggleButton_Run;
+    touchgfx::Button button_Volt;
+    touchgfx::Button button_Curr;
+    touchgfx::Button button_Phas;
+    touchgfx::BoxWithBorder boxWithB_MaesVolt;
+    touchgfx::BoxWithBorder boxWithB_MaesCurr;
+    touchgfx::ClickListener< touchgfx::BoxWithBorder > boxWithB_MaesPhas;
+    touchgfx::TextArea MeasureValue;
+    touchgfx::TextArea Meas_Volt_label;
+    touchgfx::TextArea Meas_Curr_label;
+    touchgfx::TextArea Meas_Phas_label;
+    touchgfx::BoxWithBorder boxWithB_SetVolt;
+    touchgfx::BoxWithBorder boxWithB_SetCurr;
+    touchgfx::BoxWithBorder boxWithB_SetPhas;
+    touchgfx::TextArea Val_Meas_Phas;
+    touchgfx::TextArea Val_Meas_Curr;
+    touchgfx::TextArea Val_Meas_Volt;
+    touchgfx::TextArea Val_Set_Volt;
+    touchgfx::TextArea Val_Set_Curr;
+    touchgfx::TextArea Val_Set_Phas;
+    touchgfx::TextArea SetValue;
+    touchgfx::TextArea Set_Volt_label;
+    touchgfx::TextArea Set_Curr_label;
+    touchgfx::TextArea Set_Phas_label;
 
 private:
 
     /*
      * Callback Declarations
      */
-    touchgfx::Callback<MainViewBase, const touchgfx::SlideMenu&> slideMenuStateChangedCallback;
     touchgfx::Callback<MainViewBase, const touchgfx::AbstractButton&> buttonCallback;
 
     /*
      * Callback Handler Declarations
      */
-    void slideMenuStateChangedCallbackHandler(const touchgfx::SlideMenu& src);
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };

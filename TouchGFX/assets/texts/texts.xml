@@ -4,22 +4,113 @@
     <Language Id="GB" />
   </Languages>
   <Texts>
-    <TextGroup Id="Group1" />
+    <TextGroup Id="Group1">
+      <Text Id="numberText" Alignment="Center" TypographyId="Typography_00">
+        <Translation Language="GB">&lt;number&gt;</Translation>
+      </Text>
+      <Text Id="toggleButtonWhite" Alignment="Center" TypographyId="ButtonDown">
+        <Translation Language="GB">White</Translation>
+      </Text>
+      <Text Id="toggleButtonOrange" Alignment="Center" TypographyId="ButtonDown">
+        <Translation Language="GB">Orange</Translation>
+      </Text>
+    </TextGroup>
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_VKCK" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">New Text</Translation>
+      <Text Id="__SingleUse_LDGT" Alignment="Left" TypographyId="Val_meas_xxx">
+        <Translation Language="GB">XXX</Translation>
       </Text>
-      <Text Id="__SingleUse_9ZIQ" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">New Text</Translation>
+      <Text Id="__SingleUse_VR8I" Alignment="Left" TypographyId="Val_meas_xxx">
+        <Translation Language="GB">180°</Translation>
       </Text>
-      <Text Id="__SingleUse_KZM8" Alignment="Center" TypographyId="Default">
-        <Translation Language="GB">&lt;&gt; %</Translation>
+      <Text Id="__SingleUse_211V" Alignment="Left" TypographyId="Val_meas_xxx">
+        <Translation Language="GB">42.0 V</Translation>
+      </Text>
+      <Text Id="__SingleUse_YVKD" Alignment="Left" TypographyId="Val_meas_xxx">
+        <Translation Language="GB">41.8 V</Translation>
+      </Text>
+      <Text Id="__SingleUse_HNTL" Alignment="Left" TypographyId="Val_meas_xxx">
+        <Translation Language="GB">3.0 A</Translation>
+      </Text>
+      <Text Id="__SingleUse_WN51" Alignment="Left" TypographyId="Val_meas_xxx">
+        <Translation Language="GB">180°</Translation>
+      </Text>
+      <Text Id="__SingleUse_VNBM" Alignment="Center" TypographyId="ButtonDown">
+        <Translation Language="GB">Del</Translation>
+      </Text>
+      <Text Id="__SingleUse_HF3J" Alignment="Left" TypographyId="Phase">
+        <Translation Language="GB">Phase</Translation>
+      </Text>
+      <Text Id="__SingleUse_1CQN" Alignment="Center" TypographyId="ButtonDown">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_Y85E" Alignment="Center" TypographyId="ButtonDown">
+        <Translation Language="GB">En</Translation>
+      </Text>
+      <Text Id="__SingleUse_648N" Alignment="Center" TypographyId="Typography_01">
+        <Translation Language="GB">180°</Translation>
+      </Text>
+      <Text Id="__SingleUse_2JSJ" Alignment="Center" TypographyId="ButtonDown">
+        <Translation Language="GB">9</Translation>
+      </Text>
+      <Text Id="__SingleUse_RBEN" Alignment="Center" TypographyId="ButtonDown">
+        <Translation Language="GB">8</Translation>
+      </Text>
+      <Text Id="__SingleUse_7L2H" Alignment="Center" TypographyId="ButtonDown">
+        <Translation Language="GB">7</Translation>
+      </Text>
+      <Text Id="__SingleUse_PCJK" Alignment="Center" TypographyId="ButtonDown">
+        <Translation Language="GB">6</Translation>
+      </Text>
+      <Text Id="__SingleUse_9HW9" Alignment="Center" TypographyId="ButtonDown">
+        <Translation Language="GB">3</Translation>
+      </Text>
+      <Text Id="__SingleUse_UW8N" Alignment="Center" TypographyId="ButtonDown">
+        <Translation Language="GB">5</Translation>
+      </Text>
+      <Text Id="__SingleUse_H5N5" Alignment="Center" TypographyId="ButtonDown">
+        <Translation Language="GB">4</Translation>
+      </Text>
+      <Text Id="__SingleUse_Z9DS" Alignment="Center" TypographyId="ButtonDown">
+        <Translation Language="GB">2</Translation>
+      </Text>
+      <Text Id="__SingleUse_KPAO" Alignment="Center" TypographyId="ButtonDown">
+        <Translation Language="GB">1</Translation>
+      </Text>
+      <Text Id="__SingleUse_XPDK" Alignment="Left" TypographyId="Phase">
+        <Translation Language="GB">Phase</Translation>
+      </Text>
+      <Text Id="__SingleUse_SP74" Alignment="Left" TypographyId="Current">
+        <Translation Language="GB">Current</Translation>
+      </Text>
+      <Text Id="__SingleUse_UVF8" Alignment="Left" TypographyId="Voltage">
+        <Translation Language="GB">Voltage</Translation>
+      </Text>
+      <Text Id="__SingleUse_AP1H" Alignment="Left" TypographyId="Phase">
+        <Translation Language="GB">Phase</Translation>
+      </Text>
+      <Text Id="__SingleUse_Y15L" Alignment="Left" TypographyId="Current">
+        <Translation Language="GB">Current</Translation>
+      </Text>
+      <Text Id="__SingleUse_FO9X" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Voltage</Translation>
+      </Text>
+      <Text Id="__SingleUse_Y6WD" Alignment="Left" TypographyId="Label">
+        <Translation Language="GB">Set Value</Translation>
+      </Text>
+      <Text Id="__SingleUse_TQG0" Alignment="Left" TypographyId="Label">
+        <Translation Language="GB">Measure Value</Translation>
       </Text>
     </TextGroup>
   </Texts>
   <Typographies>
-    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WidgetWildcardCharacters="0123456789." />
-    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Default" Font="Asap-Regular.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" WildcardCharacters="-+,." WildcardCharacterRanges="0-9" />
+    <Typography Id="ButtonDown" Font="Asap-Regular.ttf" Size="28" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Label" Font="Asap-Regular.ttf" Size="21" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Typography_00" Font="verdana.ttf" Size="70" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Typography_01" Font="verdana.ttf" Size="36" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Current" Font="verdana.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Phase" Font="verdana.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Voltage" Font="verdana.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Val_meas_xxx" Font="verdana.ttf" Size="30" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>

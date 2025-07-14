@@ -6,286 +6,397 @@
         "Components": [
           {
             "Type": "Box",
-            "Name": "box1",
+            "Name": "BG_Main",
             "Width": 480,
             "Height": 320,
             "Color": {
-              "Red": 3,
-              "Green": 8,
-              "Blue": 23
-            }
-          },
-          {
-            "Type": "SlideMenu",
-            "Name": "slideMenuLeft",
-            "Width": 74,
-            "Height": 272,
-            "FileNameBackground": "left_slide_menu_background.png",
-            "UseButton": true,
-            "FileNameButtonPressed": "left_slide_menu_button.png",
-            "FileNameButtonReleased": "left_slide_menu_button.png",
-            "ButtonX": 50,
-            "ButtonY": 101,
-            "State": "Collapsed",
-            "ExpandDirection": "East",
-            "Easing": "Cubic",
-            "EasingOption": "InOut",
-            "AnimationDuration": 300,
-            "VisiblePixelsWhenCollapsed": 25,
-            "ExpandedStateTimeout": 3000,
-            "Components": [
-              {
-                "Type": "Button",
-                "Name": "button1",
-                "X": -1,
-                "Width": 50,
-                "Height": 50,
-                "Pressed": "fhase.png",
-                "Released": "fhase.png"
-              },
-              {
-                "Type": "Button",
-                "Name": "button2",
-                "X": -1,
-                "Y": 50,
-                "Width": 50,
-                "Height": 50,
-                "Pressed": "freq.png",
-                "Released": "freq.png"
-              },
-              {
-                "Type": "Button",
-                "Name": "button3",
-                "Y": 100,
-                "Width": 50,
-                "Height": 50,
-                "Pressed": "voltage.png",
-                "Released": "voltage.png"
-              },
-              {
-                "Type": "Button",
-                "Name": "button4",
-                "Y": 150,
-                "Width": 50,
-                "Height": 50,
-                "Pressed": "menu_button_pressed_03.png",
-                "Released": "menu_button_03.png"
-              },
-              {
-                "Type": "Button",
-                "Name": "button5",
-                "X": -1,
-                "Y": 200,
-                "Width": 50,
-                "Height": 50,
-                "Pressed": "menu_button_pressed_04.png",
-                "Released": "menu_button_04.png"
-              }
-            ]
-          }
-        ],
-        "Interactions": [
-          {
-            "InteractionName": "Interaction4",
-            "Trigger": {
-              "Type": "TriggerSlideMenuStateChanged",
-              "TriggerComponent": "slideMenuLeft"
-            },
-            "Action": {
-              "Type": "ActionCustom2",
-              "ActionCustomTypeName": "Call Main collapseAllOtherSlideMenu",
-              "ParameterValue": "src",
-              "ActionComponent": "Main"
-            }
-          },
-          {
-            "InteractionName": "Interaction5",
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "button1"
-            },
-            "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionNone",
-              "ActionComponent": "Screen2"
-            }
-          },
-          {
-            "InteractionName": "Interaction6",
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "button2"
-            },
-            "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionNone",
-              "ActionComponent": "Screen2"
-            }
-          },
-          {
-            "InteractionName": "Interaction7",
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "button3"
-            },
-            "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionNone",
-              "ActionComponent": "Screen2"
-            }
-          },
-          {
-            "InteractionName": "Interaction8",
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "button4"
-            },
-            "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionNone",
-              "ActionComponent": "Screen2"
-            }
-          },
-          {
-            "InteractionName": "Interaction9",
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "button5"
-            },
-            "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionNone",
-              "ActionComponent": "Screen2"
-            }
-          }
-        ],
-        "CustomActions": [
-          {
-            "Name": "collapseAllOtherSlideMenu",
-            "HasValue": true,
-            "ValueType": "const touchgfx::SlideMenu&"
-          }
-        ]
-      },
-      {
-        "Name": "Screen2",
-        "CanvasBufferSize": 7200,
-        "Components": [
-          {
-            "Type": "Box",
-            "Name": "box1",
-            "Width": 480,
-            "Height": 320,
-            "Color": {
-              "Red": 207,
-              "Green": 31,
+              "Red": 2,
+              "Green": 11,
               "Blue": 31
             }
           },
           {
-            "Type": "FlexButton",
-            "Name": "flexButton1",
-            "X": 84,
-            "Y": 41,
-            "Width": 50,
-            "Height": 50,
-            "ButtonTrigger": {
-              "Type": "TouchButtonTrigger"
-            },
-            "ButtonStyles": [
-              {
-                "Type": "BoxWithBorderButtonStyle",
-                "Width": 50,
-                "Height": 50,
-                "LockToFlexButtonSize": true,
-                "BorderSize": 5,
-                "ColorReleased": {
-                  "Green": 102,
-                  "Blue": 153
-                },
-                "ColorPressed": {
-                  "Green": 153,
-                  "Blue": 204
-                },
-                "ColorBorderReleased": {
-                  "Green": 51,
-                  "Blue": 102
-                },
-                "ColorBorderPressed": {
-                  "Red": 51,
-                  "Green": 102,
-                  "Blue": 153
-                }
-              }
-            ]
+            "Type": "ToggleButton",
+            "Name": "toggleButton_Run",
+            "X": 365,
+            "Y": 133,
+            "Width": 100,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_togglebutton_large_round_small_off_light.png",
+            "Released": "__generated\\alternate_theme_images_widgets_togglebutton_large_round_small_on_active.png",
+            "Preset": "alternate_theme\\presets\\togglebutton\\large\\small_round_active.json"
           },
           {
-            "Type": "CircleProgress",
-            "Name": "circleProgress1",
-            "X": 34,
-            "Y": 116,
-            "Width": 150,
-            "Height": 150,
+            "Type": "Button",
+            "Name": "button_Volt",
+            "X": 200,
+            "Y": 58,
+            "Width": 144,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_60\\tiny_rounded_disabled.json"
+          },
+          {
+            "Type": "Button",
+            "Name": "button_Curr",
+            "X": 200,
+            "Y": 151,
+            "Width": 144,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_60\\tiny_rounded_disabled.json"
+          },
+          {
+            "Type": "Button",
+            "Name": "button_Phas",
+            "X": 200,
+            "Y": 245,
+            "Width": 144,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_60\\tiny_rounded_disabled.json"
+          },
+          {
+            "Type": "BoxWithBorder",
+            "Name": "boxWithB_MaesVolt",
+            "X": 5,
+            "Y": 58,
+            "Width": 145,
+            "Height": 60,
             "Color": {
-              "Green": 240,
+              "Red": 2,
+              "Green": 11,
+              "Blue": 31
+            },
+            "BorderColor": {
+              "Red": 110,
+              "Green": 236,
               "Blue": 255
             },
-            "CenterX": 75.0,
-            "CenterY": 75.0,
-            "Radius": 65.0,
-            "LineWidth": 20.0,
-            "EndAngle": 360.0,
-            "CapPrecision": "Butt",
-            "Preset": "alternate_theme\\presets\\circleprogress\\active_medium.json",
-            "FileNameBackground": "__generated\\alternate_theme_images_widgets_circleprogress_backgrounds_medium.png",
-            "ProgressRangeMax": 100,
-            "ProgressInitialValue": 60
+            "BorderSize": 5
           },
           {
-            "Type": "TextProgress",
-            "Name": "textProgress1",
-            "X": 218,
-            "Y": 75,
-            "Width": 175,
-            "Height": 50,
-            "TextId": "__SingleUse_KZM8",
+            "Type": "BoxWithBorder",
+            "Name": "boxWithB_MaesCurr",
+            "X": 5,
+            "Y": 151,
+            "Width": 145,
+            "Height": 60,
             "Color": {
-              "Red": 12,
-              "Green": 27,
-              "Blue": 55
+              "Red": 2,
+              "Green": 11,
+              "Blue": 31
             },
-            "Preset": "alternate_theme\\presets\\textprogress\\rounded.json",
-            "FileNameBackground": "__generated\\alternate_theme_images_widgets_textprogress_backgrounds_rounded_light.png",
-            "IndicatorPositionX": 12,
-            "IndicatorPositionY": 10,
-            "IndicatorPositionWidth": 150,
-            "IndicatorPositionHeight": 30,
-            "ProgressRangeMax": 100,
-            "ProgressInitialValue": 60
+            "BorderColor": {
+              "Red": 110,
+              "Green": 236,
+              "Blue": 255
+            },
+            "BorderSize": 5
           },
           {
-            "Type": "LineProgress",
-            "Name": "lineProgress1",
-            "X": 195,
-            "Y": 150,
-            "Width": 265,
-            "Height": 159,
-            "FileNameProgress": "__generated\\alternate_theme_images_widgets_lineprogress_fillers_plain_normal_medium_active_30.png",
+            "Type": "BoxWithBorder",
+            "Name": "boxWithB_MaesPhas",
+            "X": 5,
+            "Y": 245,
+            "Width": 145,
+            "Height": 60,
+            "Color": {
+              "Red": 2,
+              "Green": 11,
+              "Blue": 31
+            },
+            "BorderColor": {
+              "Red": 110,
+              "Green": 236,
+              "Blue": 255
+            },
+            "BorderSize": 5,
+            "Clickable": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "MeasureValue",
+            "X": 10,
+            "Y": 9,
+            "Width": 135,
+            "Height": 21,
+            "TextId": "__SingleUse_TQG0",
+            "TextRotation": "0",
             "Color": {
               "Red": 255,
               "Green": 255,
               "Blue": 255
             },
-            "StartX": 2.0,
-            "StartY": 154.0,
-            "EndY": 4.0,
-            "EndX": 262.0,
-            "LineWidth": 10.0,
-            "LineEndingStyle": "Butt",
-            "Preset": "alternate_theme\\presets\\lineprogress\\images\\plain\\normal\\medium_active_30.json",
-            "FileNameBackground": "__generated\\alternate_theme_images_widgets_lineprogress_backgrounds_image_plain_normal_medium_30.png",
-            "ProgressRangeMax": 100,
-            "ProgressInitialValue": 60
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Meas_Volt_label",
+            "X": 5,
+            "Y": 40,
+            "Width": 51,
+            "Height": 18,
+            "TextId": "__SingleUse_FO9X",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 99
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Meas_Curr_label",
+            "X": 5,
+            "Y": 133,
+            "Width": 57,
+            "Height": 18,
+            "TextId": "__SingleUse_Y15L",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 241,
+              "Green": 138,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Meas_Phas_label",
+            "X": 5,
+            "Y": 227,
+            "Width": 48,
+            "Height": 16,
+            "TextId": "__SingleUse_AP1H",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 128,
+              "Green": 157,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "BoxWithBorder",
+            "Name": "boxWithB_SetVolt",
+            "X": 200,
+            "Y": 58,
+            "Width": 145,
+            "Height": 60,
+            "Color": {
+              "Red": 2,
+              "Green": 11,
+              "Blue": 31
+            },
+            "BorderColor": {
+              "Red": 110,
+              "Green": 236,
+              "Blue": 255
+            },
+            "BorderSize": 5
+          },
+          {
+            "Type": "BoxWithBorder",
+            "Name": "boxWithB_SetCurr",
+            "X": 200,
+            "Y": 151,
+            "Width": 144,
+            "Height": 60,
+            "Color": {
+              "Red": 2,
+              "Green": 11,
+              "Blue": 31
+            },
+            "BorderColor": {
+              "Red": 110,
+              "Green": 236,
+              "Blue": 255
+            },
+            "BorderSize": 5
+          },
+          {
+            "Type": "BoxWithBorder",
+            "Name": "boxWithB_SetPhas",
+            "X": 200,
+            "Y": 245,
+            "Width": 144,
+            "Height": 60,
+            "Color": {
+              "Red": 2,
+              "Green": 11,
+              "Blue": 31
+            },
+            "BorderColor": {
+              "Red": 110,
+              "Green": 236,
+              "Blue": 255
+            },
+            "BorderSize": 5
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Val_Meas_Phas",
+            "X": 41,
+            "Y": 260,
+            "Width": 73,
+            "Height": 30,
+            "TextId": "__SingleUse_WN51",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Val_Meas_Curr",
+            "X": 41,
+            "Y": 166,
+            "Width": 81,
+            "Height": 30,
+            "TextId": "__SingleUse_HNTL",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Val_Meas_Volt",
+            "X": 33,
+            "Y": 73,
+            "Width": 100,
+            "Height": 30,
+            "TextId": "__SingleUse_YVKD",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Val_Set_Volt",
+            "X": 228,
+            "Y": 73,
+            "Width": 100,
+            "Height": 30,
+            "TextId": "__SingleUse_211V",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Val_Set_Curr",
+            "X": 236,
+            "Y": 163,
+            "Width": 63,
+            "Height": 30,
+            "TextId": "__SingleUse_LDGT",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Val_Set_Phas",
+            "X": 236,
+            "Y": 260,
+            "Width": 73,
+            "Height": 30,
+            "TextId": "__SingleUse_VR8I",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "SetValue",
+            "X": 225,
+            "Y": 9,
+            "Width": 84,
+            "Height": 21,
+            "TextId": "__SingleUse_Y6WD",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Set_Volt_label",
+            "X": 200,
+            "Y": 40,
+            "Width": 56,
+            "Height": 18,
+            "TextId": "__SingleUse_UVF8",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 99
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Set_Curr_label",
+            "X": 200,
+            "Y": 133,
+            "Width": 57,
+            "Height": 18,
+            "TextId": "__SingleUse_SP74",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 241,
+              "Green": 138,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Set_Phas_label",
+            "X": 200,
+            "Y": 227,
+            "Width": 48,
+            "Height": 16,
+            "TextId": "__SingleUse_XPDK",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 128,
+              "Green": 157,
+              "Blue": 255
+            },
+            "AutoSize": true
           }
         ],
         "Interactions": [
@@ -293,60 +404,405 @@
             "InteractionName": "Interaction1",
             "Trigger": {
               "Type": "TriggerClicked",
-              "TriggerComponent": "flexButton1"
+              "TriggerComponent": "button_Volt"
             },
             "Action": {
               "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionBlock",
-              "ActionComponent": "Main"
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Keyboard"
+            }
+          },
+          {
+            "InteractionName": "Interaction2",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "button_Curr"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Keyboard"
+            }
+          },
+          {
+            "InteractionName": "Interaction3",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "button_Phas"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Keyboard"
+            }
+          },
+          {
+            "InteractionName": "Interaction4",
+            "Trigger": {
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "Type": "ActionNone"
             }
           }
         ]
       },
       {
-        "Name": "Screen3",
+        "Name": "Keyboard",
         "Components": [
           {
-            "Type": "TextArea",
-            "Name": "textArea1",
-            "X": 102,
-            "Y": 119,
-            "Width": 92,
-            "Height": 20,
-            "TextId": "__SingleUse_9ZIQ",
+            "Type": "Box",
+            "Name": "BG_Keyboard",
+            "Width": 480,
+            "Height": 320,
+            "Color": {
+              "Red": 2,
+              "Green": 11,
+              "Blue": 31
+            }
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "One",
+            "X": 74,
+            "Y": 40,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "TextId": "__SingleUse_KPAO",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
             "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "En",
+            "X": 194,
+            "Y": 221,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_action.png",
+            "TextId": "__SingleUse_Y85E",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_action.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "LeftShift",
+            "X": 74,
+            "Y": 220,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "TextId": "__SingleUse_1CQN",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "Two",
+            "X": 134,
+            "Y": 40,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "TextId": "__SingleUse_Z9DS",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "Five",
+            "X": 134,
+            "Y": 100,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "TextId": "__SingleUse_UW8N",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "Three",
+            "X": 194,
+            "Y": 40,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "TextId": "__SingleUse_9HW9",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "Delete",
+            "X": 134,
+            "Y": 221,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "TextId": "__SingleUse_VNBM",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "Six",
+            "X": 194,
+            "Y": 100,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "TextId": "__SingleUse_PCJK",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "Seven",
+            "X": 74,
+            "Y": 160,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "TextId": "__SingleUse_7L2H",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "Eight",
+            "X": 134,
+            "Y": 160,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "TextId": "__SingleUse_RBEN",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "Nine",
+            "X": 194,
+            "Y": 160,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "TextId": "__SingleUse_2JSJ",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "Four",
+            "X": 74,
+            "Y": 100,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "TextId": "__SingleUse_H5N5",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+          },
+          {
+            "Type": "BoxWithBorder",
+            "Name": "Setting_Value_BG",
+            "X": 301,
+            "Y": 113,
+            "Width": 145,
+            "Height": 60,
+            "Color": {
+              "Red": 12,
+              "Green": 36,
+              "Blue": 51
+            },
+            "BorderColor": {
+              "Red": 110,
+              "Green": 236,
+              "Blue": 255
+            },
+            "BorderSize": 5
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Setting_Value",
+            "X": 329,
+            "Y": 124,
+            "Width": 89,
+            "Height": 36,
+            "TextId": "__SingleUse_648N",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
             "AutoSize": true
           },
           {
             "Type": "TextArea",
-            "Name": "textArea2",
-            "X": 102,
-            "Y": 68,
-            "Width": 92,
-            "Height": 20,
-            "TextId": "__SingleUse_VKCK",
+            "Name": "Setting_Label",
+            "X": 301,
+            "Y": 94,
+            "Width": 48,
+            "Height": 16,
+            "TextId": "__SingleUse_HF3J",
             "TextRotation": "0",
+            "Color": {
+              "Red": 128,
+              "Green": 157,
+              "Blue": 255
+            },
             "AutoSize": true
-          },
-          {
-            "Type": "TextureMapper",
-            "Name": "textureMapper1",
-            "X": 304,
-            "Y": 145,
-            "Width": 152,
-            "Height": 152,
-            "RenderingAlgorithm": "Nearest-neighbor",
-            "FileNameImage": "__generated\\alternate_theme_images_logos_touchgfx_gradient_smooth.png",
-            "LockBitmapToCenter": true,
-            "Scale": 1.0,
-            "LockOrigoToCenter": true,
-            "XOrigo": 76.0,
-            "YOrigo": 76.0,
-            "ZOrigo": 1000.0,
-            "CameraDistance": 1000.0
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "En"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Main"
+            }
+          }
+        ]
       }
     ],
     "CustomContainerDefinitions": [],
