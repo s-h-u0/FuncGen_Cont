@@ -60,29 +60,25 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define DISPL_CS_Pin GPIO_PIN_0
+#define DISPL_CS_GPIO_Port GPIOF
+#define DISPL_RST_Pin GPIO_PIN_1
+#define DISPL_RST_GPIO_Port GPIOF
+#define DISPL_DC_Pin GPIO_PIN_2
+#define DISPL_DC_GPIO_Port GPIOF
 #define TOUCH_MISO_Pin GPIO_PIN_2
 #define TOUCH_MISO_GPIO_Port GPIOC
 #define DISPL_MOSI_Pin GPIO_PIN_3
 #define DISPL_MOSI_GPIO_Port GPIOC
 #define DISPL_LED_Pin GPIO_PIN_0
 #define DISPL_LED_GPIO_Port GPIOA
-#define TOUCH_CS_Pin GPIO_PIN_7
-#define TOUCH_CS_GPIO_Port GPIOA
-#define DISPL_DC_Pin GPIO_PIN_0
-#define DISPL_DC_GPIO_Port GPIOB
-#define DISPL_RST_Pin GPIO_PIN_1
-#define DISPL_RST_GPIO_Port GPIOB
+#define TOUCH_CS_Pin GPIO_PIN_5
+#define TOUCH_CS_GPIO_Port GPIOC
 #define DISPL_SCK_Pin GPIO_PIN_10
 #define DISPL_SCK_GPIO_Port GPIOB
 #define TOUCH_INT_Pin GPIO_PIN_12
 #define TOUCH_INT_GPIO_Port GPIOD
 #define TOUCH_INT_EXTI_IRQn EXTI15_10_IRQn
-#define PG13_Pin GPIO_PIN_13
-#define PG13_GPIO_Port GPIOG
-#define PG14_Pin GPIO_PIN_14
-#define PG14_GPIO_Port GPIOG
-#define DISPL_CS_Pin GPIO_PIN_8
-#define DISPL_CS_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 extern TIM_HandleTypeDef htim4;
