@@ -13,7 +13,7 @@ KeyboardViewBase::KeyboardViewBase() :
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    BG_Keyboard.setPosition(0, 0, 480, 320);
+    BG_Keyboard.setPosition(-1, 0, 480, 320);
     BG_Keyboard.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
     add(BG_Keyboard);
 
@@ -22,28 +22,31 @@ KeyboardViewBase::KeyboardViewBase() :
     One.setLabelText(touchgfx::TypedText(T___SINGLEUSE_KPAO));
     One.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     One.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    One.setAction(buttonCallback);
     add(One);
 
-    En.setXY(194, 221);
-    En.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_ACTION_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
-    En.setLabelText(touchgfx::TypedText(T___SINGLEUSE_Y85E));
-    En.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    En.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    En.setAction(buttonCallback);
-    add(En);
+    Enter.setXY(194, 221);
+    Enter.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_ACTION_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
+    Enter.setLabelText(touchgfx::TypedText(T___SINGLEUSE_Y85E));
+    Enter.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Enter.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Enter.setAction(buttonCallback);
+    add(Enter);
 
-    LeftShift.setXY(74, 220);
-    LeftShift.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
-    LeftShift.setLabelText(touchgfx::TypedText(T___SINGLEUSE_1CQN));
-    LeftShift.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    LeftShift.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    add(LeftShift);
+    Zero.setXY(74, 220);
+    Zero.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
+    Zero.setLabelText(touchgfx::TypedText(T___SINGLEUSE_1CQN));
+    Zero.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Zero.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Zero.setAction(buttonCallback);
+    add(Zero);
 
     Two.setXY(134, 40);
     Two.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
     Two.setLabelText(touchgfx::TypedText(T___SINGLEUSE_Z9DS));
     Two.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Two.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Two.setAction(buttonCallback);
     add(Two);
 
     Five.setXY(134, 100);
@@ -51,6 +54,7 @@ KeyboardViewBase::KeyboardViewBase() :
     Five.setLabelText(touchgfx::TypedText(T___SINGLEUSE_UW8N));
     Five.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Five.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Five.setAction(buttonCallback);
     add(Five);
 
     Three.setXY(194, 40);
@@ -58,6 +62,7 @@ KeyboardViewBase::KeyboardViewBase() :
     Three.setLabelText(touchgfx::TypedText(T___SINGLEUSE_9HW9));
     Three.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Three.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Three.setAction(buttonCallback);
     add(Three);
 
     Delete.setXY(134, 221);
@@ -65,6 +70,7 @@ KeyboardViewBase::KeyboardViewBase() :
     Delete.setLabelText(touchgfx::TypedText(T___SINGLEUSE_VNBM));
     Delete.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Delete.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Delete.setAction(buttonCallback);
     add(Delete);
 
     Six.setXY(194, 100);
@@ -72,6 +78,7 @@ KeyboardViewBase::KeyboardViewBase() :
     Six.setLabelText(touchgfx::TypedText(T___SINGLEUSE_PCJK));
     Six.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Six.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Six.setAction(buttonCallback);
     add(Six);
 
     Seven.setXY(74, 160);
@@ -79,6 +86,7 @@ KeyboardViewBase::KeyboardViewBase() :
     Seven.setLabelText(touchgfx::TypedText(T___SINGLEUSE_7L2H));
     Seven.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Seven.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Seven.setAction(buttonCallback);
     add(Seven);
 
     Eight.setXY(134, 160);
@@ -86,6 +94,7 @@ KeyboardViewBase::KeyboardViewBase() :
     Eight.setLabelText(touchgfx::TypedText(T___SINGLEUSE_RBEN));
     Eight.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Eight.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Eight.setAction(buttonCallback);
     add(Eight);
 
     Nine.setXY(194, 160);
@@ -93,6 +102,7 @@ KeyboardViewBase::KeyboardViewBase() :
     Nine.setLabelText(touchgfx::TypedText(T___SINGLEUSE_2JSJ));
     Nine.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Nine.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Nine.setAction(buttonCallback);
     add(Nine);
 
     Four.setXY(74, 100);
@@ -100,6 +110,7 @@ KeyboardViewBase::KeyboardViewBase() :
     Four.setLabelText(touchgfx::TypedText(T___SINGLEUSE_H5N5));
     Four.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Four.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Four.setAction(buttonCallback);
     add(Four);
 
     Setting_Value_BG.setPosition(301, 113, 145, 60);
@@ -108,10 +119,13 @@ KeyboardViewBase::KeyboardViewBase() :
     Setting_Value_BG.setBorderSize(5);
     add(Setting_Value_BG);
 
-    Setting_Value.setXY(329, 124);
+    Setting_Value.setXY(348, 134);
     Setting_Value.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Setting_Value.setLinespacing(0);
-    Setting_Value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_648N));
+    Setting_ValueBuffer[0] = 0;
+    Setting_Value.setWildcard(Setting_ValueBuffer);
+    Setting_Value.resizeToCurrentText();
+    Setting_Value.setTypedText(touchgfx::TypedText(T_NUMBERTEXT));
     add(Setting_Value);
 
     Setting_Label.setXY(301, 94);
@@ -133,11 +147,88 @@ void KeyboardViewBase::setupScreen()
 
 void KeyboardViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
 {
-    if (&src == &En)
+    if (&src == &Enter)
     {
-        //Interaction1
-        //When En clicked change screen to Main
-        //Go to Main with no screen transition
-        application().gotoMainScreenNoTransition();
+        //Enter_
+        //When Enter clicked call virtual function
+        //Call Enter_
+        Enter_();
+    }
+    if (&src == &One)
+    {
+        //One_
+        //When One clicked call virtual function
+        //Call One_
+        One_();
+    }
+    if (&src == &Zero)
+    {
+        //Zero_
+        //When Zero clicked call virtual function
+        //Call Zero_
+        Zero_();
+    }
+    if (&src == &Two)
+    {
+        //Two_
+        //When Two clicked call virtual function
+        //Call Two_
+        Two_();
+    }
+    if (&src == &Three)
+    {
+        //Three_
+        //When Three clicked call virtual function
+        //Call Three_
+        Three_();
+    }
+    if (&src == &Four)
+    {
+        //Four_
+        //When Four clicked call virtual function
+        //Call Four_
+        Four_();
+    }
+    if (&src == &Five)
+    {
+        //Five_
+        //When Five clicked call virtual function
+        //Call Five_
+        Five_();
+    }
+    if (&src == &Six)
+    {
+        //Six_
+        //When Six clicked call virtual function
+        //Call Six_
+        Six_();
+    }
+    if (&src == &Seven)
+    {
+        //Seven_
+        //When Seven clicked call virtual function
+        //Call Seven_
+        Seven_();
+    }
+    if (&src == &Eight)
+    {
+        //Eight_
+        //When Eight clicked call virtual function
+        //Call Eight_
+        Eight_();
+    }
+    if (&src == &Nine)
+    {
+        //Nine_
+        //When Nine clicked call virtual function
+        //Call Nine_
+        Nine_();
+    }
+    if (&src == &Delete)
+    {
+        //Delete_
+        //When Delete clicked call virtual function
+        //Call Delete_
+        Delete_();
     }
 }

@@ -14,8 +14,12 @@ public:
     }
 
     void tick();
+
+    // Model 側でイベントが発生したと仮定した関数
+    void triggerSomeEvent();
+
 protected:
-    ModelListener* modelListener;
+    ModelListener* modelListener {nullptr};
 };
 
 #endif // MODEL_HPP

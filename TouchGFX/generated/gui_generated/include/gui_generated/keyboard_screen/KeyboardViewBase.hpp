@@ -9,7 +9,9 @@
 #include <gui/keyboard_screen/KeyboardPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/ButtonWithLabel.hpp>
+#include <touchgfx/mixins/ClickListener.hpp>
 #include <touchgfx/widgets/BoxWithBorder.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 
 class KeyboardViewBase : public touchgfx::View<KeyboardPresenter>
@@ -18,6 +20,58 @@ public:
     KeyboardViewBase();
     virtual ~KeyboardViewBase();
     virtual void setupScreen();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void Enter_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void One_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void Zero_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void Two_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void Three_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void Four_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void Five_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void Six_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void Seven_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void Eight_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void Nine_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void Delete_()
+    {
+        // Override and implement this function in Keyboard
+    }
 
 protected:
     FrontendApplication& application() {
@@ -30,8 +84,8 @@ protected:
     touchgfx::Box __background;
     touchgfx::Box BG_Keyboard;
     touchgfx::ButtonWithLabel One;
-    touchgfx::ButtonWithLabel En;
-    touchgfx::ButtonWithLabel LeftShift;
+    touchgfx::ButtonWithLabel Enter;
+    touchgfx::ButtonWithLabel Zero;
     touchgfx::ButtonWithLabel Two;
     touchgfx::ButtonWithLabel Five;
     touchgfx::ButtonWithLabel Three;
@@ -40,10 +94,16 @@ protected:
     touchgfx::ButtonWithLabel Seven;
     touchgfx::ButtonWithLabel Eight;
     touchgfx::ButtonWithLabel Nine;
-    touchgfx::ButtonWithLabel Four;
+    touchgfx::ClickListener< touchgfx::ButtonWithLabel > Four;
     touchgfx::BoxWithBorder Setting_Value_BG;
-    touchgfx::TextArea Setting_Value;
+    touchgfx::TextAreaWithOneWildcard Setting_Value;
     touchgfx::TextArea Setting_Label;
+
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t SETTING_VALUE_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar Setting_ValueBuffer[SETTING_VALUE_SIZE];
 
 private:
 

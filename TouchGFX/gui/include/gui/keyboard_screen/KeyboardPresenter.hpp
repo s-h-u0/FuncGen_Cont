@@ -1,36 +1,33 @@
-#ifndef KEYBOARDPRESENTER_HPP
-#define KEYBOARDPRESENTER_HPP
+#pragma once
 
-#include <gui/model/ModelListener.hpp>
 #include <mvp/Presenter.hpp>
-
-using namespace touchgfx;
+#include <gui/model/ModelListener.hpp>
+#include <cstdint>
 
 class KeyboardView;
 
+/**
+ * @brief 数値入力 Presenter
+ */
 class KeyboardPresenter : public touchgfx::Presenter, public ModelListener
 {
 public:
     KeyboardPresenter(KeyboardView& v);
 
-    /**
-     * The activate function is called automatically when this screen is "switched in"
-     * (ie. made active). Initialization logic can be placed here.
-     */
-    virtual void activate();
+    void activate() override;
+    void deactivate() override;
 
-    /**
-     * The deactivate function is called automatically when this screen is "switched out"
-     * (ie. made inactive). Teardown functionality can be placed here.
-     */
-    virtual void deactivate();
+    void onDigit(uint8_t d);
+    void onDelete();
+    void onEnter();
+    void reset();
 
-    virtual ~KeyboardPresenter() {}
+    uint32_t getCurrentValue() const;
+
+    // ModelListener から継承した仮想関数
+    void onSomeEvent() override;
 
 private:
-    KeyboardPresenter();
-
     KeyboardView& view;
+    uint32_t currentValue {0};
 };
-
-#endif // KEYBOARDPRESENTER_HPP

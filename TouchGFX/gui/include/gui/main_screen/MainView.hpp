@@ -1,17 +1,22 @@
-#ifndef MAINVIEW_HPP
-#define MAINVIEW_HPP
-
+#pragma once
 #include <gui_generated/main_screen/MainViewBase.hpp>
-#include <gui/main_screen/MainPresenter.hpp>
 
+class MainPresenter;
+
+/**
+ * @brief  メイン画面 View
+ */
 class MainView : public MainViewBase
 {
 public:
     MainView();
-    virtual ~MainView() {}
-    virtual void setupScreen();
-    virtual void tearDownScreen();
-protected:
-};
 
-#endif // MAINVIEW_HPP
+    void setupScreen()    override;
+    void tearDownScreen() override;
+    void Run()            override;   // トグルボタン押下で呼ばれる
+
+    void bindPresenter(MainPresenter* p) { presenter = p; }
+
+private:
+    MainPresenter* presenter {nullptr};
+};

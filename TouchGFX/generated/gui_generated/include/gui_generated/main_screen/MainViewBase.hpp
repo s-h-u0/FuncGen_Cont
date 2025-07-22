@@ -41,7 +41,6 @@ protected:
     touchgfx::Box BG_Main;
     touchgfx::ToggleButton toggleButton_Run;
     touchgfx::Button button_Volt;
-    touchgfx::Button button_Curr;
     touchgfx::Button button_Phas;
     touchgfx::BoxWithBorder boxWithB_MaesVolt;
     touchgfx::BoxWithBorder boxWithB_MaesCurr;
@@ -51,17 +50,14 @@ protected:
     touchgfx::TextArea Meas_Curr_label;
     touchgfx::TextArea Meas_Phas_label;
     touchgfx::BoxWithBorder boxWithB_SetVolt;
-    touchgfx::BoxWithBorder boxWithB_SetCurr;
     touchgfx::BoxWithBorder boxWithB_SetPhas;
     touchgfx::TextArea Val_Meas_Phas;
     touchgfx::TextArea Val_Meas_Curr;
     touchgfx::TextArea Val_Meas_Volt;
     touchgfx::TextArea Val_Set_Volt;
-    touchgfx::TextArea Val_Set_Curr;
     touchgfx::TextArea Val_Set_Phas;
     touchgfx::TextArea SetValue;
     touchgfx::TextArea Set_Volt_label;
-    touchgfx::TextArea Set_Curr_label;
     touchgfx::TextArea Set_Phas_label;
 
 private:

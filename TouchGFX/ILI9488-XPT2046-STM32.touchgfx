@@ -39,17 +39,6 @@
           },
           {
             "Type": "Button",
-            "Name": "button_Curr",
-            "X": 200,
-            "Y": 151,
-            "Width": 144,
-            "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png",
-            "Preset": "alternate_theme\\presets\\button\\regular\\height_60\\tiny_rounded_disabled.json"
-          },
-          {
-            "Type": "Button",
             "Name": "button_Phas",
             "X": 200,
             "Y": 245,
@@ -202,25 +191,6 @@
           },
           {
             "Type": "BoxWithBorder",
-            "Name": "boxWithB_SetCurr",
-            "X": 200,
-            "Y": 151,
-            "Width": 144,
-            "Height": 60,
-            "Color": {
-              "Red": 2,
-              "Green": 11,
-              "Blue": 31
-            },
-            "BorderColor": {
-              "Red": 110,
-              "Green": 236,
-              "Blue": 255
-            },
-            "BorderSize": 5
-          },
-          {
-            "Type": "BoxWithBorder",
             "Name": "boxWithB_SetPhas",
             "X": 200,
             "Y": 245,
@@ -304,22 +274,6 @@
           },
           {
             "Type": "TextArea",
-            "Name": "Val_Set_Curr",
-            "X": 236,
-            "Y": 163,
-            "Width": 63,
-            "Height": 36,
-            "TextId": "__SingleUse_LDGT",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true
-          },
-          {
-            "Type": "TextArea",
             "Name": "Val_Set_Phas",
             "X": 236,
             "Y": 260,
@@ -368,22 +322,6 @@
           },
           {
             "Type": "TextArea",
-            "Name": "Set_Curr_label",
-            "X": 200,
-            "Y": 133,
-            "Width": 57,
-            "Height": 18,
-            "TextId": "__SingleUse_SP74",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 241,
-              "Green": 138,
-              "Blue": 255
-            },
-            "AutoSize": true
-          },
-          {
-            "Type": "TextArea",
             "Name": "Set_Phas_label",
             "X": 200,
             "Y": 227,
@@ -405,18 +343,6 @@
             "Trigger": {
               "Type": "TriggerClicked",
               "TriggerComponent": "button_Volt"
-            },
-            "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionNone",
-              "ActionComponent": "Keyboard"
-            }
-          },
-          {
-            "InteractionName": "ConfigInputKeyBoardCurr",
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "button_Curr"
             },
             "Action": {
               "Type": "ActionGotoScreen",
@@ -464,6 +390,7 @@
           {
             "Type": "Box",
             "Name": "BG_Keyboard",
+            "X": -1,
             "Width": 480,
             "Height": 320,
             "Color": {
@@ -497,7 +424,7 @@
           },
           {
             "Type": "ButtonWithLabel",
-            "Name": "En",
+            "Name": "Enter",
             "X": 194,
             "Y": 221,
             "Width": 60,
@@ -520,7 +447,7 @@
           },
           {
             "Type": "ButtonWithLabel",
-            "Name": "LeftShift",
+            "Name": "Zero",
             "X": 74,
             "Y": 220,
             "Width": 60,
@@ -746,7 +673,8 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json",
+            "Clickable": true
           },
           {
             "Type": "BoxWithBorder",
@@ -770,18 +698,22 @@
           {
             "Type": "TextArea",
             "Name": "Setting_Value",
-            "X": 329,
-            "Y": 124,
-            "Width": 89,
-            "Height": 36,
-            "TextId": "__SingleUse_648N",
+            "X": 348,
+            "Y": 134,
+            "Width": 15,
+            "Height": 21,
+            "TextId": "NUMBERTEXT",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
               "Green": 255,
               "Blue": 255
             },
-            "AutoSize": true
+            "AutoSize": true,
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
           },
           {
             "Type": "TextArea",
@@ -802,15 +734,135 @@
         ],
         "Interactions": [
           {
-            "InteractionName": "Interaction1",
+            "InteractionName": "Enter_",
             "Trigger": {
               "Type": "TriggerClicked",
-              "TriggerComponent": "En"
+              "TriggerComponent": "Enter"
             },
             "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionNone",
-              "ActionComponent": "Main"
+              "Type": "ActionCustom",
+              "FunctionName": "Enter_"
+            }
+          },
+          {
+            "InteractionName": "One_",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "One"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "One_"
+            }
+          },
+          {
+            "InteractionName": "Zero_",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "Zero"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "Zero_"
+            }
+          },
+          {
+            "InteractionName": "Two_",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "Two"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "Two_"
+            }
+          },
+          {
+            "InteractionName": "Three_",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "Three"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "Three_"
+            }
+          },
+          {
+            "InteractionName": "Four_",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "Four"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "Four_"
+            }
+          },
+          {
+            "InteractionName": "Five_",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "Five"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "Five_"
+            }
+          },
+          {
+            "InteractionName": "Six_",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "Six"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "Six_"
+            }
+          },
+          {
+            "InteractionName": "Seven_",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "Seven"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "Seven_"
+            }
+          },
+          {
+            "InteractionName": "Eight_",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "Eight"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "Eight_"
+            }
+          },
+          {
+            "InteractionName": "Nine_",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "Nine"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "Nine_"
+            }
+          },
+          {
+            "InteractionName": "Delete_",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "Delete"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "Delete_"
             }
           }
         ]

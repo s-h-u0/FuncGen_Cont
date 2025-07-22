@@ -5,7 +5,7 @@
   </Languages>
   <Texts>
     <TextGroup Id="Group1">
-      <Text Id="numberText" Alignment="Center" TypographyId="Typography_00">
+      <Text Id="NUMBERTEXT" Alignment="Center" TypographyId="Typography_00">
         <Translation Language="GB">&lt;number&gt;</Translation>
       </Text>
       <Text Id="toggleButtonWhite" Alignment="Center" TypographyId="ButtonDown">
@@ -16,8 +16,8 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_LDGT" Alignment="Left" TypographyId="Val_meas_xxx">
-        <Translation Language="GB">XXX</Translation>
+      <Text Id="ResourceId1" Alignment="Left" TypographyId="Label">
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="__SingleUse_VR8I" Alignment="Left" TypographyId="Val_meas_xxx">
         <Translation Language="GB">180°</Translation>
@@ -45,9 +45,6 @@
       </Text>
       <Text Id="__SingleUse_Y85E" Alignment="Center" TypographyId="ButtonDown">
         <Translation Language="GB">En</Translation>
-      </Text>
-      <Text Id="__SingleUse_648N" Alignment="Center" TypographyId="Typography_01">
-        <Translation Language="GB">180°</Translation>
       </Text>
       <Text Id="__SingleUse_2JSJ" Alignment="Center" TypographyId="ButtonDown">
         <Translation Language="GB">9</Translation>
@@ -78,9 +75,6 @@
       </Text>
       <Text Id="__SingleUse_XPDK" Alignment="Left" TypographyId="Phase">
         <Translation Language="GB">Phase</Translation>
-      </Text>
-      <Text Id="__SingleUse_SP74" Alignment="Left" TypographyId="Current">
-        <Translation Language="GB">Current</Translation>
       </Text>
       <Text Id="__SingleUse_UVF8" Alignment="Left" TypographyId="Voltage">
         <Translation Language="GB">Voltage</Translation>

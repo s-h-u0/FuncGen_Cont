@@ -64,6 +64,7 @@ TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o: \
  ../TouchGFX/generated/gui_generated/include/gui_generated/keyboard_screen/KeyboardViewBase.hpp \
  ../TouchGFX/gui/include/gui/keyboard_screen/KeyboardPresenter.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ButtonWithLabel.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp \
  ../TouchGFX/generated/texts/include/texts/TextKeysAndLanguages.hpp \
  ../Middlewares/ST/touchgfx/framework/include/platform/driver/lcd/LCD16bpp.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/lcd/LCD16DebugPrinter.hpp
@@ -131,6 +132,7 @@ TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o: \
 ../TouchGFX/generated/gui_generated/include/gui_generated/keyboard_screen/KeyboardViewBase.hpp:
 ../TouchGFX/gui/include/gui/keyboard_screen/KeyboardPresenter.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ButtonWithLabel.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:
 ../TouchGFX/generated/texts/include/texts/TextKeysAndLanguages.hpp:
 ../Middlewares/ST/touchgfx/framework/include/platform/driver/lcd/LCD16bpp.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/lcd/LCD16DebugPrinter.hpp:

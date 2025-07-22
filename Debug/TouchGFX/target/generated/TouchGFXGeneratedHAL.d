@@ -66,6 +66,7 @@ TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
  ../TouchGFX/generated/gui_generated/include/gui_generated/keyboard_screen/KeyboardViewBase.hpp \
  ../TouchGFX/gui/include/gui/keyboard_screen/KeyboardPresenter.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ButtonWithLabel.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintImpl.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Paint.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintRGB565Impl.hpp \
@@ -165,6 +166,7 @@ TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
 ../TouchGFX/generated/gui_generated/include/gui_generated/keyboard_screen/KeyboardViewBase.hpp:
 ../TouchGFX/gui/include/gui/keyboard_screen/KeyboardPresenter.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ButtonWithLabel.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintImpl.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Paint.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintRGB565Impl.hpp:

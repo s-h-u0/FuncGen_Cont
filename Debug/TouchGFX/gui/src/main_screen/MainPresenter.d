@@ -1,5 +1,8 @@
 TouchGFX/gui/src/main_screen/MainPresenter.o: \
  ../TouchGFX/gui/src/main_screen/MainPresenter.cpp \
+ ../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp \
+ ../TouchGFX/gui/include/gui/model/ModelListener.hpp \
  ../TouchGFX/gui/include/gui/main_screen/MainView.hpp \
  ../TouchGFX/generated/gui_generated/include/gui_generated/main_screen/MainViewBase.hpp \
  ../TouchGFX/gui/include/gui/common/FrontendApplication.hpp \
@@ -9,7 +12,6 @@ TouchGFX/gui/src/main_screen/MainPresenter.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Types.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Config.hpp \
  ../Middlewares/ST/touchgfx/framework/include/mvp/MVPHeap.hpp \
- ../Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/Application.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/Bitmap.hpp \
@@ -44,8 +46,6 @@ TouchGFX/gui/src/main_screen/MainPresenter.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp \
  ../TouchGFX/gui/include/gui/model/Model.hpp \
  ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp \
- ../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp \
- ../TouchGFX/gui/include/gui/model/ModelListener.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ToggleButton.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Button.hpp \
@@ -55,6 +55,9 @@ TouchGFX/gui/src/main_screen/MainPresenter.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp
+../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:
+../Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp:
+../TouchGFX/gui/include/gui/model/ModelListener.hpp:
 ../TouchGFX/gui/include/gui/main_screen/MainView.hpp:
 ../TouchGFX/generated/gui_generated/include/gui_generated/main_screen/MainViewBase.hpp:
 ../TouchGFX/gui/include/gui/common/FrontendApplication.hpp:
@@ -64,7 +67,6 @@ TouchGFX/gui/src/main_screen/MainPresenter.o: \
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Types.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Config.hpp:
 ../Middlewares/ST/touchgfx/framework/include/mvp/MVPHeap.hpp:
-../Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Application.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Bitmap.hpp:
@@ -99,8 +101,6 @@ TouchGFX/gui/src/main_screen/MainPresenter.o: \
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp:
 ../TouchGFX/gui/include/gui/model/Model.hpp:
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:
-../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:
-../TouchGFX/gui/include/gui/model/ModelListener.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ToggleButton.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Button.hpp:

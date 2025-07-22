@@ -1,36 +1,25 @@
-#ifndef MAINPRESENTER_HPP
-#define MAINPRESENTER_HPP
-
+#pragma once
+#include <mvp/Presenter.hpp>            // ← ここを修正
 #include <gui/model/ModelListener.hpp>
-#include <mvp/Presenter.hpp>
-
-using namespace touchgfx;
+#include <cstdint>
 
 class MainView;
 
+/**
+ * @brief  測定値／設定値の仲介を行う Presenter
+ */
 class MainPresenter : public touchgfx::Presenter, public ModelListener
 {
 public:
-    MainPresenter(MainView& v);
+    explicit MainPresenter(MainView& v);
 
-    /**
-     * The activate function is called automatically when this screen is "switched in"
-     * (ie. made active). Initialization logic can be placed here.
-     */
-    virtual void activate();
+    void activate()   override;
+    void deactivate() override;
 
-    /**
-     * The deactivate function is called automatically when this screen is "switched out"
-     * (ie. made inactive). Teardown functionality can be placed here.
-     */
-    virtual void deactivate();
-
-    virtual ~MainPresenter() {}
+    void setDesiredValue(uint32_t v);
+    uint32_t getDesiredValue() const;
 
 private:
-    MainPresenter();
-
     MainView& view;
+    uint32_t  desiredValue {0};
 };
-
-#endif // MAINPRESENTER_HPP
