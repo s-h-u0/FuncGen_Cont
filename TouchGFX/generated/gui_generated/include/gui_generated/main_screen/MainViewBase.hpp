@@ -21,6 +21,14 @@ public:
     virtual ~MainViewBase();
     virtual void setupScreen();
 
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void Run()
+    {
+        // Override and implement this function in Main
+    }
+
 protected:
     FrontendApplication& application() {
         return *static_cast<FrontendApplication*>(touchgfx::Application::getInstance());

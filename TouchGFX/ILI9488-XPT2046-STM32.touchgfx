@@ -122,8 +122,8 @@
             "Name": "MeasureValue",
             "X": 10,
             "Y": 9,
-            "Width": 135,
-            "Height": 21,
+            "Width": 138,
+            "Height": 24,
             "TextId": "__SingleUse_TQG0",
             "TextRotation": "0",
             "Color": {
@@ -139,7 +139,7 @@
             "X": 5,
             "Y": 40,
             "Width": 51,
-            "Height": 18,
+            "Height": 17,
             "TextId": "__SingleUse_FO9X",
             "TextRotation": "0",
             "Color": {
@@ -171,7 +171,7 @@
             "X": 5,
             "Y": 227,
             "Width": 48,
-            "Height": 16,
+            "Height": 19,
             "TextId": "__SingleUse_AP1H",
             "TextRotation": "0",
             "Color": {
@@ -244,7 +244,7 @@
             "X": 41,
             "Y": 260,
             "Width": 73,
-            "Height": 30,
+            "Height": 36,
             "TextId": "__SingleUse_WN51",
             "TextRotation": "0",
             "Color": {
@@ -260,7 +260,7 @@
             "X": 41,
             "Y": 166,
             "Width": 81,
-            "Height": 30,
+            "Height": 36,
             "TextId": "__SingleUse_HNTL",
             "TextRotation": "0",
             "Color": {
@@ -276,7 +276,7 @@
             "X": 33,
             "Y": 73,
             "Width": 100,
-            "Height": 30,
+            "Height": 36,
             "TextId": "__SingleUse_YVKD",
             "TextRotation": "0",
             "Color": {
@@ -292,7 +292,7 @@
             "X": 228,
             "Y": 73,
             "Width": 100,
-            "Height": 30,
+            "Height": 36,
             "TextId": "__SingleUse_211V",
             "TextRotation": "0",
             "Color": {
@@ -308,7 +308,7 @@
             "X": 236,
             "Y": 163,
             "Width": 63,
-            "Height": 30,
+            "Height": 36,
             "TextId": "__SingleUse_LDGT",
             "TextRotation": "0",
             "Color": {
@@ -324,7 +324,7 @@
             "X": 236,
             "Y": 260,
             "Width": 73,
-            "Height": 30,
+            "Height": 36,
             "TextId": "__SingleUse_VR8I",
             "TextRotation": "0",
             "Color": {
@@ -339,8 +339,8 @@
             "Name": "SetValue",
             "X": 225,
             "Y": 9,
-            "Width": 84,
-            "Height": 21,
+            "Width": 87,
+            "Height": 24,
             "TextId": "__SingleUse_Y6WD",
             "TextRotation": "0",
             "Color": {
@@ -388,7 +388,7 @@
             "X": 200,
             "Y": 227,
             "Width": 48,
-            "Height": 16,
+            "Height": 19,
             "TextId": "__SingleUse_XPDK",
             "TextRotation": "0",
             "Color": {
@@ -401,7 +401,7 @@
         ],
         "Interactions": [
           {
-            "InteractionName": "Interaction1",
+            "InteractionName": "ConfigInputKeyBoard",
             "Trigger": {
               "Type": "TriggerClicked",
               "TriggerComponent": "button_Volt"
@@ -413,7 +413,7 @@
             }
           },
           {
-            "InteractionName": "Interaction2",
+            "InteractionName": "ConfigInputKeyBoardCurr",
             "Trigger": {
               "Type": "TriggerClicked",
               "TriggerComponent": "button_Curr"
@@ -425,7 +425,7 @@
             }
           },
           {
-            "InteractionName": "Interaction3",
+            "InteractionName": "ConfigInputKeyBoardPhase",
             "Trigger": {
               "Type": "TriggerClicked",
               "TriggerComponent": "button_Phas"
@@ -443,6 +443,17 @@
             },
             "Action": {
               "Type": "ActionNone"
+            }
+          },
+          {
+            "InteractionName": "Run",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "toggleButton_Run"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "Run"
             }
           }
         ]

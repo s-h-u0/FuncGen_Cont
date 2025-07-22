@@ -22,6 +22,13 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "dpot_AD5292.h"
+#include "dds_AD9833.h"
+#include "dipsw_221AMA16R.h"
+#include "mux_sn74lvc1g3157.h"
+
+
+
 
 /* USER CODE END Includes */
 
@@ -43,7 +50,9 @@
 /* Private variables ---------------------------------------------------------*/
 CRC_HandleTypeDef hcrc;
 
+SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi2;
+SPI_HandleTypeDef hspi3;
 DMA_HandleTypeDef hdma_spi2_tx;
 
 TIM_HandleTypeDef htim2;
@@ -54,12 +63,15 @@ TIM_HandleTypeDef htim3;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+void PeriphCommonClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_SPI2_Init(void);
 static void MX_CRC_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_SPI1_Init(void);
+static void MX_SPI3_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -92,6 +104,9 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
 
+  /* Configure the peripherals common clocks */
+  PeriphCommonClock_Config();
+
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
@@ -103,13 +118,35 @@ int main(void)
   MX_CRC_Init();
   MX_TIM3_Init();
   MX_TIM2_Init();
+  MX_SPI1_Init();
+  MX_SPI3_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
+  CLK_MuxInit();     /* PB6 を出力 Low に設定           */
+  AD9833_Init(&hspi1);
+  AD5292_Init(&hspi3, AD5292_CS_GPIO_Port, AD5292_CS_Pin, AD5292_RDY_GPIO_Port, AD5292_RDY_Pin);
   Displ_Init(Displ_Orientat_180);			// initialize display controller - set orientation parameter as per TouchGFX setup
   touchgfxSignalVSync();					// ask display syncronization
   Displ_BackLight('I');  					// initialize backlight
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 100);
+
+
+  /*識別子に応じてDDSへ供給するMCLKを外部クロックか、内部クロックかを選択*/
+  uint8_t dip = DIP221_Read();      /* 識別子0x0〜0xF を取得 */
+  if (dip == 0x0 || dip == 0xE)     /* 0(Master) もしくは E(Independent) ? */
+      CLK_MuxSet(Ext_CLK_ToDDS ); 	/*　MasterもしくはIndependentなら内部クロックを使用 → PB6 High  */
+  else
+	  CLK_MuxSet(Int_CLK_ToDDS ); 	/*　それ以外(スレーブ)なら外部クロックを使用 → PB6 Low   */
+
+  HAL_Delay(10);
+
+  AD9833_Set(50, AD9833_TRIANGLE, 0); //AD9833_Set(周波数,波形,位相)
+
+  HAL_Delay(10);
+
+  AD5292_Set(1500); 				//AD5292_Set(抵抗値）　　この場合1kΩ
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -174,6 +211,24 @@ void SystemClock_Config(void)
 }
 
 /**
+  * @brief Peripherals Common Clock Configuration
+  * @retval None
+  */
+void PeriphCommonClock_Config(void)
+{
+  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+
+  /** Initializes the peripherals clock
+  */
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_TIM;
+  PeriphClkInitStruct.TIMPresSelection = RCC_TIMPRES_ACTIVATED;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/**
   * @brief CRC Initialization Function
   * @param None
   * @retval None
@@ -196,6 +251,44 @@ static void MX_CRC_Init(void)
   /* USER CODE BEGIN CRC_Init 2 */
 
   /* USER CODE END CRC_Init 2 */
+
+}
+
+/**
+  * @brief SPI1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI1_Init(void)
+{
+
+  /* USER CODE BEGIN SPI1_Init 0 */
+
+  /* USER CODE END SPI1_Init 0 */
+
+  /* USER CODE BEGIN SPI1_Init 1 */
+
+  /* USER CODE END SPI1_Init 1 */
+  /* SPI1 parameter configuration*/
+  hspi1.Instance = SPI1;
+  hspi1.Init.Mode = SPI_MODE_MASTER;
+  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi1.Init.DataSize = SPI_DATASIZE_16BIT;
+  hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
+  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi1.Init.NSS = SPI_NSS_HARD_OUTPUT;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
+  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi1.Init.CRCPolynomial = 10;
+  if (HAL_SPI_Init(&hspi1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI1_Init 2 */
+
+  /* USER CODE END SPI1_Init 2 */
 
 }
 
@@ -234,6 +327,44 @@ static void MX_SPI2_Init(void)
   /* USER CODE BEGIN SPI2_Init 2 */
 
   /* USER CODE END SPI2_Init 2 */
+
+}
+
+/**
+  * @brief SPI3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI3_Init(void)
+{
+
+  /* USER CODE BEGIN SPI3_Init 0 */
+
+  /* USER CODE END SPI3_Init 0 */
+
+  /* USER CODE BEGIN SPI3_Init 1 */
+
+  /* USER CODE END SPI3_Init 1 */
+  /* SPI3 parameter configuration*/
+  hspi3.Instance = SPI3;
+  hspi3.Init.Mode = SPI_MODE_MASTER;
+  hspi3.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi3.Init.DataSize = SPI_DATASIZE_16BIT;
+  hspi3.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi3.Init.CLKPhase = SPI_PHASE_2EDGE;
+  hspi3.Init.NSS = SPI_NSS_SOFT;
+  hspi3.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_128;
+  hspi3.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi3.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi3.Init.CRCPolynomial = 10;
+  if (HAL_SPI_Init(&hspi3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI3_Init 2 */
+
+  /* USER CODE END SPI3_Init 2 */
 
 }
 
@@ -361,7 +492,6 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOF_CLK_ENABLE();
-  __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
@@ -375,6 +505,12 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(TOUCH_CS_GPIO_Port, TOUCH_CS_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(AD5292_CS_GPIO_Port, AD5292_CS_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(CLK_MUX_PIN_S_GPIO_Port, CLK_MUX_PIN_S_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pins : DISPL_CS_Pin DISPL_DC_Pin */
   GPIO_InitStruct.Pin = DISPL_CS_Pin|DISPL_DC_Pin;
@@ -402,6 +538,32 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(TOUCH_INT_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : AD5292_CS_Pin */
+  GPIO_InitStruct.Pin = AD5292_CS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(AD5292_CS_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : AD5292_RDY_Pin */
+  GPIO_InitStruct.Pin = AD5292_RDY_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(AD5292_RDY_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : DIP_BIT_1_Pin DIP_BIT_2_Pin DIP_BIT_4_Pin DIP_BIT_8_Pin */
+  GPIO_InitStruct.Pin = DIP_BIT_1_Pin|DIP_BIT_2_Pin|DIP_BIT_4_Pin|DIP_BIT_8_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : CLK_MUX_PIN_S_Pin */
+  GPIO_InitStruct.Pin = CLK_MUX_PIN_S_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(CLK_MUX_PIN_S_GPIO_Port, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);

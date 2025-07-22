@@ -19,6 +19,7 @@ MainViewBase::MainViewBase() :
 
     toggleButton_Run.setXY(365, 133);
     toggleButton_Run.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_LARGE_ROUND_SMALL_ON_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_LARGE_ROUND_SMALL_OFF_LIGHT_ID));
+    toggleButton_Run.setAction(buttonCallback);
     add(toggleButton_Run);
 
     button_Volt.setXY(200, 58);
@@ -171,23 +172,30 @@ void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
 {
     if (&src == &button_Volt)
     {
-        //Interaction1
+        //ConfigInputKeyBoard
         //When button_Volt clicked change screen to Keyboard
         //Go to Keyboard with no screen transition
         application().gotoKeyboardScreenNoTransition();
     }
     if (&src == &button_Curr)
     {
-        //Interaction2
+        //ConfigInputKeyBoardCurr
         //When button_Curr clicked change screen to Keyboard
         //Go to Keyboard with no screen transition
         application().gotoKeyboardScreenNoTransition();
     }
     if (&src == &button_Phas)
     {
-        //Interaction3
+        //ConfigInputKeyBoardPhase
         //When button_Phas clicked change screen to Keyboard
         //Go to Keyboard with no screen transition
         application().gotoKeyboardScreenNoTransition();
+    }
+    if (&src == &toggleButton_Run)
+    {
+        //Run
+        //When toggleButton_Run clicked call virtual function
+        //Call Run
+        Run();
     }
 }
