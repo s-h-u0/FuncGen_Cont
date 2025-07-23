@@ -1,22 +1,18 @@
 #pragma once
-#include <gui_generated/main_screen/MainViewBase.hpp>
-
+// MainPresenter を先に宣言しておく（テンプレート依存の解決）
 class MainPresenter;
 
-/**
- * @brief  メイン画面 View
- */
+#include <gui_generated/main_screen/MainViewBase.hpp>
+#include <touchgfx/Unicode.hpp>
+
 class MainView : public MainViewBase
 {
 public:
-    MainView();
-
+	MainView();
     void setupScreen()    override;
     void tearDownScreen() override;
-    void Run()            override;   // トグルボタン押下で呼ばれる
+    void Run()            override;
 
-    void bindPresenter(MainPresenter* p) { presenter = p; }
-
-private:
-    MainPresenter* presenter {nullptr};
+    /* Presenter から数値を描画 */
+    void updateSetVolt(uint32_t v);
 };

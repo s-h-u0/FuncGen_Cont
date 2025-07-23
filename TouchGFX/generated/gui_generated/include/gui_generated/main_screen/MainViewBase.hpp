@@ -61,6 +61,12 @@ protected:
     touchgfx::TextArea Set_Volt_label;
     touchgfx::TextArea Set_Phas_label;
 
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t VAL_SET_VOLT_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar Val_Set_VoltBuffer[VAL_SET_VOLT_SIZE];
+
 private:
 
     /*

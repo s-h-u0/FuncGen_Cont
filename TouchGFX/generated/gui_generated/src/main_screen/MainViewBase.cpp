@@ -104,9 +104,11 @@ MainViewBase::MainViewBase() :
     Val_Meas_Volt.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YVKD));
     add(Val_Meas_Volt);
 
-    Val_Set_Volt.setXY(228, 73);
+    Val_Set_Volt.setPosition(213, 73, 123, 36);
     Val_Set_Volt.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Set_Volt.setLinespacing(0);
+    Val_Set_VoltBuffer[0] = 0;
+    Val_Set_Volt.setWildcard(Val_Set_VoltBuffer);
     Val_Set_Volt.setTypedText(touchgfx::TypedText(T___SINGLEUSE_211V));
     add(Val_Set_Volt);
 

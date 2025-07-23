@@ -7,11 +7,10 @@
 ../TouchGFX/gui/include/gui/model/ModelListener.hpp:10:13:ModelListener::~ModelListener()	1
 ../TouchGFX/gui/include/gui/model/ModelListener.hpp:10:13:virtual ModelListener::~ModelListener()	1
 ../TouchGFX/gui/include/gui/model/ModelListener.hpp:15:18:virtual void ModelListener::onSomeEvent()	1
-../TouchGFX/gui/include/gui/main_screen/MainView.hpp:18:10:void MainView::bindPresenter(MainPresenter*)	1
 ../TouchGFX/gui/src/main_screen/MainPresenter.cpp:4:1:MainPresenter::MainPresenter(MainView&)	1
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:10:6:virtual void MainPresenter::activate()	1
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:6:6:virtual void MainPresenter::activate()	1
 ../TouchGFX/gui/src/main_screen/MainPresenter.cpp:11:6:virtual void MainPresenter::deactivate()	1
 ../TouchGFX/gui/src/main_screen/MainPresenter.cpp:13:6:void MainPresenter::setDesiredValue(uint32_t)	1
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:14:10:uint32_t MainPresenter::getDesiredValue() const	1
-../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:11:7:MainPresenter::~MainPresenter()	1
-../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:11:7:virtual MainPresenter::~MainPresenter()	1
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:19:10:uint32_t MainPresenter::getDesiredValue() const	1
+../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:10:7:MainPresenter::~MainPresenter()	1
+../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:10:7:virtual MainPresenter::~MainPresenter()	1

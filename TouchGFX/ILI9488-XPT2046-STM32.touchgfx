@@ -127,8 +127,8 @@
             "Name": "Meas_Volt_label",
             "X": 5,
             "Y": 40,
-            "Width": 51,
-            "Height": 17,
+            "Width": 110,
+            "Height": 37,
             "TextId": "__SingleUse_FO9X",
             "TextRotation": "0",
             "Color": {
@@ -259,9 +259,9 @@
           {
             "Type": "TextArea",
             "Name": "Val_Set_Volt",
-            "X": 228,
+            "X": 213,
             "Y": 73,
-            "Width": 21,
+            "Width": 123,
             "Height": 36,
             "TextId": "__SingleUse_211V",
             "TextRotation": "0",
@@ -270,8 +270,10 @@
               "Green": 255,
               "Blue": 255
             },
-            "AutoSize": true,
-            "Wildcard1": {}
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
           },
           {
             "Type": "TextArea",

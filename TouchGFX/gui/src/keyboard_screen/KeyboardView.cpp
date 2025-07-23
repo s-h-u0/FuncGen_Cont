@@ -1,6 +1,7 @@
 #include <gui/keyboard_screen/KeyboardView.hpp>
 #include <touchgfx/Unicode.hpp>
 #include <mvp/Presenter.hpp>
+#include <gui/common/FrontendApplication.hpp>
 
 KeyboardView::KeyboardView() : KeyboardViewBase() {}
 
@@ -34,6 +35,11 @@ void KeyboardView::updateDisplay()
         static_cast<unsigned>(v)
     );
     Setting_Value.invalidate();             // Wildcard テキスト再描画
+}
+
+void KeyboardView::gotoMainScreen()
+{
+    application().gotoMainScreenNoTransition();
 }
 
 // 数字キー

@@ -1,25 +1,26 @@
 #pragma once
-#include <mvp/Presenter.hpp>            // ← ここを修正
+#include <mvp/Presenter.hpp>
 #include <gui/model/ModelListener.hpp>
 #include <cstdint>
 
+// ---------- 前方宣言 ----------
 class MainView;
 
-/**
- * @brief  測定値／設定値の仲介を行う Presenter
- */
-class MainPresenter : public touchgfx::Presenter, public ModelListener
+//--------------------------------
+class MainPresenter : public touchgfx::Presenter,
+                      public ModelListener
 {
 public:
-    explicit MainPresenter(MainView& v);
+    explicit MainPresenter(MainView& v);   // ★ 引数は View のみ
 
     void activate()   override;
     void deactivate() override;
 
-    void setDesiredValue(uint32_t v);
-    uint32_t getDesiredValue() const;
+    /* ModelListener からも呼べる汎用 API */
+    void      setDesiredValue(uint32_t v);
+    uint32_t  getDesiredValue() const;
 
 private:
     MainView& view;
-    uint32_t  desiredValue {0};
+    uint32_t  desiredValue{0};
 };

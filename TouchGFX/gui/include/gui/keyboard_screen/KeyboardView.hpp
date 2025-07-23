@@ -1,42 +1,32 @@
 #pragma once
+class KeyboardPresenter;   // 前方宣言
+
 #include <gui_generated/keyboard_screen/KeyboardViewBase.hpp>
 
-class KeyboardPresenter;
-
-/**
- * Keyboard 画面の View。
- * ボタン押下 → Presenter → View.updateDisplay() でテキストを書き換える。
- */
 class KeyboardView : public KeyboardViewBase
 {
 public:
-    KeyboardView();
-    virtual ~KeyboardView() {}
+	KeyboardView();
+    void setupScreen()    override;
+    void tearDownScreen() override;
 
-    // 画面ライフサイクル
-    virtual void setupScreen()    override;
-    virtual void tearDownScreen() override;
-
-    // ボタン・コールバック
-    virtual void One_()    override;
-    virtual void Two_()    override;
-    virtual void Three_()  override;
-    virtual void Four_()   override;
-    virtual void Five_()   override;
-    virtual void Six_()    override;
-    virtual void Seven_()  override;
-    virtual void Eight_()  override;
-    virtual void Nine_()   override;
-    virtual void Zero_()   override;
-    virtual void Delete_() override;
-    virtual void Enter_()  override;
-
-    // Presenter→View: 数値を表示に反映
+    /* キーボード表示更新用 */
     void updateDisplay();
 
-    // Presenter バインド用
-    void bindPresenter(KeyboardPresenter* p) { presenter = p; }
+    /* Presenter から呼ぶ画面遷移ラッパ */
+    void gotoMainScreen();
 
-private:
-    KeyboardPresenter* presenter {nullptr};
+    /* 個別ボタンコールバック（Base に virtual 定義あり）*/
+    void One_()    override;
+    void Two_()    override;
+    void Three_()  override;
+    void Four_()   override;
+    void Five_()   override;
+    void Six_()    override;
+    void Seven_()  override;
+    void Eight_()  override;
+    void Nine_()   override;
+    void Zero_()   override;
+    void Delete_() override;
+    void Enter_()  override;
 };

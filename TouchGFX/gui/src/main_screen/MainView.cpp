@@ -23,6 +23,17 @@ void MainView::tearDownScreen()
     MainViewBase::tearDownScreen();
 }
 
+
+void MainView::updateSetVolt(uint32_t value)
+{
+    constexpr size_t BUF_SIZE = 11;
+    static touchgfx::Unicode::UnicodeChar buf[BUF_SIZE];
+
+    Unicode::snprintf(buf, BUF_SIZE, "%u", static_cast<unsigned>(value));
+    Val_Set_Volt.setWildcard(buf);
+    Val_Set_Volt.invalidate();
+}
+
 void MainView::Run()
 {
     // 今回は常に 500Ω をセット
