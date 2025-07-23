@@ -383,7 +383,6 @@
           {
             "Type": "Box",
             "Name": "BG_Keyboard",
-            "X": -1,
             "Width": 480,
             "Height": 320,
             "Color": {
@@ -691,10 +690,10 @@
           {
             "Type": "TextArea",
             "Name": "Setting_Value",
-            "X": 220,
-            "Y": 113,
-            "Width": 301,
-            "Height": 71,
+            "X": 301,
+            "Y": 122,
+            "Width": 145,
+            "Height": 43,
             "TextId": "__SingleUse_U4D1",
             "TextRotation": "0",
             "Color": {
@@ -702,7 +701,6 @@
               "Green": 255,
               "Blue": 255
             },
-            "AutoSize": true,
             "Wildcard1": {
               "UseBuffer": true,
               "BufferSize": 10

@@ -13,7 +13,7 @@ KeyboardViewBase::KeyboardViewBase() :
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    BG_Keyboard.setPosition(-1, 0, 480, 320);
+    BG_Keyboard.setPosition(0, 0, 480, 320);
     BG_Keyboard.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
     add(BG_Keyboard);
 
@@ -119,12 +119,11 @@ KeyboardViewBase::KeyboardViewBase() :
     Setting_Value_BG.setBorderSize(5);
     add(Setting_Value_BG);
 
-    Setting_Value.setXY(220, 113);
+    Setting_Value.setPosition(301, 122, 145, 43);
     Setting_Value.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Setting_Value.setLinespacing(0);
     Setting_ValueBuffer[0] = 0;
     Setting_Value.setWildcard(Setting_ValueBuffer);
-    Setting_Value.resizeToCurrentText();
     Setting_Value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_U4D1));
     add(Setting_Value);
 

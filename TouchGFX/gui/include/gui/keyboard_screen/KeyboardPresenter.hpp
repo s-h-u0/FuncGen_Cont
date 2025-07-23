@@ -1,5 +1,4 @@
 #pragma once
-
 #include <mvp/Presenter.hpp>
 #include <gui/model/ModelListener.hpp>
 #include <cstdint>
@@ -7,27 +6,31 @@
 class KeyboardView;
 
 /**
- * @brief 数値入力 Presenter
+ * Keyboard 画面の Presenter。
+ * 直接 touchgfx::Presenter を継承し、モデルが不要なら ModelListener は省略。
  */
-class KeyboardPresenter : public touchgfx::Presenter, public ModelListener
+class KeyboardPresenter : public touchgfx::Presenter,
+                          public ModelListener
 {
 public:
-    KeyboardPresenter(KeyboardView& v);
+    explicit KeyboardPresenter(KeyboardView& v);
+    virtual ~KeyboardPresenter() {}
 
-    void activate() override;
-    void deactivate() override;
+    // 画面表示／非表示
+    virtual void activate()   override {}
+    virtual void deactivate() override {}
 
+    // 数字キー、Delete、Enter
     void onDigit(uint8_t d);
     void onDelete();
     void onEnter();
-    void reset();
 
-    uint32_t getCurrentValue() const;
-
-    // ModelListener から継承した仮想関数
-    void onSomeEvent() override;
+    // 値の取得／クリア
+    uint32_t getCurrentValue() const { return currentValue; }
+    void     reset();
 
 private:
     KeyboardView& view;
-    uint32_t currentValue {0};
+    uint32_t      currentValue {0};
+    static constexpr uint32_t MAX_INPUT = 99'999'999;
 };
