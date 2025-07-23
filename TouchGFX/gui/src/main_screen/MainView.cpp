@@ -25,7 +25,7 @@ void MainView::tearDownScreen()
 
 void MainView::Run()
 {
-    uint32_t v = presenter ? presenter->getDesiredValue() : 0;
-    v = std::min<uint32_t>(v, AD5292_FULL_SCALE_OHMS);
-    AD5292_Set(v);
+    // 今回は常に 500Ω をセット
+    constexpr uint32_t defaultOhms = 500;
+    AD5292_Set(defaultOhms);
 }

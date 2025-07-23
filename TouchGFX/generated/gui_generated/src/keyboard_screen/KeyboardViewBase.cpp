@@ -119,13 +119,13 @@ KeyboardViewBase::KeyboardViewBase() :
     Setting_Value_BG.setBorderSize(5);
     add(Setting_Value_BG);
 
-    Setting_Value.setXY(348, 134);
+    Setting_Value.setXY(220, 113);
     Setting_Value.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Setting_Value.setLinespacing(0);
     Setting_ValueBuffer[0] = 0;
     Setting_Value.setWildcard(Setting_ValueBuffer);
     Setting_Value.resizeToCurrentText();
-    Setting_Value.setTypedText(touchgfx::TypedText(T_NUMBERTEXT));
+    Setting_Value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_U4D1));
     add(Setting_Value);
 
     Setting_Label.setXY(301, 94);

@@ -12,7 +12,6 @@
 #include <touchgfx/mixins/ClickListener.hpp>
 #include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
-#include <touchgfx/widgets/TextArea.hpp>
 
 class KeyboardViewBase : public touchgfx::View<KeyboardPresenter>
 {
@@ -97,7 +96,7 @@ protected:
     touchgfx::ClickListener< touchgfx::ButtonWithLabel > Four;
     touchgfx::BoxWithBorder Setting_Value_BG;
     touchgfx::TextAreaWithOneWildcard Setting_Value;
-    touchgfx::TextArea Setting_Label;
+    touchgfx::TextAreaWithOneWildcard Setting_Label;
 
     /*
      * Wildcard Buffers

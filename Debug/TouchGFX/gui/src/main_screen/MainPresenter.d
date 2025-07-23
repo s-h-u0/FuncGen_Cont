@@ -54,7 +54,8 @@ TouchGFX/gui/src/main_screen/MainPresenter.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/mixins/ClickListener.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp
 ../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:
 ../Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp:
 ../TouchGFX/gui/include/gui/model/ModelListener.hpp:
@@ -110,3 +111,4 @@ TouchGFX/gui/src/main_screen/MainPresenter.o: \
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:

@@ -13,6 +13,7 @@
 #include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <touchgfx/mixins/ClickListener.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
 class MainViewBase : public touchgfx::View<MainPresenter>
 {
@@ -54,8 +55,8 @@ protected:
     touchgfx::TextArea Val_Meas_Phas;
     touchgfx::TextArea Val_Meas_Curr;
     touchgfx::TextArea Val_Meas_Volt;
-    touchgfx::TextArea Val_Set_Volt;
-    touchgfx::TextArea Val_Set_Phas;
+    touchgfx::TextAreaWithOneWildcard Val_Set_Volt;
+    touchgfx::TextAreaWithOneWildcard Val_Set_Phas;
     touchgfx::TextArea SetValue;
     touchgfx::TextArea Set_Volt_label;
     touchgfx::TextArea Set_Phas_label;

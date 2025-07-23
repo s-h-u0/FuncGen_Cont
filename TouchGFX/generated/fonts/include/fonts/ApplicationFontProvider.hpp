@@ -29,13 +29,13 @@ struct TypographyFontIndex
     static const touchgfx::FontId DEFAULT = 0;       // Asap_Regular_15_4bpp
     static const touchgfx::FontId BUTTONDOWN = 1;    // Asap_Regular_28_4bpp
     static const touchgfx::FontId LABEL = 2;         // Asap_Regular_21_4bpp
-    static const touchgfx::FontId TYPOGRAPHY_00 = 3; // verdana_70_4bpp
+    static const touchgfx::FontId TYPOGRAPHY_00 = 3; // verdana_30_4bpp
     static const touchgfx::FontId TYPOGRAPHY_01 = 4; // verdana_36_4bpp
     static const touchgfx::FontId CURRENT = 5;       // verdana_15_4bpp
     static const touchgfx::FontId PHASE = 6;         // verdana_16_4bpp
     static const touchgfx::FontId VOLTAGE = 5;       // verdana_15_4bpp
-    static const touchgfx::FontId VAL_MEAS_XXX = 7;  // verdana_30_4bpp
-    static const uint16_t NUMBER_OF_FONTS = 8;
+    static const touchgfx::FontId VAL_MEAS_XXX = 3;  // verdana_30_4bpp
+    static const uint16_t NUMBER_OF_FONTS = 7;
 };
 
 class ApplicationFontProvider : public touchgfx::FontProvider

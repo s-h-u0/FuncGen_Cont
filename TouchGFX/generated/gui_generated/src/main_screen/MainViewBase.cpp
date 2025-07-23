@@ -149,14 +149,14 @@ void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
 {
     if (&src == &button_Volt)
     {
-        //ConfigInputKeyBoard
+        //InputDataVolt
         //When button_Volt clicked change screen to Keyboard
         //Go to Keyboard with no screen transition
         application().gotoKeyboardScreenNoTransition();
     }
     if (&src == &button_Phas)
     {
-        //ConfigInputKeyBoardPhase
+        //InputPhaseVolt
         //When button_Phas clicked change screen to Keyboard
         //Go to Keyboard with no screen transition
         application().gotoKeyboardScreenNoTransition();

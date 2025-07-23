@@ -261,7 +261,7 @@
             "Name": "Val_Set_Volt",
             "X": 228,
             "Y": 73,
-            "Width": 100,
+            "Width": 21,
             "Height": 36,
             "TextId": "__SingleUse_211V",
             "TextRotation": "0",
@@ -270,14 +270,15 @@
               "Green": 255,
               "Blue": 255
             },
-            "AutoSize": true
+            "AutoSize": true,
+            "Wildcard1": {}
           },
           {
             "Type": "TextArea",
             "Name": "Val_Set_Phas",
             "X": 236,
             "Y": 260,
-            "Width": 73,
+            "Width": 16,
             "Height": 36,
             "TextId": "__SingleUse_VR8I",
             "TextRotation": "0",
@@ -286,7 +287,8 @@
               "Green": 255,
               "Blue": 255
             },
-            "AutoSize": true
+            "AutoSize": true,
+            "Wildcard1": {}
           },
           {
             "Type": "TextArea",
@@ -339,7 +341,7 @@
         ],
         "Interactions": [
           {
-            "InteractionName": "ConfigInputKeyBoard",
+            "InteractionName": "InputDataVolt",
             "Trigger": {
               "Type": "TriggerClicked",
               "TriggerComponent": "button_Volt"
@@ -351,7 +353,7 @@
             }
           },
           {
-            "InteractionName": "ConfigInputKeyBoardPhase",
+            "InteractionName": "InputPhaseVolt",
             "Trigger": {
               "Type": "TriggerClicked",
               "TriggerComponent": "button_Phas"
@@ -360,15 +362,6 @@
               "Type": "ActionGotoScreen",
               "ScreenTransitionType": "ScreenTransitionNone",
               "ActionComponent": "Keyboard"
-            }
-          },
-          {
-            "InteractionName": "Interaction4",
-            "Trigger": {
-              "Type": "TriggerClicked"
-            },
-            "Action": {
-              "Type": "ActionNone"
             }
           },
           {
@@ -698,11 +691,11 @@
           {
             "Type": "TextArea",
             "Name": "Setting_Value",
-            "X": 348,
-            "Y": 134,
-            "Width": 15,
-            "Height": 21,
-            "TextId": "NUMBERTEXT",
+            "X": 220,
+            "Y": 113,
+            "Width": 301,
+            "Height": 71,
+            "TextId": "__SingleUse_U4D1",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
@@ -720,7 +713,7 @@
             "Name": "Setting_Label",
             "X": 301,
             "Y": 94,
-            "Width": 48,
+            "Width": 69,
             "Height": 16,
             "TextId": "__SingleUse_HF3J",
             "TextRotation": "0",
@@ -729,7 +722,8 @@
               "Green": 157,
               "Blue": 255
             },
-            "AutoSize": true
+            "AutoSize": true,
+            "Wildcard1": {}
           }
         ],
         "Interactions": [
