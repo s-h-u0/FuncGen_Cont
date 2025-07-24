@@ -141,11 +141,11 @@ int main(void)
 
   HAL_Delay(10);
 
-  AD9833_Set(50, AD9833_TRIANGLE, 0); //AD9833_Set(周波数,波形,位相)
+  AD9833_Set(50, AD9833_SINE, 0); //AD9833_Set(周波数,波形,位相)
 
   HAL_Delay(10);
 
-  AD5292_Set(1500); 				//AD5292_Set(抵抗値）　　この場合1kΩ
+  AD5292_Set(0x07FF); 				//AD5292_Set(抵抗値）　　この場合1kΩ
 
   /* USER CODE END 2 */
 

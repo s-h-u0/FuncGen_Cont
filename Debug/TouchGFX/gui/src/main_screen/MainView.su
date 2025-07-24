@@ -8,6 +8,6 @@
 ../TouchGFX/gui/src/main_screen/MainView.cpp:10:6:virtual void MainView::setupScreen()	16	static
 ../TouchGFX/gui/src/main_screen/MainView.cpp:18:6:virtual void MainView::tearDownScreen()	16	static
 ../TouchGFX/gui/src/main_screen/MainView.cpp:27:6:void MainView::updateSetVolt(uint32_t)	24	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:37:6:virtual void MainView::Run()	24	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:38:6:virtual void MainView::Run()	24	static
 ../TouchGFX/gui/include/gui/main_screen/MainView.hpp:8:7:MainView::~MainView()	16	static
 ../TouchGFX/gui/include/gui/main_screen/MainView.hpp:8:7:virtual MainView::~MainView()	16	static

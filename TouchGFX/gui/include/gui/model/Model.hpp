@@ -24,9 +24,8 @@ public:
     void triggerSomeEvent();
 
 private:
-    uint32_t desiredValue{0};
-
-
+    // ▼ 追加：ユーザーが入力した値（例：AD5292 用抵抗値）
+    uint32_t desiredValue = 0;
 
 protected:
     ModelListener* modelListener {nullptr};

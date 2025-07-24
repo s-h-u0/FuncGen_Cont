@@ -49,12 +49,12 @@ protected:
     touchgfx::TextArea MeasureValue;
     touchgfx::TextArea Meas_Volt_label;
     touchgfx::TextArea Meas_Curr_label;
-    touchgfx::TextArea Meas_Phas_label;
+    touchgfx::TextAreaWithOneWildcard Meas_Phas_label;
     touchgfx::BoxWithBorder boxWithB_SetVolt;
     touchgfx::BoxWithBorder boxWithB_SetPhas;
-    touchgfx::TextArea Val_Meas_Phas;
-    touchgfx::TextArea Val_Meas_Curr;
-    touchgfx::TextArea Val_Meas_Volt;
+    touchgfx::TextAreaWithOneWildcard Val_Meas_Phas;
+    touchgfx::TextAreaWithOneWildcard Val_Meas_Curr;
+    touchgfx::TextAreaWithOneWildcard Val_Meas_Volt;
     touchgfx::TextAreaWithOneWildcard Val_Set_Volt;
     touchgfx::TextAreaWithOneWildcard Val_Set_Phas;
     touchgfx::TextArea SetValue;
@@ -64,8 +64,16 @@ protected:
     /*
      * Wildcard Buffers
      */
+    static const uint16_t VAL_MEAS_PHAS_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar Val_Meas_PhasBuffer[VAL_MEAS_PHAS_SIZE];
+    static const uint16_t VAL_MEAS_CURR_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar Val_Meas_CurrBuffer[VAL_MEAS_CURR_SIZE];
+    static const uint16_t VAL_MEAS_VOLT_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar Val_Meas_VoltBuffer[VAL_MEAS_VOLT_SIZE];
     static const uint16_t VAL_SET_VOLT_SIZE = 10;
     touchgfx::Unicode::UnicodeChar Val_Set_VoltBuffer[VAL_SET_VOLT_SIZE];
+    static const uint16_t VAL_SET_PHAS_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar Val_Set_PhasBuffer[VAL_SET_PHAS_SIZE];
 
 private:
 

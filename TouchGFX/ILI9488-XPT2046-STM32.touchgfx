@@ -18,13 +18,13 @@
           {
             "Type": "ToggleButton",
             "Name": "toggleButton_Run",
-            "X": 365,
-            "Y": 133,
-            "Width": 100,
+            "X": 294,
+            "Y": 151,
+            "Width": 170,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_togglebutton_large_round_small_off_light.png",
-            "Released": "__generated\\alternate_theme_images_widgets_togglebutton_large_round_small_on_active.png",
-            "Preset": "alternate_theme\\presets\\togglebutton\\large\\small_round_active.json"
+            "Pressed": "__generated\\alternate_theme_images_widgets_togglebutton_large_rounded_text_off_normal.png",
+            "Released": "__generated\\alternate_theme_images_widgets_togglebutton_large_rounded_text_on_action.png",
+            "Preset": "alternate_theme\\presets\\togglebutton\\large\\rounded_action_text.json"
           },
           {
             "Type": "Button",
@@ -112,7 +112,7 @@
             "X": 10,
             "Y": 9,
             "Width": 138,
-            "Height": 24,
+            "Height": 21,
             "TextId": "__SingleUse_TQG0",
             "TextRotation": "0",
             "Color": {
@@ -127,8 +127,8 @@
             "Name": "Meas_Volt_label",
             "X": 5,
             "Y": 40,
-            "Width": 110,
-            "Height": 37,
+            "Width": 56,
+            "Height": 18,
             "TextId": "__SingleUse_FO9X",
             "TextRotation": "0",
             "Color": {
@@ -160,7 +160,7 @@
             "X": 5,
             "Y": 227,
             "Width": 48,
-            "Height": 19,
+            "Height": 16,
             "TextId": "__SingleUse_AP1H",
             "TextRotation": "0",
             "Color": {
@@ -168,7 +168,8 @@
               "Green": 157,
               "Blue": 255
             },
-            "AutoSize": true
+            "AutoSize": true,
+            "Wildcard1": {}
           },
           {
             "Type": "BoxWithBorder",
@@ -213,7 +214,7 @@
             "Name": "Val_Meas_Phas",
             "X": 41,
             "Y": 260,
-            "Width": 73,
+            "Width": 11,
             "Height": 36,
             "TextId": "__SingleUse_WN51",
             "TextRotation": "0",
@@ -222,14 +223,18 @@
               "Green": 255,
               "Blue": 255
             },
-            "AutoSize": true
+            "AutoSize": true,
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
           },
           {
             "Type": "TextArea",
             "Name": "Val_Meas_Curr",
             "X": 41,
             "Y": 166,
-            "Width": 81,
+            "Width": 20,
             "Height": 36,
             "TextId": "__SingleUse_HNTL",
             "TextRotation": "0",
@@ -238,14 +243,18 @@
               "Green": 255,
               "Blue": 255
             },
-            "AutoSize": true
+            "AutoSize": true,
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
           },
           {
             "Type": "TextArea",
             "Name": "Val_Meas_Volt",
             "X": 33,
             "Y": 73,
-            "Width": 100,
+            "Width": 20,
             "Height": 36,
             "TextId": "__SingleUse_YVKD",
             "TextRotation": "0",
@@ -254,7 +263,11 @@
               "Green": 255,
               "Blue": 255
             },
-            "AutoSize": true
+            "AutoSize": true,
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
           },
           {
             "Type": "TextArea",
@@ -280,8 +293,8 @@
             "Name": "Val_Set_Phas",
             "X": 236,
             "Y": 260,
-            "Width": 16,
-            "Height": 36,
+            "Width": 10,
+            "Height": 30,
             "TextId": "__SingleUse_VR8I",
             "TextRotation": "0",
             "Color": {
@@ -290,7 +303,10 @@
               "Blue": 255
             },
             "AutoSize": true,
-            "Wildcard1": {}
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
           },
           {
             "Type": "TextArea",
@@ -298,7 +314,7 @@
             "X": 225,
             "Y": 9,
             "Width": 87,
-            "Height": 24,
+            "Height": 21,
             "TextId": "__SingleUse_Y6WD",
             "TextRotation": "0",
             "Color": {
@@ -330,7 +346,7 @@
             "X": 200,
             "Y": 227,
             "Width": 48,
-            "Height": 19,
+            "Height": 16,
             "TextId": "__SingleUse_XPDK",
             "TextRotation": "0",
             "Color": {

@@ -34,8 +34,8 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
         // verdana_15_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[5]);
     case Typography::VAL_MEAS_XXX:
-        // verdana_30_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[7]);
+        // Asap_Regular_30_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[3]);
     default:
         return 0;
     }

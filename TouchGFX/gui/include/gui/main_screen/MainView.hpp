@@ -15,4 +15,7 @@ public:
 
     /* Presenter から数値を描画 */
     void updateSetVolt(uint32_t v);
+
+private:
+    uint32_t toggleCounter = 0;
 };

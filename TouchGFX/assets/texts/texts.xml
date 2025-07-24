@@ -25,17 +25,17 @@
       <Text Id="__SingleUse_VR8I" Alignment="Center" TypographyId="Val_meas_xxx">
         <Translation Language="GB">&lt;value&gt;°</Translation>
       </Text>
-      <Text Id="__SingleUse_211V" Alignment="Center" TypographyId="Val_meas_xxx">
+      <Text Id="__SingleUse_211V" Alignment="Center" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt;V</Translation>
       </Text>
-      <Text Id="__SingleUse_YVKD" Alignment="Left" TypographyId="Val_meas_xxx">
-        <Translation Language="GB">41.8 V</Translation>
+      <Text Id="__SingleUse_YVKD" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;V</Translation>
       </Text>
-      <Text Id="__SingleUse_HNTL" Alignment="Left" TypographyId="Val_meas_xxx">
-        <Translation Language="GB">3.0 A</Translation>
+      <Text Id="__SingleUse_HNTL" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;A</Translation>
       </Text>
-      <Text Id="__SingleUse_WN51" Alignment="Left" TypographyId="Val_meas_xxx">
-        <Translation Language="GB">180°</Translation>
+      <Text Id="__SingleUse_WN51" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;°</Translation>
       </Text>
       <Text Id="__SingleUse_VNBM" Alignment="Center" TypographyId="ButtonDown">
         <Translation Language="GB">Del</Translation>
@@ -83,12 +83,12 @@
         <Translation Language="GB">Voltage</Translation>
       </Text>
       <Text Id="__SingleUse_AP1H" Alignment="Left" TypographyId="Phase">
-        <Translation Language="GB">Phase</Translation>
+        <Translation Language="GB">Phase&lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_Y15L" Alignment="Left" TypographyId="Current">
         <Translation Language="GB">Current</Translation>
       </Text>
-      <Text Id="__SingleUse_FO9X" Alignment="Left" TypographyId="Default">
+      <Text Id="__SingleUse_FO9X" Alignment="Left" TypographyId="Voltage">
         <Translation Language="GB">Voltage</Translation>
       </Text>
       <Text Id="__SingleUse_Y6WD" Alignment="Left" TypographyId="Label">
@@ -108,6 +108,6 @@
     <Typography Id="Current" Font="verdana.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Phase" Font="verdana.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Voltage" Font="verdana.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Val_meas_xxx" Font="verdana.ttf" Size="30" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Val_meas_xxx" Font="Asap-Regular.ttf" Size="30" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>

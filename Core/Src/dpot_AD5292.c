@@ -56,29 +56,31 @@ void AD5292_Init(SPI_HandleTypeDef *hspi,
 
 
 /* 抵抗値 → ワイパ・コード (0x0400–0x07FF) へ変換 */
+
+/*
 static uint16_t OhmsToCode(uint32_t ohms)
 {
     if (ohms > AD5292_FULL_SCALE_OHMS)      ohms = AD5292_FULL_SCALE_OHMS;
-    /* 0Ω でも 0x0400 が下限になる点に注意 */
+    /* 0Ω でも 0x0400 が下限になる点に注意
     uint32_t steps = (ohms * 1023UL + AD5292_FULL_SCALE_OHMS / 2) / AD5292_FULL_SCALE_OHMS; // 四捨五入
     return (uint16_t)(AD5292_MIN + steps);      // 0x0400 + 0～1023
 }
+*/
 
 
-HAL_StatusTypeDef AD5292_Set(uint32_t ohms)
+HAL_StatusTypeDef AD5292_Set(uint32_t ad5292_wiper )
 {
-    /* --- 抵抗値→コード変換 --- */
-    uint16_t wiper_val = OhmsToCode(ohms);
-    ad5292_wiper = wiper_val;          //キャッシュ更新
+
+              //キャッシュ更新
 
     /* --- 4 フレーム送信　--- */
     HAL_StatusTypeDef st;
 
     CS_Low(); st = SPI_TxWord(CMD_WRITE);  CS_High(); if (st) return st;
     HAL_Delay(1);
-    CS_Low(); st = SPI_TxWord(wiper_val);  CS_High(); if (st) return st; // 同じwiper_valを2回送信
+    CS_Low(); st = SPI_TxWord(ad5292_wiper);  CS_High(); if (st) return st; // 同じwiper_valを2回送信
     HAL_Delay(1);
-    CS_Low(); st = SPI_TxWord(wiper_val);  CS_High(); if (st) return st;
+    CS_Low(); st = SPI_TxWord(ad5292_wiper);  CS_High(); if (st) return st;
     HAL_Delay(1);
     CS_Low(); st = SPI_TxWord(CMD_WRITE_CLR); CS_High(); if (st) return st;
 

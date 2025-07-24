@@ -95,10 +95,10 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:357:8:touchgfx::Callback<MainViewBase, const touchgfx::AbstractButton&>::~Callback()	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:357:8:virtual touchgfx::Callback<MainViewBase, const touchgfx::AbstractButton&>::~Callback()	16	static
 ../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:9:1:MainViewBase::MainViewBase()	552	static
-../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:140:1:MainViewBase::~MainViewBase()	16	static
-../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:140:1:virtual MainViewBase::~MainViewBase()	16	static
-../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:145:6:virtual void MainViewBase::setupScreen()	16	static
-../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:150:6:void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton&)	16	static
+../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:152:1:MainViewBase::~MainViewBase()	16	static
+../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:152:1:virtual MainViewBase::~MainViewBase()	16	static
+../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:157:6:virtual void MainViewBase::setupScreen()	16	static
+../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp:162:6:void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton&)	16	static
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:39:5:touchgfx::View<T>::View() [with T = MainPresenter]	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/mixins/ClickListener.hpp:37:5:touchgfx::ClickListener<T>::ClickListener() [with T = touchgfx::BoxWithBorder]	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:134:7:constexpr touchgfx::GenericCallback<const touchgfx::AbstractButton&>::GenericCallback()	16	static

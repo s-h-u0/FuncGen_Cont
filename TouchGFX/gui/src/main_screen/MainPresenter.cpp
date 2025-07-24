@@ -5,7 +5,10 @@ MainPresenter::MainPresenter(MainView& v) : view(v) {}
 
 void MainPresenter::activate()
 {
-    view.updateSetVolt(desiredValue);
+    if (model) {
+        desiredValue = model->getDesiredValue();  // Model から取得
+    }
+    view.updateSetVolt(desiredValue);             // View 表示更新
 }
 
 void MainPresenter::deactivate() {}

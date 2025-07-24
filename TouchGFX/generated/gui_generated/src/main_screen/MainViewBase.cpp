@@ -17,8 +17,8 @@ MainViewBase::MainViewBase() :
     BG_Main.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
     add(BG_Main);
 
-    toggleButton_Run.setXY(365, 133);
-    toggleButton_Run.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_LARGE_ROUND_SMALL_ON_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_LARGE_ROUND_SMALL_OFF_LIGHT_ID));
+    toggleButton_Run.setXY(294, 151);
+    toggleButton_Run.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_LARGE_ROUNDED_TEXT_ON_ACTION_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_LARGE_ROUNDED_TEXT_OFF_NORMAL_ID));
     toggleButton_Run.setAction(buttonCallback);
     add(toggleButton_Run);
 
@@ -89,18 +89,27 @@ MainViewBase::MainViewBase() :
     Val_Meas_Phas.setXY(41, 260);
     Val_Meas_Phas.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Meas_Phas.setLinespacing(0);
+    Val_Meas_PhasBuffer[0] = 0;
+    Val_Meas_Phas.setWildcard(Val_Meas_PhasBuffer);
+    Val_Meas_Phas.resizeToCurrentText();
     Val_Meas_Phas.setTypedText(touchgfx::TypedText(T___SINGLEUSE_WN51));
     add(Val_Meas_Phas);
 
     Val_Meas_Curr.setXY(41, 166);
     Val_Meas_Curr.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Meas_Curr.setLinespacing(0);
+    Val_Meas_CurrBuffer[0] = 0;
+    Val_Meas_Curr.setWildcard(Val_Meas_CurrBuffer);
+    Val_Meas_Curr.resizeToCurrentText();
     Val_Meas_Curr.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HNTL));
     add(Val_Meas_Curr);
 
     Val_Meas_Volt.setXY(33, 73);
     Val_Meas_Volt.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Meas_Volt.setLinespacing(0);
+    Val_Meas_VoltBuffer[0] = 0;
+    Val_Meas_Volt.setWildcard(Val_Meas_VoltBuffer);
+    Val_Meas_Volt.resizeToCurrentText();
     Val_Meas_Volt.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YVKD));
     add(Val_Meas_Volt);
 
@@ -115,6 +124,9 @@ MainViewBase::MainViewBase() :
     Val_Set_Phas.setXY(236, 260);
     Val_Set_Phas.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Set_Phas.setLinespacing(0);
+    Val_Set_PhasBuffer[0] = 0;
+    Val_Set_Phas.setWildcard(Val_Set_PhasBuffer);
+    Val_Set_Phas.resizeToCurrentText();
     Val_Set_Phas.setTypedText(touchgfx::TypedText(T___SINGLEUSE_VR8I));
     add(Val_Set_Phas);
 

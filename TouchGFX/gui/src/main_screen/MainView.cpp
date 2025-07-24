@@ -34,9 +34,15 @@ void MainView::updateSetVolt(uint32_t value)
     Val_Set_Volt.invalidate();
 }
 
+// MainView.cpp
 void MainView::Run()
 {
-    // 今回は常に 500Ω をセット
-    constexpr uint32_t defaultOhms = 500;
-    AD5292_Set(defaultOhms);
+    // カウンタを1増やす
+    toggleCounter++;
+
+    // 奇数回目は 0Ω、偶数回目は 1000Ω を設定
+    uint32_t ohms = (toggleCounter % 2 == 1) ? 0x400 : 0x07FF ;
+
+    AD5292_Set(ohms);
 }
+
