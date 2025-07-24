@@ -7,10 +7,14 @@
 ../TouchGFX/gui/include/gui/model/ModelListener.hpp:10:13:ModelListener::~ModelListener()	16	static
 ../TouchGFX/gui/include/gui/model/ModelListener.hpp:10:13:virtual ModelListener::~ModelListener()	16	static
 ../TouchGFX/gui/include/gui/model/ModelListener.hpp:15:18:virtual void ModelListener::onSomeEvent()	16	static
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:4:1:MainPresenter::MainPresenter(MainView&)	16	static
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:6:6:virtual void MainPresenter::activate()	16	static
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:14:6:virtual void MainPresenter::deactivate()	16	static
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:16:6:void MainPresenter::setDesiredValue(uint32_t)	16	static
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:22:10:uint32_t MainPresenter::getDesiredValue() const	16	static
-../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:10:7:MainPresenter::~MainPresenter()	16	static
-../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:10:7:virtual MainPresenter::~MainPresenter()	16	static
+../TouchGFX/gui/include/gui/model/Model.hpp:29:10:void Model::setCurrentSetting(SettingType)	16	static
+../TouchGFX/gui/include/gui/model/Model.hpp:30:17:SettingType Model::getCurrentSetting() const	16	static
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:5:1:MainPresenter::MainPresenter(MainView&)	16	static
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:7:6:virtual void MainPresenter::activate()	16	static
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:15:6:virtual void MainPresenter::deactivate()	16	static
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:17:6:void MainPresenter::setDesiredValue(uint32_t)	16	static
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:23:10:uint32_t MainPresenter::getDesiredValue() const	16	static
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:31:6:void MainPresenter::setCurrentSetting(SettingType)	16	static
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:36:13:SettingType MainPresenter::getCurrentSetting() const	16	static
+../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:13:7:MainPresenter::~MainPresenter()	16	static
+../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:13:7:virtual MainPresenter::~MainPresenter()	16	static

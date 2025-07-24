@@ -2,6 +2,8 @@
 #include <touchgfx/Unicode.hpp>
 #include <mvp/Presenter.hpp>
 #include <gui/common/FrontendApplication.hpp>
+#include <gui/common/SettingType.hpp>
+#include <texts/TextKeysAndLanguages.hpp>
 
 KeyboardView::KeyboardView() : KeyboardViewBase() {}
 
@@ -41,6 +43,17 @@ void KeyboardView::gotoMainScreen()
 {
     application().gotoMainScreenNoTransition();
 }
+
+void KeyboardView::setLabelAccordingToSetting(SettingType setting)
+{
+    if (setting == SettingType::Voltage) {
+        Setting_Label.setTypedText(touchgfx::TypedText(T_VOLTAGE));
+    } else {
+        Setting_Label.setTypedText(touchgfx::TypedText(T_PHASE));
+    }
+    Setting_Label.invalidate();  // 表示更新
+}
+
 
 // 数字キー
 void KeyboardView::One_()    { presenter->onDigit(1); }

@@ -40,6 +40,7 @@ TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Gestures.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp \
  ../TouchGFX/gui/include/gui/model/Model.hpp \
+ ../TouchGFX/gui/include/gui/common/SettingType.hpp \
  ../TouchGFX/gui/include/gui/common/FrontendHeap.hpp \
  ../TouchGFX/generated/gui_generated/include/gui_generated/common/FrontendHeapBase.hpp \
  ../Middlewares/ST/touchgfx/framework/include/common/Meta.hpp \
@@ -108,6 +109,7 @@ TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o: \
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Gestures.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp:
 ../TouchGFX/gui/include/gui/model/Model.hpp:
+../TouchGFX/gui/include/gui/common/SettingType.hpp:
 ../TouchGFX/gui/include/gui/common/FrontendHeap.hpp:
 ../TouchGFX/generated/gui_generated/include/gui_generated/common/FrontendHeapBase.hpp:
 ../Middlewares/ST/touchgfx/framework/include/common/Meta.hpp:

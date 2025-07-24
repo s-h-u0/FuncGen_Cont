@@ -2,6 +2,8 @@
 #include <gui/main_screen/MainPresenter.hpp>
 #include <dpot_AD5292.h>
 #include <algorithm>
+#include <gui/common/SettingType.hpp>
+
 
 MainView::MainView()
     : MainViewBase()
@@ -46,3 +48,18 @@ void MainView::Run()
     AD5292_Set(ohms);
 }
 
+void MainView::button_VoltClicked()
+{
+    if (presenter) {
+        presenter->setCurrentSetting(SettingType::Voltage);
+        application().gotoKeyboardScreenNoTransition();
+    }
+}
+
+void MainView::button_PhasClicked()
+{
+    if (presenter) {
+        presenter->setCurrentSetting(SettingType::Phase);
+        application().gotoKeyboardScreenNoTransition();
+    }
+}

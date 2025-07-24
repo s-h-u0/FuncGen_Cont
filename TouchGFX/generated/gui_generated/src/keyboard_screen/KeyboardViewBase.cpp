@@ -127,9 +127,11 @@ KeyboardViewBase::KeyboardViewBase() :
     Setting_Value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_U4D1));
     add(Setting_Value);
 
-    Setting_Label.setXY(301, 94);
+    Setting_Label.setPosition(301, 70, 114, 43);
     Setting_Label.setColor(touchgfx::Color::getColorFromRGB(128, 157, 255));
     Setting_Label.setLinespacing(0);
+    Setting_LabelBuffer[0] = 0;
+    Setting_Label.setWildcard(Setting_LabelBuffer);
     Setting_Label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HF3J));
     add(Setting_Label);
 }

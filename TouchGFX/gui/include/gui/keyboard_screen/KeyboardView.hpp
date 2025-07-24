@@ -2,6 +2,8 @@
 class KeyboardPresenter;   // 前方宣言
 
 #include <gui_generated/keyboard_screen/KeyboardViewBase.hpp>
+#include <gui/common/SettingType.hpp>
+
 
 class KeyboardView : public KeyboardViewBase
 {
@@ -15,6 +17,8 @@ public:
 
     /* Presenter から呼ぶ画面遷移ラッパ */
     void gotoMainScreen();
+
+    void setLabelAccordingToSetting(SettingType setting);
 
     /* 個別ボタンコールバック（Base に virtual 定義あり）*/
     void One_()    override;

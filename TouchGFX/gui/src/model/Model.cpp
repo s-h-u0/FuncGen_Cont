@@ -1,9 +1,12 @@
 #include <gui/model/Model.hpp>
 #include <gui/model/ModelListener.hpp>
 
+
 Model::Model() : modelListener(nullptr)
 {
 }
+
+
 
 void Model::bind(ModelListener* listener)
 {
@@ -43,3 +46,6 @@ uint32_t Model::getDesiredValue() const
 {
     return desiredValue;
 }
+
+
+

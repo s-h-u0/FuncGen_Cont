@@ -1,5 +1,8 @@
 #include <gui/keyboard_screen/KeyboardPresenter.hpp>
 #include <gui/keyboard_screen/KeyboardView.hpp>
+#include <gui/common/SettingType.hpp>
+#include <gui/main_screen/MainPresenter.hpp>
+#include <gui/model/Model.hpp>
 
 KeyboardPresenter::KeyboardPresenter(KeyboardView& v) : view(v) {}
 
@@ -41,6 +44,10 @@ uint32_t KeyboardPresenter::getCurrentValue() const
 void KeyboardPresenter::activate()
 {
     if (model) {
-        currentValue = model->getLastInputValue();  // 復元
+        currentValue = model->getLastInputValue();
     }
+
+    // SettingType を View に渡す
+        SettingType s = model->getCurrentSetting();
+        view.setLabelAccordingToSetting(s);
 }

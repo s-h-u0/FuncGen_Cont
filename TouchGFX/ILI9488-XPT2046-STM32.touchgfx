@@ -134,7 +134,7 @@
             "Color": {
               "Red": 255,
               "Green": 255,
-              "Blue": 99
+              "Blue": 255
             },
             "AutoSize": true
           },
@@ -148,8 +148,8 @@
             "TextId": "__SingleUse_Y15L",
             "TextRotation": "0",
             "Color": {
-              "Red": 241,
-              "Green": 138,
+              "Red": 255,
+              "Green": 255,
               "Blue": 255
             },
             "AutoSize": true
@@ -164,8 +164,8 @@
             "TextId": "__SingleUse_AP1H",
             "TextRotation": "0",
             "Color": {
-              "Red": 128,
-              "Green": 157,
+              "Red": 255,
+              "Green": 255,
               "Blue": 255
             },
             "AutoSize": true,
@@ -215,7 +215,7 @@
             "X": 41,
             "Y": 260,
             "Width": 11,
-            "Height": 36,
+            "Height": 39,
             "TextId": "__SingleUse_WN51",
             "TextRotation": "0",
             "Color": {
@@ -235,7 +235,7 @@
             "X": 41,
             "Y": 166,
             "Width": 20,
-            "Height": 36,
+            "Height": 39,
             "TextId": "__SingleUse_HNTL",
             "TextRotation": "0",
             "Color": {
@@ -255,7 +255,7 @@
             "X": 33,
             "Y": 73,
             "Width": 20,
-            "Height": 36,
+            "Height": 39,
             "TextId": "__SingleUse_YVKD",
             "TextRotation": "0",
             "Color": {
@@ -336,7 +336,7 @@
             "Color": {
               "Red": 255,
               "Green": 255,
-              "Blue": 99
+              "Blue": 255
             },
             "AutoSize": true
           },
@@ -350,8 +350,8 @@
             "TextId": "__SingleUse_XPDK",
             "TextRotation": "0",
             "Color": {
-              "Red": 128,
-              "Green": 157,
+              "Red": 255,
+              "Green": 255,
               "Blue": 255
             },
             "AutoSize": true
@@ -391,6 +391,28 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "Run"
+            }
+          },
+          {
+            "InteractionName": "button_VoltClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "button_Volt"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "button_VoltClicked"
+            }
+          },
+          {
+            "InteractionName": "button_PhasClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "button_Phas"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "button_PhasClicked"
             }
           }
         ]
@@ -728,9 +750,9 @@
             "Type": "TextArea",
             "Name": "Setting_Label",
             "X": 301,
-            "Y": 94,
-            "Width": 69,
-            "Height": 16,
+            "Y": 70,
+            "Width": 114,
+            "Height": 43,
             "TextId": "__SingleUse_HF3J",
             "TextRotation": "0",
             "Color": {
@@ -738,8 +760,10 @@
               "Green": 157,
               "Blue": 255
             },
-            "AutoSize": true,
-            "Wildcard1": {}
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
           }
         ],
         "Interactions": [

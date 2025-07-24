@@ -57,19 +57,19 @@ MainViewBase::MainViewBase() :
     add(MeasureValue);
 
     Meas_Volt_label.setXY(5, 40);
-    Meas_Volt_label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 99));
+    Meas_Volt_label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Meas_Volt_label.setLinespacing(0);
     Meas_Volt_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_FO9X));
     add(Meas_Volt_label);
 
     Meas_Curr_label.setXY(5, 133);
-    Meas_Curr_label.setColor(touchgfx::Color::getColorFromRGB(241, 138, 255));
+    Meas_Curr_label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Meas_Curr_label.setLinespacing(0);
     Meas_Curr_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Y15L));
     add(Meas_Curr_label);
 
     Meas_Phas_label.setXY(5, 227);
-    Meas_Phas_label.setColor(touchgfx::Color::getColorFromRGB(128, 157, 255));
+    Meas_Phas_label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Meas_Phas_label.setLinespacing(0);
     Meas_Phas_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_AP1H));
     add(Meas_Phas_label);
@@ -137,13 +137,13 @@ MainViewBase::MainViewBase() :
     add(SetValue);
 
     Set_Volt_label.setXY(200, 40);
-    Set_Volt_label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 99));
+    Set_Volt_label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Set_Volt_label.setLinespacing(0);
     Set_Volt_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_UVF8));
     add(Set_Volt_label);
 
     Set_Phas_label.setXY(200, 227);
-    Set_Phas_label.setColor(touchgfx::Color::getColorFromRGB(128, 157, 255));
+    Set_Phas_label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Set_Phas_label.setLinespacing(0);
     Set_Phas_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_XPDK));
     add(Set_Phas_label);
@@ -166,14 +166,22 @@ void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //InputDataVolt
         //When button_Volt clicked change screen to Keyboard
         //Go to Keyboard with no screen transition
-        application().gotoKeyboardScreenNoTransition();
+        application().gotoKeyboardScreenNoTransition();
+        //button_VoltClicked
+        //When button_Volt clicked call virtual function
+        //Call button_VoltClicked
+        button_VoltClicked();
     }
     if (&src == &button_Phas)
     {
         //InputPhaseVolt
         //When button_Phas clicked change screen to Keyboard
         //Go to Keyboard with no screen transition
-        application().gotoKeyboardScreenNoTransition();
+        application().gotoKeyboardScreenNoTransition();
+        //button_PhasClicked
+        //When button_Phas clicked call virtual function
+        //Call button_PhasClicked
+        button_PhasClicked();
     }
     if (&src == &toggleButton_Run)
     {

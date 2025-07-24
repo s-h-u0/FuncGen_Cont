@@ -3,6 +3,7 @@ TouchGFX/gui/src/main_screen/MainPresenter.o: \
  ../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp \
  ../Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp \
  ../TouchGFX/gui/include/gui/model/ModelListener.hpp \
+ ../TouchGFX/gui/include/gui/common/SettingType.hpp \
  ../TouchGFX/gui/include/gui/main_screen/MainView.hpp \
  ../TouchGFX/generated/gui_generated/include/gui_generated/main_screen/MainViewBase.hpp \
  ../TouchGFX/gui/include/gui/common/FrontendApplication.hpp \
@@ -59,6 +60,7 @@ TouchGFX/gui/src/main_screen/MainPresenter.o: \
 ../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:
 ../Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp:
 ../TouchGFX/gui/include/gui/model/ModelListener.hpp:
+../TouchGFX/gui/include/gui/common/SettingType.hpp:
 ../TouchGFX/gui/include/gui/main_screen/MainView.hpp:
 ../TouchGFX/generated/gui_generated/include/gui_generated/main_screen/MainViewBase.hpp:
 ../TouchGFX/gui/include/gui/common/FrontendApplication.hpp:

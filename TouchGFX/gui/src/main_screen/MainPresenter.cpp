@@ -1,5 +1,6 @@
 #include <gui/main_screen/MainPresenter.hpp>
 #include <gui/main_screen/MainView.hpp>
+#include <gui/common/SettingType.hpp>
 
 MainPresenter::MainPresenter(MainView& v) : view(v) {}
 
@@ -23,3 +24,18 @@ uint32_t MainPresenter::getDesiredValue() const
 {
     return desiredValue;
 }
+
+
+
+
+void MainPresenter::setCurrentSetting(SettingType s)
+ {
+     if (model) model->setCurrentSetting(s);
+ }
+
+SettingType MainPresenter::getCurrentSetting() const
+ {
+     return model ? model->getCurrentSetting() : SettingType::Voltage;
+ }
+
+

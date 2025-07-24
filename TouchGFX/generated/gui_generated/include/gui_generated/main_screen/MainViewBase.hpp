@@ -29,6 +29,14 @@ public:
     {
         // Override and implement this function in Main
     }
+    virtual void button_VoltClicked()
+    {
+        // Override and implement this function in Main
+    }
+    virtual void button_PhasClicked()
+    {
+        // Override and implement this function in Main
+    }
 
 protected:
     FrontendApplication& application() {

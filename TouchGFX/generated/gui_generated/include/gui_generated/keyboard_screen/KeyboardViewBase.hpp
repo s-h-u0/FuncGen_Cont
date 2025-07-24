@@ -103,6 +103,8 @@ protected:
      */
     static const uint16_t SETTING_VALUE_SIZE = 10;
     touchgfx::Unicode::UnicodeChar Setting_ValueBuffer[SETTING_VALUE_SIZE];
+    static const uint16_t SETTING_LABEL_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar Setting_LabelBuffer[SETTING_LABEL_SIZE];
 
 private:
 

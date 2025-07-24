@@ -13,6 +13,8 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     19,  // T_NUMBERTEXT: "<>"
     73,  // T_TOGGLEBUTTONWHITE: "White"
     60,  // T_TOGGLEBUTTONORANGE: "Orange"
+    67,  // T_PHASE: "Phase"
+    52,  // T_VOLTAGE: "Voltage"
     21,  // T___SINGLEUSE_U4D1: "<> V"
     13,  // T_RESOURCEID1: ""
     41,  // T___SINGLEUSE_VR8I: "<>?"

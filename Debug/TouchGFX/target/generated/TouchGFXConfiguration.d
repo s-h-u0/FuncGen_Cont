@@ -51,6 +51,7 @@ TouchGFX/target/generated/TouchGFXConfiguration.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocator.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Gestures.hpp \
  ../TouchGFX/gui/include/gui/model/Model.hpp \
+ ../TouchGFX/gui/include/gui/common/SettingType.hpp \
  ../TouchGFX/gui/include/gui/main_screen/MainView.hpp \
  ../TouchGFX/generated/gui_generated/include/gui_generated/main_screen/MainViewBase.hpp \
  ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp \
@@ -157,6 +158,7 @@ TouchGFX/target/generated/TouchGFXConfiguration.o: \
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocator.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Gestures.hpp:
 ../TouchGFX/gui/include/gui/model/Model.hpp:
+../TouchGFX/gui/include/gui/common/SettingType.hpp:
 ../TouchGFX/gui/include/gui/main_screen/MainView.hpp:
 ../TouchGFX/generated/gui_generated/include/gui_generated/main_screen/MainViewBase.hpp:
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:

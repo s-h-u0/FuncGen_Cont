@@ -16,6 +16,12 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="PHASE" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Phase</Translation>
+      </Text>
+      <Text Id="VOLTAGE" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Voltage</Translation>
+      </Text>
       <Text Id="__SingleUse_U4D1" Alignment="Center" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt; V</Translation>
       </Text>
@@ -40,7 +46,7 @@
       <Text Id="__SingleUse_VNBM" Alignment="Center" TypographyId="ButtonDown">
         <Translation Language="GB">Del</Translation>
       </Text>
-      <Text Id="__SingleUse_HF3J" Alignment="Left" TypographyId="Phase">
+      <Text Id="__SingleUse_HF3J" Alignment="Center" TypographyId="Typography_01">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_1CQN" Alignment="Center" TypographyId="ButtonDown">

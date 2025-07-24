@@ -2,6 +2,9 @@
 #include <mvp/Presenter.hpp>
 #include <gui/model/ModelListener.hpp>
 #include <cstdint>
+#include <gui/common/SettingType.hpp>
+
+
 
 // ---------- 前方宣言 ----------
 class KeyboardView;
@@ -26,4 +29,5 @@ private:
     KeyboardView& view;
     uint32_t      currentValue{0};
     static constexpr uint32_t MAX_INPUT = 9999;
+
 };
