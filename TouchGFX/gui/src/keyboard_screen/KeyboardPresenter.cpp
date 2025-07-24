@@ -21,9 +21,10 @@ void KeyboardPresenter::onDelete()
 void KeyboardPresenter::onEnter()
 {
     if (model) {
-        model->setDesiredValue(currentValue);   // Model に保存
+        model->setDesiredValue(currentValue);
+        model->setLastInputValue(currentValue);  // ← これを追加
     }
-    view.gotoMainScreen();                      // 画面遷移（View 経由）
+    view.gotoMainScreen();
 }
 
 void KeyboardPresenter::reset()
@@ -35,4 +36,11 @@ void KeyboardPresenter::reset()
 uint32_t KeyboardPresenter::getCurrentValue() const
 {
     return currentValue;
+}
+
+void KeyboardPresenter::activate()
+{
+    if (model) {
+        currentValue = model->getLastInputValue();  // 復元
+    }
 }

@@ -13,6 +13,8 @@ class KeyboardPresenter : public touchgfx::Presenter,
 public:
     explicit KeyboardPresenter(KeyboardView& v);
 
+    virtual void activate() override;  // ← ★追加
+
     void onDigit(uint8_t d);
     void onDelete();
     void onEnter();

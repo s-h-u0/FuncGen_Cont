@@ -7,7 +7,6 @@
 ../TouchGFX/gui/include/gui/model/ModelListener.hpp:10:13:ModelListener::~ModelListener()	1
 ../TouchGFX/gui/include/gui/model/ModelListener.hpp:10:13:virtual ModelListener::~ModelListener()	1
 ../TouchGFX/gui/include/gui/model/ModelListener.hpp:15:18:virtual void ModelListener::onSomeEvent()	1
-../TouchGFX/gui/include/gui/model/Model.hpp:22:17:uint32_t Model::getDesiredValue() const	1
 ../TouchGFX/gui/src/main_screen/MainPresenter.cpp:4:1:MainPresenter::MainPresenter(MainView&)	1
 ../TouchGFX/gui/src/main_screen/MainPresenter.cpp:6:6:virtual void MainPresenter::activate()	2
 ../TouchGFX/gui/src/main_screen/MainPresenter.cpp:14:6:virtual void MainPresenter::deactivate()	1
