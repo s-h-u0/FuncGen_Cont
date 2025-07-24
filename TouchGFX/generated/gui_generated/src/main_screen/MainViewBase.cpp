@@ -121,12 +121,11 @@ MainViewBase::MainViewBase() :
     Val_Set_Volt.setTypedText(touchgfx::TypedText(T___SINGLEUSE_211V));
     add(Val_Set_Volt);
 
-    Val_Set_Phas.setXY(236, 260);
+    Val_Set_Phas.setPosition(213, 260, 123, 36);
     Val_Set_Phas.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Set_Phas.setLinespacing(0);
     Val_Set_PhasBuffer[0] = 0;
     Val_Set_Phas.setWildcard(Val_Set_PhasBuffer);
-    Val_Set_Phas.resizeToCurrentText();
     Val_Set_Phas.setTypedText(touchgfx::TypedText(T___SINGLEUSE_VR8I));
     add(Val_Set_Phas);
 

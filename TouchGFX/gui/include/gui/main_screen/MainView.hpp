@@ -1,22 +1,24 @@
 #pragma once
-// MainPresenter を先に宣言しておく（テンプレート依存の解決）
 class MainPresenter;
 
 #include <gui_generated/main_screen/MainViewBase.hpp>
 #include <touchgfx/Unicode.hpp>
-#include <gui/model/Model.hpp>
-
+#include <cstdint>                      // ★ 忘れずに
+#include <gui/common/SettingType.hpp>   // いるなら
 
 class MainView : public MainViewBase
 {
 public:
-	MainView();
+    MainView();
     void setupScreen()    override;
     void tearDownScreen() override;
     void Run()            override;
 
-    /* Presenter から数値を描画 */
-    void updateSetVolt(uint32_t v);
+    // ★両方書き込む関数
+    void updateBothValues(uint32_t volt, uint32_t phas);
+
+    // 使わない二重宣言は削除してOK
+    // void updateValue(uint32_t v, SettingType type);  ← もう不要なら消す
 
     void button_VoltClicked() override;
     void button_PhasClicked() override;

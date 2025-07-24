@@ -41,7 +41,8 @@ TouchGFX/gui/src/common/FrontendApplication.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Gestures.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp \
  ../TouchGFX/gui/include/gui/model/Model.hpp \
- ../TouchGFX/gui/include/gui/common/SettingType.hpp
+ ../TouchGFX/gui/include/gui/common/SettingType.hpp \
+ ../TouchGFX/gui/include/gui/model/ModelListener.hpp
 ../TouchGFX/gui/include/gui/common/FrontendApplication.hpp:
 ../TouchGFX/generated/gui_generated/include/gui_generated/common/FrontendApplicationBase.hpp:
 ../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:
@@ -84,3 +85,4 @@ TouchGFX/gui/src/common/FrontendApplication.o: \
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp:
 ../TouchGFX/gui/include/gui/model/Model.hpp:
 ../TouchGFX/gui/include/gui/common/SettingType.hpp:
+../TouchGFX/gui/include/gui/model/ModelListener.hpp:

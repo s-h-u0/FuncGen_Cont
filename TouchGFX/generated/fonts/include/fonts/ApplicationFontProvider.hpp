@@ -22,6 +22,8 @@ struct Typography
     static const touchgfx::FontId PHASE = 6;
     static const touchgfx::FontId VOLTAGE = 7;
     static const touchgfx::FontId VAL_MEAS_XXX = 8;
+    static const touchgfx::FontId TYPOGRAPHY_02 = 9;
+    static const touchgfx::FontId UNIT = 10;
 };
 
 struct TypographyFontIndex
@@ -35,7 +37,9 @@ struct TypographyFontIndex
     static const touchgfx::FontId PHASE = 6;         // verdana_16_4bpp
     static const touchgfx::FontId VOLTAGE = 5;       // verdana_15_4bpp
     static const touchgfx::FontId VAL_MEAS_XXX = 3;  // Asap_Regular_30_4bpp
-    static const uint16_t NUMBER_OF_FONTS = 7;
+    static const touchgfx::FontId TYPOGRAPHY_02 = 7; // verdana_20_4bpp
+    static const touchgfx::FontId UNIT = 0;          // Asap_Regular_32_4bpp
+    static const uint16_t NUMBER_OF_FONTS = 8;
 };
 
 class ApplicationFontProvider : public touchgfx::FontProvider

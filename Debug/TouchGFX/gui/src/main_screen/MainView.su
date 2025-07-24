@@ -2,15 +2,13 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:115:18:virtual void touchgfx::Screen::tearDownScreen()	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:144:18:virtual void touchgfx::Screen::handleTickEvent()	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:79:10:void touchgfx::TextAreaWithOneWildcard::setWildcard1(const touchgfx::Unicode::UnicodeChar*)	16	static
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:98:10:void touchgfx::TextAreaWithOneWildcard::setWildcard(const touchgfx::Unicode::UnicodeChar*)	16	static
 ../TouchGFX/generated/gui_generated/include/gui_generated/main_screen/MainViewBase.hpp:42:26:FrontendApplication& MainViewBase::application()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:8:1:MainView::MainView()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:12:6:virtual void MainView::setupScreen()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:20:6:virtual void MainView::tearDownScreen()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:29:6:void MainView::updateSetVolt(uint32_t)	24	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:40:6:virtual void MainView::Run()	24	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:51:6:virtual void MainView::button_VoltClicked()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:59:6:virtual void MainView::button_PhasClicked()	16	static
-../TouchGFX/gui/include/gui/main_screen/MainView.hpp:10:7:MainView::~MainView()	16	static
-../TouchGFX/gui/include/gui/main_screen/MainView.hpp:10:7:virtual MainView::~MainView()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:9:1:MainView::MainView()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:13:6:virtual void MainView::setupScreen()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:19:6:virtual void MainView::tearDownScreen()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:24:6:void MainView::updateBothValues(uint32_t, uint32_t)	24	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:45:6:virtual void MainView::Run()	24	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:52:6:virtual void MainView::button_VoltClicked()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:60:6:virtual void MainView::button_PhasClicked()	16	static
+../TouchGFX/gui/include/gui/main_screen/MainView.hpp:9:7:MainView::~MainView()	16	static
+../TouchGFX/gui/include/gui/main_screen/MainView.hpp:9:7:virtual MainView::~MainView()	16	static

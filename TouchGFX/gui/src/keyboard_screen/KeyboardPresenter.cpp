@@ -1,14 +1,23 @@
+// KeyboardPresenter.cpp
 #include <gui/keyboard_screen/KeyboardPresenter.hpp>
 #include <gui/keyboard_screen/KeyboardView.hpp>
-#include <gui/common/SettingType.hpp>
-#include <gui/main_screen/MainPresenter.hpp>
 #include <gui/model/Model.hpp>
 
 KeyboardPresenter::KeyboardPresenter(KeyboardView& v) : view(v) {}
 
+void KeyboardPresenter::activate()
+{
+    if (!model) return;
+
+    SettingType s = model->getCurrentSetting();
+    currentValue  = model->getLastInputValue(s);   // 種別別の last 値
+    view.setLabelAccordingToSetting(s);
+    view.updateDisplay();
+}
+
 void KeyboardPresenter::onDigit(uint8_t d)
 {
-    const uint32_t nv = currentValue * 10 + d;
+    uint32_t nv = currentValue * 10 + d;
     if (nv <= MAX_INPUT) {
         currentValue = nv;
         view.updateDisplay();
@@ -23,10 +32,11 @@ void KeyboardPresenter::onDelete()
 
 void KeyboardPresenter::onEnter()
 {
-    if (model) {
-        model->setDesiredValue(currentValue);
-        model->setLastInputValue(currentValue);  // ← これを追加
-    }
+    if (!model) return;
+    SettingType s = model->getCurrentSetting();
+
+    model->setDesiredValue(s, currentValue);   // 種類別に保存
+    model->setLastInputValue(s, currentValue);
     view.gotoMainScreen();
 }
 
@@ -41,13 +51,8 @@ uint32_t KeyboardPresenter::getCurrentValue() const
     return currentValue;
 }
 
-void KeyboardPresenter::activate()
-{
-    if (model) {
-        currentValue = model->getLastInputValue();
-    }
 
-    // SettingType を View に渡す
-        SettingType s = model->getCurrentSetting();
-        view.setLabelAccordingToSetting(s);
+SettingType KeyboardPresenter::getCurrentSetting() const
+{
+    return model ? model->getCurrentSetting() : SettingType::Voltage;
 }

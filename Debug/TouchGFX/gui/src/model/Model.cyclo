@@ -1,8 +1,11 @@
-../TouchGFX/gui/src/model/Model.cpp:5:1:Model::Model()	1
-../TouchGFX/gui/src/model/Model.cpp:11:6:void Model::bind(ModelListener*)	1
-../TouchGFX/gui/src/model/Model.cpp:16:6:void Model::tick()	1
-../TouchGFX/gui/src/model/Model.cpp:21:6:void Model::triggerSomeEvent()	2
-../TouchGFX/gui/src/model/Model.cpp:28:6:void Model::setLastInputValue(uint32_t)	1
-../TouchGFX/gui/src/model/Model.cpp:33:10:uint32_t Model::getLastInputValue() const	1
-../TouchGFX/gui/src/model/Model.cpp:40:6:void Model::setDesiredValue(uint32_t)	1
-../TouchGFX/gui/src/model/Model.cpp:45:10:uint32_t Model::getDesiredValue() const	1
+../TouchGFX/gui/src/model/Model.cpp:5:16:uint8_t {anonymous}::idx(SettingType)	1
+../TouchGFX/gui/src/model/Model.cpp:10:1:Model::Model()	1
+../TouchGFX/gui/src/model/Model.cpp:12:6:void Model::bind(ModelListener*)	1
+../TouchGFX/gui/src/model/Model.cpp:17:6:void Model::tick()	1
+../TouchGFX/gui/src/model/Model.cpp:19:6:void Model::triggerSomeEvent()	2
+../TouchGFX/gui/src/model/Model.cpp:26:6:void Model::setDesiredValue(SettingType, uint32_t)	1
+../TouchGFX/gui/src/model/Model.cpp:31:10:uint32_t Model::getDesiredValue(SettingType) const	1
+../TouchGFX/gui/src/model/Model.cpp:36:6:void Model::setLastInputValue(SettingType, uint32_t)	1
+../TouchGFX/gui/src/model/Model.cpp:41:10:uint32_t Model::getLastInputValue(SettingType) const	1
+../TouchGFX/gui/src/model/Model.cpp:46:6:void Model::setCurrentSetting(SettingType)	1
+../TouchGFX/gui/src/model/Model.cpp:51:13:SettingType Model::getCurrentSetting() const	1

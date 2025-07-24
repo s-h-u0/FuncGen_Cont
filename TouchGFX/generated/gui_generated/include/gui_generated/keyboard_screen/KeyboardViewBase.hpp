@@ -97,14 +97,17 @@ protected:
     touchgfx::BoxWithBorder Setting_Value_BG;
     touchgfx::TextAreaWithOneWildcard Setting_Value;
     touchgfx::TextAreaWithOneWildcard Setting_Label;
+    touchgfx::TextAreaWithOneWildcard textArea1;
 
     /*
      * Wildcard Buffers
      */
-    static const uint16_t SETTING_VALUE_SIZE = 10;
+    static const uint16_t SETTING_VALUE_SIZE = 16;
     touchgfx::Unicode::UnicodeChar Setting_ValueBuffer[SETTING_VALUE_SIZE];
     static const uint16_t SETTING_LABEL_SIZE = 10;
     touchgfx::Unicode::UnicodeChar Setting_LabelBuffer[SETTING_LABEL_SIZE];
+    static const uint16_t TEXTAREA1_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar textArea1Buffer[TEXTAREA1_SIZE];
 
 private:
 

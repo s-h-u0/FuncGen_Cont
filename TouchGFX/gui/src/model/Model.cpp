@@ -1,51 +1,54 @@
+// Model.cpp
 #include <gui/model/Model.hpp>
-#include <gui/model/ModelListener.hpp>
 
-
-Model::Model() : modelListener(nullptr)
-{
+namespace {
+inline uint8_t idx(SettingType t) {
+    return (t == SettingType::Voltage) ? 0 : 1;
+}
 }
 
-
+Model::Model() : modelListener(nullptr) {}
 
 void Model::bind(ModelListener* listener)
 {
     modelListener = listener;
 }
 
-void Model::tick()
-{
-    // 定期処理など
-}
+void Model::tick() {}
 
 void Model::triggerSomeEvent()
 {
     if (modelListener) {
-        modelListener->onSomeEvent(); // Presenter へ通知
+        modelListener->onSomeEvent();
     }
 }
 
-void Model::setLastInputValue(uint32_t v)
+void Model::setDesiredValue(SettingType t, uint32_t v)
 {
-    lastInputValue = v;
+    desiredValues[idx(t)] = v;
 }
 
-uint32_t Model::getLastInputValue() const
+uint32_t Model::getDesiredValue(SettingType t) const
 {
-    return lastInputValue;
+    return desiredValues[idx(t)];
 }
 
-
-
-void Model::setDesiredValue(uint32_t v)
+void Model::setLastInputValue(SettingType t, uint32_t v)
 {
-    desiredValue = v;
+    lastInputValues[idx(t)] = v;
 }
 
-uint32_t Model::getDesiredValue() const
+uint32_t Model::getLastInputValue(SettingType t) const
 {
-    return desiredValue;
+    return lastInputValues[idx(t)];
 }
 
+void Model::setCurrentSetting(SettingType s)
+{
+    currentSetting = s;
+}
 
-
+SettingType Model::getCurrentSetting() const
+{
+    return currentSetting;
+}

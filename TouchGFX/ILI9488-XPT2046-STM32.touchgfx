@@ -291,10 +291,10 @@
           {
             "Type": "TextArea",
             "Name": "Val_Set_Phas",
-            "X": 236,
+            "X": 213,
             "Y": 260,
-            "Width": 10,
-            "Height": 30,
+            "Width": 123,
+            "Height": 36,
             "TextId": "__SingleUse_VR8I",
             "TextRotation": "0",
             "Color": {
@@ -302,7 +302,6 @@
               "Green": 255,
               "Blue": 255
             },
-            "AutoSize": true,
             "Wildcard1": {
               "UseBuffer": true,
               "BufferSize": 10
@@ -732,8 +731,8 @@
             "Name": "Setting_Value",
             "X": 301,
             "Y": 122,
-            "Width": 145,
-            "Height": 43,
+            "Width": 108,
+            "Height": 38,
             "TextId": "__SingleUse_U4D1",
             "TextRotation": "0",
             "Color": {
@@ -743,7 +742,7 @@
             },
             "Wildcard1": {
               "UseBuffer": true,
-              "BufferSize": 10
+              "BufferSize": 16
             }
           },
           {
@@ -758,6 +757,25 @@
             "Color": {
               "Red": 128,
               "Green": 157,
+              "Blue": 255
+            },
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1",
+            "X": 409,
+            "Y": 122,
+            "Width": 37,
+            "Height": 38,
+            "TextId": "UNIT",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
               "Blue": 255
             },
             "Wildcard1": {

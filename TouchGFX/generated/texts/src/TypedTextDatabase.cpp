@@ -12,6 +12,7 @@ extern touchgfx::GeneratedFont& getFont_Asap_Regular_30_4bpp();
 extern touchgfx::GeneratedFont& getFont_verdana_36_4bpp();
 extern touchgfx::GeneratedFont& getFont_verdana_15_4bpp();
 extern touchgfx::GeneratedFont& getFont_verdana_16_4bpp();
+extern touchgfx::GeneratedFont& getFont_verdana_20_4bpp();
 
 const touchgfx::Font* touchgfx_fonts[] = {
     &(getFont_Asap_Regular_32_4bpp()),
@@ -20,7 +21,8 @@ const touchgfx::Font* touchgfx_fonts[] = {
     &(getFont_Asap_Regular_30_4bpp()),
     &(getFont_verdana_36_4bpp()),
     &(getFont_verdana_15_4bpp()),
-    &(getFont_verdana_16_4bpp())
+    &(getFont_verdana_16_4bpp()),
+    &(getFont_verdana_20_4bpp())
 };
 
 extern const touchgfx::TypedText::TypedTextData typedText_database_DEFAULT[];
@@ -33,9 +35,12 @@ const touchgfx::TypedText::TypedTextData typedText_database_DEFAULT[] TEXT_LOCAT
     { 1, touchgfx::CENTER, touchgfx::TEXT_DIRECTION_LTR },
     { 0, touchgfx::LEFT, touchgfx::TEXT_DIRECTION_LTR },
     { 0, touchgfx::LEFT, touchgfx::TEXT_DIRECTION_LTR },
-    { 0, touchgfx::CENTER, touchgfx::TEXT_DIRECTION_LTR },
+    { 0, touchgfx::LEFT, touchgfx::TEXT_DIRECTION_LTR },
+    { 0, touchgfx::LEFT, touchgfx::TEXT_DIRECTION_LTR },
+    { 0, touchgfx::LEFT, touchgfx::TEXT_DIRECTION_LTR },
+    { 0, touchgfx::RIGHT, touchgfx::TEXT_DIRECTION_LTR },
     { 2, touchgfx::LEFT, touchgfx::TEXT_DIRECTION_LTR },
-    { 3, touchgfx::CENTER, touchgfx::TEXT_DIRECTION_LTR },
+    { 0, touchgfx::CENTER, touchgfx::TEXT_DIRECTION_LTR },
     { 0, touchgfx::CENTER, touchgfx::TEXT_DIRECTION_LTR },
     { 0, touchgfx::LEFT, touchgfx::TEXT_DIRECTION_LTR },
     { 0, touchgfx::LEFT, touchgfx::TEXT_DIRECTION_LTR },
@@ -115,6 +120,9 @@ void resetFont(touchgfx::FontId fontId)
         break;
     case 6:
         touchgfx_fonts[6] = &(getFont_verdana_16_4bpp());
+        break;
+    case 7:
+        touchgfx_fonts[7] = &(getFont_verdana_20_4bpp());
         break;
     }
 }

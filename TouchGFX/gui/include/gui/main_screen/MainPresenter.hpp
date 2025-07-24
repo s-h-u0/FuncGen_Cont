@@ -1,34 +1,28 @@
 #pragma once
 #include <mvp/Presenter.hpp>
 #include <gui/model/ModelListener.hpp>
-#include <cstdint>
 #include <gui/common/SettingType.hpp>
+#include <cstdint>
 
-// ---------- 前方宣言 ----------
 class MainView;
 
-
-
-//--------------------------------
 class MainPresenter : public touchgfx::Presenter,
                       public ModelListener
 {
 public:
-    explicit MainPresenter(MainView& v);   // ★ 引数は View のみ
+    explicit MainPresenter(MainView& v);
 
     void activate()   override;
     void deactivate() override;
 
-    /* ModelListener からも呼べる汎用 API */
-    void      setDesiredValue(uint32_t v);
-    uint32_t  getDesiredValue() const;
-
+    // 種類を指定して値を保存/取得
+    void     setDesiredValue(SettingType t, uint32_t v);
+    uint32_t getDesiredValue(SettingType t) const;
 
     void setCurrentSetting(SettingType s);
     SettingType getCurrentSetting() const;
 
 private:
     MainView& view;
-    uint32_t  desiredValue{0};
-    SettingType currentSetting = SettingType::Voltage;  // ← 追加
+
 };

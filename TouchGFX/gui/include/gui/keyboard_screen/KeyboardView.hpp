@@ -20,6 +20,9 @@ public:
 
     void setLabelAccordingToSetting(SettingType setting);
 
+    void updateUnit(SettingType s);
+
+
     /* 個別ボタンコールバック（Base に virtual 定義あり）*/
     void One_()    override;
     void Two_()    override;

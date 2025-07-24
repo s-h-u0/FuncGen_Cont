@@ -1,11 +1,8 @@
-#ifndef MODEL_HPP
-#define MODEL_HPP
-
+// Model.hpp
+#pragma once
 #include <cstdint>
 #include <gui/common/SettingType.hpp>
-
-class ModelListener;
-
+#include <gui/model/ModelListener.hpp>
 
 class Model
 {
@@ -14,32 +11,24 @@ public:
 
     void bind(ModelListener* listener);
     void tick();
-
-    // ★ 追加：Presenter間で値を共有
-    void setDesiredValue(uint32_t v);
-    uint32_t getDesiredValue() const;
-
-    // Model 側でイベントが発生したと仮定した関数
     void triggerSomeEvent();
 
-    void setLastInputValue(uint32_t v);
-    uint32_t getLastInputValue() const;
+    // ★ 新API：種類を指定して set/get
+    void setDesiredValue(SettingType t, uint32_t v);
+    uint32_t getDesiredValue(SettingType t) const;
 
-    // ★ 追加：SettingType 保持用 API
-    void setCurrentSetting(SettingType s) { currentSetting = s; }
-    SettingType getCurrentSetting() const { return currentSetting; }
+    void setLastInputValue(SettingType t, uint32_t v);
+    uint32_t getLastInputValue(SettingType t) const;
 
+    void setCurrentSetting(SettingType s);
+    SettingType getCurrentSetting() const;
 
 private:
-    // ▼ 追加：ユーザーが入力した値（例：AD5292 用抵抗値）
-    uint32_t desiredValue = 0;
-    uint32_t lastInputValue = 0;
+    ModelListener* modelListener;
 
-    SettingType currentSetting = SettingType::Voltage; // デフォルト
+    // ★ Voltage(0), Phase(1)の2要素を格納
+    uint32_t desiredValues[2]   {0, 0};
+    uint32_t lastInputValues[2] {0, 0};
 
-
-protected:
-    ModelListener* modelListener {nullptr};
+    SettingType currentSetting {SettingType::Voltage};
 };
-
-#endif // MODEL_HPP

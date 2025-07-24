@@ -41,6 +41,7 @@ TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp \
  ../TouchGFX/gui/include/gui/model/Model.hpp \
  ../TouchGFX/gui/include/gui/common/SettingType.hpp \
+ ../TouchGFX/gui/include/gui/model/ModelListener.hpp \
  ../TouchGFX/gui/include/gui/common/FrontendHeap.hpp \
  ../TouchGFX/generated/gui_generated/include/gui_generated/common/FrontendHeapBase.hpp \
  ../Middlewares/ST/touchgfx/framework/include/common/Meta.hpp \
@@ -51,7 +52,6 @@ TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o: \
  ../TouchGFX/generated/gui_generated/include/gui_generated/main_screen/MainViewBase.hpp \
  ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp \
  ../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp \
- ../TouchGFX/gui/include/gui/model/ModelListener.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ToggleButton.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Button.hpp \
@@ -110,6 +110,7 @@ TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o: \
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp:
 ../TouchGFX/gui/include/gui/model/Model.hpp:
 ../TouchGFX/gui/include/gui/common/SettingType.hpp:
+../TouchGFX/gui/include/gui/model/ModelListener.hpp:
 ../TouchGFX/gui/include/gui/common/FrontendHeap.hpp:
 ../TouchGFX/generated/gui_generated/include/gui_generated/common/FrontendHeapBase.hpp:
 ../Middlewares/ST/touchgfx/framework/include/common/Meta.hpp:
@@ -120,7 +121,6 @@ TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.o: \
 ../TouchGFX/generated/gui_generated/include/gui_generated/main_screen/MainViewBase.hpp:
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:
 ../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:
-../TouchGFX/gui/include/gui/model/ModelListener.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ToggleButton.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Button.hpp:
