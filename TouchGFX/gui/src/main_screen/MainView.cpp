@@ -3,8 +3,10 @@
 #include <dpot_AD5292.h>
 #include <touchgfx/Unicode.hpp>
 #include <algorithm>
+#include "main.h"            // HAL_GetTick(), GPIO など
+#include "stm32f4xx_hal.h"
 
-// 必要なら texts/TextKeysAndLanguages.hpp も include
+
 
 MainView::MainView()
     : MainViewBase()
@@ -44,6 +46,16 @@ void MainView::updateBothValues(uint32_t vVolt, uint32_t vPhas)
 
 void MainView::Run()
 {
+    // デバウンス用タイマー
+    static uint32_t lastTick = 0;
+    uint32_t now = HAL_GetTick();
+    if (now - lastTick < 800) {
+        // 120ms以内の再タッチは無視
+        return;
+    }
+    lastTick = now;
+
+    // 本来のトグル処理
     toggleCounter++;
     uint32_t ohms = (toggleCounter % 2 == 1) ? 0x400 : 0x07FF;
     AD5292_Set(ohms);

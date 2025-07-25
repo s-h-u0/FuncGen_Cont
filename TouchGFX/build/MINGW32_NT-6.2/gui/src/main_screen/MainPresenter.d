@@ -1,5 +1,9 @@
 build/MINGW32_NT-6.2/gui/src/main_screen/MainPresenter.o: \
  gui/src/main_screen/MainPresenter.cpp \
+ gui/include/gui/main_screen/MainPresenter.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp \
+ gui/include/gui/model/ModelListener.hpp \
+ gui/include/gui/common/SettingType.hpp \
  gui/include/gui/main_screen/MainView.hpp \
  generated/gui_generated/include/gui_generated/main_screen/MainViewBase.hpp \
  gui/include/gui/common/FrontendApplication.hpp \
@@ -9,7 +13,6 @@ build/MINGW32_NT-6.2/gui/src/main_screen/MainPresenter.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Types.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Config.hpp \
  ../Middlewares/ST/touchgfx/framework/include/mvp/MVPHeap.hpp \
- ../Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/Application.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/Bitmap.hpp \
@@ -44,8 +47,6 @@ build/MINGW32_NT-6.2/gui/src/main_screen/MainPresenter.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp \
  gui/include/gui/model/Model.hpp \
  ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp \
- gui/include/gui/main_screen/MainPresenter.hpp \
- gui/include/gui/model/ModelListener.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ToggleButton.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Button.hpp \
@@ -54,7 +55,16 @@ build/MINGW32_NT-6.2/gui/src/main_screen/MainPresenter.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/mixins/ClickListener.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp
+
+gui/include/gui/main_screen/MainPresenter.hpp:
+
+../Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp:
+
+gui/include/gui/model/ModelListener.hpp:
+
+gui/include/gui/common/SettingType.hpp:
 
 gui/include/gui/main_screen/MainView.hpp:
 
@@ -73,8 +83,6 @@ generated/gui_generated/include/gui_generated/common/FrontendApplicationBase.hpp
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Config.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/mvp/MVPHeap.hpp:
-
-../Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Application.hpp:
 
@@ -144,10 +152,6 @@ gui/include/gui/model/Model.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:
 
-gui/include/gui/main_screen/MainPresenter.hpp:
-
-gui/include/gui/model/ModelListener.hpp:
-
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/ToggleButton.hpp:
@@ -165,3 +169,5 @@ gui/include/gui/model/ModelListener.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:
 
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp:
+
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:

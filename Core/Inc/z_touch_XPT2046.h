@@ -75,8 +75,8 @@
 #define Z_THRESHOLD		0x0200	//below threeshold there is no touch
 #endif
 #ifdef ILI9488
-#define X_THRESHOLD		0x0500	//below threeshold there is no touch
-#define Z_THRESHOLD		0x0500	//below threeshold there is no touch
+#define X_THRESHOLD		0x0600	//below threeshold there is no touch
+#define Z_THRESHOLD		0x0600	//below threeshold there is no touch
 #endif
 
 
@@ -172,7 +172,7 @@
  * ディスプレイが荒れたり、動作が重たくなった場合に調整可能です。
  **********************************************************************************/
 
-#define TOUCHGFX_TIMING    20   // 連続読み取り間隔 (ms)
+#define TOUCHGFX_TIMING    1000   // 連続読み取り間隔 (ms)
 #define TOUCHGFX_SENSITIVITY 1  // 同じ値と見なすピクセル² (1: 無効)
 #define TOUCHGFX_MOVAVG   1    // 移動平均サンプル数 (1: 無効)
 #define TOUCHGFX_REPEAT_IT 0   // 長押し後に繰り返す回数 (0: 無効)

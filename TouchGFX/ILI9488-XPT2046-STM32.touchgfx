@@ -112,7 +112,7 @@
             "X": 10,
             "Y": 9,
             "Width": 138,
-            "Height": 21,
+            "Height": 24,
             "TextId": "__SingleUse_TQG0",
             "TextRotation": "0",
             "Color": {
@@ -160,7 +160,7 @@
             "X": 5,
             "Y": 227,
             "Width": 48,
-            "Height": 16,
+            "Height": 19,
             "TextId": "__SingleUse_AP1H",
             "TextRotation": "0",
             "Color": {
@@ -215,7 +215,7 @@
             "X": 41,
             "Y": 260,
             "Width": 11,
-            "Height": 39,
+            "Height": 37,
             "TextId": "__SingleUse_WN51",
             "TextRotation": "0",
             "Color": {
@@ -235,7 +235,7 @@
             "X": 41,
             "Y": 166,
             "Width": 20,
-            "Height": 39,
+            "Height": 37,
             "TextId": "__SingleUse_HNTL",
             "TextRotation": "0",
             "Color": {
@@ -255,7 +255,7 @@
             "X": 33,
             "Y": 73,
             "Width": 20,
-            "Height": 39,
+            "Height": 37,
             "TextId": "__SingleUse_YVKD",
             "TextRotation": "0",
             "Color": {
@@ -313,7 +313,7 @@
             "X": 225,
             "Y": 9,
             "Width": 87,
-            "Height": 21,
+            "Height": 24,
             "TextId": "__SingleUse_Y6WD",
             "TextRotation": "0",
             "Color": {
@@ -345,7 +345,7 @@
             "X": 200,
             "Y": 227,
             "Width": 48,
-            "Height": 16,
+            "Height": 19,
             "TextId": "__SingleUse_XPDK",
             "TextRotation": "0",
             "Color": {
@@ -425,20 +425,20 @@
             "Width": 480,
             "Height": 320,
             "Color": {
-              "Red": 2,
-              "Green": 11,
-              "Blue": 31
+              "Red": 5,
+              "Green": 14,
+              "Blue": 36
             }
           },
           {
             "Type": "ButtonWithLabel",
             "Name": "One",
-            "X": 74,
-            "Y": 40,
+            "X": 60,
+            "Y": 24,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
             "TextId": "__SingleUse_KPAO",
             "ReleasedColor": {
               "Red": 255,
@@ -451,17 +451,17 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
           },
           {
             "Type": "ButtonWithLabel",
             "Name": "Enter",
-            "X": 194,
-            "Y": 221,
+            "X": 200,
+            "Y": 237,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_action.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_action.png",
             "TextId": "__SingleUse_Y85E",
             "ReleasedColor": {
               "Red": 255,
@@ -474,17 +474,17 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_action.json"
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_action.json"
           },
           {
             "Type": "ButtonWithLabel",
             "Name": "Zero",
-            "X": 74,
-            "Y": 220,
+            "X": 60,
+            "Y": 237,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
             "TextId": "__SingleUse_1CQN",
             "ReleasedColor": {
               "Red": 255,
@@ -497,17 +497,17 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
           },
           {
             "Type": "ButtonWithLabel",
             "Name": "Two",
-            "X": 134,
-            "Y": 40,
+            "X": 131,
+            "Y": 24,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
             "TextId": "__SingleUse_Z9DS",
             "ReleasedColor": {
               "Red": 255,
@@ -520,17 +520,17 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
           },
           {
             "Type": "ButtonWithLabel",
             "Name": "Five",
-            "X": 134,
-            "Y": 100,
+            "X": 131,
+            "Y": 94,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
             "TextId": "__SingleUse_UW8N",
             "ReleasedColor": {
               "Red": 255,
@@ -543,17 +543,17 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
           },
           {
             "Type": "ButtonWithLabel",
             "Name": "Three",
-            "X": 194,
-            "Y": 40,
+            "X": 200,
+            "Y": 24,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
             "TextId": "__SingleUse_9HW9",
             "ReleasedColor": {
               "Red": 255,
@@ -566,17 +566,17 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
           },
           {
             "Type": "ButtonWithLabel",
             "Name": "Delete",
-            "X": 134,
-            "Y": 221,
+            "X": 131,
+            "Y": 237,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_normal.png",
             "TextId": "__SingleUse_VNBM",
             "ReleasedColor": {
               "Red": 255,
@@ -589,17 +589,17 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_normal.json"
           },
           {
             "Type": "ButtonWithLabel",
             "Name": "Six",
-            "X": 194,
-            "Y": 100,
+            "X": 200,
+            "Y": 94,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
             "TextId": "__SingleUse_PCJK",
             "ReleasedColor": {
               "Red": 255,
@@ -612,17 +612,17 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
           },
           {
             "Type": "ButtonWithLabel",
             "Name": "Seven",
-            "X": 74,
-            "Y": 160,
+            "X": 60,
+            "Y": 166,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
             "TextId": "__SingleUse_7L2H",
             "ReleasedColor": {
               "Red": 255,
@@ -635,17 +635,17 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
           },
           {
             "Type": "ButtonWithLabel",
             "Name": "Eight",
-            "X": 134,
-            "Y": 160,
+            "X": 131,
+            "Y": 166,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
             "TextId": "__SingleUse_RBEN",
             "ReleasedColor": {
               "Red": 255,
@@ -658,17 +658,17 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
           },
           {
             "Type": "ButtonWithLabel",
             "Name": "Nine",
-            "X": 194,
-            "Y": 160,
+            "X": 200,
+            "Y": 166,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
             "TextId": "__SingleUse_2JSJ",
             "ReleasedColor": {
               "Red": 255,
@@ -681,17 +681,17 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json"
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
           },
           {
             "Type": "ButtonWithLabel",
             "Name": "Four",
-            "X": 74,
-            "Y": 100,
+            "X": 60,
+            "Y": 94,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_active.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
             "TextId": "__SingleUse_H5N5",
             "ReleasedColor": {
               "Red": 255,
@@ -704,7 +704,7 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_active.json",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json",
             "Clickable": true
           },
           {
@@ -755,8 +755,8 @@
             "TextId": "__SingleUse_HF3J",
             "TextRotation": "0",
             "Color": {
-              "Red": 128,
-              "Green": 157,
+              "Red": 255,
+              "Green": 255,
               "Blue": 255
             },
             "Wildcard1": {
@@ -915,6 +915,15 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "Delete_"
+            }
+          },
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "Type": "ActionNone"
             }
           }
         ]

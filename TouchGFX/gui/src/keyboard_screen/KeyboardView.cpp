@@ -3,6 +3,8 @@
 #include <gui/common/FrontendApplication.hpp>
 #include <gui/common/SettingType.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
+#include "main.h"              // HAL_GPIO, HAL_GetTick() などを定義したヘッダ
+#include "stm32f4xx_hal.h"     // HAL_GetTick() を使うならこちらだけでも可
 
 
 KeyboardView::KeyboardView() : KeyboardViewBase() {}
@@ -80,16 +82,114 @@ void KeyboardView::updateUnit(SettingType s)
 }
 
 // 数字キー
-void KeyboardView::One_()    { if (presenter) presenter->onDigit(1); }
-void KeyboardView::Two_()    { if (presenter) presenter->onDigit(2); }
-void KeyboardView::Three_()  { if (presenter) presenter->onDigit(3); }
-void KeyboardView::Four_()   { if (presenter) presenter->onDigit(4); }
-void KeyboardView::Five_()   { if (presenter) presenter->onDigit(5); }
-void KeyboardView::Six_()    { if (presenter) presenter->onDigit(6); }
-void KeyboardView::Seven_()  { if (presenter) presenter->onDigit(7); }
-void KeyboardView::Eight_()  { if (presenter) presenter->onDigit(8); }
-void KeyboardView::Nine_()   { if (presenter) presenter->onDigit(9); }
-void KeyboardView::Zero_()   { if (presenter) presenter->onDigit(0); }
+void KeyboardView::One_()
+{
+    static uint32_t lastTick = 0;
+    uint32_t now = HAL_GetTick();
+    if (now - lastTick < 120) { return; }  // 120ms以内なら無視
+    lastTick = now;
 
-void KeyboardView::Delete_() { if (presenter) presenter->onDelete(); }
-void KeyboardView::Enter_()  { if (presenter) presenter->onEnter(); }
+    if (presenter) presenter->onDigit(1);
+}
+void KeyboardView::Two_()
+{
+    static uint32_t lastTick = 0;
+    uint32_t now = HAL_GetTick();
+    if (now - lastTick < 120) { return; }  // 120ms以内なら無視
+    lastTick = now;
+
+    if (presenter) presenter->onDigit(2);
+}
+
+void KeyboardView::Three_()
+{
+    static uint32_t lastTick = 0;
+    uint32_t now = HAL_GetTick();
+    if (now - lastTick < 120) { return; }  // 120ms以内なら無視
+    lastTick = now;
+
+    if (presenter) presenter->onDigit(3);
+}
+void KeyboardView::Four_()
+{
+    static uint32_t lastTick = 0;
+    uint32_t now = HAL_GetTick();
+    if (now - lastTick < 120) { return; }  // 120ms以内なら無視
+    lastTick = now;
+
+    if (presenter) presenter->onDigit(4);
+}
+void KeyboardView::Five_()
+{
+    static uint32_t lastTick = 0;
+    uint32_t now = HAL_GetTick();
+    if (now - lastTick < 120) { return; }  // 120ms以内なら無視
+    lastTick = now;
+
+    if (presenter) presenter->onDigit(5);
+}
+
+void KeyboardView::Six_()
+{
+    static uint32_t lastTick = 0;
+    uint32_t now = HAL_GetTick();
+    if (now - lastTick < 120) { return; }  // 120ms以内なら無視
+    lastTick = now;
+
+    if (presenter) presenter->onDigit(6);
+}
+void KeyboardView::Seven_()
+{
+    static uint32_t lastTick = 0;
+    uint32_t now = HAL_GetTick();
+    if (now - lastTick < 120) { return; }  // 120ms以内なら無視
+    lastTick = now;
+
+    if (presenter) presenter->onDigit(7);
+}
+void KeyboardView::Eight_()
+{
+    static uint32_t lastTick = 0;
+    uint32_t now = HAL_GetTick();
+    if (now - lastTick < 120) { return; }  // 120ms以内なら無視
+    lastTick = now;
+
+    if (presenter) presenter->onDigit(8);
+}
+void KeyboardView::Nine_()
+{
+    static uint32_t lastTick = 0;
+    uint32_t now = HAL_GetTick();
+    if (now - lastTick < 120) { return; }  // 120ms以内なら無視
+    lastTick = now;
+
+    if (presenter) presenter->onDigit(9);
+}
+void KeyboardView::Zero_()
+{
+    static uint32_t lastTick = 0;
+    uint32_t now = HAL_GetTick();
+    if (now - lastTick < 120) { return; }  // 120ms以内なら無視
+    lastTick = now;
+
+    if (presenter) presenter->onDigit(0);
+}
+
+void KeyboardView::Delete_()
+{
+	static uint32_t lastTick = 0;
+	uint32_t now = HAL_GetTick();
+	if (now - lastTick < 120) { return; }  // 120ms以内なら無視
+	lastTick = now;
+
+	if (presenter) presenter->onDelete();
+}
+void KeyboardView::Enter_()
+{
+	static uint32_t lastTick = 0;
+	uint32_t now = HAL_GetTick();
+	if (now - lastTick < 120) { return; }  // 120ms以内なら無視
+	lastTick = now;
+
+	if (presenter) presenter->onEnter();
+}
