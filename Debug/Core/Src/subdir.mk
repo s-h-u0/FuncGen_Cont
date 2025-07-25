@@ -5,6 +5,8 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Core/Src/adc_MCP3428.c \
+../Core/Src/dac_MCP4728.c \
 ../Core/Src/dds_AD9833.c \
 ../Core/Src/dipsw_221AMA16R.c \
 ../Core/Src/dpot_AD5292.c \
@@ -19,6 +21,8 @@ C_SRCS += \
 ../Core/Src/z_touch_XPT2046.c 
 
 C_DEPS += \
+./Core/Src/adc_MCP3428.d \
+./Core/Src/dac_MCP4728.d \
 ./Core/Src/dds_AD9833.d \
 ./Core/Src/dipsw_221AMA16R.d \
 ./Core/Src/dpot_AD5292.d \
@@ -33,6 +37,8 @@ C_DEPS += \
 ./Core/Src/z_touch_XPT2046.d 
 
 OBJS += \
+./Core/Src/adc_MCP3428.o \
+./Core/Src/dac_MCP4728.o \
 ./Core/Src/dds_AD9833.o \
 ./Core/Src/dipsw_221AMA16R.o \
 ./Core/Src/dpot_AD5292.o \
@@ -54,7 +60,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/dds_AD9833.cyclo ./Core/Src/dds_AD9833.d ./Core/Src/dds_AD9833.o ./Core/Src/dds_AD9833.su ./Core/Src/dipsw_221AMA16R.cyclo ./Core/Src/dipsw_221AMA16R.d ./Core/Src/dipsw_221AMA16R.o ./Core/Src/dipsw_221AMA16R.su ./Core/Src/dpot_AD5292.cyclo ./Core/Src/dpot_AD5292.d ./Core/Src/dpot_AD5292.o ./Core/Src/dpot_AD5292.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/mux_sn74lvc1g3157.cyclo ./Core/Src/mux_sn74lvc1g3157.d ./Core/Src/mux_sn74lvc1g3157.o ./Core/Src/mux_sn74lvc1g3157.su ./Core/Src/stm32f4xx_hal_msp.cyclo ./Core/Src/stm32f4xx_hal_msp.d ./Core/Src/stm32f4xx_hal_msp.o ./Core/Src/stm32f4xx_hal_msp.su ./Core/Src/stm32f4xx_it.cyclo ./Core/Src/stm32f4xx_it.d ./Core/Src/stm32f4xx_it.o ./Core/Src/stm32f4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f4xx.cyclo ./Core/Src/system_stm32f4xx.d ./Core/Src/system_stm32f4xx.o ./Core/Src/system_stm32f4xx.su ./Core/Src/z_displ_ILI9XXX.cyclo ./Core/Src/z_displ_ILI9XXX.d ./Core/Src/z_displ_ILI9XXX.o ./Core/Src/z_displ_ILI9XXX.su ./Core/Src/z_touch_XPT2046.cyclo ./Core/Src/z_touch_XPT2046.d ./Core/Src/z_touch_XPT2046.o ./Core/Src/z_touch_XPT2046.su
+	-$(RM) ./Core/Src/adc_MCP3428.cyclo ./Core/Src/adc_MCP3428.d ./Core/Src/adc_MCP3428.o ./Core/Src/adc_MCP3428.su ./Core/Src/dac_MCP4728.cyclo ./Core/Src/dac_MCP4728.d ./Core/Src/dac_MCP4728.o ./Core/Src/dac_MCP4728.su ./Core/Src/dds_AD9833.cyclo ./Core/Src/dds_AD9833.d ./Core/Src/dds_AD9833.o ./Core/Src/dds_AD9833.su ./Core/Src/dipsw_221AMA16R.cyclo ./Core/Src/dipsw_221AMA16R.d ./Core/Src/dipsw_221AMA16R.o ./Core/Src/dipsw_221AMA16R.su ./Core/Src/dpot_AD5292.cyclo ./Core/Src/dpot_AD5292.d ./Core/Src/dpot_AD5292.o ./Core/Src/dpot_AD5292.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/mux_sn74lvc1g3157.cyclo ./Core/Src/mux_sn74lvc1g3157.d ./Core/Src/mux_sn74lvc1g3157.o ./Core/Src/mux_sn74lvc1g3157.su ./Core/Src/stm32f4xx_hal_msp.cyclo ./Core/Src/stm32f4xx_hal_msp.d ./Core/Src/stm32f4xx_hal_msp.o ./Core/Src/stm32f4xx_hal_msp.su ./Core/Src/stm32f4xx_it.cyclo ./Core/Src/stm32f4xx_it.d ./Core/Src/stm32f4xx_it.o ./Core/Src/stm32f4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f4xx.cyclo ./Core/Src/system_stm32f4xx.d ./Core/Src/system_stm32f4xx.o ./Core/Src/system_stm32f4xx.su ./Core/Src/z_displ_ILI9XXX.cyclo ./Core/Src/z_displ_ILI9XXX.d ./Core/Src/z_displ_ILI9XXX.o ./Core/Src/z_displ_ILI9XXX.su ./Core/Src/z_touch_XPT2046.cyclo ./Core/Src/z_touch_XPT2046.d ./Core/Src/z_touch_XPT2046.o ./Core/Src/z_touch_XPT2046.su
 
 .PHONY: clean-Core-2f-Src
 

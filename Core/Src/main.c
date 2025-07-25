@@ -26,7 +26,9 @@
 #include "dds_AD9833.h"
 #include "dipsw_221AMA16R.h"
 #include "mux_sn74lvc1g3157.h"
-
+#include "dac_MCP4728.h"
+#include "adc_MCP3428.h"
+#include <stdio.h>
 
 
 
@@ -50,6 +52,9 @@
 /* Private variables ---------------------------------------------------------*/
 CRC_HandleTypeDef hcrc;
 
+I2C_HandleTypeDef hi2c1;
+I2C_HandleTypeDef hi2c3;
+
 SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi2;
 SPI_HandleTypeDef hspi3;
@@ -72,6 +77,8 @@ static void MX_TIM3_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_SPI3_Init(void);
+static void MX_I2C1_Init(void);
+static void MX_I2C3_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -120,6 +127,8 @@ int main(void)
   MX_TIM2_Init();
   MX_SPI1_Init();
   MX_SPI3_Init();
+  MX_I2C1_Init();
+  MX_I2C3_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
   CLK_MuxInit();     /* PB6 を出力 Low に設定           */
@@ -145,7 +154,51 @@ int main(void)
 
   HAL_Delay(10);
 
-  AD5292_Set(0x07FF); 				//AD5292_Set(抵抗値）　　この場合1kΩ
+  AD5292_Set(0x07FF); 				//　　この場合2kΩ
+
+
+
+  if (!MCP4728_Init(&hi2c1)) {
+	  Error_Handler();  // I2C接続確認
+  }
+
+  // 2.048V基準で 2V出力に相当するDAC値を計算
+  uint16_t val_2v = 4000;
+
+  // 各チャネルに内部Vref + GAIN=1x で設定
+  if (!MCP4728_SetChannel(MCP4728_CHANNEL_A, val_2v, MCP4728_VREF_INTERNAL, MCP4728_GAIN_1X, MCP4728_PD_NORMAL, true)) Error_Handler();
+  if (!MCP4728_SetChannel(MCP4728_CHANNEL_B, val_2v, MCP4728_VREF_INTERNAL, MCP4728_GAIN_1X, MCP4728_PD_NORMAL, false)) Error_Handler();
+  if (!MCP4728_SetChannel(MCP4728_CHANNEL_C, val_2v, MCP4728_VREF_INTERNAL, MCP4728_GAIN_1X, MCP4728_PD_NORMAL, false)) Error_Handler();
+  if (!MCP4728_SetChannel(MCP4728_CHANNEL_D, val_2v, MCP4728_VREF_INTERNAL, MCP4728_GAIN_1X, MCP4728_PD_NORMAL, false)) Error_Handler();
+
+  // 設定をEEPROMへ保存（再起動後も保持）
+  if (!MCP4728_SaveToEEPROM()) {
+	  Error_Handler();
+  }
+
+
+  // （I2C3 初期化後に…）
+  MCP3428_HandleTypeDef adc;
+
+  if (!MCP3428_Init(&adc, &hi2c3, MCP3428_DEFAULT_ADDR)) {
+      Error_Handler();
+  }
+
+  // チャンネル1, 16bit, ワンショット, ゲイン1x
+  if (!MCP3428_SetConfig(&adc,
+                         MCP3428_CHANNEL_1,
+                         MCP3428_RESOLUTION_16BIT,
+                         MCP3428_MODE_ONESHOT,
+                         MCP3428_GAIN_1X)) {
+      Error_Handler();
+  }
+
+  // 読み取り
+  int32_t val = MCP3428_ReadADC(&adc);
+  printf("ADC1: %ld\r\n", val);
+
+
+
 
   /* USER CODE END 2 */
 
@@ -251,6 +304,74 @@ static void MX_CRC_Init(void)
   /* USER CODE BEGIN CRC_Init 2 */
 
   /* USER CODE END CRC_Init 2 */
+
+}
+
+/**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.ClockSpeed = 100000;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+
+}
+
+/**
+  * @brief I2C3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C3_Init(void)
+{
+
+  /* USER CODE BEGIN I2C3_Init 0 */
+
+  /* USER CODE END I2C3_Init 0 */
+
+  /* USER CODE BEGIN I2C3_Init 1 */
+
+  /* USER CODE END I2C3_Init 1 */
+  hi2c3.Instance = I2C3;
+  hi2c3.Init.ClockSpeed = 100000;
+  hi2c3.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c3.Init.OwnAddress1 = 0;
+  hi2c3.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c3.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c3.Init.OwnAddress2 = 0;
+  hi2c3.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c3.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C3_Init 2 */
+
+  /* USER CODE END I2C3_Init 2 */
 
 }
 

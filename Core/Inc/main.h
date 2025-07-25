@@ -89,6 +89,10 @@ void Error_Handler(void);
 #define TOUCH_INT_Pin GPIO_PIN_12
 #define TOUCH_INT_GPIO_Port GPIOD
 #define TOUCH_INT_EXTI_IRQn EXTI15_10_IRQn
+#define MCP3428_SDA_Pin GPIO_PIN_9
+#define MCP3428_SDA_GPIO_Port GPIOC
+#define MCP3428_SCK_Pin GPIO_PIN_8
+#define MCP3428_SCK_GPIO_Port GPIOA
 #define AD5292_CS_Pin GPIO_PIN_2
 #define AD5292_CS_GPIO_Port GPIOD
 #define AD5292_RDY_Pin GPIO_PIN_3
@@ -103,6 +107,10 @@ void Error_Handler(void);
 #define DIP_BIT_8_GPIO_Port GPIOD
 #define CLK_MUX_PIN_S_Pin GPIO_PIN_6
 #define CLK_MUX_PIN_S_GPIO_Port GPIOB
+#define MCP4728_SCK_Pin GPIO_PIN_8
+#define MCP4728_SCK_GPIO_Port GPIOB
+#define MCP4728_SDA_Pin GPIO_PIN_9
+#define MCP4728_SDA_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 #define Ext_CLK_ToDDS  SWITCH_CH_B2  /* 外部クロック：S=High → B2 ↔ A */
