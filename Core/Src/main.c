@@ -177,27 +177,17 @@ int main(void)
   }
 
 
-  // （I2C3 初期化後に…）
   MCP3428_HandleTypeDef adc;
-
-  if (!MCP3428_Init(&adc, &hi2c3, MCP3428_DEFAULT_ADDR)) {
-      Error_Handler();
+  // …Init/SetConfig 済み…
+  int16_t mv = MCP3428_ReadMilliVolt(&adc);
+  char sign = '+';
+  if (mv < 0) {
+      sign = '-';
+      mv = -mv;
   }
-
-  // チャンネル1, 16bit, ワンショット, ゲイン1x
-  if (!MCP3428_SetConfig(&adc,
-                         MCP3428_CHANNEL_1,
-                         MCP3428_RESOLUTION_16BIT,
-                         MCP3428_MODE_ONESHOT,
-                         MCP3428_GAIN_1X)) {
-      Error_Handler();
-  }
-
-  // 読み取り
-  int32_t val = MCP3428_ReadADC(&adc);
-  printf("ADC1: %ld\r\n", val);
-
-
+  uint8_t V_int  = mv / 1000;        // [V] の整数部
+  uint8_t V_frac = (mv % 1000) / 10; // 小数点以下2桁
+  printf("%c%u.%02u V\r\n", sign, V_int, V_frac);
 
 
   /* USER CODE END 2 */
