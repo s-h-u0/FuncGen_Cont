@@ -93,6 +93,8 @@ void Error_Handler(void);
 #define MCP3428_SDA_GPIO_Port GPIOC
 #define MCP3428_SCK_Pin GPIO_PIN_8
 #define MCP3428_SCK_GPIO_Port GPIOA
+#define AD9833_CSA15_Pin GPIO_PIN_15
+#define AD9833_CSA15_GPIO_Port GPIOA
 #define AD5292_CS_Pin GPIO_PIN_2
 #define AD5292_CS_GPIO_Port GPIOD
 #define AD5292_RDY_Pin GPIO_PIN_3

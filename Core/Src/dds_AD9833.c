@@ -45,6 +45,8 @@ void AD9833_Set(uint32_t        freq_hz,
 
     /* --- ソフトウェア CS 制御で SPI 送信 --- */
     HAL_GPIO_WritePin(AD9833_CS_GPIO_Port, AD9833_CS_Pin, GPIO_PIN_RESET);
+    HAL_Delay(10);
     HAL_SPI_Transmit(ad9833_spi, (uint8_t*)seq, 5, HAL_MAX_DELAY);
+    HAL_Delay(10);
     HAL_GPIO_WritePin(AD9833_CS_GPIO_Port, AD9833_CS_Pin, GPIO_PIN_SET);
 }

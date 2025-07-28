@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "main.h"            // HAL_GetTick(), GPIO など
 #include "stm32f4xx_hal.h"
+#include <dds_AD9833.h>  // ← ヘッダを追加
 
 
 
@@ -70,6 +71,14 @@ void MainView::Run()
     }
     lastRunTick = now;
 
+    uint32_t vPhase = presenter->getDesiredValue(SettingType::Phase);      // deg
+    // ※波形を UI で選べるようにしていれば presenter->getDesiredWave() などで取得
+    AD9833_Set(50, AD9833_SINE, vPhase);
+
+    // モデルから入力済みの電圧を取得
+    uint32_t vVolt = presenter->getDesiredValue(SettingType::Voltage);  // 0…40V
+    AD5292_SetVoltage(vVolt);
+
     // すでに Run 中なら何もしない
     if (isRunning) {
         return;
@@ -88,8 +97,6 @@ void MainView::Run()
     toggleButton_Run .invalidate();
     toggleButton_Stop.invalidate();
 
-    // 実際の動作
-    AD5292_Set(0x7FF); // 最大値設定
 }
 
 void MainView::Stop()

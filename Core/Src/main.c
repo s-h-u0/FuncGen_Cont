@@ -148,13 +148,15 @@ int main(void)
   else
 	  CLK_MuxSet(Int_CLK_ToDDS ); 	/*　それ以外(スレーブ)なら外部クロックを使用 → PB6 Low   */
 
+  AD5292_Set(0x400);
+
   HAL_Delay(10);
 
   AD9833_Set(50, AD9833_TRIANGLE, 0); //AD9833_Set(周波数,波形,位相)
 
   HAL_Delay(10);
 
-  AD5292_Set(0x07FF); 				//　　この場合2kΩ
+
 
 
 
@@ -387,7 +389,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.DataSize = SPI_DATASIZE_16BIT;
   hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
-  hspi1.Init.NSS = SPI_NSS_SOFT;
+  hspi1.Init.NSS = SPI_NSS_HARD_OUTPUT;
   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;

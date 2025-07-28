@@ -30,15 +30,16 @@ void KeyboardPresenter::onDelete()
     view.updateDisplay();
 }
 
+
 void KeyboardPresenter::onEnter()
 {
     if (!model) return;
     SettingType s = model->getCurrentSetting();
-
-    model->setDesiredValue(s, currentValue);   // 種類別に保存
+    model->setDesiredValue(s, currentValue);   // モデルに保存
     model->setLastInputValue(s, currentValue);
-    view.gotoMainScreen();
+    view.gotoMainScreen();                      // メイン画面へ戻る
 }
+
 
 void KeyboardPresenter::reset()
 {
