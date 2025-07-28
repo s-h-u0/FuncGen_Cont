@@ -150,7 +150,7 @@ int main(void)
 
   HAL_Delay(10);
 
-  AD9833_Set(50, AD9833_SINE, 0); //AD9833_Set(周波数,波形,位相)
+  AD9833_Set(50, AD9833_TRIANGLE, 0); //AD9833_Set(周波数,波形,位相)
 
   HAL_Delay(10);
 
@@ -387,7 +387,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.DataSize = SPI_DATASIZE_16BIT;
   hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
-  hspi1.Init.NSS = SPI_NSS_HARD_OUTPUT;
+  hspi1.Init.NSS = SPI_NSS_SOFT;
   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
@@ -615,6 +615,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOF, DISPL_RST_Pin|DISPL_DC_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(AD9833_CS_GPIO_Port, AD9833_CS_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(TOUCH_CS_GPIO_Port, TOUCH_CS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
@@ -636,6 +639,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(DISPL_RST_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : AD9833_CS_Pin */
+  GPIO_InitStruct.Pin = AD9833_CS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(AD9833_CS_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : TOUCH_CS_Pin */
   GPIO_InitStruct.Pin = TOUCH_CS_Pin;
