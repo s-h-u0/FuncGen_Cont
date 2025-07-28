@@ -1,5 +1,5 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/FontManager.hpp:43:13:touchgfx::FontProvider::~FontProvider()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/FontManager.hpp:43:13:virtual touchgfx::FontProvider::~FontProvider()	1
-../TouchGFX/generated/fonts/src/ApplicationFontProvider.cpp:8:17:virtual touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId)	12
-../TouchGFX/generated/fonts/include/fonts/ApplicationFontProvider.hpp:45:7:ApplicationFontProvider::~ApplicationFontProvider()	1
-../TouchGFX/generated/fonts/include/fonts/ApplicationFontProvider.hpp:45:7:virtual ApplicationFontProvider::~ApplicationFontProvider()	1
+../TouchGFX/generated/fonts/src/ApplicationFontProvider.cpp:8:17:virtual touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId)	13
+../TouchGFX/generated/fonts/include/fonts/ApplicationFontProvider.hpp:47:7:ApplicationFontProvider::~ApplicationFontProvider()	1
+../TouchGFX/generated/fonts/include/fonts/ApplicationFontProvider.hpp:47:7:virtual ApplicationFontProvider::~ApplicationFontProvider()	1

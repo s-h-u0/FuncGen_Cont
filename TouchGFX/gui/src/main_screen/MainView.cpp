@@ -55,10 +55,21 @@ void MainView::Run()
     }
     lastTick = now;
 
-    // 本来のトグル処理
-    toggleCounter++;
-    uint32_t ohms = (toggleCounter % 2 == 1) ? 0x400 : 0x07FF;
-    AD5292_Set(ohms);
+    AD5292_Set(0x7FF); //とりあえず最大値20kΩ
+}
+
+void MainView::Stop()
+{
+    // デバウンス用タイマー
+    static uint32_t lastTick = 0;
+    uint32_t now = HAL_GetTick();
+    if (now - lastTick < 800) {
+        // 120ms以内の再タッチは無視
+        return;
+    }
+    lastTick = now;
+
+    AD5292_Set(0x400); //とりあえず最小値0Ω
 }
 
 void MainView::button_VoltClicked()

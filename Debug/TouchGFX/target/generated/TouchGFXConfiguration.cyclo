@@ -76,8 +76,8 @@
 ../TouchGFX/target/generated/TouchGFXConfiguration.cpp:76:1:void __static_initialization_and_destruction_0()	1
 ../TouchGFX/target/TouchGFXHAL.hpp:36:7:TouchGFXHAL::~TouchGFXHAL()	1
 ../TouchGFX/target/TouchGFXHAL.hpp:36:7:virtual TouchGFXHAL::~TouchGFXHAL()	1
-../TouchGFX/generated/fonts/include/fonts/ApplicationFontProvider.hpp:45:7:ApplicationFontProvider::~ApplicationFontProvider()	1
-../TouchGFX/generated/fonts/include/fonts/ApplicationFontProvider.hpp:45:7:virtual ApplicationFontProvider::~ApplicationFontProvider()	1
+../TouchGFX/generated/fonts/include/fonts/ApplicationFontProvider.hpp:47:7:ApplicationFontProvider::~ApplicationFontProvider()	1
+../TouchGFX/generated/fonts/include/fonts/ApplicationFontProvider.hpp:47:7:virtual ApplicationFontProvider::~ApplicationFontProvider()	1
 ../Middlewares/ST/touchgfx/framework/include/platform/driver/lcd/LCD16bpp.hpp:39:7:touchgfx::LCD16bpp::~LCD16bpp()	1
 ../Middlewares/ST/touchgfx/framework/include/platform/driver/lcd/LCD16bpp.hpp:39:7:virtual touchgfx::LCD16bpp::~LCD16bpp()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/DMA.hpp:87:7:touchgfx::LockFreeDMA_Queue::~LockFreeDMA_Queue()	1

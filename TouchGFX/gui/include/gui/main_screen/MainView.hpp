@@ -13,6 +13,7 @@ public:
     void setupScreen()    override;
     void tearDownScreen() override;
     void Run()            override;
+    void Stop()            override;
 
     // ★両方書き込む関数
     void updateBothValues(uint32_t volt, uint32_t phas);

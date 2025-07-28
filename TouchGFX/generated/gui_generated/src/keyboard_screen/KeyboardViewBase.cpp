@@ -17,6 +17,10 @@ KeyboardViewBase::KeyboardViewBase() :
     BG_Keyboard.setColor(touchgfx::Color::getColorFromRGB(5, 14, 36));
     add(BG_Keyboard);
 
+    MaesCurr.setXY(318, 116);
+    MaesCurr.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_DISABLED_ID));
+    add(MaesCurr);
+
     One.setXY(60, 24);
     One.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID));
     One.setLabelText(touchgfx::TypedText(T___SINGLEUSE_KPAO));
@@ -26,7 +30,7 @@ KeyboardViewBase::KeyboardViewBase() :
     add(One);
 
     Enter.setXY(200, 237);
-    Enter.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_ACTION_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_PRESSED_ID));
+    Enter.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_PRESSED_ID));
     Enter.setLabelText(touchgfx::TypedText(T___SINGLEUSE_Y85E));
     Enter.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Enter.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -113,13 +117,7 @@ KeyboardViewBase::KeyboardViewBase() :
     Four.setAction(buttonCallback);
     add(Four);
 
-    Setting_Value_BG.setPosition(301, 113, 145, 60);
-    Setting_Value_BG.setColor(touchgfx::Color::getColorFromRGB(12, 36, 51));
-    Setting_Value_BG.setBorderColor(touchgfx::Color::getColorFromRGB(110, 236, 255));
-    Setting_Value_BG.setBorderSize(5);
-    add(Setting_Value_BG);
-
-    Setting_Value.setPosition(301, 122, 108, 38);
+    Setting_Value.setPosition(293, 122, 108, 38);
     Setting_Value.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Setting_Value.setLinespacing(0);
     Setting_ValueBuffer[0] = 0;

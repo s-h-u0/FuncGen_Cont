@@ -8,9 +8,9 @@
 #include <mvp/View.hpp>
 #include <gui/keyboard_screen/KeyboardPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
+#include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/ButtonWithLabel.hpp>
 #include <touchgfx/mixins/ClickListener.hpp>
-#include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
 class KeyboardViewBase : public touchgfx::View<KeyboardPresenter>
@@ -82,6 +82,7 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Box BG_Keyboard;
+    touchgfx::Image MaesCurr;
     touchgfx::ButtonWithLabel One;
     touchgfx::ButtonWithLabel Enter;
     touchgfx::ButtonWithLabel Zero;
@@ -94,7 +95,6 @@ protected:
     touchgfx::ButtonWithLabel Eight;
     touchgfx::ButtonWithLabel Nine;
     touchgfx::ClickListener< touchgfx::ButtonWithLabel > Four;
-    touchgfx::BoxWithBorder Setting_Value_BG;
     touchgfx::TextAreaWithOneWildcard Setting_Value;
     touchgfx::TextAreaWithOneWildcard Setting_Label;
     touchgfx::TextAreaWithOneWildcard textArea1;

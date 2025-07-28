@@ -10,8 +10,7 @@
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/ToggleButton.hpp>
 #include <touchgfx/widgets/Button.hpp>
-#include <touchgfx/widgets/BoxWithBorder.hpp>
-#include <touchgfx/mixins/ClickListener.hpp>
+#include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
@@ -37,6 +36,10 @@ public:
     {
         // Override and implement this function in Main
     }
+    virtual void Stop()
+    {
+        // Override and implement this function in Main
+    }
 
 protected:
     FrontendApplication& application() {
@@ -48,18 +51,16 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Box BG_Main;
-    touchgfx::ToggleButton toggleButton_Run;
+    touchgfx::ToggleButton toggleButton_Stop;
     touchgfx::Button button_Volt;
     touchgfx::Button button_Phas;
-    touchgfx::BoxWithBorder boxWithB_MaesVolt;
-    touchgfx::BoxWithBorder boxWithB_MaesCurr;
-    touchgfx::ClickListener< touchgfx::BoxWithBorder > boxWithB_MaesPhas;
+    touchgfx::Image MaesVolt;
+    touchgfx::Image MaesPhas;
+    touchgfx::Image MaesCurr;
     touchgfx::TextArea MeasureValue;
     touchgfx::TextArea Meas_Volt_label;
     touchgfx::TextArea Meas_Curr_label;
     touchgfx::TextAreaWithOneWildcard Meas_Phas_label;
-    touchgfx::BoxWithBorder boxWithB_SetVolt;
-    touchgfx::BoxWithBorder boxWithB_SetPhas;
     touchgfx::TextAreaWithOneWildcard Val_Meas_Phas;
     touchgfx::TextAreaWithOneWildcard Val_Meas_Curr;
     touchgfx::TextAreaWithOneWildcard Val_Meas_Volt;
@@ -68,6 +69,9 @@ protected:
     touchgfx::TextArea SetValue;
     touchgfx::TextArea Set_Volt_label;
     touchgfx::TextArea Set_Phas_label;
+    touchgfx::ToggleButton toggleButton_Run;
+    touchgfx::TextArea STOP_Text;
+    touchgfx::TextArea RUN_Text;
 
     /*
      * Wildcard Buffers

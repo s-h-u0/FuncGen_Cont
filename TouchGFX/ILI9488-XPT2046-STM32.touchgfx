@@ -7,6 +7,7 @@
           {
             "Type": "Box",
             "Name": "BG_Main",
+            "X": -2,
             "Width": 480,
             "Height": 320,
             "Color": {
@@ -17,101 +18,69 @@
           },
           {
             "Type": "ToggleButton",
-            "Name": "toggleButton_Run",
-            "X": 294,
-            "Y": 151,
-            "Width": 170,
-            "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_togglebutton_large_rounded_text_off_normal.png",
-            "Released": "__generated\\alternate_theme_images_widgets_togglebutton_large_rounded_text_on_action.png",
-            "Preset": "alternate_theme\\presets\\togglebutton\\large\\rounded_action_text.json"
+            "Name": "toggleButton_Stop",
+            "X": 348,
+            "Y": 194,
+            "Width": 110,
+            "Height": 50,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_action.png"
           },
           {
             "Type": "Button",
             "Name": "button_Volt",
-            "X": 200,
-            "Y": 58,
-            "Width": 144,
-            "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png",
-            "Preset": "alternate_theme\\presets\\button\\regular\\height_60\\tiny_rounded_disabled.json"
+            "X": 173,
+            "Y": 66,
+            "Width": 110,
+            "Height": 50,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_rounded_disabled.json"
           },
           {
             "Type": "Button",
             "Name": "button_Phas",
-            "X": 200,
-            "Y": 245,
-            "Width": 144,
-            "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png",
-            "Preset": "alternate_theme\\presets\\button\\regular\\height_60\\tiny_rounded_disabled.json"
+            "X": 170,
+            "Y": 246,
+            "Width": 110,
+            "Height": 50,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_rounded_disabled.json"
           },
           {
-            "Type": "BoxWithBorder",
-            "Name": "boxWithB_MaesVolt",
-            "X": 5,
-            "Y": 58,
-            "Width": 145,
-            "Height": 60,
-            "Color": {
-              "Red": 2,
-              "Green": 11,
-              "Blue": 31
-            },
-            "BorderColor": {
-              "Red": 110,
-              "Green": 236,
-              "Blue": 255
-            },
-            "BorderSize": 5
+            "Type": "Image",
+            "Name": "MaesVolt",
+            "X": 22,
+            "Y": 66,
+            "Width": 110,
+            "Height": 50,
+            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png"
           },
           {
-            "Type": "BoxWithBorder",
-            "Name": "boxWithB_MaesCurr",
-            "X": 5,
-            "Y": 151,
-            "Width": 145,
-            "Height": 60,
-            "Color": {
-              "Red": 2,
-              "Green": 11,
-              "Blue": 31
-            },
-            "BorderColor": {
-              "Red": 110,
-              "Green": 236,
-              "Blue": 255
-            },
-            "BorderSize": 5
+            "Type": "Image",
+            "Name": "MaesPhas",
+            "X": 21,
+            "Y": 250,
+            "Width": 110,
+            "Height": 50,
+            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png"
           },
           {
-            "Type": "BoxWithBorder",
-            "Name": "boxWithB_MaesPhas",
-            "X": 5,
-            "Y": 245,
-            "Width": 145,
-            "Height": 60,
-            "Color": {
-              "Red": 2,
-              "Green": 11,
-              "Blue": 31
-            },
-            "BorderColor": {
-              "Red": 110,
-              "Green": 236,
-              "Blue": 255
-            },
-            "BorderSize": 5,
-            "Clickable": true
+            "Type": "Image",
+            "Name": "MaesCurr",
+            "X": 22,
+            "Y": 161,
+            "Width": 110,
+            "Height": 50,
+            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png"
           },
           {
             "Type": "TextArea",
             "Name": "MeasureValue",
-            "X": 10,
-            "Y": 9,
-            "Width": 138,
+            "X": 53,
+            "Y": 19,
+            "Width": 41,
             "Height": 24,
             "TextId": "__SingleUse_TQG0",
             "TextRotation": "0",
@@ -126,7 +95,7 @@
             "Type": "TextArea",
             "Name": "Meas_Volt_label",
             "X": 5,
-            "Y": 40,
+            "Y": 48,
             "Width": 56,
             "Height": 18,
             "TextId": "__SingleUse_FO9X",
@@ -141,8 +110,8 @@
           {
             "Type": "TextArea",
             "Name": "Meas_Curr_label",
-            "X": 5,
-            "Y": 133,
+            "X": 4,
+            "Y": 136,
             "Width": 57,
             "Height": 18,
             "TextId": "__SingleUse_Y15L",
@@ -157,8 +126,8 @@
           {
             "Type": "TextArea",
             "Name": "Meas_Phas_label",
-            "X": 5,
-            "Y": 227,
+            "X": 4,
+            "Y": 228,
             "Width": 48,
             "Height": 19,
             "TextId": "__SingleUse_AP1H",
@@ -172,48 +141,10 @@
             "Wildcard1": {}
           },
           {
-            "Type": "BoxWithBorder",
-            "Name": "boxWithB_SetVolt",
-            "X": 200,
-            "Y": 58,
-            "Width": 145,
-            "Height": 60,
-            "Color": {
-              "Red": 2,
-              "Green": 11,
-              "Blue": 31
-            },
-            "BorderColor": {
-              "Red": 110,
-              "Green": 236,
-              "Blue": 255
-            },
-            "BorderSize": 5
-          },
-          {
-            "Type": "BoxWithBorder",
-            "Name": "boxWithB_SetPhas",
-            "X": 200,
-            "Y": 245,
-            "Width": 144,
-            "Height": 60,
-            "Color": {
-              "Red": 2,
-              "Green": 11,
-              "Blue": 31
-            },
-            "BorderColor": {
-              "Red": 110,
-              "Green": 236,
-              "Blue": 255
-            },
-            "BorderSize": 5
-          },
-          {
             "Type": "TextArea",
             "Name": "Val_Meas_Phas",
-            "X": 41,
-            "Y": 260,
+            "X": 71,
+            "Y": 256,
             "Width": 11,
             "Height": 37,
             "TextId": "__SingleUse_WN51",
@@ -232,8 +163,8 @@
           {
             "Type": "TextArea",
             "Name": "Val_Meas_Curr",
-            "X": 41,
-            "Y": 166,
+            "X": 67,
+            "Y": 161,
             "Width": 20,
             "Height": 37,
             "TextId": "__SingleUse_HNTL",
@@ -252,8 +183,8 @@
           {
             "Type": "TextArea",
             "Name": "Val_Meas_Volt",
-            "X": 33,
-            "Y": 73,
+            "X": 67,
+            "Y": 71,
             "Width": 20,
             "Height": 37,
             "TextId": "__SingleUse_YVKD",
@@ -272,8 +203,8 @@
           {
             "Type": "TextArea",
             "Name": "Val_Set_Volt",
-            "X": 213,
-            "Y": 73,
+            "X": 173,
+            "Y": 74,
             "Width": 123,
             "Height": 36,
             "TextId": "__SingleUse_211V",
@@ -291,8 +222,8 @@
           {
             "Type": "TextArea",
             "Name": "Val_Set_Phas",
-            "X": 213,
-            "Y": 260,
+            "X": 170,
+            "Y": 253,
             "Width": 123,
             "Height": 36,
             "TextId": "__SingleUse_VR8I",
@@ -310,9 +241,9 @@
           {
             "Type": "TextArea",
             "Name": "SetValue",
-            "X": 225,
-            "Y": 9,
-            "Width": 87,
+            "X": 204,
+            "Y": 19,
+            "Width": 34,
             "Height": 24,
             "TextId": "__SingleUse_Y6WD",
             "TextRotation": "0",
@@ -326,8 +257,8 @@
           {
             "Type": "TextArea",
             "Name": "Set_Volt_label",
-            "X": 200,
-            "Y": 40,
+            "X": 148,
+            "Y": 48,
             "Width": 56,
             "Height": 18,
             "TextId": "__SingleUse_UVF8",
@@ -342,8 +273,8 @@
           {
             "Type": "TextArea",
             "Name": "Set_Phas_label",
-            "X": 200,
-            "Y": 227,
+            "X": 156,
+            "Y": 230,
             "Width": 48,
             "Height": 19,
             "TextId": "__SingleUse_XPDK",
@@ -354,6 +285,36 @@
               "Blue": 255
             },
             "AutoSize": true
+          },
+          {
+            "Type": "ToggleButton",
+            "Name": "toggleButton_Run",
+            "X": 348,
+            "Y": 95,
+            "Width": 110,
+            "Height": 50,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_active.png"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "STOP_Text",
+            "X": 355,
+            "Y": 101,
+            "Width": 100,
+            "Height": 35,
+            "TextId": "__SingleUse_R6D2",
+            "TextRotation": "0"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "RUN_Text",
+            "X": 355,
+            "Y": 200,
+            "Width": 100,
+            "Height": 35,
+            "TextId": "__SingleUse_C75W",
+            "TextRotation": "0"
           }
         ],
         "Interactions": [
@@ -385,7 +346,7 @@
             "InteractionName": "Run",
             "Trigger": {
               "Type": "TriggerClicked",
-              "TriggerComponent": "toggleButton_Run"
+              "TriggerComponent": "toggleButton_Stop"
             },
             "Action": {
               "Type": "ActionCustom",
@@ -413,6 +374,17 @@
               "Type": "ActionCustom",
               "FunctionName": "button_PhasClicked"
             }
+          },
+          {
+            "InteractionName": "Stop",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "toggleButton_Stop"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "Stop"
+            }
           }
         ]
       },
@@ -429,6 +401,15 @@
               "Green": 14,
               "Blue": 36
             }
+          },
+          {
+            "Type": "Image",
+            "Name": "MaesCurr",
+            "X": 318,
+            "Y": 116,
+            "Width": 110,
+            "Height": 50,
+            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png"
           },
           {
             "Type": "ButtonWithLabel",
@@ -461,7 +442,7 @@
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_action.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_active.png",
             "TextId": "__SingleUse_Y85E",
             "ReleasedColor": {
               "Red": 255,
@@ -474,7 +455,7 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_action.json"
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_active.json"
           },
           {
             "Type": "ButtonWithLabel",
@@ -708,28 +689,9 @@
             "Clickable": true
           },
           {
-            "Type": "BoxWithBorder",
-            "Name": "Setting_Value_BG",
-            "X": 301,
-            "Y": 113,
-            "Width": 145,
-            "Height": 60,
-            "Color": {
-              "Red": 12,
-              "Green": 36,
-              "Blue": 51
-            },
-            "BorderColor": {
-              "Red": 110,
-              "Green": 236,
-              "Blue": 255
-            },
-            "BorderSize": 5
-          },
-          {
             "Type": "TextArea",
             "Name": "Setting_Value",
-            "X": 301,
+            "X": 293,
             "Y": 122,
             "Width": 108,
             "Height": 38,

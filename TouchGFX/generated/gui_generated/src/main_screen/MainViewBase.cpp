@@ -13,80 +13,62 @@ MainViewBase::MainViewBase() :
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    BG_Main.setPosition(0, 0, 480, 320);
+    BG_Main.setPosition(-2, 0, 480, 320);
     BG_Main.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
     add(BG_Main);
 
-    toggleButton_Run.setXY(294, 151);
-    toggleButton_Run.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_LARGE_ROUNDED_TEXT_ON_ACTION_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_LARGE_ROUNDED_TEXT_OFF_NORMAL_ID));
-    toggleButton_Run.setAction(buttonCallback);
-    add(toggleButton_Run);
+    toggleButton_Stop.setXY(348, 194);
+    toggleButton_Stop.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTION_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
+    toggleButton_Stop.setAction(buttonCallback);
+    add(toggleButton_Stop);
 
-    button_Volt.setXY(200, 58);
-    button_Volt.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_60_TINY_ROUNDED_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_60_TINY_ROUNDED_DISABLED_ID));
+    button_Volt.setXY(173, 66);
+    button_Volt.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_DISABLED_ID));
     button_Volt.setAction(buttonCallback);
     add(button_Volt);
 
-    button_Phas.setXY(200, 245);
-    button_Phas.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_60_TINY_ROUNDED_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_60_TINY_ROUNDED_DISABLED_ID));
+    button_Phas.setXY(170, 246);
+    button_Phas.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_DISABLED_ID));
     button_Phas.setAction(buttonCallback);
     add(button_Phas);
 
-    boxWithB_MaesVolt.setPosition(5, 58, 145, 60);
-    boxWithB_MaesVolt.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
-    boxWithB_MaesVolt.setBorderColor(touchgfx::Color::getColorFromRGB(110, 236, 255));
-    boxWithB_MaesVolt.setBorderSize(5);
-    add(boxWithB_MaesVolt);
+    MaesVolt.setXY(22, 66);
+    MaesVolt.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_DISABLED_ID));
+    add(MaesVolt);
 
-    boxWithB_MaesCurr.setPosition(5, 151, 145, 60);
-    boxWithB_MaesCurr.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
-    boxWithB_MaesCurr.setBorderColor(touchgfx::Color::getColorFromRGB(110, 236, 255));
-    boxWithB_MaesCurr.setBorderSize(5);
-    add(boxWithB_MaesCurr);
+    MaesPhas.setXY(21, 250);
+    MaesPhas.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_DISABLED_ID));
+    add(MaesPhas);
 
-    boxWithB_MaesPhas.setPosition(5, 245, 145, 60);
-    boxWithB_MaesPhas.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
-    boxWithB_MaesPhas.setBorderColor(touchgfx::Color::getColorFromRGB(110, 236, 255));
-    boxWithB_MaesPhas.setBorderSize(5);
-    add(boxWithB_MaesPhas);
+    MaesCurr.setXY(22, 161);
+    MaesCurr.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_DISABLED_ID));
+    add(MaesCurr);
 
-    MeasureValue.setXY(10, 9);
+    MeasureValue.setXY(53, 19);
     MeasureValue.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     MeasureValue.setLinespacing(0);
     MeasureValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_TQG0));
     add(MeasureValue);
 
-    Meas_Volt_label.setXY(5, 40);
+    Meas_Volt_label.setXY(5, 48);
     Meas_Volt_label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Meas_Volt_label.setLinespacing(0);
     Meas_Volt_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_FO9X));
     add(Meas_Volt_label);
 
-    Meas_Curr_label.setXY(5, 133);
+    Meas_Curr_label.setXY(4, 136);
     Meas_Curr_label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Meas_Curr_label.setLinespacing(0);
     Meas_Curr_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Y15L));
     add(Meas_Curr_label);
 
-    Meas_Phas_label.setXY(5, 227);
+    Meas_Phas_label.setXY(4, 228);
     Meas_Phas_label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Meas_Phas_label.setLinespacing(0);
     Meas_Phas_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_AP1H));
     add(Meas_Phas_label);
 
-    boxWithB_SetVolt.setPosition(200, 58, 145, 60);
-    boxWithB_SetVolt.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
-    boxWithB_SetVolt.setBorderColor(touchgfx::Color::getColorFromRGB(110, 236, 255));
-    boxWithB_SetVolt.setBorderSize(5);
-    add(boxWithB_SetVolt);
-
-    boxWithB_SetPhas.setPosition(200, 245, 144, 60);
-    boxWithB_SetPhas.setColor(touchgfx::Color::getColorFromRGB(2, 11, 31));
-    boxWithB_SetPhas.setBorderColor(touchgfx::Color::getColorFromRGB(110, 236, 255));
-    boxWithB_SetPhas.setBorderSize(5);
-    add(boxWithB_SetPhas);
-
-    Val_Meas_Phas.setXY(41, 260);
+    Val_Meas_Phas.setXY(71, 256);
     Val_Meas_Phas.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Meas_Phas.setLinespacing(0);
     Val_Meas_PhasBuffer[0] = 0;
@@ -95,7 +77,7 @@ MainViewBase::MainViewBase() :
     Val_Meas_Phas.setTypedText(touchgfx::TypedText(T___SINGLEUSE_WN51));
     add(Val_Meas_Phas);
 
-    Val_Meas_Curr.setXY(41, 166);
+    Val_Meas_Curr.setXY(67, 161);
     Val_Meas_Curr.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Meas_Curr.setLinespacing(0);
     Val_Meas_CurrBuffer[0] = 0;
@@ -104,7 +86,7 @@ MainViewBase::MainViewBase() :
     Val_Meas_Curr.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HNTL));
     add(Val_Meas_Curr);
 
-    Val_Meas_Volt.setXY(33, 73);
+    Val_Meas_Volt.setXY(67, 71);
     Val_Meas_Volt.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Meas_Volt.setLinespacing(0);
     Val_Meas_VoltBuffer[0] = 0;
@@ -113,7 +95,7 @@ MainViewBase::MainViewBase() :
     Val_Meas_Volt.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YVKD));
     add(Val_Meas_Volt);
 
-    Val_Set_Volt.setPosition(213, 73, 123, 36);
+    Val_Set_Volt.setPosition(173, 74, 123, 36);
     Val_Set_Volt.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Set_Volt.setLinespacing(0);
     Val_Set_VoltBuffer[0] = 0;
@@ -121,7 +103,7 @@ MainViewBase::MainViewBase() :
     Val_Set_Volt.setTypedText(touchgfx::TypedText(T___SINGLEUSE_211V));
     add(Val_Set_Volt);
 
-    Val_Set_Phas.setPosition(213, 260, 123, 36);
+    Val_Set_Phas.setPosition(170, 253, 123, 36);
     Val_Set_Phas.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Set_Phas.setLinespacing(0);
     Val_Set_PhasBuffer[0] = 0;
@@ -129,23 +111,39 @@ MainViewBase::MainViewBase() :
     Val_Set_Phas.setTypedText(touchgfx::TypedText(T___SINGLEUSE_VR8I));
     add(Val_Set_Phas);
 
-    SetValue.setXY(225, 9);
+    SetValue.setXY(204, 19);
     SetValue.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     SetValue.setLinespacing(0);
     SetValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Y6WD));
     add(SetValue);
 
-    Set_Volt_label.setXY(200, 40);
+    Set_Volt_label.setXY(148, 48);
     Set_Volt_label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Set_Volt_label.setLinespacing(0);
     Set_Volt_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_UVF8));
     add(Set_Volt_label);
 
-    Set_Phas_label.setXY(200, 227);
+    Set_Phas_label.setXY(156, 230);
     Set_Phas_label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Set_Phas_label.setLinespacing(0);
     Set_Phas_label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_XPDK));
     add(Set_Phas_label);
+
+    toggleButton_Run.setXY(348, 95);
+    toggleButton_Run.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
+    add(toggleButton_Run);
+
+    STOP_Text.setPosition(355, 101, 100, 35);
+    STOP_Text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    STOP_Text.setLinespacing(0);
+    STOP_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_R6D2));
+    add(STOP_Text);
+
+    RUN_Text.setPosition(355, 200, 100, 35);
+    RUN_Text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    RUN_Text.setLinespacing(0);
+    RUN_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_C75W));
+    add(RUN_Text);
 }
 
 MainViewBase::~MainViewBase()
@@ -182,11 +180,15 @@ void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //Call button_PhasClicked
         button_PhasClicked();
     }
-    if (&src == &toggleButton_Run)
+    if (&src == &toggleButton_Stop)
     {
         //Run
-        //When toggleButton_Run clicked call virtual function
+        //When toggleButton_Stop clicked call virtual function
         //Call Run
-        Run();
+        Run();
+        //Stop
+        //When toggleButton_Stop clicked call virtual function
+        //Call Stop
+        Stop();
     }
 }

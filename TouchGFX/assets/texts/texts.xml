@@ -16,6 +16,12 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_C75W" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">STOP</Translation>
+      </Text>
+      <Text Id="__SingleUse_R6D2" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">RUN</Translation>
+      </Text>
       <Text Id="UNIT" Alignment="Left" TypographyId="UNIT">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
@@ -107,10 +113,10 @@
         <Translation Language="GB">Voltage</Translation>
       </Text>
       <Text Id="__SingleUse_Y6WD" Alignment="Left" TypographyId="Label">
-        <Translation Language="GB">Set Value</Translation>
+        <Translation Language="GB">SET</Translation>
       </Text>
-      <Text Id="__SingleUse_TQG0" Alignment="Left" TypographyId="Label">
-        <Translation Language="GB">Measure Value</Translation>
+      <Text Id="__SingleUse_TQG0" Alignment="Left" TypographyId="Typography_03">
+        <Translation Language="GB">GET</Translation>
       </Text>
     </TextGroup>
   </Texts>
@@ -126,5 +132,6 @@
     <Typography Id="Val_meas_xxx" Font="Asap-Regular.ttf" Size="30" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Typography_02" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="UNIT" Font="Asap-Regular.ttf" Size="32" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Typography_03" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>
