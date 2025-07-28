@@ -25,5 +25,5 @@ public:
     void button_PhasClicked() override;
 
 private:
-    uint32_t toggleCounter = 0;
+    bool isRunning = false;  ///< Run 中かどうかを保持
 };

@@ -15,8 +15,14 @@ MainView::MainView()
 void MainView::setupScreen()
 {
     MainViewBase::setupScreen();
-    // presenter->activate();  // Presenter 側の activate 内で View を更新しているなら不要
+    // 初期状態：Run ボタンだけ有効、Stop ボタンは非活性
+    isRunning = false;
+    toggleButton_Run.setTouchable(true);
+    toggleButton_Run.invalidate();
+    toggleButton_Stop.setTouchable(false);
+    toggleButton_Stop.invalidate();
 }
+
 
 void MainView::tearDownScreen()
 {
@@ -50,12 +56,24 @@ void MainView::Run()
     static uint32_t lastTick = 0;
     uint32_t now = HAL_GetTick();
     if (now - lastTick < 800) {
-        // 120ms以内の再タッチは無視
         return;
     }
     lastTick = now;
 
-    AD5292_Set(0x7FF); //とりあえず最大値20kΩ
+    // すでに Run 中なら何もしない
+    if (isRunning) {
+        return;
+    }
+    isRunning = true;
+
+    // ボタンの切り替え
+    toggleButton_Run.setTouchable(false);
+    toggleButton_Run.invalidate();
+    toggleButton_Stop.setTouchable(true);
+    toggleButton_Stop.invalidate();
+
+    // 実際の動作
+    AD5292_Set(0x7FF); // 最大値設定
 }
 
 void MainView::Stop()
@@ -64,12 +82,24 @@ void MainView::Stop()
     static uint32_t lastTick = 0;
     uint32_t now = HAL_GetTick();
     if (now - lastTick < 800) {
-        // 120ms以内の再タッチは無視
         return;
     }
     lastTick = now;
 
-    AD5292_Set(0x400); //とりあえず最小値0Ω
+    // Run 中でなければ何もしない
+    if (!isRunning) {
+        return;
+    }
+    isRunning = false;
+
+    // ボタンの切り替え
+    toggleButton_Stop.setTouchable(false);
+    toggleButton_Stop.invalidate();
+    toggleButton_Run.setTouchable(true);
+    toggleButton_Run.invalidate();
+
+    // 実際の動作
+    AD5292_Set(0x400); // 最小値設定
 }
 
 void MainView::button_VoltClicked()

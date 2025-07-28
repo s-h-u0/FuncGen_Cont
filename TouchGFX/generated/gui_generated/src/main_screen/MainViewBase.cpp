@@ -18,7 +18,8 @@ MainViewBase::MainViewBase() :
     add(BG_Main);
 
     toggleButton_Stop.setXY(348, 194);
-    toggleButton_Stop.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTION_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
+    toggleButton_Stop.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTION_ID));
+    toggleButton_Stop.forceState(true);
     toggleButton_Stop.setAction(buttonCallback);
     add(toggleButton_Stop);
 
@@ -131,6 +132,8 @@ MainViewBase::MainViewBase() :
 
     toggleButton_Run.setXY(348, 95);
     toggleButton_Run.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
+    toggleButton_Run.forceState(true);
+    toggleButton_Run.setAction(buttonCallback);
     add(toggleButton_Run);
 
     STOP_Text.setPosition(355, 101, 100, 35);
@@ -180,12 +183,15 @@ void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //Call button_PhasClicked
         button_PhasClicked();
     }
-    if (&src == &toggleButton_Stop)
+    if (&src == &toggleButton_Run)
     {
         //Run
-        //When toggleButton_Stop clicked call virtual function
+        //When toggleButton_Run clicked call virtual function
         //Call Run
-        Run();
+        Run();
+    }
+    if (&src == &toggleButton_Stop)
+    {
         //Stop
         //When toggleButton_Stop clicked call virtual function
         //Call Stop
