@@ -15,13 +15,22 @@ MainView::MainView()
 void MainView::setupScreen()
 {
     MainViewBase::setupScreen();
-    // 初期状態：Run ボタンだけ有効、Stop ボタンは非活性
+
     isRunning = false;
-    toggleButton_Run.setTouchable(true);
-    toggleButton_Run.invalidate();
+
+    // タッチ可否
+    toggleButton_Run .setTouchable(true);
     toggleButton_Stop.setTouchable(false);
+
+    // ★ ここを forceState で初期化 ★
+    toggleButton_Run .forceState(false);  // ReleasedImage（RUN）
+    toggleButton_Stop.forceState(true);   // PressedImage （STOP）
+
+    toggleButton_Run .invalidate();
     toggleButton_Stop.invalidate();
 }
+
+
 
 
 void MainView::tearDownScreen()
@@ -52,13 +61,14 @@ void MainView::updateBothValues(uint32_t vVolt, uint32_t vPhas)
 
 void MainView::Run()
 {
-    // デバウンス用タイマー
-    static uint32_t lastTick = 0;
+    // ★ デバウンス用タイマー
+    static uint32_t lastRunTick = 0;
     uint32_t now = HAL_GetTick();
-    if (now - lastTick < 800) {
+    if (now - lastRunTick < 800) {
+        // 800ms以内の再タッチは無視
         return;
     }
-    lastTick = now;
+    lastRunTick = now;
 
     // すでに Run 中なら何もしない
     if (isRunning) {
@@ -66,10 +76,16 @@ void MainView::Run()
     }
     isRunning = true;
 
-    // ボタンの切り替え
-    toggleButton_Run.setTouchable(false);
-    toggleButton_Run.invalidate();
+    // ★ 見た目を切り替え
+    toggleButton_Run .forceState(true);  // PressedImage
+    toggleButton_Stop.forceState(false); // ReleasedImage
+
+    // ★ タッチ可否を排他切り替え
+    toggleButton_Run .setTouchable(false);
     toggleButton_Stop.setTouchable(true);
+
+    // ★ 再描画
+    toggleButton_Run .invalidate();
     toggleButton_Stop.invalidate();
 
     // 実際の動作
@@ -78,13 +94,14 @@ void MainView::Run()
 
 void MainView::Stop()
 {
-    // デバウンス用タイマー
-    static uint32_t lastTick = 0;
+    // ★ デバウンス用タイマー
+    static uint32_t lastStopTick = 0;
     uint32_t now = HAL_GetTick();
-    if (now - lastTick < 800) {
+    if (now - lastStopTick < 800) {
+        // 800ms以内の再タッチは無視
         return;
     }
-    lastTick = now;
+    lastStopTick = now;
 
     // Run 中でなければ何もしない
     if (!isRunning) {
@@ -92,15 +109,24 @@ void MainView::Stop()
     }
     isRunning = false;
 
-    // ボタンの切り替え
+    // ★ 見た目を切り替え
+    toggleButton_Stop.forceState(true);  // PressedImage
+    toggleButton_Run .forceState(false); // ReleasedImage
+
+    // ★ タッチ可否を排他切り替え
     toggleButton_Stop.setTouchable(false);
+    toggleButton_Run .setTouchable(true);
+
+    // ★ 再描画
     toggleButton_Stop.invalidate();
-    toggleButton_Run.setTouchable(true);
-    toggleButton_Run.invalidate();
+    toggleButton_Run .invalidate();
 
     // 実際の動作
     AD5292_Set(0x400); // 最小値設定
 }
+
+
+
 
 void MainView::button_VoltClicked()
 {

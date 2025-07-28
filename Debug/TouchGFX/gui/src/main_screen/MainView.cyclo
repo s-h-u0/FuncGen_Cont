@@ -6,11 +6,11 @@
 ../TouchGFX/generated/gui_generated/include/gui_generated/main_screen/MainViewBase.hpp:45:26:FrontendApplication& MainViewBase::application()	1
 ../TouchGFX/gui/src/main_screen/MainView.cpp:11:1:MainView::MainView()	1
 ../TouchGFX/gui/src/main_screen/MainView.cpp:15:6:virtual void MainView::setupScreen()	1
-../TouchGFX/gui/src/main_screen/MainView.cpp:27:6:virtual void MainView::tearDownScreen()	1
-../TouchGFX/gui/src/main_screen/MainView.cpp:32:6:void MainView::updateBothValues(uint32_t, uint32_t)	1
-../TouchGFX/gui/src/main_screen/MainView.cpp:53:6:virtual void MainView::Run()	3
-../TouchGFX/gui/src/main_screen/MainView.cpp:79:6:virtual void MainView::Stop()	3
-../TouchGFX/gui/src/main_screen/MainView.cpp:105:6:virtual void MainView::button_VoltClicked()	2
-../TouchGFX/gui/src/main_screen/MainView.cpp:113:6:virtual void MainView::button_PhasClicked()	2
+../TouchGFX/gui/src/main_screen/MainView.cpp:36:6:virtual void MainView::tearDownScreen()	1
+../TouchGFX/gui/src/main_screen/MainView.cpp:41:6:void MainView::updateBothValues(uint32_t, uint32_t)	1
+../TouchGFX/gui/src/main_screen/MainView.cpp:62:6:virtual void MainView::Run()	3
+../TouchGFX/gui/src/main_screen/MainView.cpp:95:6:virtual void MainView::Stop()	3
+../TouchGFX/gui/src/main_screen/MainView.cpp:131:6:virtual void MainView::button_VoltClicked()	2
+../TouchGFX/gui/src/main_screen/MainView.cpp:139:6:virtual void MainView::button_PhasClicked()	2
 ../TouchGFX/gui/include/gui/main_screen/MainView.hpp:9:7:MainView::~MainView()	1
 ../TouchGFX/gui/include/gui/main_screen/MainView.hpp:9:7:virtual MainView::~MainView()	1

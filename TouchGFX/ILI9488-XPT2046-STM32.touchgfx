@@ -24,8 +24,8 @@
             "Width": 110,
             "Height": 50,
             "InitialStatePressed": true,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_action.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png"
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_action.png"
           },
           {
             "Type": "Button",

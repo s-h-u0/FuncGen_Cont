@@ -18,7 +18,7 @@ MainViewBase::MainViewBase() :
     add(BG_Main);
 
     toggleButton_Stop.setXY(348, 194);
-    toggleButton_Stop.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTION_ID));
+    toggleButton_Stop.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTION_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
     toggleButton_Stop.forceState(true);
     toggleButton_Stop.setAction(buttonCallback);
     add(toggleButton_Stop);
