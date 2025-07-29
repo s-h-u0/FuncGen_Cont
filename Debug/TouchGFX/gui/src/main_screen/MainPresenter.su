@@ -14,6 +14,6 @@
 ../TouchGFX/gui/src/main_screen/MainPresenter.cpp:32:10:uint32_t MainPresenter::getDesiredValue(SettingType) const	16	static
 ../TouchGFX/gui/src/main_screen/MainPresenter.cpp:37:6:void MainPresenter::setCurrentSetting(SettingType)	16	static
 ../TouchGFX/gui/src/main_screen/MainPresenter.cpp:42:13:SettingType MainPresenter::getCurrentSetting() const	16	static
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:47:6:void MainPresenter::updateMeasuredValues()	24	static
-../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:9:7:MainPresenter::~MainPresenter()	16	static
-../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:9:7:virtual MainPresenter::~MainPresenter()	16	static
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:47:6:void MainPresenter::updateMeasuredValues()	32	static
+../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:19:7:MainPresenter::~MainPresenter()	16	static
+../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:19:7:virtual MainPresenter::~MainPresenter()	16	static

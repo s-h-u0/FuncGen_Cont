@@ -46,12 +46,24 @@ SettingType MainPresenter::getCurrentSetting() const
 
 void MainPresenter::updateMeasuredValues()
 {
-    // hw_adc から直接ミリボルトを取得
-    // （必要に応じてハード側でレンジやチャンネル切り替えを行う）
-    int16_t measCurr = MCP3428_adc_read_millivolt();
-    int16_t measVolt = MCP3428_adc_read_millivolt();
+    if (!adcHandle) return;
 
-    // View に表示を依頼（int16_t 型のまま）
+    // --- 電流測定(チャンネル1)
+    MCP3428_SetConfig(adcHandle,
+        MCP3428_CHANNEL_1,
+        MCP3428_RESOLUTION_16BIT,
+        MCP3428_MODE_ONESHOT,
+        MCP3428_GAIN_1X);
+    int16_t measCurr = MCP3428_ReadMilliVolt(adcHandle);
+
+    // --- 電圧測定(チャンネル2)
+    MCP3428_SetConfig(adcHandle,
+        MCP3428_CHANNEL_4,
+        MCP3428_RESOLUTION_16BIT,
+        MCP3428_MODE_ONESHOT,
+        MCP3428_GAIN_1X);
+    int16_t measVolt = MCP3428_ReadMilliVolt(adcHandle);
+
     view.setMeasuredCurr(measCurr);
     view.setMeasuredVolt(measVolt);
 }

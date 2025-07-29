@@ -1,3 +1,13 @@
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include "adc_MCP3428.h"    // Core/Inc にあるヘッダへの相対パスを調整
+#ifdef __cplusplus
+}
+#endif
+
+
 #pragma once
 #include <mvp/Presenter.hpp>
 #include <gui/model/ModelListener.hpp>
@@ -24,7 +34,11 @@ public:
 
     void updateMeasuredValues();
 
+    /// <summary>ADC ハンドルをセット</summary>
+    void setADCHandle(MCP3428_HandleTypeDef* handle) { adcHandle = handle; }
+
 private:
     MainView& view;
-
+    // ここに MCP3428 用ハンドルを保持
+    MCP3428_HandleTypeDef* adcHandle = nullptr;  ///< ここを追加
 };

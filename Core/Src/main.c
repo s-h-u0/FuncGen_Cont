@@ -64,6 +64,7 @@ TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
+MCP3428_HandleTypeDef hadc3428;
 
 /* USER CODE END PV */
 
@@ -141,6 +142,9 @@ int main(void)
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 100);
 
+  // TouchGFX 用タイマー IRQ をスタート
+  HAL_TIM_Base_Start_IT(&TGFX_T);
+
 
   /*識別子に応じてDDSへ供給するMCLKを外部クロックか、内部クロックかを選択*/
   uint8_t dip = DIP221_Read();      /* 識別子0x0〜0xF を取得 */
@@ -179,22 +183,18 @@ int main(void)
 	  Error_Handler();
   }
 
-  printf("Starting I2C scan...\r\n");
-  for (uint8_t addr = 1; addr < 128; addr++) {
-      // HAL_I2C_IsDeviceReady は addr<<1(8bit アドレス) として使う
-      if (HAL_I2C_IsDeviceReady(&hi2c1, addr << 1, 1, 10) == HAL_OK) {
-          printf("  Found ACK at 0x%02X\r\n", addr);
-      }
-  }
-  printf("I2C scan complete\r\n");
+  // グローバル変数 hadc3428 を初期化
+  if (!MCP3428_Init(&hadc3428, &hi2c3, MCP3428_DEFAULT_ADDR)) { Error_Handler(); }
+  MCP3428_SetConfig(&hadc3428,
+      MCP3428_CHANNEL_1,
+      MCP3428_RESOLUTION_16BIT,
+      MCP3428_MODE_ONESHOT,
+      MCP3428_GAIN_1X);
 
-  /* ここで MCP3428 初期化ロジックを呼ぶ前に scan 結果を確認 */
-  if (!MCP3428_adc_init(&hi2c1, MCP3428_DEFAULT_ADDR)) {
-      Error_Handler();
-  }
 
-  // MCP3428 からミリボルト単位で取得
-  int16_t mv = MCP3428_adc_read_millivolt();
+
+
+  int16_t mv = MCP3428_ReadMilliVolt(&hadc3428);
   char sign = '+';
   if (mv < 0) {
       sign = '-';
@@ -583,7 +583,7 @@ static void MX_TIM3_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM3_Init 2 */
-  HAL_TIM_Base_Start_IT(&htim3);
+
   /* USER CODE END TIM3_Init 2 */
 
 }

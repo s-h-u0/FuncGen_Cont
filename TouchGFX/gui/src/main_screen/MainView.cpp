@@ -30,6 +30,9 @@ void MainView::setupScreen()
 
     toggleButton_Run .invalidate();
     toggleButton_Stop.invalidate();
+
+    extern MCP3428_HandleTypeDef hadc3428;   // main.c のグローバル変数
+    presenter->setADCHandle(&hadc3428);
 }
 
 
