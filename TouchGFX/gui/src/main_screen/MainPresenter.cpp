@@ -50,12 +50,25 @@ void MainPresenter::updateMeasuredValues()
         return;
     }
 
+    static uint32_t lastAdcTick = 0;
+    uint32_t now = HAL_GetTick();
+    if (now - lastAdcTick < 1000) {
+        return;
+    }
+    lastAdcTick = now;
+
+    if (!adcHandle) {
+        return;
+    }
+
     // ① 毎回ワンショット変換を再スタート
     MCP3428_SetConfig(adcHandle,
         MCP3428_CHANNEL_4,          // 測定したいチャンネル
         MCP3428_RESOLUTION_16BIT,   // 分解能
         MCP3428_MODE_ONESHOT,       // ワンショット
         MCP3428_GAIN_1X);           // ゲイン
+
+
 
     // ここで Ready ビット待ちを含めて値を読み出す
     int16_t mv = MCP3428_ReadMilliVolt(adcHandle);

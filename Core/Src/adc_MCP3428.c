@@ -1,5 +1,4 @@
 // adc_MCP3428.c
-
 #include "adc_MCP3428.h"
 #include <math.h>
 #include <limits.h>
@@ -7,22 +6,40 @@
 // --------------------------------------------------------
 // 内部：設定ビットを組み立て
 // --------------------------------------------------------
-static inline uint8_t _build_config(MCP3428_HandleTypeDef *dev) {
-    uint8_t cfg = 0;
-    // チャンネル（0b00〜0b11）
-    cfg |= ((uint8_t)dev->channel - 1) & 0x03;
-    // モード (連続なら1)
-    cfg |= (dev->mode == MCP3428_MODE_CONTINUOUS ? 1 : 0) << 2;
-    // 解像度ビット [(12→0),(14→1),(16→2)]
-    cfg |= (((dev->res - 12) / 2) & 0x03) << 3;
-    // PGAゲインの log2
-    {
-        float lg = log2f((float)dev->gain);
-        uint8_t g = (uint8_t)(lg + 0.5f);
-        cfg |= (g & 0x03) << 5;
+static inline uint8_t _build_config(MCP3428_HandleTypeDef *dev)
+{
+    /* Bit layout (MSB→LSB):
+       b7: RDY/Start  | b6–5: Channel  | b4: Mode   | b3–2: Sample rate | b1–0: PGA gain */
+    uint8_t cfg = 0b00000000;
+
+    // 1) Start conversion / RDY flag (bit7)
+    cfg |= 0b10000000;  // 1 << 7
+
+    // 2) Channel selection (bits6–5)
+    //    00=Ch1, 01=Ch2, 10=Ch3, 11=Ch4
+    uint8_t ch_bits = ((uint8_t)dev->channel & 0x03) << 5;
+    cfg |= ch_bits;
+
+    // 3) Mode (bit4): 0=One-Shot, 1=Continuous
+    uint8_t mode_bit = (dev->mode == MCP3428_MODE_CONTINUOUS) ? 0b00010000 : 0b00000000;
+    cfg |= mode_bit;
+
+    // 4) Sample rate (bits3–2): 00=12bit, 01=14bit, 10=16bit
+    uint8_t sr_code = 0;
+    if (dev->res == MCP3428_RESOLUTION_14BIT)      sr_code = 0b00000100;
+    else if (dev->res == MCP3428_RESOLUTION_16BIT) sr_code = 0b00001000;
+    cfg |= sr_code;
+
+    // 5) PGA gain (bits1–0): 00=×1, 01=×2, 10=×4, 11=×8
+    uint8_t gain_code = 0;
+    switch (dev->gain) {
+        case MCP3428_GAIN_2X: gain_code = 0b01; break;
+        case MCP3428_GAIN_4X: gain_code = 0b10; break;
+        case MCP3428_GAIN_8X: gain_code = 0b11; break;
+        default:              gain_code = 0b00; break;  // ×1
     }
-    // 変換開始ビット
-    cfg |= 1 << 7;
+    cfg |= gain_code;
+
     return cfg;
 }
 
@@ -30,11 +47,10 @@ static inline uint8_t _build_config(MCP3428_HandleTypeDef *dev) {
 // 初期化＋ ACK 確認
 // --------------------------------------------------------
 bool MCP3428_Init(MCP3428_HandleTypeDef *dev,
-                  I2C_HandleTypeDef      *hi2c,
-                  uint8_t                 addr7bit)
+                  I2C_HandleTypeDef      *hi2c)
 {
     dev->i2c  = hi2c;
-    dev->addr = addr7bit << 1; // HAL 用 8bit アドレス
+    dev->addr = MCP3428_DEFAULT_ADDR << 1; // HAL用8bitアドレス
     return (HAL_I2C_IsDeviceReady(dev->i2c, dev->addr, 3, 100) == HAL_OK);
 }
 
@@ -51,7 +67,7 @@ bool MCP3428_SetConfig(MCP3428_HandleTypeDef *dev,
     dev->res     = resolution;
     dev->mode    = mode;
     dev->gain    = gain;
-    uint8_t cfg = _build_config(dev);
+    uint8_t cfg  = _build_config(dev);
     return (HAL_I2C_Master_Transmit(dev->i2c, dev->addr, &cfg, 1, 200) == HAL_OK);
 }
 
@@ -61,7 +77,7 @@ bool MCP3428_SetConfig(MCP3428_HandleTypeDef *dev,
 int32_t MCP3428_ReadADC(MCP3428_HandleTypeDef *dev)
 {
     uint8_t buf[3];
-    uint8_t conv_reg = 0x00;  // コンバージョンレジスタアドレス
+    uint8_t conv_reg = 0x00;
 
     // ワンショットモードなら変換開始コマンドを送信
     if (dev->mode == MCP3428_MODE_ONESHOT) {
@@ -70,9 +86,8 @@ int32_t MCP3428_ReadADC(MCP3428_HandleTypeDef *dev)
             return INT32_MIN;
         }
     }
-    // 連続モードでは MCP3428_SetConfig() 側で開始済みとする
 
-    // RDY ビットが0になるまでポーリングしつつ、必ず先にレジスタポインタを送る
+    // RDY ビットが0になるまでポーリング
     do {
         if (HAL_I2C_Master_Transmit(dev->i2c, dev->addr, &conv_reg, 1, HAL_MAX_DELAY) != HAL_OK) {
             return INT32_MIN;
@@ -82,7 +97,7 @@ int32_t MCP3428_ReadADC(MCP3428_HandleTypeDef *dev)
         }
     } while (buf[2] & 0x80);
 
-    // 生データを展開（符号拡張含む）
+    // 生データ展開（符号拡張含む）
     int32_t raw;
     switch (dev->res) {
         case MCP3428_RESOLUTION_12BIT:
@@ -105,9 +120,9 @@ int32_t MCP3428_ReadADC(MCP3428_HandleTypeDef *dev)
 // --------------------------------------------------------
 // 生データ→mV変換ユーティリティ
 // --------------------------------------------------------
-#define MCP3428_RES_MV    (0.0625f)   // LSB あたりの mV (16bit, 15 SPS)
-#define MCP3428_ATT       (11.0f)     // 分圧比
-#define MCP3428_GCALIB    (0.998f)    // ゲイン補正
+#define MCP3428_RES_MV    (0.0625f)
+#define MCP3428_ATT       (11.0f)
+#define MCP3428_GCALIB    (0.998f)
 
 int16_t MCP3428_ReadMilliVolt(MCP3428_HandleTypeDef *dev)
 {

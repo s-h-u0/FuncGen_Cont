@@ -78,21 +78,19 @@ MainViewBase::MainViewBase() :
     Val_Meas_Phas.setTypedText(touchgfx::TypedText(T___SINGLEUSE_WN51));
     add(Val_Meas_Phas);
 
-    Val_Meas_Curr.setXY(67, 161);
+    Val_Meas_Curr.setPosition(21, 161, 111, 50);
     Val_Meas_Curr.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Meas_Curr.setLinespacing(0);
     Val_Meas_CurrBuffer[0] = 0;
     Val_Meas_Curr.setWildcard(Val_Meas_CurrBuffer);
-    Val_Meas_Curr.resizeToCurrentText();
     Val_Meas_Curr.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HNTL));
     add(Val_Meas_Curr);
 
-    Val_Meas_Volt.setXY(67, 71);
+    Val_Meas_Volt.setPosition(21, 74, 110, 36);
     Val_Meas_Volt.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Meas_Volt.setLinespacing(0);
     Val_Meas_VoltBuffer[0] = 0;
     Val_Meas_Volt.setWildcard(Val_Meas_VoltBuffer);
-    Val_Meas_Volt.resizeToCurrentText();
     Val_Meas_Volt.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YVKD));
     add(Val_Meas_Volt);
 

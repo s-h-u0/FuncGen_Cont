@@ -82,7 +82,7 @@
             "X": 53,
             "Y": 19,
             "Width": 37,
-            "Height": 24,
+            "Height": 21,
             "TextId": "__SingleUse_TQG0",
             "TextRotation": "0",
             "Color": {
@@ -130,7 +130,7 @@
             "X": 4,
             "Y": 228,
             "Width": 48,
-            "Height": 19,
+            "Height": 16,
             "TextId": "__SingleUse_AP1H",
             "TextRotation": "0",
             "Color": {
@@ -147,7 +147,7 @@
             "X": 71,
             "Y": 256,
             "Width": 11,
-            "Height": 37,
+            "Height": 39,
             "TextId": "__SingleUse_WN51",
             "TextRotation": "0",
             "Color": {
@@ -164,10 +164,10 @@
           {
             "Type": "TextArea",
             "Name": "Val_Meas_Curr",
-            "X": 67,
+            "X": 21,
             "Y": 161,
-            "Width": 20,
-            "Height": 37,
+            "Width": 111,
+            "Height": 50,
             "TextId": "__SingleUse_HNTL",
             "TextRotation": "0",
             "Color": {
@@ -175,7 +175,6 @@
               "Green": 255,
               "Blue": 255
             },
-            "AutoSize": true,
             "Wildcard1": {
               "UseBuffer": true,
               "BufferSize": 10
@@ -184,10 +183,10 @@
           {
             "Type": "TextArea",
             "Name": "Val_Meas_Volt",
-            "X": 67,
-            "Y": 71,
-            "Width": 20,
-            "Height": 37,
+            "X": 21,
+            "Y": 74,
+            "Width": 110,
+            "Height": 36,
             "TextId": "__SingleUse_YVKD",
             "TextRotation": "0",
             "Color": {
@@ -195,7 +194,6 @@
               "Green": 255,
               "Blue": 255
             },
-            "AutoSize": true,
             "Wildcard1": {
               "UseBuffer": true,
               "BufferSize": 10
@@ -245,7 +243,7 @@
             "X": 204,
             "Y": 19,
             "Width": 34,
-            "Height": 24,
+            "Height": 21,
             "TextId": "__SingleUse_Y6WD",
             "TextRotation": "0",
             "Color": {
@@ -277,7 +275,7 @@
             "X": 156,
             "Y": 230,
             "Width": 48,
-            "Height": 19,
+            "Height": 16,
             "TextId": "__SingleUse_XPDK",
             "TextRotation": "0",
             "Color": {

@@ -1,3 +1,4 @@
+// adc_MCP3428.h
 #ifndef ADC_MCP3428_H
 #define ADC_MCP3428_H
 
@@ -5,11 +6,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-// 7bit アドレス (<<1 して HAL に渡す)
+// 7bit アドレス (ADR1=GND, ADR0=GND): 0b1101000 = 0x68
+// HAL用8bitアドレスは <<1 して 0xD0
 #define MCP3428_DEFAULT_ADDR  0x68
 
 typedef enum {
-    MCP3428_CHANNEL_1 = 1,
+    MCP3428_CHANNEL_1 = 0,
     MCP3428_CHANNEL_2,
     MCP3428_CHANNEL_3,
     MCP3428_CHANNEL_4
@@ -52,12 +54,10 @@ extern MCP3428_HandleTypeDef hadc3428;
  * @brief MCP3428 初期化 (ACK チェック)
  * @param dev    デバイスハンドル
  * @param hi2c   HAL I2C ハンドル
- * @param addr7bit 7bit I2C アドレス
  * @return true = 成功, false = 失敗
  */
 bool MCP3428_Init(MCP3428_HandleTypeDef *dev,
-                  I2C_HandleTypeDef      *hi2c,
-                  uint8_t                 addr7bit);
+                  I2C_HandleTypeDef      *hi2c);
 
 /**
  * @brief チャンネル毎の設定を行い、変換を開始

@@ -49,10 +49,10 @@
       <Text Id="__SingleUse_211V" Alignment="Center" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt;V</Translation>
       </Text>
-      <Text Id="__SingleUse_YVKD" Alignment="Left" TypographyId="Default">
+      <Text Id="__SingleUse_YVKD" Alignment="Right" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt;V</Translation>
       </Text>
-      <Text Id="__SingleUse_HNTL" Alignment="Left" TypographyId="Default">
+      <Text Id="__SingleUse_HNTL" Alignment="Right" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt;A</Translation>
       </Text>
       <Text Id="__SingleUse_WN51" Alignment="Left" TypographyId="Default">

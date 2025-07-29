@@ -184,25 +184,8 @@ int main(void)
   }
 
   // グローバル変数 hadc3428 を初期化
-  if (!MCP3428_Init(&hadc3428, &hi2c3, MCP3428_DEFAULT_ADDR)) { Error_Handler(); }
-  MCP3428_SetConfig(&hadc3428,
-      MCP3428_CHANNEL_1,
-      MCP3428_RESOLUTION_16BIT,
-      MCP3428_MODE_ONESHOT,
-      MCP3428_GAIN_1X);
+  if (!MCP3428_Init(&hadc3428, &hi2c3)) { Error_Handler(); }
 
-
-
-
-  int16_t mv = MCP3428_ReadMilliVolt(&hadc3428);
-  char sign = '+';
-  if (mv < 0) {
-      sign = '-';
-      mv = -mv;
-  }
-  uint8_t V_int  = mv / 1000;        // [V] の整数部
-  uint8_t V_frac = (mv % 1000) / 10; // 小数点以下2桁
-  printf("%c%u.%02u V\r\n", sign, V_int, V_frac);
 
 
   /* USER CODE END 2 */

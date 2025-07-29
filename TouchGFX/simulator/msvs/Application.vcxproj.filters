@@ -172,12 +172,6 @@
     <Filter Include="Header Files\generated\simulator\include\simulator\video">
       <UniqueIdentifier>F32A3B31-34E2-1EEC-6F76-2749D48A7CD2</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\generated\gui_generated\containers">
-      <UniqueIdentifier>65744AA8-7491-CE1C-F0EE-C8155FC19B33</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\generated\gui_generated\containers">
-      <UniqueIdentifier>8014EB82-E6FB-4EE3-1BE9-128669EC3864</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\gui\main_screen">
       <UniqueIdentifier>F662AF2B-443F-F05F-59AC-F11FCF989835</UniqueIdentifier>
     </Filter>
