@@ -46,24 +46,22 @@ SettingType MainPresenter::getCurrentSetting() const
 
 void MainPresenter::updateMeasuredValues()
 {
-    if (!adcHandle) return;
+    if (!adcHandle) {
+        return;
+    }
 
-    // --- 電流測定(チャンネル1)
+    // ① 毎回ワンショット変換を再スタート
     MCP3428_SetConfig(adcHandle,
-        MCP3428_CHANNEL_1,
-        MCP3428_RESOLUTION_16BIT,
-        MCP3428_MODE_ONESHOT,
-        MCP3428_GAIN_1X);
-    int16_t measCurr = MCP3428_ReadMilliVolt(adcHandle);
+        MCP3428_CHANNEL_4,          // 測定したいチャンネル
+        MCP3428_RESOLUTION_16BIT,   // 分解能
+        MCP3428_MODE_ONESHOT,       // ワンショット
+        MCP3428_GAIN_1X);           // ゲイン
 
-    // --- 電圧測定(チャンネル2)
-    MCP3428_SetConfig(adcHandle,
-        MCP3428_CHANNEL_4,
-        MCP3428_RESOLUTION_16BIT,
-        MCP3428_MODE_ONESHOT,
-        MCP3428_GAIN_1X);
-    int16_t measVolt = MCP3428_ReadMilliVolt(adcHandle);
+    // ここで Ready ビット待ちを含めて値を読み出す
+    int16_t mv = MCP3428_ReadMilliVolt(adcHandle);
 
-    view.setMeasuredCurr(measCurr);
-    view.setMeasuredVolt(measVolt);
+    // View 側に通知
+    view.setMeasuredCurr(mv);
+    view.setMeasuredVolt(mv);
 }
+
