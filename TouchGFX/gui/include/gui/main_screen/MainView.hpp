@@ -24,6 +24,13 @@ public:
     void button_VoltClicked() override;
     void button_PhasClicked() override;
 
+    /** 測定電圧を設定（表示用） */
+    void setMeasuredVolt(int16_t val);
+    /** 測定電流を設定（表示用） */
+    void setMeasuredCurr(int16_t val);
+
+    virtual void handleTickEvent() override;
+
 private:
     bool isRunning = false;  ///< Run 中かどうかを保持
 };

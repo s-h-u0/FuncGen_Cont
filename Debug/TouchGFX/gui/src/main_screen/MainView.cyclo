@@ -4,13 +4,16 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:144:18:virtual void touchgfx::Screen::handleTickEvent()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	1
 ../TouchGFX/generated/gui_generated/include/gui_generated/main_screen/MainViewBase.hpp:45:26:FrontendApplication& MainViewBase::application()	1
-../TouchGFX/gui/src/main_screen/MainView.cpp:12:1:MainView::MainView()	1
-../TouchGFX/gui/src/main_screen/MainView.cpp:16:6:virtual void MainView::setupScreen()	1
-../TouchGFX/gui/src/main_screen/MainView.cpp:37:6:virtual void MainView::tearDownScreen()	1
-../TouchGFX/gui/src/main_screen/MainView.cpp:42:6:void MainView::updateBothValues(uint32_t, uint32_t)	1
-../TouchGFX/gui/src/main_screen/MainView.cpp:63:6:virtual void MainView::Run()	3
-../TouchGFX/gui/src/main_screen/MainView.cpp:102:6:virtual void MainView::Stop()	3
-../TouchGFX/gui/src/main_screen/MainView.cpp:138:6:virtual void MainView::button_VoltClicked()	2
-../TouchGFX/gui/src/main_screen/MainView.cpp:146:6:virtual void MainView::button_PhasClicked()	2
+../TouchGFX/gui/src/main_screen/MainView.cpp:13:1:MainView::MainView()	1
+../TouchGFX/gui/src/main_screen/MainView.cpp:17:6:virtual void MainView::setupScreen()	1
+../TouchGFX/gui/src/main_screen/MainView.cpp:38:6:virtual void MainView::tearDownScreen()	1
+../TouchGFX/gui/src/main_screen/MainView.cpp:43:6:void MainView::updateBothValues(uint32_t, uint32_t)	1
+../TouchGFX/gui/src/main_screen/MainView.cpp:64:6:virtual void MainView::Run()	3
+../TouchGFX/gui/src/main_screen/MainView.cpp:103:6:virtual void MainView::Stop()	3
+../TouchGFX/gui/src/main_screen/MainView.cpp:139:6:virtual void MainView::button_VoltClicked()	2
+../TouchGFX/gui/src/main_screen/MainView.cpp:147:6:virtual void MainView::button_PhasClicked()	2
+../TouchGFX/gui/src/main_screen/MainView.cpp:155:6:void MainView::setMeasuredCurr(int16_t)	1
+../TouchGFX/gui/src/main_screen/MainView.cpp:165:6:void MainView::setMeasuredVolt(int16_t)	1
+../TouchGFX/gui/src/main_screen/MainView.cpp:176:6:virtual void MainView::handleTickEvent()	1
 ../TouchGFX/gui/include/gui/main_screen/MainView.hpp:9:7:MainView::~MainView()	1
 ../TouchGFX/gui/include/gui/main_screen/MainView.hpp:9:7:virtual MainView::~MainView()	1

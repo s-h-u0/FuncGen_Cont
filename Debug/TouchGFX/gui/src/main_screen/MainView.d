@@ -91,7 +91,7 @@ TouchGFX/gui/src/main_screen/MainView.o: \
  ../Core/Inc/main.h ../Core/Inc/z_displ_ILI9XXX.h \
  ../Core/Inc/z_touch_xpt2046.h ../Core/Inc/mux_sn74lvc1g3157.h \
  ../Core/Inc/dpot_AD5292.h ../Core/Inc/dds_AD9833.h \
- ../Core/Inc/dds_AD9833.h
+ ../Core/Inc/adc_MCP3428.h ../Core/Inc/dds_AD9833.h
 ../TouchGFX/gui/include/gui/main_screen/MainView.hpp:
 ../TouchGFX/generated/gui_generated/include/gui_generated/main_screen/MainViewBase.hpp:
 ../TouchGFX/gui/include/gui/common/FrontendApplication.hpp:
@@ -186,4 +186,5 @@ TouchGFX/gui/src/main_screen/MainView.o: \
 ../Core/Inc/mux_sn74lvc1g3157.h:
 ../Core/Inc/dpot_AD5292.h:
 ../Core/Inc/dds_AD9833.h:
+../Core/Inc/adc_MCP3428.h:
 ../Core/Inc/dds_AD9833.h:

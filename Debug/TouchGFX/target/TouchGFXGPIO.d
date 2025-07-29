@@ -33,7 +33,7 @@ TouchGFX/target/TouchGFXGPIO.o: ../TouchGFX/target/TouchGFXGPIO.cpp \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Core/Inc/z_displ_ILI9XXX.h ../Core/Inc/z_touch_xpt2046.h \
  ../Core/Inc/mux_sn74lvc1g3157.h ../Core/Inc/dpot_AD5292.h \
- ../Core/Inc/dds_AD9833.h
+ ../Core/Inc/dds_AD9833.h ../Core/Inc/adc_MCP3428.h
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/GPIO.hpp:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -72,3 +72,4 @@ TouchGFX/target/TouchGFXGPIO.o: ../TouchGFX/target/TouchGFXGPIO.cpp \
 ../Core/Inc/mux_sn74lvc1g3157.h:
 ../Core/Inc/dpot_AD5292.h:
 ../Core/Inc/dds_AD9833.h:
+../Core/Inc/adc_MCP3428.h:

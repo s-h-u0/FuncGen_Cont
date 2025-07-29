@@ -64,6 +64,7 @@ TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -178,10 +179,22 @@ int main(void)
 	  Error_Handler();
   }
 
+  printf("Starting I2C scan...\r\n");
+  for (uint8_t addr = 1; addr < 128; addr++) {
+      // HAL_I2C_IsDeviceReady は addr<<1(8bit アドレス) として使う
+      if (HAL_I2C_IsDeviceReady(&hi2c1, addr << 1, 1, 10) == HAL_OK) {
+          printf("  Found ACK at 0x%02X\r\n", addr);
+      }
+  }
+  printf("I2C scan complete\r\n");
 
-  MCP3428_HandleTypeDef adc;
-  // …Init/SetConfig 済み…
-  int16_t mv = MCP3428_ReadMilliVolt(&adc);
+  /* ここで MCP3428 初期化ロジックを呼ぶ前に scan 結果を確認 */
+  if (!MCP3428_adc_init(&hi2c1, MCP3428_DEFAULT_ADDR)) {
+      Error_Handler();
+  }
+
+  // MCP3428 からミリボルト単位で取得
+  int16_t mv = MCP3428_adc_read_millivolt();
   char sign = '+';
   if (mv < 0) {
       sign = '-';
@@ -570,7 +583,7 @@ static void MX_TIM3_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM3_Init 2 */
-
+  HAL_TIM_Base_Start_IT(&htim3);
   /* USER CODE END TIM3_Init 2 */
 
 }

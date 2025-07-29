@@ -22,6 +22,8 @@ public:
     void setCurrentSetting(SettingType s);
     SettingType getCurrentSetting() const;
 
+    void updateMeasuredValues();
+
 private:
     MainView& view;
 

@@ -36,7 +36,7 @@ extern "C" {
 #include "mux_sn74lvc1g3157.h"
 #include "dpot_AD5292.h"
 #include "dds_AD9833.h"
-
+#include "adc_MCP3428.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

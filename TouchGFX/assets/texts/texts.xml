@@ -115,7 +115,7 @@
       <Text Id="__SingleUse_Y6WD" Alignment="Left" TypographyId="Label">
         <Translation Language="GB">SET</Translation>
       </Text>
-      <Text Id="__SingleUse_TQG0" Alignment="Left" TypographyId="Typography_03">
+      <Text Id="__SingleUse_TQG0" Alignment="Left" TypographyId="Label">
         <Translation Language="GB">GET</Translation>
       </Text>
     </TextGroup>

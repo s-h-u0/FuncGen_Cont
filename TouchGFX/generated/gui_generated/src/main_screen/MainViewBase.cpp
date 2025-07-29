@@ -132,7 +132,6 @@ MainViewBase::MainViewBase() :
 
     toggleButton_Run.setXY(348, 95);
     toggleButton_Run.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
-    toggleButton_Run.forceState(true);
     toggleButton_Run.setAction(buttonCallback);
     add(toggleButton_Run);
 

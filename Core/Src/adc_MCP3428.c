@@ -1,97 +1,66 @@
 #include "adc_MCP3428.h"
 #include <math.h>
 #include <limits.h>
+#include "stdbool.h"
 
-// --------------------------------------------------------
-// 内部：設定ビットを組み立て
-// --------------------------------------------------------
-static inline uint8_t _build_config(MCP3428_HandleTypeDef *dev) {
-    uint8_t cfg = 0;
-    // チャンネル（0b00〜0b11）
-    cfg |= ((uint8_t)dev->channel - 1) & 0x03;
-    // モード (連続なら1)
-    cfg |= (dev->mode == MCP3428_MODE_CONTINUOUS ? 1 : 0) << 2;
-    // 解像度ビット [(12→0),(14→1),(16→2)]
-    cfg |= (((dev->res - 12) / 2) & 0x03) << 3;
-    // PGAゲインの log2
-    {
-        float lg = log2f((float)dev->gain);
-        uint8_t g = (uint8_t)(lg + 0.5f);
-        cfg |= (g & 0x03) << 5;
+/* ---- 定数 ---- */
+/** 16bit 15sps, PGA×1 のコンフィグバイト */
+static const uint8_t ADC_CFG = 0x98;
+
+/** 1LSB あたりの電圧[mV]: 2.048V/32768*1000 */
+#define RESOLUTION_FACTOR_MV  (2.048f / 32768.0f * 1000.0f)
+/** 分圧比 */
+#define ATTENUATION           (11.0f)
+/** ゲイン補正 */
+#define GAIN_CALIB            (0.998f)
+/** MCP3428 の 7bit I2C アドレス */
+#define MCP3428_DEFAULT_ADDR  0x68
+
+/* ---- 内部変数 ---- */
+static I2C_HandleTypeDef* _hi2c;
+static uint8_t            _addr8;
+
+/** 初期化：コンフィグ送信＆立ち上がり待ち */
+bool MCP3428_adc_init(I2C_HandleTypeDef* hi2c, uint8_t addr7bit)
+{
+    _hi2c  = hi2c;
+    _addr8 = addr7bit << 1;
+/*
+    // デバイスの ACK 確認（3回リトライ，100ms タイムアウト）
+    if (HAL_I2C_IsDeviceReady(_hi2c, _addr8, 3, 100) != HAL_OK) {
+        // そもそもデバイスが見つからない
+        return false;
     }
-    // 変換開始ビット
-    cfg |= 1 << 7;
-    return cfg;
-}
 
-bool MCP3428_Init(MCP3428_HandleTypeDef *dev,
-                  I2C_HandleTypeDef      *hi2c,
-                  uint8_t                 addr7bit)
-{
-    dev->i2c  = hi2c;
-    dev->addr = addr7bit << 1;
-    // ACK 確認
-    return (HAL_I2C_IsDeviceReady(dev->i2c, dev->addr, 3, 100) == HAL_OK);
-}
+*/
 
-bool MCP3428_SetConfig(MCP3428_HandleTypeDef *dev,
-                       MCP3428_Channel_t      channel,
-                       MCP3428_Resolution_t   resolution,
-                       MCP3428_Mode_t         mode,
-                       MCP3428_Gain_t         gain)
-{
-    dev->channel = channel;
-    dev->res     = resolution;
-    dev->mode    = mode;
-    dev->gain    = gain;
-    uint8_t cfg = _build_config(dev);
-    return (HAL_I2C_Master_Transmit(dev->i2c, dev->addr, &cfg, 1, 200) == HAL_OK);
-}
-
-int32_t MCP3428_ReadADC(MCP3428_HandleTypeDef *dev)
-{
-    uint8_t buf[3];
-    // RDY ビットが 1→0 になるまでポーリング
-    do {
-        if (HAL_I2C_Master_Receive(dev->i2c, dev->addr, buf, 3, 200) != HAL_OK) {
-            return INT32_MIN;
-        }
-    } while ((buf[2] & 0x80) != 0);
-
-    int32_t raw = 0;
-    switch (dev->res) {
-        case MCP3428_RESOLUTION_12BIT:
-            raw = ((buf[0] & 0x0F) << 8) | buf[1];
-            if (raw & 0x0800) raw -= 0x1000;
-            break;
-        case MCP3428_RESOLUTION_14BIT:
-            raw = ((buf[0] & 0x3F) << 8) | buf[1];
-            if (raw & 0x2000) raw -= 0x4000;
-            break;
-        case MCP3428_RESOLUTION_16BIT:
-            raw = (int16_t)((buf[0] << 8) | buf[1]);
-            break;
-        default:
-            return INT32_MIN;
+    // コンフィグ開始ビット送信
+    if (HAL_I2C_Master_Transmit(_hi2c, _addr8, (uint8_t*)&ADC_CFG, 1, HAL_MAX_DELAY) != HAL_OK) {
+        return false;
     }
-    return raw;
+
+    HAL_Delay(200);  // コンバージョン開始後の立ち上がり待ち
+    return true;
 }
 
-// --------------------------------------------------------
-// 以下、生データ→mV に変換するユーティリティ
-// --------------------------------------------------------
-#define MCP3428_RES_MV    (0.0625f)   // LSB あたりの mV (16bit 15sps 用)
-#define MCP3428_ATT       (11.0f)     // 分圧比
-#define MCP3428_GCALIB    (0.998f)    // ゲイン補正
-
-int16_t MCP3428_ReadMilliVolt(MCP3428_HandleTypeDef *dev)
+/** 生データ読み出し：2バイト、符号付き結合 */
+int16_t MCP3428_adc_read_raw(void)
 {
-    int32_t raw = MCP3428_ReadADC(dev);
-    if (raw == INT32_MIN) {
-        return INT16_MIN;
-    }
-    // float で mV に変換
-    float mv_f = raw * (MCP3428_ATT * MCP3428_RES_MV) * MCP3428_GCALIB;
-    // トランケートして返す
+    uint8_t buf[2];
+    // READY ビットチェックなど省略 → すぐ 2 バイト読み
+    HAL_I2C_Master_Receive(_hi2c, _addr8, buf, 2, HAL_MAX_DELAY);
+    // ビッグエンディアン結合、符号付き
+    return (int16_t)((buf[0] << 8) | buf[1]);
+}
+
+/** mV に変換して返却（四捨五入あり） */
+int16_t MCP3428_adc_read_millivolt(void)
+{
+    int16_t raw = MCP3428_adc_read_raw();
+    // 生値×分圧×1LSB[mV]×補正
+    float mv_f = raw * (ATTENUATION * RESOLUTION_FACTOR_MV) * GAIN_CALIB;
+    // 四捨五入
+    if (mv_f >= 0.0f) mv_f += 0.5f;
+    else             mv_f -= 0.5f;
     return (int16_t)mv_f;
 }

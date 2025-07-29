@@ -81,7 +81,7 @@
             "Name": "MeasureValue",
             "X": 53,
             "Y": 19,
-            "Width": 41,
+            "Width": 37,
             "Height": 24,
             "TextId": "__SingleUse_TQG0",
             "TextRotation": "0",
@@ -294,7 +294,6 @@
             "Y": 95,
             "Width": 110,
             "Height": 50,
-            "InitialStatePressed": true,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png",
             "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_active.png"
           },

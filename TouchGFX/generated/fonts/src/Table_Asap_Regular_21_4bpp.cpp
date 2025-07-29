@@ -6,8 +6,9 @@ FONT_TABLE_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::GlyphNode glyphs_Asap_Regular_21_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
     {     0, 0x003F,   8,  15,  15,   1,   9,   0,   0, 0x00 }, // question
     {    60, 0x0045,   9,  15,  15,   2,  11,   0,   0, 0x00 }, // E
-    {   135, 0x0053,  10,  15,  15,   0,  11,   0,   0, 0x00 }, // S
-    {   210, 0x0054,  12,  15,  15,   0,  12,   0,   0, 0x00 }  // T
+    {   135, 0x0047,  12,  15,  15,   1,  14,   0,   0, 0x00 }, // G
+    {   225, 0x0053,  10,  15,  15,   0,  11,   0,   0, 0x00 }, // S
+    {   300, 0x0054,  12,  15,  15,   0,  12,   0,   0, 0x00 }  // T
 };
 
 // Asap_Regular_21_4bpp
@@ -25,6 +26,6 @@ touchgfx::GeneratedFont& getFont_Asap_Regular_21_4bpp();
 
 touchgfx::GeneratedFont& getFont_Asap_Regular_21_4bpp()
 {
-    static touchgfx::GeneratedFont Asap_Regular_21_4bpp(glyphs_Asap_Regular_21_4bpp, 4, 21, 21, 0, 0, 4, 1, 0, 0, unicodes_Asap_Regular_21_4bpp, kerning_Asap_Regular_21_4bpp, 63, 0, 0, 0);
+    static touchgfx::GeneratedFont Asap_Regular_21_4bpp(glyphs_Asap_Regular_21_4bpp, 5, 21, 21, 0, 0, 4, 1, 0, 0, unicodes_Asap_Regular_21_4bpp, kerning_Asap_Regular_21_4bpp, 63, 0, 0, 0);
     return Asap_Regular_21_4bpp;
 }
