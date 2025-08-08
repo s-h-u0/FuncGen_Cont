@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 
+
 #pragma once
 #include <mvp/Presenter.hpp>
 #include <gui/model/ModelListener.hpp>
@@ -22,6 +23,10 @@ class MainPresenter : public touchgfx::Presenter,
 public:
     explicit MainPresenter(MainView& v);
 
+
+    // ★ 追加（MainView::setupScreen() で呼ばれてるやつ）
+    void setADCHandle(MCP3428_HandleTypeDef* h);
+
     void activate()   override;
     void deactivate() override;
 
@@ -32,10 +37,8 @@ public:
     void setCurrentSetting(SettingType s);
     SettingType getCurrentSetting() const;
 
+    // ★ 追加（1秒ごとに MainView から呼ばれるやつ）
     void updateMeasuredValues();
-
-    /// <summary>ADC ハンドルをセット</summary>
-    void setADCHandle(MCP3428_HandleTypeDef* handle) { adcHandle = handle; }
 
 private:
     MainView& view;

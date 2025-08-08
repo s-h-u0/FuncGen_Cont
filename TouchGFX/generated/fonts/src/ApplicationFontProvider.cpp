@@ -22,7 +22,7 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
         // Asap_Regular_30_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[3]);
     case Typography::TYPOGRAPHY_01:
-        // verdana_36_4bpp
+        // Asap_Regular_36_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[4]);
     case Typography::CURRENT:
         // verdana_15_4bpp

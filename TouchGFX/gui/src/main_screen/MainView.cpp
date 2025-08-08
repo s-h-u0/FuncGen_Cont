@@ -5,8 +5,8 @@
 #include <algorithm>
 #include "main.h"            // HAL_GetTick(), GPIO など
 #include "stm32f4xx_hal.h"
-#include <dds_AD9833.h>  // ← ヘッダを追加
-
+#include <dds_AD9833.h>
+#include "meas_timer.h"
 
 
 
@@ -33,6 +33,8 @@ void MainView::setupScreen()
 
     extern MCP3428_HandleTypeDef hadc3428;   // main.c のグローバル変数
     presenter->setADCHandle(&hadc3428);
+
+
 }
 
 
@@ -40,6 +42,7 @@ void MainView::setupScreen()
 
 void MainView::tearDownScreen()
 {
+    MeasTimer_Stop();
     MainViewBase::tearDownScreen();
 }
 
@@ -157,27 +160,26 @@ void MainView::button_PhasClicked()
 
 void MainView::setMeasuredCurr(int16_t val)
 {
-   // 符号付き整数として表示（例: -123）
-   Unicode::snprintf(Val_Meas_CurrBuffer, sizeof(Val_Meas_CurrBuffer), "%d", static_cast<int>(val));
-   // サイズをテキストに合わせて調整
-   Val_Meas_Curr.resizeToCurrentText();
-   // 再描画
-   Val_Meas_Curr.invalidate();
+    Unicode::snprintf(Val_Meas_CurrBuffer, VAL_MEAS_CURR_SIZE, "%d", static_cast<int>(val));
+    Val_Meas_Curr.resizeToCurrentText();
+    Val_Meas_Curr.invalidate();
 }
 
 void MainView::setMeasuredVolt(int16_t val)
 {
-   // 符号付き整数として表示（例: -123）
-   Unicode::snprintf(Val_Meas_VoltBuffer, sizeof(Val_Meas_VoltBuffer), "%d", static_cast<int>(val));
-   // サイズをテキストに合わせて調整
-   Val_Meas_Volt.resizeToCurrentText();
-   // 再描画
-   Val_Meas_Volt.invalidate();
+    Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE, "%d", static_cast<int>(val));
+    Val_Meas_Volt.resizeToCurrentText();
+    Val_Meas_Volt.invalidate();
 }
 
-// 毎フレーム（約60Hz）呼ばれるところで Presenter を起動
+
 void MainView::handleTickEvent()
 {
-	presenter->updateMeasuredValues();       // ↓ADC読み出し＆画面更新
-    MainViewBase::handleTickEvent();        // ←既存のタッチ処理などを維持
+    // ★ 1秒フラグが立っているときだけ計測→表示更新
+    if (MeasTimer_Consume()) {
+        presenter->updateMeasuredValues();   // ADC読み出し→表示
+    }
+
+    // ★ 毎フレームの既存処理は最後に1回だけ
+    MainViewBase::handleTickEvent();
 }

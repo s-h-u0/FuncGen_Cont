@@ -11,9 +11,9 @@
             "Width": 480,
             "Height": 320,
             "Color": {
-              "Red": 2,
-              "Green": 11,
-              "Blue": 31
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
             }
           },
           {
@@ -30,7 +30,7 @@
           {
             "Type": "Button",
             "Name": "button_Volt",
-            "X": 173,
+            "X": 186,
             "Y": 66,
             "Width": 110,
             "Height": 50,
@@ -41,8 +41,8 @@
           {
             "Type": "Button",
             "Name": "button_Phas",
-            "X": 170,
-            "Y": 246,
+            "X": 186,
+            "Y": 250,
             "Width": 110,
             "Height": 50,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png",
@@ -54,32 +54,32 @@
             "Name": "MaesVolt",
             "X": 22,
             "Y": 66,
-            "Width": 110,
-            "Height": 50,
-            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png"
+            "Width": 144,
+            "Height": 60,
+            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png"
           },
           {
             "Type": "Image",
             "Name": "MaesPhas",
             "X": 21,
             "Y": 250,
-            "Width": 110,
-            "Height": 50,
-            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png"
+            "Width": 144,
+            "Height": 60,
+            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png"
           },
           {
             "Type": "Image",
             "Name": "MaesCurr",
             "X": 22,
             "Y": 161,
-            "Width": 110,
-            "Height": 50,
-            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png"
+            "Width": 144,
+            "Height": 60,
+            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png"
           },
           {
             "Type": "TextArea",
             "Name": "MeasureValue",
-            "X": 53,
+            "X": 75,
             "Y": 19,
             "Width": 37,
             "Height": 21,
@@ -144,10 +144,10 @@
           {
             "Type": "TextArea",
             "Name": "Val_Meas_Phas",
-            "X": 71,
-            "Y": 256,
-            "Width": 11,
-            "Height": 39,
+            "X": 28,
+            "Y": 257,
+            "Width": 133,
+            "Height": 43,
             "TextId": "__SingleUse_WN51",
             "TextRotation": "0",
             "Color": {
@@ -155,7 +155,6 @@
               "Green": 255,
               "Blue": 255
             },
-            "AutoSize": true,
             "Wildcard1": {
               "UseBuffer": true,
               "BufferSize": 10
@@ -165,9 +164,9 @@
             "Type": "TextArea",
             "Name": "Val_Meas_Curr",
             "X": 21,
-            "Y": 161,
-            "Width": 111,
-            "Height": 50,
+            "Y": 168,
+            "Width": 140,
+            "Height": 49,
             "TextId": "__SingleUse_HNTL",
             "TextRotation": "0",
             "Color": {
@@ -185,8 +184,8 @@
             "Name": "Val_Meas_Volt",
             "X": 21,
             "Y": 74,
-            "Width": 110,
-            "Height": 36,
+            "Width": 140,
+            "Height": 42,
             "TextId": "__SingleUse_YVKD",
             "TextRotation": "0",
             "Color": {
@@ -202,9 +201,9 @@
           {
             "Type": "TextArea",
             "Name": "Val_Set_Volt",
-            "X": 173,
+            "X": 186,
             "Y": 74,
-            "Width": 123,
+            "Width": 110,
             "Height": 36,
             "TextId": "__SingleUse_211V",
             "TextRotation": "0",
@@ -221,9 +220,9 @@
           {
             "Type": "TextArea",
             "Name": "Val_Set_Phas",
-            "X": 170,
-            "Y": 253,
-            "Width": 123,
+            "X": 186,
+            "Y": 257,
+            "Width": 110,
             "Height": 36,
             "TextId": "__SingleUse_VR8I",
             "TextRotation": "0",
@@ -240,7 +239,7 @@
           {
             "Type": "TextArea",
             "Name": "SetValue",
-            "X": 204,
+            "X": 217,
             "Y": 19,
             "Width": 34,
             "Height": 21,
@@ -256,7 +255,7 @@
           {
             "Type": "TextArea",
             "Name": "Set_Volt_label",
-            "X": 148,
+            "X": 161,
             "Y": 48,
             "Width": 56,
             "Height": 18,
@@ -272,8 +271,8 @@
           {
             "Type": "TextArea",
             "Name": "Set_Phas_label",
-            "X": 156,
-            "Y": 230,
+            "X": 172,
+            "Y": 228,
             "Width": 48,
             "Height": 16,
             "TextId": "__SingleUse_XPDK",

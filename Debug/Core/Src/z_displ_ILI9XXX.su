@@ -8,8 +8,8 @@
 ../Core/Src/z_displ_ILI9XXX.c:301:6:Displ_Orientation	16	static
 ../Core/Src/z_displ_ILI9XXX.c:333:6:HAL_SPI_ErrorCallback	16	static
 ../Core/Src/z_displ_ILI9XXX.c:344:6:HAL_SPI_TxCpltCallback	16	static
-../Core/Src/z_displ_ILI9XXX.c:364:6:Displ_FillArea	56	static
-../Core/Src/z_displ_ILI9XXX.c:1128:11:Displ_BackLight	16	static,ignoring_inline_asm
-../Core/Src/z_displ_ILI9XXX.c:1198:5:touchgfxDisplayDriverTransmitActive	4	static
-../Core/Src/z_displ_ILI9XXX.c:1212:6:touchgfxDisplayDriverTransmitBlock	32	static
-../Core/Src/z_displ_ILI9XXX.c:1228:6:HAL_TIM_PeriodElapsedCallback	16	static
+../Core/Src/z_displ_ILI9XXX.c:360:6:Displ_FillArea	56	static
+../Core/Src/z_displ_ILI9XXX.c:1124:11:Displ_BackLight	16	static,ignoring_inline_asm
+../Core/Src/z_displ_ILI9XXX.c:1194:5:touchgfxDisplayDriverTransmitActive	4	static
+../Core/Src/z_displ_ILI9XXX.c:1208:6:touchgfxDisplayDriverTransmitBlock	32	static
+../Core/Src/z_displ_ILI9XXX.c:1224:6:HAL_TIM_PeriodElapsedCallback	16	static

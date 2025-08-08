@@ -7,13 +7,14 @@
 ../TouchGFX/gui/include/gui/model/ModelListener.hpp:10:13:ModelListener::~ModelListener()	1
 ../TouchGFX/gui/include/gui/model/ModelListener.hpp:10:13:virtual ModelListener::~ModelListener()	1
 ../TouchGFX/gui/include/gui/model/ModelListener.hpp:15:18:virtual void ModelListener::onSomeEvent()	1
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:8:1:MainPresenter::MainPresenter(MainView&)	1
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:10:6:virtual void MainPresenter::activate()	2
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:9:1:MainPresenter::MainPresenter(MainView&)	1
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:11:6:virtual void MainPresenter::activate()	2
 ../TouchGFX/gui/src/main_screen/MainPresenter.cpp:20:6:virtual void MainPresenter::deactivate()	1
 ../TouchGFX/gui/src/main_screen/MainPresenter.cpp:22:6:void MainPresenter::setDesiredValue(SettingType, uint32_t)	2
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:32:10:uint32_t MainPresenter::getDesiredValue(SettingType) const	2
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:37:6:void MainPresenter::setCurrentSetting(SettingType)	2
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:42:13:SettingType MainPresenter::getCurrentSetting() const	2
-../TouchGFX/gui/src/main_screen/MainPresenter.cpp:47:6:void MainPresenter::updateMeasuredValues()	4
-../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:19:7:MainPresenter::~MainPresenter()	1
-../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:19:7:virtual MainPresenter::~MainPresenter()	1
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:31:10:uint32_t MainPresenter::getDesiredValue(SettingType) const	2
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:36:6:void MainPresenter::setCurrentSetting(SettingType)	2
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:41:13:SettingType MainPresenter::getCurrentSetting() const	2
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:46:6:void MainPresenter::setADCHandle(MCP3428_HandleTypeDef*)	1
+../TouchGFX/gui/src/main_screen/MainPresenter.cpp:51:6:void MainPresenter::updateMeasuredValues()	2
+../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:20:7:MainPresenter::~MainPresenter()	1
+../TouchGFX/gui/include/gui/main_screen/MainPresenter.hpp:20:7:virtual MainPresenter::~MainPresenter()	1

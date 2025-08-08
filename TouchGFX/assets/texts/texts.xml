@@ -43,10 +43,10 @@
       <Text Id="ResourceId1" Alignment="Left" TypographyId="Label">
         <Translation Language="GB"></Translation>
       </Text>
-      <Text Id="__SingleUse_VR8I" Alignment="Center" TypographyId="Default">
+      <Text Id="__SingleUse_VR8I" Alignment="Right" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt;°</Translation>
       </Text>
-      <Text Id="__SingleUse_211V" Alignment="Center" TypographyId="Default">
+      <Text Id="__SingleUse_211V" Alignment="Right" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt;V</Translation>
       </Text>
       <Text Id="__SingleUse_YVKD" Alignment="Right" TypographyId="Default">
@@ -55,7 +55,7 @@
       <Text Id="__SingleUse_HNTL" Alignment="Right" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt;A</Translation>
       </Text>
-      <Text Id="__SingleUse_WN51" Alignment="Left" TypographyId="Default">
+      <Text Id="__SingleUse_WN51" Alignment="Right" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt;°</Translation>
       </Text>
       <Text Id="__SingleUse_VNBM" Alignment="Center" TypographyId="ButtonDown">
@@ -125,7 +125,7 @@
     <Typography Id="ButtonDown" Font="Asap-Regular.ttf" Size="28" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Label" Font="Asap-Regular.ttf" Size="21" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Typography_00" Font="Asap-Regular.ttf" Size="30" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Typography_01" Font="verdana.ttf" Size="36" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Typography_01" Font="Asap-Regular.ttf" Size="36" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Current" Font="verdana.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Phase" Font="verdana.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Voltage" Font="verdana.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />

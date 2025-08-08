@@ -35,7 +35,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/dds_AD9833.h ../TouchGFX/App/app_touchgfx.h \
  ../Core/Inc/dpot_AD5292.h ../Core/Inc/dds_AD9833.h \
  ../Core/Inc/dipsw_221AMA16R.h ../Core/Inc/mux_sn74lvc1g3157.h \
- ../Core/Inc/dac_MCP4728.h ../Core/Inc/adc_MCP3428.h
+ ../Core/Inc/dac_MCP4728.h ../Core/Inc/adc_MCP3428.h \
+ ../Core/Inc/meas_timer.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -80,3 +81,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/mux_sn74lvc1g3157.h:
 ../Core/Inc/dac_MCP4728.h:
 ../Core/Inc/adc_MCP3428.h:
+../Core/Inc/meas_timer.h:

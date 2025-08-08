@@ -33,7 +33,7 @@ struct TypographyFontIndex
     static const touchgfx::FontId BUTTONDOWN = 1;    // Asap_Regular_28_4bpp
     static const touchgfx::FontId LABEL = 2;         // Asap_Regular_21_4bpp
     static const touchgfx::FontId TYPOGRAPHY_00 = 3; // Asap_Regular_30_4bpp
-    static const touchgfx::FontId TYPOGRAPHY_01 = 4; // verdana_36_4bpp
+    static const touchgfx::FontId TYPOGRAPHY_01 = 4; // Asap_Regular_36_4bpp
     static const touchgfx::FontId CURRENT = 5;       // verdana_15_4bpp
     static const touchgfx::FontId PHASE = 6;         // verdana_16_4bpp
     static const touchgfx::FontId VOLTAGE = 5;       // verdana_15_4bpp

@@ -29,7 +29,7 @@
 #include "dac_MCP4728.h"
 #include "adc_MCP3428.h"
 #include <stdio.h>
-
+#include "meas_timer.h"
 
 
 /* USER CODE END Includes */
@@ -62,6 +62,7 @@ DMA_HandleTypeDef hdma_spi2_tx;
 
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
+TIM_HandleTypeDef htim5;
 
 /* USER CODE BEGIN PV */
 MCP3428_HandleTypeDef hadc3428;
@@ -81,6 +82,7 @@ static void MX_SPI1_Init(void);
 static void MX_SPI3_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_I2C3_Init(void);
+static void MX_TIM5_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -131,6 +133,7 @@ int main(void)
   MX_SPI3_Init();
   MX_I2C1_Init();
   MX_I2C3_Init();
+  MX_TIM5_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
   CLK_MuxInit();     /* PB6 を出力 Low に設定           */
@@ -139,9 +142,11 @@ int main(void)
   Displ_Init(Displ_Orientat_180);			// initialize display controller - set orientation parameter as per TouchGFX setup
   touchgfxSignalVSync();					// ask display syncronization
   Displ_BackLight('I');  					// initialize backlight
+  Displ_BackLight('1');
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 100);
-
+  MeasTimer_Init(&htim5);
+  MeasTimer_Start();
   // TouchGFX 用タイマー IRQ をスタート
   HAL_TIM_Base_Start_IT(&TGFX_T);
 
@@ -568,6 +573,51 @@ static void MX_TIM3_Init(void)
   /* USER CODE BEGIN TIM3_Init 2 */
 
   /* USER CODE END TIM3_Init 2 */
+
+}
+
+/**
+  * @brief TIM5 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM5_Init(void)
+{
+
+  /* USER CODE BEGIN TIM5_Init 0 */
+
+  /* USER CODE END TIM5_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM5_Init 1 */
+
+  /* USER CODE END TIM5_Init 1 */
+  htim5.Instance = TIM5;
+  htim5.Init.Prescaler = 9999;
+  htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim5.Init.Period = 9999;
+  htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim5.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_Base_Init(&htim5) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim5, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim5, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM5_Init 2 */
+
+  /* USER CODE END TIM5_Init 2 */
 
 }
 

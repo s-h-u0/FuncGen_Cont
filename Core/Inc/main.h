@@ -126,4 +126,3 @@ extern TIM_HandleTypeDef htim4;
 #endif
 
 #endif /* __MAIN_H */
-

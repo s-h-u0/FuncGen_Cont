@@ -13,6 +13,7 @@
 
 
 #include "main.h"
+#include "meas_timer.h"
 
 extern SPI_HandleTypeDef DISPL_SPI_PORT;
 
@@ -42,7 +43,6 @@ static uint8_t dispBuffer1[SIZEBUF];
 static uint8_t dispBuffer2[SIZEBUF];
 #endif //DISPLAY_USING_TOUCHGFX
 static uint8_t *dispBuffer=dispBuffer1;
-
 
 
 
@@ -341,20 +341,16 @@ void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi){
 
 
 
-void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi) {
-	if (hspi->Instance==DISPL_SPI) {
-		Displ_SpiAvailable=1;
-
-	#ifdef DISPLAY_USING_TOUCHGFX
-		DisplayDriver_TransferCompleteCallback();
-	#endif
-
-	}
+void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
+{
+    if (hspi->Instance == DISPL_SPI) {
+        Displ_SpiAvailable = 1;
+#if defined(DISPLAY_USING_TOUCHGFX)
+        // ← 完了を TouchGFX に通知（内部で startNewTransfer() が呼ばれます）
+        DisplayDriver_TransferCompleteCallback();
+#endif
+    }
 }
-
-
-
-
 
 /*****************************
  * @brief	fill a rectangle with a color
@@ -1224,10 +1220,16 @@ void touchgfxDisplayDriverTransmitBlock(const uint8_t* pixels, uint16_t x, uint1
  * 			function run by timer interrupt implementing
  * 			the tick timer for TouchGFX
  *********************************************************/
-#ifdef DISPLAY_USING_TOUCHGFX
+//#ifdef DISPLAY_USING_TOUCHGFX
 void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef * htim){
-	if (htim==&TGFX_T){
-		  touchgfxSignalVSync();
-	}
+    if (htim == &TGFX_T){          // TIM3: TouchGFX tick
+        touchgfxSignalVSync();
+        return;
+    }
+    MeasTimer_OnPeriodElapsed(htim); // TIM5などはドライバ側で判定
 }
-#endif //DISPLAY_USING_TOUCHGFX
+//#endif
+
+
+
+
