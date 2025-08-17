@@ -175,11 +175,11 @@ void MainView::setMeasuredVolt(int16_t val)
 
 void MainView::handleTickEvent()
 {
-    // ★ 1秒フラグが立っているときだけ計測→表示更新
-    if (MeasTimer_Consume()) {
-        presenter->updateMeasuredValues();   // ADC読み出し→表示
+    static int cnt = 0;
+    if (MeasTimer_Consume()) {      // 1秒ごと
+        setMeasuredVolt(cnt % 100); // ←整数で確実に変わる
+        cnt++;
     }
-
-    // ★ 毎フレームの既存処理は最後に1回だけ
     MainViewBase::handleTickEvent();
 }
+

@@ -11,9 +11,9 @@
             "Width": 480,
             "Height": 320,
             "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
+              "Red": 5,
+              "Green": 14,
+              "Blue": 36
             }
           },
           {
@@ -71,7 +71,7 @@
             "Type": "Image",
             "Name": "MaesCurr",
             "X": 22,
-            "Y": 161,
+            "Y": 162,
             "Width": 144,
             "Height": 60,
             "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png"
@@ -183,7 +183,7 @@
             "Type": "TextArea",
             "Name": "Val_Meas_Volt",
             "X": 21,
-            "Y": 74,
+            "Y": 75,
             "Width": 140,
             "Height": 42,
             "TextId": "__SingleUse_YVKD",
@@ -202,9 +202,9 @@
             "Type": "TextArea",
             "Name": "Val_Set_Volt",
             "X": 186,
-            "Y": 74,
+            "Y": 75,
             "Width": 110,
-            "Height": 36,
+            "Height": 35,
             "TextId": "__SingleUse_211V",
             "TextRotation": "0",
             "Color": {

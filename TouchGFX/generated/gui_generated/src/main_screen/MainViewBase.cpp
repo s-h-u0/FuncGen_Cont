@@ -14,7 +14,7 @@ MainViewBase::MainViewBase() :
     add(__background);
 
     BG_Main.setPosition(-2, 0, 480, 320);
-    BG_Main.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    BG_Main.setColor(touchgfx::Color::getColorFromRGB(5, 14, 36));
     add(BG_Main);
 
     toggleButton_Stop.setXY(348, 194);
@@ -41,7 +41,7 @@ MainViewBase::MainViewBase() :
     MaesPhas.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_60_TINY_ROUNDED_DISABLED_ID));
     add(MaesPhas);
 
-    MaesCurr.setXY(22, 161);
+    MaesCurr.setXY(22, 162);
     MaesCurr.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_60_TINY_ROUNDED_DISABLED_ID));
     add(MaesCurr);
 
@@ -85,7 +85,7 @@ MainViewBase::MainViewBase() :
     Val_Meas_Curr.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HNTL));
     add(Val_Meas_Curr);
 
-    Val_Meas_Volt.setPosition(21, 74, 140, 42);
+    Val_Meas_Volt.setPosition(21, 75, 140, 42);
     Val_Meas_Volt.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Meas_Volt.setLinespacing(0);
     Val_Meas_VoltBuffer[0] = 0;
@@ -93,7 +93,7 @@ MainViewBase::MainViewBase() :
     Val_Meas_Volt.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YVKD));
     add(Val_Meas_Volt);
 
-    Val_Set_Volt.setPosition(186, 74, 110, 36);
+    Val_Set_Volt.setPosition(186, 75, 110, 35);
     Val_Set_Volt.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Set_Volt.setLinespacing(0);
     Val_Set_VoltBuffer[0] = 0;
