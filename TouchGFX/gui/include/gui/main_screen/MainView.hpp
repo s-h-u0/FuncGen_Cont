@@ -33,5 +33,10 @@ public:
     virtual void handleTickEvent() override;
 
 private:
-    bool isRunning = false;  ///< Run 中かどうかを保持
+    //< Run 中かどうかを保持
+    bool isRunning = false;
+
+    /// Run/Stop の相互排他とタッチ可否を UI に反映（UI専用・HW制御なし）
+    void updateRunStopUI(bool running);
+
 };

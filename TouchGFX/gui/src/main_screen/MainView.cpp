@@ -1,3 +1,21 @@
+/**************************************************************
+ * @file    MainView.cpp
+ * @brief   Main 画面の表示・操作ロジック（TouchGFX View 層）
+ * @details
+ *  - 役割: UIコンポーネントの状態管理、ボタン操作 → デバイス操作の起点
+ *  - 非目標: デバイスの詳細制御（Presenter/Model 側で実施）
+ *  - 重要不変条件 (invariants):
+ *      * Run/Stop は常に相互排他（どちらか一方のみ有効）
+ *      * UI は “先に反映” → その後デバイス制御（体感の応答性を最優先）
+ *      * 誤連打対策として 120ms の軽いロック（wrap-around 安全）
+ *  - レイアウト方針:
+ *      * 数値と単位は分離。数値は右寄せ固定幅、単位は固定ラベル
+ *      * エラー時（通信不良など）は "--" を表示（単位の表示は任意）
+ *  - 生成物の編集禁止:
+ *      * *ViewBase.* は TouchGFX Designer の生成物。ロジックは本ファイル側で追加
+ **************************************************************/
+
+
 #include <gui/main_screen/MainView.hpp>
 #include <gui/main_screen/MainPresenter.hpp>
 #include <dpot_AD5292.h>
@@ -10,44 +28,67 @@
 
 
 
+
+/** @brief Run/Stop の見た目とタッチ可否を一括更新するユーティリティ
+ *  @param running true=Run中 / false=停止中
+ *  @note  本関数は UI のみを更新し、デバイス制御は行わない。
+ *         - Run中は Run ボタンを押下状態＆無効化、Stop は押下解除＆有効化。
+ *         - 排他性はここで担保（ハンドラから必ず呼ぶ）。
+ */
+void MainView::updateRunStopUI(bool running)
+{
+    isRunning = running;
+
+    toggleButton_Run .forceState(running);    // running中はRunボタンを押下状態に
+    toggleButton_Stop.forceState(!running);   // Stopは逆
+
+    toggleButton_Run .setTouchable(!running); // running中はRunを押せない
+    toggleButton_Stop.setTouchable(running);  // running中のみStopを押せる
+
+    toggleButton_Run .invalidate();
+    toggleButton_Stop.invalidate();
+}
+
+
+/** @brief コンストラクタ（重い処理はしない）
+ *  @note  画面要素の初期化は setupScreen() で行う。
+ */
 MainView::MainView()
     : MainViewBase()
 {}
 
+
+/** @brief 画面初期化。UI初期状態を Stop 側に揃え、計測タイマを開始
+ *  @details
+ *   - ADCハンドルを Presenter に渡す（計測は Presenter→View の流れ）
+ *   - 計測周期は MeasTimer_* に委譲
+ */
 void MainView::setupScreen()
 {
     MainViewBase::setupScreen();
 
     isRunning = false;
+    updateRunStopUI(false);                   // ← 引数だけに
 
-    // タッチ可否
-    toggleButton_Run .setTouchable(true);
-    toggleButton_Stop.setTouchable(false);
-
-    // ★ ここを forceState で初期化 ★
-    toggleButton_Run .forceState(false);  // ReleasedImage（RUN）
-    toggleButton_Stop.forceState(true);   // PressedImage （STOP）
-
-    toggleButton_Run .invalidate();
-    toggleButton_Stop.invalidate();
-
-    extern MCP3428_HandleTypeDef hadc3428;   // main.c のグローバル変数
+    extern MCP3428_HandleTypeDef hadc3428;
     presenter->setADCHandle(&hadc3428);
 
     MeasTimer_Start();
-
-
 }
 
 
-
-
+/** @brief 画面終了処理。計測タイマ停止（必要なら UI を停止側へ戻す） */
 void MainView::tearDownScreen()
 {
     MeasTimer_Stop();
     MainViewBase::tearDownScreen();
 }
 
+/** @brief 設定値（電圧・位相）の表示バッファを更新して再描画
+ *  @param vVolt 表示用の電圧（単位は画面仕様に依存）
+ *  @param vPhas 表示用の位相（同上）
+ *  @note  フォーマットはここで固定。UIの右寄せ・固定幅ポリシと整合させる。
+ */
 void MainView::updateBothValues(uint32_t vVolt, uint32_t vPhas)
 {
     // ★ Volt 側
@@ -69,81 +110,64 @@ void MainView::updateBothValues(uint32_t vVolt, uint32_t vPhas)
     Val_Set_Phas.invalidate();
 }
 
+
+// ---- タップ誤操作抑制ロック -----------------
+/** @brief ロック解除予定Tick（locked()で差分判定） */
+static uint32_t s_lockUntilTick = 0;
+
+/** @brief 標準ロック時間[ms] */
+constexpr uint32_t kLockMs = 120;
+
+/** @brief 現在ロック中か（HAL_GetTick の周回に安全な差分判定） */
+inline bool locked() {
+    return (int32_t)(HAL_GetTick() - s_lockUntilTick) < 0;
+}
+/** @brief 指定msだけロックを開始（デフォルト kLockMs） */
+inline void lockFor(uint32_t ms = kLockMs) {
+    s_lockUntilTick = HAL_GetTick() + ms;
+}
+// -----------------------------------------------------------------
+
+
+/** @brief Run ボタンのハンドラ（ラッチ＋軽ロック）
+ *  @details
+ *   - すでに Run 中なら無視（ラッチ）
+ *   - まず UI を即時切替 → 120ms ロックで誤連打吸収 → デバイス制御
+ *   - デバイス制御内容: AD9833 に周波数/波形/位相、AD5292 に電圧を設定
+ */
 void MainView::Run()
 {
-    // ★ デバウンス用タイマー
-    static uint32_t lastRunTick = 0;
-    uint32_t now = HAL_GetTick();
-    if (now - lastRunTick < 800) {
-        // 800ms以内の再タッチは無視
-        return;
-    }
-    lastRunTick = now;
-
-    uint32_t vPhase = presenter->getDesiredValue(SettingType::Phase);      // deg
-    // ※波形を UI で選べるようにしていれば presenter->getDesiredWave() などで取得
+    if (locked() || isRunning) { updateRunStopUI(isRunning); return; }
+    updateRunStopUI(true);      // 先に見た目
+    lockFor(120);               // ごく短いロック
+    // 実処理…
+    uint32_t vPhase = presenter->getDesiredValue(SettingType::Phase);
     AD9833_Set(50, AD9833_SINE, vPhase);
-
-    // モデルから入力済みの電圧を取得
-    uint32_t vVolt = presenter->getDesiredValue(SettingType::Voltage);  // 0…40V
+    uint32_t vVolt  = presenter->getDesiredValue(SettingType::Voltage);
     AD5292_SetVoltage(vVolt);
-
-    // すでに Run 中なら何もしない
-    if (isRunning) {
-        return;
-    }
-    isRunning = true;
-
-    // ★ 見た目を切り替え
-    toggleButton_Run .forceState(true);  // PressedImage
-    toggleButton_Stop.forceState(false); // ReleasedImage
-
-    // ★ タッチ可否を排他切り替え
-    toggleButton_Run .setTouchable(false);
-    toggleButton_Stop.setTouchable(true);
-
-    // ★ 再描画
-    toggleButton_Run .invalidate();
-    toggleButton_Stop.invalidate();
-
 }
 
+
+
+
+/** @brief Stop ボタンのハンドラ（ラッチ＋軽ロック）
+ *  @details
+ *   - すでに停止中なら無視（ラッチ）
+ *   - まず UI を即時切替 → 120ms ロック → デバイスを既定の停止値へ
+ */
 void MainView::Stop()
 {
-    // ★ デバウンス用タイマー
-    static uint32_t lastStopTick = 0;
-    uint32_t now = HAL_GetTick();
-    if (now - lastStopTick < 800) {
-        // 800ms以内の再タッチは無視
-        return;
-    }
-    lastStopTick = now;
-
-    // Run 中でなければ何もしない
-    if (!isRunning) {
-        return;
-    }
-    isRunning = false;
-
-    // ★ 見た目を切り替え
-    toggleButton_Stop.forceState(true);  // PressedImage
-    toggleButton_Run .forceState(false); // ReleasedImage
-
-    // ★ タッチ可否を排他切り替え
-    toggleButton_Stop.setTouchable(false);
-    toggleButton_Run .setTouchable(true);
-
-    // ★ 再描画
-    toggleButton_Stop.invalidate();
-    toggleButton_Run .invalidate();
-
-    // 実際の動作
-    AD5292_Set(0x400); // 最小値設定
+    if (locked() || !isRunning) { updateRunStopUI(isRunning); return; }
+    updateRunStopUI(false);     // 先に見た目
+    lockFor(120);               // ごく短いロック
+    AD5292_Set(0x400);
 }
 
 
-
-
+/** @brief [UI] 電圧設定ボタンのハンドラ
+ *  @details 現在の設定対象を Voltage に切り替え、キーボード画面へ遷移する。
+ *  @note    デバイスI/Oは行わず、Presenterへの通知＋画面遷移のみ。
+ */
 void MainView::button_VoltClicked()
 {
     if (presenter) {
@@ -152,6 +176,11 @@ void MainView::button_VoltClicked()
     }
 }
 
+
+/** @brief [UI] 位相設定ボタンのハンドラ
+ *  @details 現在の設定対象を Phase に切り替え、キーボード画面へ遷移する。
+ *  @note    デバイスI/Oは行わず、Presenterへの通知＋画面遷移のみ。
+ */
 void MainView::button_PhasClicked()
 {
     if (presenter) {
@@ -160,6 +189,11 @@ void MainView::button_PhasClicked()
     }
 }
 
+
+/** @brief 測定電流値をそのまま表示バッファへ反映し再描画
+ *  @param val 表示する値（単位/フォーマットは画面仕様に依存）
+ *  @note  右寄せ固定幅レイアウトにする場合は resizeToCurrentText() を使わない。
+ */
 void MainView::setMeasuredCurr(int16_t val)
 {
     Unicode::snprintf(Val_Meas_CurrBuffer, VAL_MEAS_CURR_SIZE, "%d", static_cast<int>(val));
@@ -167,6 +201,11 @@ void MainView::setMeasuredCurr(int16_t val)
     Val_Meas_Curr.invalidate();
 }
 
+
+/** @brief 測定電圧値（整数表現）を表示バッファへ反映し再描画
+ *  @param val 表示する値（単位/フォーマットは画面仕様に依存）
+ *  @note  右寄せ固定幅レイアウトにする場合は resizeToCurrentText() を使わない。
+ */
 void MainView::setMeasuredVolt(int16_t val)
 {
     Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE, "%d", static_cast<int>(val));
@@ -175,6 +214,11 @@ void MainView::setMeasuredVolt(int16_t val)
 }
 
 
+/** @brief 電圧の測定値（mV単位）を小数2桁の V 表示へ整形して反映
+ *  @param mv 単位 mV。INT16_MIN の場合は通信エラー扱いで "--" 表示
+ *  @details
+ *   - 10mV単位で四捨五入し、"[-]X.YY" に整形
+ */
 void MainView::setMeasuredVolt_mV(int16_t mv)
 {
     // 通信エラー時は "--" 表示（必要なら任意の表示に変更OK）
@@ -204,12 +248,14 @@ void MainView::setMeasuredVolt_mV(int16_t mv)
     else
         Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE,  "%d.%02d", whole, frac2);
 
-    //Val_Meas_Volt.resizeToCurrentText();
     Val_Meas_Volt.invalidate();
 }
 
 
 
+/** @brief 1秒周期の計測トリガ（MeasTimer_*）を消費して Presenter に計測更新を依頼
+ *  @note  UIの毎フレーム処理は MainViewBase::handleTickEvent() に委譲
+ */
 void MainView::handleTickEvent()
 {
     if (MeasTimer_Consume()) {           // 1秒ごと

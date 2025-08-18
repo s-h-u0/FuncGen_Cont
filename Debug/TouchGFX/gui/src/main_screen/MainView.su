@@ -4,17 +4,20 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:144:18:virtual void touchgfx::Screen::handleTickEvent()	16	static
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	16	static
 ../TouchGFX/generated/gui_generated/include/gui_generated/main_screen/MainViewBase.hpp:45:26:FrontendApplication& MainViewBase::application()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:13:1:MainView::MainView()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:17:6:virtual void MainView::setupScreen()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:45:6:virtual void MainView::tearDownScreen()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:51:6:void MainView::updateBothValues(uint32_t, uint32_t)	24	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:72:6:virtual void MainView::Run()	32	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:111:6:virtual void MainView::Stop()	24	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:147:6:virtual void MainView::button_VoltClicked()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:155:6:virtual void MainView::button_PhasClicked()	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:163:6:void MainView::setMeasuredCurr(int16_t)	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:170:6:void MainView::setMeasuredVolt(int16_t)	16	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:178:6:void MainView::setMeasuredVolt_mV(int16_t)	48	static
-../TouchGFX/gui/src/main_screen/MainView.cpp:213:6:virtual void MainView::handleTickEvent()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:38:6:void MainView::updateRunStopUI(bool)	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:56:1:MainView::MainView()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:66:6:virtual void MainView::setupScreen()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:81:6:virtual void MainView::tearDownScreen()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:92:6:void MainView::updateBothValues(uint32_t, uint32_t)	24	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:122:13:bool locked()	8	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:126:13:void lockFor(uint32_t)	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:138:6:virtual void MainView::Run()	24	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:158:6:virtual void MainView::Stop()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:171:6:virtual void MainView::button_VoltClicked()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:184:6:virtual void MainView::button_PhasClicked()	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:197:6:void MainView::setMeasuredCurr(int16_t)	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:209:6:void MainView::setMeasuredVolt(int16_t)	16	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:222:6:void MainView::setMeasuredVolt_mV(int16_t)	48	static
+../TouchGFX/gui/src/main_screen/MainView.cpp:259:6:virtual void MainView::handleTickEvent()	16	static
 ../TouchGFX/gui/include/gui/main_screen/MainView.hpp:9:7:MainView::~MainView()	16	static
 ../TouchGFX/gui/include/gui/main_screen/MainView.hpp:9:7:virtual MainView::~MainView()	16	static

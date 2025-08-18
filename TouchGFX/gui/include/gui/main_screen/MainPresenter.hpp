@@ -37,7 +37,7 @@ public:
     void setCurrentSetting(SettingType s);
     SettingType getCurrentSetting() const;
 
-    // ★ 追加（1秒ごとに MainView から呼ばれるやつ）
+    /// ADC( MCP3428 ) を 1回測定→mV取得→View反映（小数2桁表示は View 側）
     void updateMeasuredValues();
 
 private:
