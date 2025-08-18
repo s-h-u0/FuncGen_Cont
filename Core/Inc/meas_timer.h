@@ -1,11 +1,7 @@
 /*
  * meas_timer.h
- *
- *  Created on: Aug 8, 2025
- *      Author: ssshu
+ * 周期は MEAS_TIMER_PERIOD_MS で指定（既定 1000ms）
  */
-
-// meas_timer.h
 #ifndef MEAS_TIMER_H
 #define MEAS_TIMER_H
 
@@ -16,21 +12,30 @@
 extern "C" {
 #endif
 
-// TIMハンドルを登録（例: &htim5）
+// === 周期／ため込み上限（必要なら上書き） ===
+#ifndef MEAS_TIMER_PERIOD_MS
+#define MEAS_TIMER_PERIOD_MS 1000U   // 例: 200 にすると 200ms
+#endif
+#ifndef MEAS_TIMER_MAX_PENDING
+#define MEAS_TIMER_MAX_PENDING 1U    // 貯めない（実質ワンショット挙動）
+#endif
+
+// TIMハンドルを登録（例: &htim5）; Init時にARRを上書きします
 void MeasTimer_Init(TIM_HandleTypeDef *htim);
 
 // 割り込み開始／停止（HAL_TIM_Base_Start_IT/Stop_IT を内部で呼ぶ）
 void MeasTimer_Start(void);
 void MeasTimer_Stop(void);
 
-// HALのPeriodElapsedコールバックから呼び出す転送口
+// HALのPeriodElapsedコールバックから呼ぶ
 void MeasTimer_OnPeriodElapsed(TIM_HandleTypeDef *htim);
 
-// 1秒要求フラグを1回ぶん消費（あればtrueを返す）
+// ペンディングを1回分だけ消費（立っていればtrue）
 bool MeasTimer_Consume(void);
 
-// ため込まれている要求数を参照（デバッグ用）
-uint8_t MeasTimer_Pending(void);
+// デバッグ用
+uint8_t  MeasTimer_Pending(void);
+uint32_t MeasTimer_IrqCount(void);
 
 #ifdef __cplusplus
 }

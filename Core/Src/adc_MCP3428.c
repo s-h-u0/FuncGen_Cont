@@ -77,9 +77,8 @@ bool MCP3428_SetConfig(MCP3428_HandleTypeDef *dev,
 int32_t MCP3428_ReadADC(MCP3428_HandleTypeDef *dev)
 {
     uint8_t buf[3];
-    uint8_t conv_reg = 0x00;
 
-    // ワンショットモードなら変換開始コマンドを送信
+    // ワンショット時は最初に一度だけ設定バイトを書いて変換開始
     if (dev->mode == MCP3428_MODE_ONESHOT) {
         uint8_t cfg = _build_config(dev);
         if (HAL_I2C_Master_Transmit(dev->i2c, dev->addr, &cfg, 1, HAL_MAX_DELAY) != HAL_OK) {
@@ -87,17 +86,16 @@ int32_t MCP3428_ReadADC(MCP3428_HandleTypeDef *dev)
         }
     }
 
-    // RDY ビットが0になるまでポーリング
+    // RDYビット( buf[2] のbit7 )が0になるまで「読み取りのみ」でポーリング
     do {
-        if (HAL_I2C_Master_Transmit(dev->i2c, dev->addr, &conv_reg, 1, HAL_MAX_DELAY) != HAL_OK) {
-            return INT32_MIN;
-        }
         if (HAL_I2C_Master_Receive(dev->i2c, dev->addr, buf, 3, HAL_MAX_DELAY) != HAL_OK) {
             return INT32_MIN;
         }
+        // 必要ならバス占有を下げるために短いウェイトを入れてもOK:
+        // HAL_Delay(1);
     } while (buf[2] & 0x80);
 
-    // 生データ展開（符号拡張含む）
+    // 生データ展開（分解能別の符号拡張）
     int32_t raw;
     switch (dev->res) {
         case MCP3428_RESOLUTION_12BIT:
@@ -120,16 +118,36 @@ int32_t MCP3428_ReadADC(MCP3428_HandleTypeDef *dev)
 // --------------------------------------------------------
 // 生データ→mV変換ユーティリティ
 // --------------------------------------------------------
-#define MCP3428_RES_MV    (0.0625f)
-#define MCP3428_ATT       (11.0f)
-#define MCP3428_GCALIB    (0.998f)
+// 既存の定義をこれに差し替え（adc_MCP3428.c）
+#ifndef MCP3428_RES_MV
+#define MCP3428_RES_MV    (0.0625f)  // LSB→mV
+#endif
+#ifndef MCP3428_ATT
+#define MCP3428_ATT       (11.0f)    // 入力ATT比
+#endif
+#ifndef MCP3428_GCALIB
+#define MCP3428_GCALIB    (0.99776f) // ★ 旧0.998から微調整（0.998 * 1/1.0002386）
+#endif
+#ifndef MCP3428_OFFSET_MV
+#define MCP3428_OFFSET_MV (8)        // ★ +7.6mV ≒ 8mV を差し引く
+#endif
+
 
 int16_t MCP3428_ReadMilliVolt(MCP3428_HandleTypeDef *dev)
 {
     int32_t raw = MCP3428_ReadADC(dev);
     if (raw == INT32_MIN) {
-        return INT16_MIN;
+        return INT16_MIN; // 通信エラー
     }
+
     float mv_f = raw * (MCP3428_ATT * MCP3428_RES_MV) * MCP3428_GCALIB;
-    return (int16_t)mv_f;
+
+    // 最近傍mVに丸め
+    int16_t mv = (int16_t)((mv_f >= 0.f) ? (mv_f + 0.5f) : (mv_f - 0.5f));
+
+    // ★ オフセットを差し引き（測定が常に+方向にズレていたため）
+    mv -= (int16_t)MCP3428_OFFSET_MV;
+
+    return mv;
 }
+

@@ -28,6 +28,7 @@ public:
     void setMeasuredVolt(int16_t val);
     /** 測定電流を設定（表示用） */
     void setMeasuredCurr(int16_t val);
+    void setMeasuredVolt_mV(int16_t mv);
 
     virtual void handleTickEvent() override;
 

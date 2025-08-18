@@ -118,6 +118,8 @@ void Error_Handler(void);
 #define Ext_CLK_ToDDS  SWITCH_CH_B2  /* 外部クロック：S=High → B2 ↔ A */
 #define Int_CLK_ToDDS  SWITCH_CH_B1  /* 内部クロック：S=Low  → B1 ↔ A */
 
+
+
 extern TIM_HandleTypeDef htim4;
 /* USER CODE END Private defines */
 

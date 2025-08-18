@@ -52,7 +52,6 @@ void MainPresenter::updateMeasuredValues()
 {
     if (!adcHandle) return;
 
-    // 必要ならワンショット開始（使うチャンネル等は環境に合わせて）
     MCP3428_SetConfig(adcHandle,
         MCP3428_CHANNEL_4,
         MCP3428_RESOLUTION_16BIT,
@@ -60,9 +59,6 @@ void MainPresenter::updateMeasuredValues()
         MCP3428_GAIN_1X);
 
     int16_t mv = MCP3428_ReadMilliVolt(adcHandle);
-
-    // 表示更新
-    view.setMeasuredVolt(mv);
-    // 電流も表示するなら↓を有効に（別計算が必要なら計算してから）
-    // view.setMeasuredCurr(ma);
+    view.setMeasuredVolt_mV(mv);   // ★ 小数表示版を呼ぶ
 }
+

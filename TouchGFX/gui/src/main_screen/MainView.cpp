@@ -34,6 +34,8 @@ void MainView::setupScreen()
     extern MCP3428_HandleTypeDef hadc3428;   // main.c のグローバル変数
     presenter->setADCHandle(&hadc3428);
 
+    MeasTimer_Start();
+
 
 }
 
@@ -173,13 +175,45 @@ void MainView::setMeasuredVolt(int16_t val)
 }
 
 
+void MainView::setMeasuredVolt_mV(int16_t mv)
+{
+    // 通信エラー時は "--" 表示（必要なら任意の表示に変更OK）
+    if (mv == INT16_MIN) {
+        Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE, "--");
+        Val_Meas_Volt.resizeToCurrentText();
+        Val_Meas_Volt.invalidate();
+        return;
+    }
+
+    bool neg = (mv < 0);
+    int v = (int)mv;                   // 32bitに昇格
+    if (v < 0) v = -v;                 // 安全に絶対値化
+
+    int whole = v / 1000;              // V 部分
+    int rem   = v % 1000;              // mV 残り 0..999
+
+    // 小数2桁へ四捨五入（10mV=0.01V 単位に丸め）
+    int frac2 = (rem + 5) / 10;        // 0..100
+    if (frac2 == 100) {                // 9.995V などのキャリー
+        frac2 = 0;
+        whole += 1;
+    }
+
+    if (neg)
+        Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE, "-%d.%02d", whole, frac2);
+    else
+        Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE,  "%d.%02d", whole, frac2);
+
+    Val_Meas_Volt.resizeToCurrentText();
+    Val_Meas_Volt.invalidate();
+}
+
+
+
 void MainView::handleTickEvent()
 {
-    static int cnt = 0;
-    if (MeasTimer_Consume()) {      // 1秒ごと
-        setMeasuredVolt(cnt % 100); // ←整数で確実に変わる
-        cnt++;
+    if (MeasTimer_Consume()) {           // 1秒ごと
+        presenter->updateMeasuredValues();
     }
     MainViewBase::handleTickEvent();
 }
-
