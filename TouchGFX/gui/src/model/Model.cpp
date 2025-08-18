@@ -1,6 +1,10 @@
 // Model.cpp
 #include <gui/model/Model.hpp>
 
+/**
+ * @brief SettingType を配列添字（0:Voltage, 1:Phase）に写像
+ * @note  2種前提の軽量化ヘルパ。将来項目を増やす場合は switch へ変更推奨。
+ */
 namespace {
 inline uint8_t idx(SettingType t) {
     return (t == SettingType::Voltage) ? 0 : 1;
@@ -14,7 +18,7 @@ void Model::bind(ModelListener* listener)
     modelListener = listener;
 }
 
-void Model::tick() {}
+void Model::tick() {}  // 現状は処理なし（将来の周期処理用フック）
 
 void Model::triggerSomeEvent()
 {
@@ -25,6 +29,7 @@ void Model::triggerSomeEvent()
 
 void Model::setDesiredValue(SettingType t, uint32_t v)
 {
+    // 必要ならここで範囲チェック/クランプを行う
     desiredValues[idx(t)] = v;
 }
 
