@@ -204,7 +204,7 @@ void MainView::setMeasuredVolt_mV(int16_t mv)
     else
         Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE,  "%d.%02d", whole, frac2);
 
-    Val_Meas_Volt.resizeToCurrentText();
+    //Val_Meas_Volt.resizeToCurrentText();
     Val_Meas_Volt.invalidate();
 }
 

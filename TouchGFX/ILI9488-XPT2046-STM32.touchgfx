@@ -7,7 +7,6 @@
           {
             "Type": "Box",
             "Name": "BG_Main",
-            "X": -2,
             "Width": 480,
             "Height": 320,
             "Color": {
@@ -30,7 +29,7 @@
           {
             "Type": "Button",
             "Name": "button_Volt",
-            "X": 186,
+            "X": 199,
             "Y": 66,
             "Width": 110,
             "Height": 50,
@@ -41,7 +40,7 @@
           {
             "Type": "Button",
             "Name": "button_Phas",
-            "X": 186,
+            "X": 199,
             "Y": 250,
             "Width": 110,
             "Height": 50,
@@ -79,10 +78,10 @@
           {
             "Type": "TextArea",
             "Name": "MeasureValue",
-            "X": 75,
+            "X": 7,
             "Y": 19,
-            "Width": 37,
-            "Height": 21,
+            "Width": 169,
+            "Height": 24,
             "TextId": "__SingleUse_TQG0",
             "TextRotation": "0",
             "Color": {
@@ -95,7 +94,7 @@
           {
             "Type": "TextArea",
             "Name": "Meas_Volt_label",
-            "X": 5,
+            "X": 11,
             "Y": 48,
             "Width": 56,
             "Height": 18,
@@ -111,8 +110,8 @@
           {
             "Type": "TextArea",
             "Name": "Meas_Curr_label",
-            "X": 4,
-            "Y": 136,
+            "X": 11,
+            "Y": 142,
             "Width": 57,
             "Height": 18,
             "TextId": "__SingleUse_Y15L",
@@ -127,8 +126,8 @@
           {
             "Type": "TextArea",
             "Name": "Meas_Phas_label",
-            "X": 4,
-            "Y": 228,
+            "X": 15,
+            "Y": 234,
             "Width": 48,
             "Height": 16,
             "TextId": "__SingleUse_AP1H",
@@ -145,9 +144,9 @@
             "Type": "TextArea",
             "Name": "Val_Meas_Phas",
             "X": 28,
-            "Y": 257,
-            "Width": 133,
-            "Height": 43,
+            "Y": 256,
+            "Width": 114,
+            "Height": 60,
             "TextId": "__SingleUse_WN51",
             "TextRotation": "0",
             "Color": {
@@ -165,8 +164,8 @@
             "Name": "Val_Meas_Curr",
             "X": 21,
             "Y": 168,
-            "Width": 140,
-            "Height": 49,
+            "Width": 113,
+            "Height": 60,
             "TextId": "__SingleUse_HNTL",
             "TextRotation": "0",
             "Color": {
@@ -183,9 +182,9 @@
             "Type": "TextArea",
             "Name": "Val_Meas_Volt",
             "X": 21,
-            "Y": 75,
-            "Width": 140,
-            "Height": 42,
+            "Y": 71,
+            "Width": 113,
+            "Height": 60,
             "TextId": "__SingleUse_YVKD",
             "TextRotation": "0",
             "Color": {
@@ -201,10 +200,10 @@
           {
             "Type": "TextArea",
             "Name": "Val_Set_Volt",
-            "X": 186,
-            "Y": 75,
+            "X": 199,
+            "Y": 66,
             "Width": 110,
-            "Height": 35,
+            "Height": 50,
             "TextId": "__SingleUse_211V",
             "TextRotation": "0",
             "Color": {
@@ -220,10 +219,10 @@
           {
             "Type": "TextArea",
             "Name": "Val_Set_Phas",
-            "X": 186,
-            "Y": 257,
+            "X": 199,
+            "Y": 250,
             "Width": 110,
-            "Height": 36,
+            "Height": 50,
             "TextId": "__SingleUse_VR8I",
             "TextRotation": "0",
             "Color": {
@@ -234,15 +233,16 @@
             "Wildcard1": {
               "UseBuffer": true,
               "BufferSize": 10
-            }
+            },
+            "WideTextAction": 2
           },
           {
             "Type": "TextArea",
             "Name": "SetValue",
-            "X": 217,
+            "X": 206,
             "Y": 19,
-            "Width": 34,
-            "Height": 21,
+            "Width": 97,
+            "Height": 24,
             "TextId": "__SingleUse_Y6WD",
             "TextRotation": "0",
             "Color": {
@@ -255,7 +255,7 @@
           {
             "Type": "TextArea",
             "Name": "Set_Volt_label",
-            "X": 161,
+            "X": 192,
             "Y": 48,
             "Width": 56,
             "Height": 18,
@@ -271,7 +271,7 @@
           {
             "Type": "TextArea",
             "Name": "Set_Phas_label",
-            "X": 172,
+            "X": 192,
             "Y": 228,
             "Width": 48,
             "Height": 16,
@@ -297,10 +297,10 @@
           {
             "Type": "TextArea",
             "Name": "STOP_Text",
-            "X": 355,
-            "Y": 101,
-            "Width": 100,
-            "Height": 35,
+            "X": 353,
+            "Y": 99,
+            "Width": 102,
+            "Height": 43,
             "TextId": "__SingleUse_R6D2",
             "TextRotation": "0"
           },
@@ -308,11 +308,56 @@
             "Type": "TextArea",
             "Name": "RUN_Text",
             "X": 355,
-            "Y": 200,
+            "Y": 194,
             "Width": 100,
-            "Height": 35,
+            "Height": 48,
             "TextId": "__SingleUse_C75W",
             "TextRotation": "0"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1",
+            "X": 124,
+            "Y": 71,
+            "Width": 37,
+            "Height": 41,
+            "TextId": "UNIT_V",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1_1",
+            "X": 124,
+            "Y": 168,
+            "Width": 37,
+            "Height": 41,
+            "TextId": "UNIT_Curr",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1_1_1",
+            "X": 124,
+            "Y": 250,
+            "Width": 37,
+            "Height": 60,
+            "TextId": "UNIT_DEG",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            }
           }
         ],
         "Interactions": [

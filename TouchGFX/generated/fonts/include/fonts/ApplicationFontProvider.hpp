@@ -25,23 +25,27 @@ struct Typography
     static const touchgfx::FontId TYPOGRAPHY_02 = 9;
     static const touchgfx::FontId UNIT = 10;
     static const touchgfx::FontId TYPOGRAPHY_03 = 11;
+    static const touchgfx::FontId TYPOGRAPHY_04 = 12;
+    static const touchgfx::FontId MEAS_VAL = 13;
 };
 
 struct TypographyFontIndex
 {
-    static const touchgfx::FontId DEFAULT = 0;       // Asap_Regular_32_4bpp
+    static const touchgfx::FontId DEFAULT = 0;       // Asap_Regular_38_4bpp
     static const touchgfx::FontId BUTTONDOWN = 1;    // Asap_Regular_28_4bpp
-    static const touchgfx::FontId LABEL = 2;         // Asap_Regular_21_4bpp
-    static const touchgfx::FontId TYPOGRAPHY_00 = 3; // Asap_Regular_30_4bpp
+    static const touchgfx::FontId LABEL = 2;         // Asap_Regular_24_4bpp
+    static const touchgfx::FontId TYPOGRAPHY_00 = 3; // Asap_Regular_32_4bpp
     static const touchgfx::FontId TYPOGRAPHY_01 = 4; // Asap_Regular_36_4bpp
     static const touchgfx::FontId CURRENT = 5;       // verdana_15_4bpp
     static const touchgfx::FontId PHASE = 6;         // verdana_16_4bpp
     static const touchgfx::FontId VOLTAGE = 5;       // verdana_15_4bpp
-    static const touchgfx::FontId VAL_MEAS_XXX = 3;  // Asap_Regular_30_4bpp
-    static const touchgfx::FontId TYPOGRAPHY_02 = 7; // verdana_20_4bpp
-    static const touchgfx::FontId UNIT = 0;          // Asap_Regular_32_4bpp
-    static const touchgfx::FontId TYPOGRAPHY_03 = 7; // verdana_20_4bpp
-    static const uint16_t NUMBER_OF_FONTS = 8;
+    static const touchgfx::FontId VAL_MEAS_XXX = 7;  // Asap_Regular_30_4bpp
+    static const touchgfx::FontId TYPOGRAPHY_02 = 8; // verdana_20_4bpp
+    static const touchgfx::FontId UNIT = 3;          // Asap_Regular_32_4bpp
+    static const touchgfx::FontId TYPOGRAPHY_03 = 8; // verdana_20_4bpp
+    static const touchgfx::FontId TYPOGRAPHY_04 = 8; // verdana_20_4bpp
+    static const touchgfx::FontId MEAS_VAL = 9;      // Asap_Regular_33_4bpp
+    static const uint16_t NUMBER_OF_FONTS = 10;
 };
 
 class ApplicationFontProvider : public touchgfx::FontProvider

@@ -72,6 +72,9 @@ protected:
     touchgfx::ToggleButton toggleButton_Run;
     touchgfx::TextArea STOP_Text;
     touchgfx::TextArea RUN_Text;
+    touchgfx::TextArea textArea1;
+    touchgfx::TextArea textArea1_1;
+    touchgfx::TextArea textArea1_1_1;
 
     /*
      * Wildcard Buffers
