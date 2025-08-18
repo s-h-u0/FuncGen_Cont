@@ -3,12 +3,10 @@
  * @file   KeyboardPresenter.hpp
  * @brief  キーボード画面の Presenter（View と Model の仲介）
  * @details
- *  - 役割: キー入力に応じて編集中の数値を更新し、View に描画更新を指示。
- *           入力確定時には Model に保存し、画面遷移をトリガーする。
- *  - 不変条件:
- *      * currentValue は常に 0..MAX_INPUT の範囲内。
- *      * getCurrentSetting() は常に有効な SettingType を返す（Model 依存）。
- *  - スレッドモデル: TouchGFX の単一スレッド前提（排他制御なし）。
+ *  - 入力上限は SettingType ごとに異なる:
+ *      Voltage: 0..50
+ *      Phase  : 0..360
+ *  - onDigit() は現在の SettingType の上限を超える入力を無視する。
  */
 
 #include <mvp/Presenter.hpp>
@@ -91,6 +89,12 @@ private:
     /** @brief 編集中の数値（常に 0..MAX_INPUT に収まる） */
     uint32_t currentValue{0};
 
-    /** @brief 入力の上限（桁追加はこの値を超えない範囲でのみ許可） */
-    static constexpr uint32_t MAX_INPUT = 9999;
+    // ---- 入力範囲（上限は inclusive）----
+    static constexpr uint32_t VOLT_MIN  = 0;
+    static constexpr uint32_t VOLT_MAX  = 50;
+    static constexpr uint32_t PHASE_MIN = 0;
+    static constexpr uint32_t PHASE_MAX = 360;
+
+    /** @brief 現在の SettingType に応じて currentValue を範囲内へ丸める（防御的） */
+    void clampToCurrentRange();
 };
