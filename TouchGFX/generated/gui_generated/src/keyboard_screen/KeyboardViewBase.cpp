@@ -17,8 +17,8 @@ KeyboardViewBase::KeyboardViewBase() :
     BG_Keyboard.setColor(touchgfx::Color::getColorFromRGB(5, 14, 36));
     add(BG_Keyboard);
 
-    MaesCurr.setXY(318, 116);
-    MaesCurr.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_DISABLED_ID));
+    MaesCurr.setXY(293, 116);
+    MaesCurr.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_SMALL_ROUNDED_DISABLED_ID));
     add(MaesCurr);
 
     One.setXY(60, 24);
@@ -117,7 +117,7 @@ KeyboardViewBase::KeyboardViewBase() :
     Four.setAction(buttonCallback);
     add(Four);
 
-    Setting_Value.setPosition(293, 122, 108, 38);
+    Setting_Value.setPosition(293, 122, 100, 38);
     Setting_Value.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Setting_Value.setLinespacing(0);
     Setting_ValueBuffer[0] = 0;
@@ -133,7 +133,7 @@ KeyboardViewBase::KeyboardViewBase() :
     Setting_Label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HF3J));
     add(Setting_Label);
 
-    textArea1.setPosition(409, 122, 37, 38);
+    textArea1.setPosition(393, 122, 67, 38);
     textArea1.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     textArea1.setLinespacing(0);
     textArea1Buffer[0] = 0;

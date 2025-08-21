@@ -5,7 +5,9 @@
 FONT_TABLE_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::GlyphNode glyphs_Asap_Regular_32_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
     {     0, 0x003F,  13,  23,  23,   1,  14,   0,   0, 0x00 }, // question
-    {   161, 0x00B0,   9,  10,  23,   1,  11,   0,   0, 0x00 }  // degree
+    {   161, 0x0064,  15,  24,  24,   1,  18,   0,   0, 0x00 }, // d
+    {   353, 0x0065,  15,  17,  17,   1,  17,   0,   0, 0x00 }, // e
+    {   489, 0x0067,  16,  24,  17,   1,  17,   0,   0, 0x00 }  // g
 };
 
 // Asap_Regular_32_4bpp
@@ -23,6 +25,6 @@ touchgfx::GeneratedFont& getFont_Asap_Regular_32_4bpp();
 
 touchgfx::GeneratedFont& getFont_Asap_Regular_32_4bpp()
 {
-    static touchgfx::GeneratedFont Asap_Regular_32_4bpp(glyphs_Asap_Regular_32_4bpp, 2, 32, 32, 0, 0, 4, 1, 0, 0, unicodes_Asap_Regular_32_4bpp, kerning_Asap_Regular_32_4bpp, 63, 0, 0, 0);
+    static touchgfx::GeneratedFont Asap_Regular_32_4bpp(glyphs_Asap_Regular_32_4bpp, 4, 39, 32, 0, 0, 4, 1, 0, 0, unicodes_Asap_Regular_32_4bpp, kerning_Asap_Regular_32_4bpp, 63, 0, 0, 0);
     return Asap_Regular_32_4bpp;
 }

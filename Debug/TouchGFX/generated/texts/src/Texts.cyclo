@@ -16,6 +16,6 @@
 ../TouchGFX/generated/texts/src/Texts.cpp:31:32:touchgfx::Unicode::UnicodeChar touchgfx::TextProvider::getNextLigature(touchgfx::TextDirection)	7
 ../TouchGFX/generated/texts/src/Texts.cpp:46:6:void touchgfx::TextProvider::initializeInternal()	1
 ../TouchGFX/generated/texts/src/Texts.cpp:52:6:)	1
-../TouchGFX/generated/texts/src/Texts.cpp:114:6:static void touchgfx::Texts::setLanguage(touchgfx::LanguageId)	4
-../TouchGFX/generated/texts/src/Texts.cpp:144:6:static void touchgfx::Texts::setTranslation(touchgfx::LanguageId, const void*)	1
-../TouchGFX/generated/texts/src/Texts.cpp:149:39:const touchgfx::Unicode::UnicodeChar* touchgfx::Texts::getText(touchgfx::TypedTextId) const	1
+../TouchGFX/generated/texts/src/Texts.cpp:113:6:static void touchgfx::Texts::setLanguage(touchgfx::LanguageId)	4
+../TouchGFX/generated/texts/src/Texts.cpp:143:6:static void touchgfx::Texts::setTranslation(touchgfx::LanguageId, const void*)	1
+../TouchGFX/generated/texts/src/Texts.cpp:148:39:const touchgfx::Unicode::UnicodeChar* touchgfx::Texts::getText(touchgfx::TypedTextId) const	1

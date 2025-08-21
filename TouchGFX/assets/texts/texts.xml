@@ -29,7 +29,7 @@
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="UNIT_DEG" Alignment="Left" TypographyId="UNIT">
-        <Translation Language="GB" Alignment="Right">°</Translation>
+        <Translation Language="GB" Alignment="Right">deg</Translation>
       </Text>
       <Text Id="UNIT_V" Alignment="Right" TypographyId="Default">
         <Translation Language="GB" Alignment="Right">V</Translation>
@@ -46,10 +46,10 @@
       <Text Id="ResourceId1" Alignment="Left" TypographyId="Label">
         <Translation Language="GB"></Translation>
       </Text>
-      <Text Id="__SingleUse_VR8I" Alignment="Right" TypographyId="Default">
-        <Translation Language="GB">&lt;value&gt;°</Translation>
+      <Text Id="__SingleUse_VR8I" Alignment="Right" TypographyId="Set_val">
+        <Translation Language="GB">&lt;value&gt;deg</Translation>
       </Text>
-      <Text Id="__SingleUse_211V" Alignment="Right" TypographyId="Default">
+      <Text Id="__SingleUse_211V" Alignment="Right" TypographyId="Set_val">
         <Translation Language="GB">&lt;value&gt;V</Translation>
       </Text>
       <Text Id="__SingleUse_YVKD" Alignment="Right" TypographyId="Default">
@@ -100,26 +100,11 @@
       <Text Id="__SingleUse_KPAO" Alignment="Center" TypographyId="ButtonDown">
         <Translation Language="GB">1</Translation>
       </Text>
-      <Text Id="__SingleUse_XPDK" Alignment="Left" TypographyId="Phase">
-        <Translation Language="GB">Phase</Translation>
-      </Text>
-      <Text Id="__SingleUse_UVF8" Alignment="Left" TypographyId="Voltage">
-        <Translation Language="GB">Voltage</Translation>
-      </Text>
-      <Text Id="__SingleUse_AP1H" Alignment="Left" TypographyId="Phase">
-        <Translation Language="GB">Phase&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="__SingleUse_Y15L" Alignment="Left" TypographyId="Current">
-        <Translation Language="GB">Current</Translation>
-      </Text>
-      <Text Id="__SingleUse_FO9X" Alignment="Left" TypographyId="Voltage">
-        <Translation Language="GB">Voltage</Translation>
-      </Text>
       <Text Id="__SingleUse_Y6WD" Alignment="Left" TypographyId="Label">
-        <Translation Language="GB">Set value</Translation>
+        <Translation Language="GB">SET</Translation>
       </Text>
       <Text Id="__SingleUse_TQG0" Alignment="Left" TypographyId="Label">
-        <Translation Language="GB">Measured value</Translation>
+        <Translation Language="GB">READ</Translation>
       </Text>
     </TextGroup>
   </Texts>
@@ -128,7 +113,7 @@
     <Typography Id="ButtonDown" Font="Asap-Regular.ttf" Size="28" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Label" Font="Asap-Regular.ttf" Size="24" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Typography_00" Font="Asap-Regular.ttf" Size="32" Bpp="4" IsVector="no" Direction="RTL" FallbackCharacter="?" />
-    <Typography Id="Typography_01" Font="Asap-Regular.ttf" Size="36" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Typography_01" Font="Asap-Regular.ttf" Size="23" Bpp="4" IsVector="no" Direction="RTL" FallbackCharacter="?" />
     <Typography Id="Current" Font="verdana.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Phase" Font="verdana.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Voltage" Font="verdana.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
@@ -137,6 +122,6 @@
     <Typography Id="UNIT" Font="Asap-Regular.ttf" Size="32" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Typography_03" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Typography_04" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Meas_val" Font="Asap-Regular.ttf" Size="33" Bpp="4" IsVector="no" Direction="RTL" FallbackCharacter="?" />
+    <Typography Id="Set_val" Font="Asap-Regular.ttf" Size="28" Bpp="4" IsVector="no" Direction="RTL" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>

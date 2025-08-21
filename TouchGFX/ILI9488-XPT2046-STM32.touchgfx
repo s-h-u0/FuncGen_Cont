@@ -78,9 +78,9 @@
           {
             "Type": "TextArea",
             "Name": "MeasureValue",
-            "X": 7,
+            "X": 63,
             "Y": 19,
-            "Width": 169,
+            "Width": 60,
             "Height": 24,
             "TextId": "__SingleUse_TQG0",
             "TextRotation": "0",
@@ -90,55 +90,6 @@
               "Blue": 255
             },
             "AutoSize": true
-          },
-          {
-            "Type": "TextArea",
-            "Name": "Meas_Volt_label",
-            "X": 11,
-            "Y": 48,
-            "Width": 56,
-            "Height": 18,
-            "TextId": "__SingleUse_FO9X",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true
-          },
-          {
-            "Type": "TextArea",
-            "Name": "Meas_Curr_label",
-            "X": 11,
-            "Y": 142,
-            "Width": 57,
-            "Height": 18,
-            "TextId": "__SingleUse_Y15L",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true
-          },
-          {
-            "Type": "TextArea",
-            "Name": "Meas_Phas_label",
-            "X": 15,
-            "Y": 234,
-            "Width": 48,
-            "Height": 16,
-            "TextId": "__SingleUse_AP1H",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true,
-            "Wildcard1": {}
           },
           {
             "Type": "TextArea",
@@ -201,9 +152,9 @@
             "Type": "TextArea",
             "Name": "Val_Set_Volt",
             "X": 199,
-            "Y": 66,
+            "Y": 73,
             "Width": 110,
-            "Height": 50,
+            "Height": 37,
             "TextId": "__SingleUse_211V",
             "TextRotation": "0",
             "Color": {
@@ -220,9 +171,9 @@
             "Type": "TextArea",
             "Name": "Val_Set_Phas",
             "X": 199,
-            "Y": 250,
+            "Y": 256,
             "Width": 110,
-            "Height": 50,
+            "Height": 44,
             "TextId": "__SingleUse_VR8I",
             "TextRotation": "0",
             "Color": {
@@ -239,43 +190,11 @@
           {
             "Type": "TextArea",
             "Name": "SetValue",
-            "X": 206,
+            "X": 235,
             "Y": 19,
-            "Width": 97,
+            "Width": 38,
             "Height": 24,
             "TextId": "__SingleUse_Y6WD",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true
-          },
-          {
-            "Type": "TextArea",
-            "Name": "Set_Volt_label",
-            "X": 192,
-            "Y": 48,
-            "Width": 56,
-            "Height": 18,
-            "TextId": "__SingleUse_UVF8",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true
-          },
-          {
-            "Type": "TextArea",
-            "Name": "Set_Phas_label",
-            "X": 192,
-            "Y": 228,
-            "Width": 48,
-            "Height": 16,
-            "TextId": "__SingleUse_XPDK",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
@@ -347,10 +266,10 @@
           {
             "Type": "TextArea",
             "Name": "textArea1_1_1",
-            "X": 124,
-            "Y": 250,
-            "Width": 37,
-            "Height": 60,
+            "X": 111,
+            "Y": 256,
+            "Width": 54,
+            "Height": 54,
             "TextId": "UNIT_DEG",
             "TextRotation": "0",
             "Color": {
@@ -448,11 +367,11 @@
           {
             "Type": "Image",
             "Name": "MaesCurr",
-            "X": 318,
+            "X": 293,
             "Y": 116,
-            "Width": 110,
+            "Width": 175,
             "Height": 50,
-            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png"
+            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_50_small_rounded_disabled.png"
           },
           {
             "Type": "ButtonWithLabel",
@@ -736,7 +655,7 @@
             "Name": "Setting_Value",
             "X": 293,
             "Y": 122,
-            "Width": 108,
+            "Width": 100,
             "Height": 38,
             "TextId": "__SingleUse_U4D1",
             "TextRotation": "0",
@@ -772,9 +691,9 @@
           {
             "Type": "TextArea",
             "Name": "textArea1",
-            "X": 409,
+            "X": 393,
             "Y": 122,
-            "Width": 37,
+            "Width": 67,
             "Height": 38,
             "TextId": "UNIT",
             "TextRotation": "0",

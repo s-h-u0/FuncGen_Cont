@@ -4,19 +4,13 @@
 
 FONT_TABLE_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::GlyphNode glyphs_Asap_Regular_24_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
-    {     0, 0x0020,   0,   0,   0,   0,   6,   0,   0, 0x00 }, // space
     {     0, 0x003F,  10,  17,  17,   1,  11,   0,   0, 0x00 }, // question
-    {    85, 0x004D,  17,  17,  17,   2,  20,   0,   0, 0x00 }, // M
-    {   238, 0x0053,  12,  17,  17,   0,  12,   0,   0, 0x00 }, // S
-    {   340, 0x0061,  11,  13,  13,   1,  13,   0,   0, 0x00 }, // a
-    {   418, 0x0064,  11,  18,  18,   1,  14,   0,   0, 0x00 }, // d
-    {   526, 0x0065,  11,  13,  13,   1,  13,   0,   0, 0x00 }, // e
-    {   604, 0x006C,   5,  18,  18,   2,   7,   0,   0, 0x00 }, // l
-    {   658, 0x0072,   8,  13,  13,   1,   9,   0,   0, 0x00 }, // r
-    {   710, 0x0073,   9,  13,  13,   0,  10,   0,   0, 0x00 }, // s
-    {   775, 0x0074,   8,  16,  16,   0,   8,   0,   0, 0x00 }, // t
-    {   839, 0x0075,  11,  13,  13,   1,  13,   0,   0, 0x00 }, // u
-    {   917, 0x0076,  12,  13,  13,   0,  12,   0,   0, 0x00 }  // v
+    {    85, 0x0041,  15,  17,  17,   0,  15,   0,   0, 0x00 }, // A
+    {   221, 0x0044,  14,  17,  17,   2,  17,   0,   0, 0x00 }, // D
+    {   340, 0x0045,  10,  17,  17,   2,  13,   0,   0, 0x00 }, // E
+    {   425, 0x0052,  13,  17,  17,   2,  15,   0,   0, 0x00 }, // R
+    {   544, 0x0053,  12,  17,  17,   0,  12,   0,   0, 0x00 }, // S
+    {   646, 0x0054,  13,  17,  17,   0,  13,   0,   0, 0x00 }  // T
 };
 
 // Asap_Regular_24_4bpp
@@ -34,6 +28,6 @@ touchgfx::GeneratedFont& getFont_Asap_Regular_24_4bpp();
 
 touchgfx::GeneratedFont& getFont_Asap_Regular_24_4bpp()
 {
-    static touchgfx::GeneratedFont Asap_Regular_24_4bpp(glyphs_Asap_Regular_24_4bpp, 13, 24, 24, 0, 0, 4, 1, 0, 0, unicodes_Asap_Regular_24_4bpp, kerning_Asap_Regular_24_4bpp, 63, 0, 0, 0);
+    static touchgfx::GeneratedFont Asap_Regular_24_4bpp(glyphs_Asap_Regular_24_4bpp, 7, 24, 24, 0, 0, 4, 1, 0, 0, unicodes_Asap_Regular_24_4bpp, kerning_Asap_Regular_24_4bpp, 63, 0, 0, 0);
     return Asap_Regular_24_4bpp;
 }

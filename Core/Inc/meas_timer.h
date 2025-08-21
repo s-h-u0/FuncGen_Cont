@@ -14,7 +14,7 @@ extern "C" {
 
 // === 周期／ため込み上限（必要なら上書き） ===
 #ifndef MEAS_TIMER_PERIOD_MS
-#define MEAS_TIMER_PERIOD_MS 1000U   // 例: 200 にすると 200ms
+#define MEAS_TIMER_PERIOD_MS 200U   // 例: 200 にすると 200ms
 #endif
 #ifndef MEAS_TIMER_MAX_PENDING
 #define MEAS_TIMER_MAX_PENDING 1U    // 貯めない（実質ワンショット挙動）

@@ -58,17 +58,12 @@ protected:
     touchgfx::Image MaesPhas;
     touchgfx::Image MaesCurr;
     touchgfx::TextArea MeasureValue;
-    touchgfx::TextArea Meas_Volt_label;
-    touchgfx::TextArea Meas_Curr_label;
-    touchgfx::TextAreaWithOneWildcard Meas_Phas_label;
     touchgfx::TextAreaWithOneWildcard Val_Meas_Phas;
     touchgfx::TextAreaWithOneWildcard Val_Meas_Curr;
     touchgfx::TextAreaWithOneWildcard Val_Meas_Volt;
     touchgfx::TextAreaWithOneWildcard Val_Set_Volt;
     touchgfx::TextAreaWithOneWildcard Val_Set_Phas;
     touchgfx::TextArea SetValue;
-    touchgfx::TextArea Set_Volt_label;
-    touchgfx::TextArea Set_Phas_label;
     touchgfx::ToggleButton toggleButton_Run;
     touchgfx::TextArea STOP_Text;
     touchgfx::TextArea RUN_Text;
