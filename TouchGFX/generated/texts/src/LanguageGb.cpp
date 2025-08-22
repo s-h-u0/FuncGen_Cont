@@ -29,7 +29,7 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     5,  // T___SINGLEUSE_HNTL: "<>"
     5,  // T___SINGLEUSE_WN51: "<>"
     50, // T___SINGLEUSE_VNBM: "Del"
-    5,  // T___SINGLEUSE_HF3J: "<>"
+    5,  // T_SETTING_LABEL: "<>"
     65, // T___SINGLEUSE_1CQN: "0"
     62, // T___SINGLEUSE_Y85E: "En"
     83, // T___SINGLEUSE_2JSJ: "9"

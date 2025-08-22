@@ -16,6 +16,7 @@ O_SRCS += \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Font_Asap_Regular_28_4bpp_0.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Font_Asap_Regular_30_4bpp_0.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Font_Asap_Regular_32_4bpp_0.o \
+../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Font_Asap_Regular_38_4bpp_0.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Font_ariblk_15_4bpp_0.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Font_ariblk_21_4bpp_0.o \
 ../TouchGFX/build/MINGW32_NT-6.2/generated/fonts/src/Font_verdana_15_4bpp_0.o \

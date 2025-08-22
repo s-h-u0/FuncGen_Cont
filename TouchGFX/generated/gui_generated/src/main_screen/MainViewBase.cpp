@@ -17,6 +17,11 @@ MainViewBase::MainViewBase() :
     BG_Main.setColor(touchgfx::Color::getColorFromRGB(11, 17, 33));
     add(BG_Main);
 
+    animatedImage1.setXY(348, 31);
+    animatedImage1.setBitmaps(BITMAP_IMAGE_WAVE_00_ID, BITMAP_IMAGE_WAVE_23_ID);
+    animatedImage1.setUpdateTicksInterval(30);
+    add(animatedImage1);
+
     toggleButton_Stop.setXY(348, 194);
     toggleButton_Stop.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTION_ID));
     toggleButton_Stop.forceState(true);
@@ -103,13 +108,13 @@ MainViewBase::MainViewBase() :
     toggleButton_Run.setAction(buttonCallback);
     add(toggleButton_Run);
 
-    RUN_Text.setPosition(353, 99, 102, 43);
+    RUN_Text.setPosition(348, 95, 110, 50);
     RUN_Text.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     RUN_Text.setLinespacing(0);
     RUN_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_R6D2));
     add(RUN_Text);
 
-    STOP_Text.setPosition(355, 194, 100, 48);
+    STOP_Text.setPosition(348, 192, 110, 52);
     STOP_Text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     STOP_Text.setLinespacing(0);
     STOP_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_C75W));

@@ -12,7 +12,7 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
     case Typography::DEFAULT:
         // Asap_Regular_38_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[0]);
-    case Typography::BUTTONDOWN:
+    case Typography::KEY:
         // Asap_Regular_28_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[1]);
     case Typography::LABEL:

@@ -16,6 +16,18 @@
             }
           },
           {
+            "Type": "AnimatedImage",
+            "Name": "animatedImage1",
+            "X": 348,
+            "Y": 31,
+            "Width": 120,
+            "Height": 24,
+            "FileNameFirst": "sine_wave_frames_24\\image_wave_00.png",
+            "FileNameLast": "sine_wave_frames_24\\image_wave_23.png",
+            "UpdateTicksInterval": 500,
+            "LoopEnabled": true
+          },
+          {
             "Type": "ToggleButton",
             "Name": "toggleButton_Stop",
             "X": 348,
@@ -81,7 +93,7 @@
             "X": 63,
             "Y": 19,
             "Width": 60,
-            "Height": 28,
+            "Height": 24,
             "TextId": "__SingleUse_TQG0",
             "TextRotation": "0",
             "Color": {
@@ -193,7 +205,7 @@
             "X": 235,
             "Y": 19,
             "Width": 38,
-            "Height": 28,
+            "Height": 24,
             "TextId": "__SingleUse_Y6WD",
             "TextRotation": "0",
             "Color": {
@@ -216,10 +228,10 @@
           {
             "Type": "TextArea",
             "Name": "RUN_Text",
-            "X": 353,
-            "Y": 99,
-            "Width": 102,
-            "Height": 43,
+            "X": 348,
+            "Y": 95,
+            "Width": 110,
+            "Height": 50,
             "TextId": "__SingleUse_R6D2",
             "TextRotation": "0",
             "Color": {
@@ -231,10 +243,10 @@
           {
             "Type": "TextArea",
             "Name": "STOP_Text",
-            "X": 355,
-            "Y": 194,
-            "Width": 100,
-            "Height": 48,
+            "X": 348,
+            "Y": 192,
+            "Width": 110,
+            "Height": 52,
             "TextId": "__SingleUse_C75W",
             "TextRotation": "0"
           },
@@ -658,10 +670,10 @@
             "Type": "TextArea",
             "Name": "Setting_Label",
             "X": 301,
-            "Y": 70,
-            "Width": 114,
-            "Height": 43,
-            "TextId": "__SingleUse_HF3J",
+            "Y": 61,
+            "Width": 138,
+            "Height": 46,
+            "TextId": "Setting_Label",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
@@ -675,7 +687,7 @@
           },
           {
             "Type": "TextArea",
-            "Name": "textArea1",
+            "Name": "UNIT",
             "X": 393,
             "Y": 122,
             "Width": 67,

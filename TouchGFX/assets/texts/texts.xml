@@ -8,10 +8,10 @@
       <Text Id="NUMBERTEXT" Alignment="Center" TypographyId="Typography_00">
         <Translation Language="GB">&lt;number&gt;</Translation>
       </Text>
-      <Text Id="toggleButtonWhite" Alignment="Center" TypographyId="ButtonDown">
+      <Text Id="toggleButtonWhite" Alignment="Center" TypographyId="key">
         <Translation Language="GB">White</Translation>
       </Text>
-      <Text Id="toggleButtonOrange" Alignment="Center" TypographyId="ButtonDown">
+      <Text Id="toggleButtonOrange" Alignment="Center" TypographyId="key">
         <Translation Language="GB">Orange</Translation>
       </Text>
     </TextGroup>
@@ -61,43 +61,43 @@
       <Text Id="__SingleUse_WN51" Alignment="Right" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_VNBM" Alignment="Center" TypographyId="ButtonDown">
+      <Text Id="__SingleUse_VNBM" Alignment="Center" TypographyId="key">
         <Translation Language="GB">Del</Translation>
       </Text>
-      <Text Id="__SingleUse_HF3J" Alignment="Center" TypographyId="Typography_01">
+      <Text Id="Setting_Label" Alignment="Center" TypographyId="Typography_04">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_1CQN" Alignment="Center" TypographyId="ButtonDown">
+      <Text Id="__SingleUse_1CQN" Alignment="Center" TypographyId="key">
         <Translation Language="GB">0</Translation>
       </Text>
-      <Text Id="__SingleUse_Y85E" Alignment="Center" TypographyId="ButtonDown">
+      <Text Id="__SingleUse_Y85E" Alignment="Center" TypographyId="key">
         <Translation Language="GB">En</Translation>
       </Text>
-      <Text Id="__SingleUse_2JSJ" Alignment="Center" TypographyId="ButtonDown">
+      <Text Id="__SingleUse_2JSJ" Alignment="Center" TypographyId="key">
         <Translation Language="GB">9</Translation>
       </Text>
-      <Text Id="__SingleUse_RBEN" Alignment="Center" TypographyId="ButtonDown">
+      <Text Id="__SingleUse_RBEN" Alignment="Center" TypographyId="key">
         <Translation Language="GB">8</Translation>
       </Text>
-      <Text Id="__SingleUse_7L2H" Alignment="Center" TypographyId="ButtonDown">
+      <Text Id="__SingleUse_7L2H" Alignment="Center" TypographyId="key">
         <Translation Language="GB">7</Translation>
       </Text>
-      <Text Id="__SingleUse_PCJK" Alignment="Center" TypographyId="ButtonDown">
+      <Text Id="__SingleUse_PCJK" Alignment="Center" TypographyId="key">
         <Translation Language="GB">6</Translation>
       </Text>
-      <Text Id="__SingleUse_9HW9" Alignment="Center" TypographyId="ButtonDown">
+      <Text Id="__SingleUse_9HW9" Alignment="Center" TypographyId="key">
         <Translation Language="GB">3</Translation>
       </Text>
-      <Text Id="__SingleUse_UW8N" Alignment="Center" TypographyId="ButtonDown">
+      <Text Id="__SingleUse_UW8N" Alignment="Center" TypographyId="key">
         <Translation Language="GB">5</Translation>
       </Text>
-      <Text Id="__SingleUse_H5N5" Alignment="Center" TypographyId="ButtonDown">
+      <Text Id="__SingleUse_H5N5" Alignment="Center" TypographyId="key">
         <Translation Language="GB">4</Translation>
       </Text>
-      <Text Id="__SingleUse_Z9DS" Alignment="Center" TypographyId="ButtonDown">
+      <Text Id="__SingleUse_Z9DS" Alignment="Center" TypographyId="key">
         <Translation Language="GB">2</Translation>
       </Text>
-      <Text Id="__SingleUse_KPAO" Alignment="Center" TypographyId="ButtonDown">
+      <Text Id="__SingleUse_KPAO" Alignment="Center" TypographyId="key">
         <Translation Language="GB">1</Translation>
       </Text>
       <Text Id="__SingleUse_Y6WD" Alignment="Left" TypographyId="Label">
@@ -110,7 +110,7 @@
   </Texts>
   <Typographies>
     <Typography Id="Default" Font="Asap-Regular.ttf" Size="38" Bpp="4" IsVector="no" Direction="LTR" WildcardCharacters="-+,." WildcardCharacterRanges="0-9" />
-    <Typography Id="ButtonDown" Font="Asap-Regular.ttf" Size="28" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="key" Font="Asap-Regular.ttf" Size="28" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Label" Font="Asap-Regular.ttf" Size="24" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Typography_00" Font="Asap-Regular.ttf" Size="32" Bpp="4" IsVector="no" Direction="RTL" FallbackCharacter="?" />
     <Typography Id="Typography_01" Font="Asap-Regular.ttf" Size="23" Bpp="4" IsVector="no" Direction="RTL" FallbackCharacter="?" />

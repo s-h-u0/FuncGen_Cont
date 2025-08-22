@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-
 #pragma once
 #include <mvp/Presenter.hpp>
 #include <gui/model/ModelListener.hpp>

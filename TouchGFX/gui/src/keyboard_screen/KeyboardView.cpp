@@ -18,7 +18,9 @@
 #include <texts/TextKeysAndLanguages.hpp>
 #include "main.h"              // HAL_GPIO, HAL_GetTick() などを定義したヘッダ
 #include "stm32f4xx_hal.h"     // HAL_GetTick() を使うならこちらだけでも可
-// ↑ どちらか片方で十分。プロジェクト規約に合わせて片方に統一してOK。
+
+
+
 
 /** @brief コンストラクタ（重い処理はしない） */
 KeyboardView::KeyboardView() : KeyboardViewBase() {}
@@ -113,10 +115,10 @@ void KeyboardView::updateUnit(SettingType s)
     // textArea1.invalidate();
 
     // 2) texts.xlsx に T_UNIT_V / T_UNIT_DEG など登録済みならこちらでもOK
-    textArea1.setTypedText(touchgfx::TypedText(
+    UNIT.setTypedText(touchgfx::TypedText(
         s == SettingType::Voltage ? T_UNIT_V : T_UNIT_DEG
     ));
-    textArea1.invalidate();
+    UNIT.invalidate();
 }
 
 /**

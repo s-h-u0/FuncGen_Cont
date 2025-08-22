@@ -97,7 +97,7 @@ protected:
     touchgfx::ClickListener< touchgfx::ButtonWithLabel > Four;
     touchgfx::TextAreaWithOneWildcard Setting_Value;
     touchgfx::TextAreaWithOneWildcard Setting_Label;
-    touchgfx::TextAreaWithOneWildcard textArea1;
+    touchgfx::TextAreaWithOneWildcard UNIT;
 
     /*
      * Wildcard Buffers
@@ -106,8 +106,8 @@ protected:
     touchgfx::Unicode::UnicodeChar Setting_ValueBuffer[SETTING_VALUE_SIZE];
     static const uint16_t SETTING_LABEL_SIZE = 10;
     touchgfx::Unicode::UnicodeChar Setting_LabelBuffer[SETTING_LABEL_SIZE];
-    static const uint16_t TEXTAREA1_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar textArea1Buffer[TEXTAREA1_SIZE];
+    static const uint16_t UNIT_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar UNITBuffer[UNIT_SIZE];
 
 private:
 

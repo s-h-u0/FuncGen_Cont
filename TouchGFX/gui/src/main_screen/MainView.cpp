@@ -29,42 +29,52 @@
 
 
 
-/** @brief Run/Stop の見た目とタッチ可否を一括更新するユーティリティ
- *  @param running true=Run中 / false=停止中
- *  @note  本関数は UI のみを更新し、デバイス制御は行わない。
- *         - Run中は Run ボタンを押下状態＆無効化、Stop は押下解除＆有効化。
- *         - 排他性はここで担保（ハンドラから必ず呼ぶ）。
+/**
+ * @brief Run/Stopボタン群の見た目・タッチ可否とスピナー表示を一括更新する
+ * @param[in] running  true: RUN中／false: 停止中
+ *
+ * @details 本関数は「UIのみ」を更新し、デバイス制御は行わない。
+ *          - トグルの押下状態とタッチ可否を排他的に設定
+ *          - RUN/STOP ラベルの色を更新
+ *          - スピナー（animatedImage1）の可視/不可視と再生状態を更新
+ *
+ * @note  スピナーは Designer の Interaction では操作しない。本関数が唯一の制御点。
+ *        停止時は `stopAnimation(); invalidate(); setVisible(false);` の順に行い、
+ *        背景を再描画してから非表示化して残像を防ぐ。
+ *        再開時に毎回先頭フレームから回したい場合は
+ *        `startAnimation(false, true , true );//(rev,reset,loop)` // を用いる。
  */
-/** @brief Run/Stop の見た目とタッチ可否を一括更新するユーティリティ
- *  @param running true=Run中 / false=停止中
- *  @note  本関数は UI のみを更新し、デバイス制御は行わない。
- *         - Run中は Run ボタンを押下状態＆無効化、Stop は押下解除＆有効化。
- *         - 排他性はここで担保（ハンドラから必ず呼ぶ）。
- */
+
 void MainView::updateRunStopUI(bool running)
 {
     isRunning = running;
 
-    toggleButton_Run .forceState(running);    // running中はRunボタンを押下状態に
-    toggleButton_Stop.forceState(!running);   // Stopは逆
+    toggleButton_Run .forceState(running);
+    toggleButton_Stop.forceState(!running);
+    toggleButton_Run .setTouchable(!running);
+    toggleButton_Stop.setTouchable(running);
 
-    toggleButton_Run .setTouchable(!running); // running中はRunを押せない
-    toggleButton_Stop.setTouchable(running);  // running中のみStopを押せる
-
-    toggleButton_Run .invalidate();
-    toggleButton_Stop.invalidate();
-    // 追加：文字色の切り替えだけ集約
+    // ラベル色
     if (running) {
-        // RUNがPressed（動作中）→ RUN=黒, STOP=白
         RUN_Text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
         STOP_Text.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     } else {
-        // STOPがPressed（停止中）→ STOP=黒, RUN=白
         STOP_Text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
         RUN_Text.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     }
     RUN_Text.invalidate();
     STOP_Text.invalidate();
+
+    // ★ スピナー制御
+    if (running) {
+        animatedImage1.setVisible(true);
+        animatedImage1.startAnimation(false /*rev*/, true /*reset*/, true /*loop*/);
+        animatedImage1.invalidate();
+    } else {
+        animatedImage1.stopAnimation();
+        animatedImage1.invalidate();      // 背景を塗り直し
+        animatedImage1.setVisible(false); // その後に非表示
+    }
 }
 
 
@@ -84,6 +94,11 @@ MainView::MainView()
 void MainView::setupScreen()
 {
     MainViewBase::setupScreen();
+
+    // 必ず停止＆非表示から始める
+    animatedImage1.stopAnimation();
+    animatedImage1.setVisible(false);
+    animatedImage1.invalidate();
 
     isRunning = false;
     updateRunStopUI(false);                   // ← 引数だけに
@@ -281,3 +296,5 @@ void MainView::handleTickEvent()
     }
     MainViewBase::handleTickEvent();
 }
+
+

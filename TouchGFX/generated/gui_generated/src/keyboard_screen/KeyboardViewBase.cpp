@@ -125,21 +125,21 @@ KeyboardViewBase::KeyboardViewBase() :
     Setting_Value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_U4D1));
     add(Setting_Value);
 
-    Setting_Label.setPosition(301, 70, 114, 43);
+    Setting_Label.setPosition(301, 61, 138, 46);
     Setting_Label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Setting_Label.setLinespacing(0);
     Setting_LabelBuffer[0] = 0;
     Setting_Label.setWildcard(Setting_LabelBuffer);
-    Setting_Label.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HF3J));
+    Setting_Label.setTypedText(touchgfx::TypedText(T_SETTING_LABEL));
     add(Setting_Label);
 
-    textArea1.setPosition(393, 122, 67, 38);
-    textArea1.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    textArea1.setLinespacing(0);
-    textArea1Buffer[0] = 0;
-    textArea1.setWildcard(textArea1Buffer);
-    textArea1.setTypedText(touchgfx::TypedText(T_UNIT));
-    add(textArea1);
+    UNIT.setPosition(393, 122, 67, 38);
+    UNIT.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    UNIT.setLinespacing(0);
+    UNITBuffer[0] = 0;
+    UNIT.setWildcard(UNITBuffer);
+    UNIT.setTypedText(touchgfx::TypedText(T_UNIT));
+    add(UNIT);
 }
 
 KeyboardViewBase::~KeyboardViewBase()
