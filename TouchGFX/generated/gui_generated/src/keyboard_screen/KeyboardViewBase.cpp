@@ -14,7 +14,7 @@ KeyboardViewBase::KeyboardViewBase() :
     add(__background);
 
     BG_Keyboard.setPosition(0, 0, 480, 320);
-    BG_Keyboard.setColor(touchgfx::Color::getColorFromRGB(5, 5, 5));
+    BG_Keyboard.setColor(touchgfx::Color::getColorFromRGB(11, 17, 33));
     add(BG_Keyboard);
 
     MaesCurr.setXY(293, 116);

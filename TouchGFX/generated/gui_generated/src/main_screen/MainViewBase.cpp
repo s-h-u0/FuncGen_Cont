@@ -14,7 +14,7 @@ MainViewBase::MainViewBase() :
     add(__background);
 
     BG_Main.setPosition(0, 0, 480, 320);
-    BG_Main.setColor(touchgfx::Color::getColorFromRGB(5, 5, 5));
+    BG_Main.setColor(touchgfx::Color::getColorFromRGB(11, 17, 33));
     add(BG_Main);
 
     toggleButton_Stop.setXY(348, 194);
@@ -103,17 +103,17 @@ MainViewBase::MainViewBase() :
     toggleButton_Run.setAction(buttonCallback);
     add(toggleButton_Run);
 
-    STOP_Text.setPosition(353, 99, 102, 43);
-    STOP_Text.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    STOP_Text.setLinespacing(0);
-    STOP_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_R6D2));
-    add(STOP_Text);
-
-    RUN_Text.setPosition(355, 194, 100, 48);
-    RUN_Text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    RUN_Text.setPosition(353, 99, 102, 43);
+    RUN_Text.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     RUN_Text.setLinespacing(0);
-    RUN_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_C75W));
+    RUN_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_R6D2));
     add(RUN_Text);
+
+    STOP_Text.setPosition(355, 194, 100, 48);
+    STOP_Text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    STOP_Text.setLinespacing(0);
+    STOP_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_C75W));
+    add(STOP_Text);
 
     textArea1.setPosition(124, 71, 37, 41);
     textArea1.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));

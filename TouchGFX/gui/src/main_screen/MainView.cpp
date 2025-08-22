@@ -25,10 +25,16 @@
 #include "stm32f4xx_hal.h"
 #include <dds_AD9833.h>
 #include "meas_timer.h"
+#include <touchgfx/Color.hpp>
 
 
 
-
+/** @brief Run/Stop の見た目とタッチ可否を一括更新するユーティリティ
+ *  @param running true=Run中 / false=停止中
+ *  @note  本関数は UI のみを更新し、デバイス制御は行わない。
+ *         - Run中は Run ボタンを押下状態＆無効化、Stop は押下解除＆有効化。
+ *         - 排他性はここで担保（ハンドラから必ず呼ぶ）。
+ */
 /** @brief Run/Stop の見た目とタッチ可否を一括更新するユーティリティ
  *  @param running true=Run中 / false=停止中
  *  @note  本関数は UI のみを更新し、デバイス制御は行わない。
@@ -47,6 +53,18 @@ void MainView::updateRunStopUI(bool running)
 
     toggleButton_Run .invalidate();
     toggleButton_Stop.invalidate();
+    // 追加：文字色の切り替えだけ集約
+    if (running) {
+        // RUNがPressed（動作中）→ RUN=黒, STOP=白
+        RUN_Text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+        STOP_Text.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    } else {
+        // STOPがPressed（停止中）→ STOP=黒, RUN=白
+        STOP_Text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+        RUN_Text.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    }
+    RUN_Text.invalidate();
+    STOP_Text.invalidate();
 }
 
 

@@ -10,9 +10,9 @@
             "Width": 480,
             "Height": 320,
             "Color": {
-              "Red": 5,
-              "Green": 5,
-              "Blue": 5
+              "Red": 11,
+              "Green": 17,
+              "Blue": 33
             }
           },
           {
@@ -215,7 +215,7 @@
           },
           {
             "Type": "TextArea",
-            "Name": "STOP_Text",
+            "Name": "RUN_Text",
             "X": 353,
             "Y": 99,
             "Width": 102,
@@ -230,7 +230,7 @@
           },
           {
             "Type": "TextArea",
-            "Name": "RUN_Text",
+            "Name": "STOP_Text",
             "X": 355,
             "Y": 194,
             "Width": 100,
@@ -364,9 +364,9 @@
             "Width": 480,
             "Height": 320,
             "Color": {
-              "Red": 5,
-              "Green": 5,
-              "Blue": 5
+              "Red": 11,
+              "Green": 17,
+              "Blue": 33
             }
           },
           {
