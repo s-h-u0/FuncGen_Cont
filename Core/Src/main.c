@@ -146,7 +146,6 @@ int main(void)
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 100);
   MeasTimer_Init(&htim5);
-  MeasTimer_Start();
   // TouchGFX 用タイマー IRQ をスタート
   HAL_TIM_Base_Start_IT(&TGFX_T);
 

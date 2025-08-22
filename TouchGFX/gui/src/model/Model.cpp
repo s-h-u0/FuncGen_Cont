@@ -11,8 +11,13 @@ inline uint8_t idx(SettingType t) {
 }
 }
 
-Model::Model() : modelListener(nullptr) {}
-
+Model::Model() : modelListener(nullptr) {
+    desiredValues[0] = 0; // Voltage
+    desiredValues[1] = 0; // Phase
+    lastInputValues[0] = 0;
+    lastInputValues[1] = 0;
+    currentSetting = SettingType::Voltage;
+}
 void Model::bind(ModelListener* listener)
 {
     modelListener = listener;

@@ -11,8 +11,8 @@
             "Height": 320,
             "Color": {
               "Red": 5,
-              "Green": 14,
-              "Blue": 36
+              "Green": 5,
+              "Blue": 5
             }
           },
           {
@@ -23,8 +23,8 @@
             "Width": 110,
             "Height": 50,
             "InitialStatePressed": true,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_action.png"
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_action.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png"
           },
           {
             "Type": "Button",
@@ -210,8 +210,8 @@
             "Y": 95,
             "Width": 110,
             "Height": 50,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_active.png"
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_active.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png"
           },
           {
             "Type": "TextArea",
@@ -221,7 +221,12 @@
             "Width": 102,
             "Height": 43,
             "TextId": "__SingleUse_R6D2",
-            "TextRotation": "0"
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            }
           },
           {
             "Type": "TextArea",
@@ -360,8 +365,8 @@
             "Height": 320,
             "Color": {
               "Red": 5,
-              "Green": 14,
-              "Blue": 36
+              "Green": 5,
+              "Blue": 5
             }
           },
           {
@@ -406,16 +411,6 @@
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
             "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_active.png",
             "TextId": "__SingleUse_Y85E",
-            "ReleasedColor": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "PressedColor": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
             "TextRotation": "0",
             "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_active.json"
           },
@@ -521,16 +516,6 @@
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
             "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_normal.png",
             "TextId": "__SingleUse_VNBM",
-            "ReleasedColor": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "PressedColor": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
             "TextRotation": "0",
             "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_normal.json"
           },

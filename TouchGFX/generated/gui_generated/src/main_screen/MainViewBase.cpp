@@ -14,11 +14,11 @@ MainViewBase::MainViewBase() :
     add(__background);
 
     BG_Main.setPosition(0, 0, 480, 320);
-    BG_Main.setColor(touchgfx::Color::getColorFromRGB(5, 14, 36));
+    BG_Main.setColor(touchgfx::Color::getColorFromRGB(5, 5, 5));
     add(BG_Main);
 
     toggleButton_Stop.setXY(348, 194);
-    toggleButton_Stop.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTION_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
+    toggleButton_Stop.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTION_ID));
     toggleButton_Stop.forceState(true);
     toggleButton_Stop.setAction(buttonCallback);
     add(toggleButton_Stop);
@@ -99,12 +99,12 @@ MainViewBase::MainViewBase() :
     add(SetValue);
 
     toggleButton_Run.setXY(348, 95);
-    toggleButton_Run.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID));
+    toggleButton_Run.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_PRESSED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_TINY_ROUNDED_ACTIVE_ID));
     toggleButton_Run.setAction(buttonCallback);
     add(toggleButton_Run);
 
     STOP_Text.setPosition(353, 99, 102, 43);
-    STOP_Text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    STOP_Text.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     STOP_Text.setLinespacing(0);
     STOP_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_R6D2));
     add(STOP_Text);

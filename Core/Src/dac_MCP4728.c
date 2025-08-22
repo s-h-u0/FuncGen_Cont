@@ -17,13 +17,7 @@ bool MCP4728_Init(I2C_HandleTypeDef *hi2c)
 {
     mcp4728_i2c = hi2c;
 
-    // 初期通信確認用 (ACKを取るだけ)
-    uint8_t dummy = 0;
-    if (HAL_I2C_Master_Transmit(mcp4728_i2c, MCP4728_I2C_ADDR_DEFAULT, &dummy, 0, 100) != HAL_OK) {
-        return false;
-    }
-
-    return true;
+    return (HAL_I2C_IsDeviceReady(mcp4728_i2c, MCP4728_I2C_ADDR_DEFAULT, 3, 100) == HAL_OK);
 }
 
 #include "dac_MCP4728.h"  // 必要に応じて

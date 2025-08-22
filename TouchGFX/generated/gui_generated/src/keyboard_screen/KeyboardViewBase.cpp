@@ -14,7 +14,7 @@ KeyboardViewBase::KeyboardViewBase() :
     add(__background);
 
     BG_Keyboard.setPosition(0, 0, 480, 320);
-    BG_Keyboard.setColor(touchgfx::Color::getColorFromRGB(5, 14, 36));
+    BG_Keyboard.setColor(touchgfx::Color::getColorFromRGB(5, 5, 5));
     add(BG_Keyboard);
 
     MaesCurr.setXY(293, 116);
@@ -32,8 +32,8 @@ KeyboardViewBase::KeyboardViewBase() :
     Enter.setXY(200, 237);
     Enter.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_PRESSED_ID));
     Enter.setLabelText(touchgfx::TypedText(T___SINGLEUSE_Y85E));
-    Enter.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    Enter.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Enter.setLabelColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    Enter.setLabelColorPressed(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Enter.setAction(buttonCallback);
     add(Enter);
 
@@ -72,8 +72,8 @@ KeyboardViewBase::KeyboardViewBase() :
     Delete.setXY(131, 237);
     Delete.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_PRESSED_ID));
     Delete.setLabelText(touchgfx::TypedText(T___SINGLEUSE_VNBM));
-    Delete.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    Delete.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Delete.setLabelColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    Delete.setLabelColorPressed(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Delete.setAction(buttonCallback);
     add(Delete);
 
