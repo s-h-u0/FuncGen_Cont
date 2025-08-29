@@ -18,11 +18,11 @@ KeyboardViewBase::KeyboardViewBase() :
     add(BG_Keyboard);
 
     MaesCurr.setXY(293, 116);
-    MaesCurr.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_SMALL_ROUNDED_DISABLED_ID));
+    MaesCurr.setBitmap(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_175X50_GLOSS_SUBTLE_ID));
     add(MaesCurr);
 
     One.setXY(60, 24);
-    One.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID));
+    One.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
     One.setLabelText(touchgfx::TypedText(T___SINGLEUSE_KPAO));
     One.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     One.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -30,15 +30,15 @@ KeyboardViewBase::KeyboardViewBase() :
     add(One);
 
     Enter.setXY(200, 237);
-    Enter.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_PRESSED_ID));
+    Enter.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_TEAL_MINT_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_PRESSED_ID));
     Enter.setLabelText(touchgfx::TypedText(T___SINGLEUSE_Y85E));
-    Enter.setLabelColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    Enter.setLabelColorPressed(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    Enter.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Enter.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Enter.setAction(buttonCallback);
     add(Enter);
 
     Zero.setXY(60, 237);
-    Zero.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID));
+    Zero.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
     Zero.setLabelText(touchgfx::TypedText(T___SINGLEUSE_1CQN));
     Zero.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Zero.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -46,7 +46,7 @@ KeyboardViewBase::KeyboardViewBase() :
     add(Zero);
 
     Two.setXY(131, 24);
-    Two.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID));
+    Two.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
     Two.setLabelText(touchgfx::TypedText(T___SINGLEUSE_Z9DS));
     Two.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Two.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -54,7 +54,7 @@ KeyboardViewBase::KeyboardViewBase() :
     add(Two);
 
     Five.setXY(131, 94);
-    Five.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID));
+    Five.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
     Five.setLabelText(touchgfx::TypedText(T___SINGLEUSE_UW8N));
     Five.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Five.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -62,7 +62,7 @@ KeyboardViewBase::KeyboardViewBase() :
     add(Five);
 
     Three.setXY(200, 24);
-    Three.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID));
+    Three.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
     Three.setLabelText(touchgfx::TypedText(T___SINGLEUSE_9HW9));
     Three.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Three.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -70,15 +70,15 @@ KeyboardViewBase::KeyboardViewBase() :
     add(Three);
 
     Delete.setXY(131, 237);
-    Delete.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_PRESSED_ID));
+    Delete.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_COOLGRAY_COOL_GRAY_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_PRESSED_ID));
     Delete.setLabelText(touchgfx::TypedText(T___SINGLEUSE_VNBM));
-    Delete.setLabelColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    Delete.setLabelColorPressed(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    Delete.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Delete.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Delete.setAction(buttonCallback);
     add(Delete);
 
     Six.setXY(200, 94);
-    Six.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID));
+    Six.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
     Six.setLabelText(touchgfx::TypedText(T___SINGLEUSE_PCJK));
     Six.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Six.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -86,7 +86,7 @@ KeyboardViewBase::KeyboardViewBase() :
     add(Six);
 
     Seven.setXY(60, 166);
-    Seven.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID));
+    Seven.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
     Seven.setLabelText(touchgfx::TypedText(T___SINGLEUSE_7L2H));
     Seven.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Seven.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -94,7 +94,7 @@ KeyboardViewBase::KeyboardViewBase() :
     add(Seven);
 
     Eight.setXY(131, 166);
-    Eight.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID));
+    Eight.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
     Eight.setLabelText(touchgfx::TypedText(T___SINGLEUSE_RBEN));
     Eight.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Eight.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -102,7 +102,7 @@ KeyboardViewBase::KeyboardViewBase() :
     add(Eight);
 
     Nine.setXY(200, 166);
-    Nine.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID));
+    Nine.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
     Nine.setLabelText(touchgfx::TypedText(T___SINGLEUSE_2JSJ));
     Nine.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Nine.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -110,7 +110,7 @@ KeyboardViewBase::KeyboardViewBase() :
     add(Nine);
 
     Four.setXY(60, 94);
-    Four.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_DISABLED_ID));
+    Four.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
     Four.setLabelText(touchgfx::TypedText(T___SINGLEUSE_H5N5));
     Four.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Four.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));

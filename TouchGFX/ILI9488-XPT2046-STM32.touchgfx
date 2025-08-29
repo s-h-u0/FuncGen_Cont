@@ -10,9 +10,8 @@
             "Width": 480,
             "Height": 320,
             "Color": {
-              "Red": 11,
-              "Green": 17,
-              "Blue": 33
+              "Green": 15,
+              "Blue": 31
             }
           },
           {
@@ -30,62 +29,60 @@
           {
             "Type": "ToggleButton",
             "Name": "toggleButton_Stop",
-            "X": 348,
+            "X": 336,
             "Y": 194,
-            "Width": 110,
-            "Height": 50,
+            "Width": 132,
+            "Height": 60,
             "InitialStatePressed": true,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_action.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png"
+            "Pressed": "box\\STOP_active_132x60_outline-none_gloss.png",
+            "Released": "box\\STOP_inactive_132x60_outline-none_gloss.png"
           },
           {
             "Type": "Button",
             "Name": "button_Volt",
-            "X": 199,
-            "Y": 66,
-            "Width": 110,
-            "Height": 50,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png",
-            "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_rounded_disabled.json"
+            "X": 188,
+            "Y": 59,
+            "Width": 132,
+            "Height": 60,
+            "Pressed": "box\\button_HQ_132x60_sharp.png",
+            "Released": "box\\btn_ao_konpeki_132x60_gloss_subtle.png"
           },
           {
             "Type": "Button",
             "Name": "button_Phas",
-            "X": 199,
-            "Y": 250,
-            "Width": 110,
-            "Height": 50,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_disabled.png",
-            "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_rounded_disabled.json"
+            "X": 188,
+            "Y": 244,
+            "Width": 132,
+            "Height": 60,
+            "Pressed": "box\\button_HQ_132x60_sharp.png",
+            "Released": "box\\btn_teal_mint_132x60_gloss_subtle.png"
           },
           {
             "Type": "Image",
             "Name": "MaesVolt",
-            "X": 22,
-            "Y": 66,
-            "Width": 144,
-            "Height": 60,
-            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png"
+            "X": 9,
+            "Y": 59,
+            "Width": 168,
+            "Height": 72,
+            "RelativeFilename": "box\\btn_ao_konpeki_168x72_gloss_subtle.png"
           },
           {
             "Type": "Image",
             "Name": "MaesPhas",
-            "X": 21,
-            "Y": 250,
-            "Width": 144,
-            "Height": 60,
-            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png"
+            "X": 7,
+            "Y": 238,
+            "Width": 168,
+            "Height": 72,
+            "RelativeFilename": "box\\btn_teal_mint_168x72_gloss_subtle.png"
           },
           {
             "Type": "Image",
             "Name": "MaesCurr",
-            "X": 22,
-            "Y": 162,
-            "Width": 144,
-            "Height": 60,
-            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_60_tiny_rounded_disabled.png"
+            "X": 7,
+            "Y": 147,
+            "Width": 168,
+            "Height": 72,
+            "RelativeFilename": "box\\btn_aka_hi-iro_168x72_gloss_subtle.png"
           },
           {
             "Type": "TextArea",
@@ -93,13 +90,13 @@
             "X": 63,
             "Y": 19,
             "Width": 60,
-            "Height": 24,
+            "Height": 28,
             "TextId": "__SingleUse_TQG0",
             "TextRotation": "0",
             "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
+              "Red": 217,
+              "Green": 217,
+              "Blue": 217
             },
             "AutoSize": true
           },
@@ -151,9 +148,9 @@
             "TextId": "__SingleUse_YVKD",
             "TextRotation": "0",
             "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
+              "Red": 217,
+              "Green": 217,
+              "Blue": 217
             },
             "Wildcard1": {
               "UseBuffer": true,
@@ -170,9 +167,9 @@
             "TextId": "__SingleUse_211V",
             "TextRotation": "0",
             "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
+              "Red": 217,
+              "Green": 217,
+              "Blue": 217
             },
             "Wildcard1": {
               "UseBuffer": true,
@@ -189,9 +186,9 @@
             "TextId": "__SingleUse_VR8I",
             "TextRotation": "0",
             "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
+              "Red": 217,
+              "Green": 217,
+              "Blue": 217
             },
             "Wildcard1": {
               "UseBuffer": true,
@@ -205,33 +202,33 @@
             "X": 235,
             "Y": 19,
             "Width": 38,
-            "Height": 24,
+            "Height": 28,
             "TextId": "__SingleUse_Y6WD",
             "TextRotation": "0",
             "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
+              "Red": 217,
+              "Green": 217,
+              "Blue": 217
             },
             "AutoSize": true
           },
           {
             "Type": "ToggleButton",
             "Name": "toggleButton_Run",
-            "X": 348,
+            "X": 336,
             "Y": 95,
-            "Width": 110,
-            "Height": 50,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_active.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_rounded_pressed.png"
+            "Width": 132,
+            "Height": 60,
+            "Pressed": "box\\RUN_active_132x60_outline-none_gloss.png",
+            "Released": "box\\RUN_inactive_132x60_outline-none_gloss.png"
           },
           {
             "Type": "TextArea",
             "Name": "RUN_Text",
-            "X": 348,
-            "Y": 95,
-            "Width": 110,
-            "Height": 50,
+            "X": 336,
+            "Y": 100,
+            "Width": 132,
+            "Height": 58,
             "TextId": "__SingleUse_R6D2",
             "TextRotation": "0",
             "Color": {
@@ -243,41 +240,41 @@
           {
             "Type": "TextArea",
             "Name": "STOP_Text",
-            "X": 348,
-            "Y": 192,
-            "Width": 110,
-            "Height": 52,
+            "X": 336,
+            "Y": 198,
+            "Width": 132,
+            "Height": 64,
             "TextId": "__SingleUse_C75W",
             "TextRotation": "0"
           },
           {
             "Type": "TextArea",
             "Name": "textArea1",
-            "X": 124,
+            "X": 116,
             "Y": 71,
             "Width": 37,
             "Height": 41,
             "TextId": "UNIT_V",
             "TextRotation": "0",
             "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
+              "Red": 217,
+              "Green": 217,
+              "Blue": 217
             }
           },
           {
             "Type": "TextArea",
             "Name": "textArea1_1",
-            "X": 124,
+            "X": 120,
             "Y": 168,
             "Width": 37,
             "Height": 41,
             "TextId": "UNIT_Curr",
             "TextRotation": "0",
             "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
+              "Red": 217,
+              "Green": 217,
+              "Blue": 217
             }
           },
           {
@@ -290,9 +287,9 @@
             "TextId": "UNIT_DEG",
             "TextRotation": "0",
             "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
+              "Red": 217,
+              "Green": 217,
+              "Blue": 217
             }
           }
         ],
@@ -388,7 +385,7 @@
             "Y": 116,
             "Width": 175,
             "Height": 50,
-            "RelativeFilename": "__generated\\alternate_theme_images_widgets_button_regular_height_50_small_rounded_disabled.png"
+            "RelativeFilename": "box\\btn_ao_konpeki_175x50_gloss_subtle.png"
           },
           {
             "Type": "ButtonWithLabel",
@@ -397,8 +394,8 @@
             "Y": 24,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "box\\btn_ao_konpeki_60x60_gloss.png",
             "TextId": "__SingleUse_KPAO",
             "ReleasedColor": {
               "Red": 255,
@@ -410,8 +407,7 @@
               "Green": 255,
               "Blue": 255
             },
-            "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
+            "TextRotation": "0"
           },
           {
             "Type": "ButtonWithLabel",
@@ -421,10 +417,19 @@
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_active.png",
+            "Released": "box\\btn_teal_mint_60x60_gloss.png",
             "TextId": "__SingleUse_Y85E",
-            "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_active.json"
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0"
           },
           {
             "Type": "ButtonWithLabel",
@@ -433,8 +438,8 @@
             "Y": 237,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "box\\btn_ao_konpeki_60x60_gloss.png",
             "TextId": "__SingleUse_1CQN",
             "ReleasedColor": {
               "Red": 255,
@@ -446,8 +451,7 @@
               "Green": 255,
               "Blue": 255
             },
-            "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
+            "TextRotation": "0"
           },
           {
             "Type": "ButtonWithLabel",
@@ -456,8 +460,8 @@
             "Y": 24,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "box\\btn_ao_konpeki_60x60_gloss.png",
             "TextId": "__SingleUse_Z9DS",
             "ReleasedColor": {
               "Red": 255,
@@ -469,8 +473,7 @@
               "Green": 255,
               "Blue": 255
             },
-            "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
+            "TextRotation": "0"
           },
           {
             "Type": "ButtonWithLabel",
@@ -479,8 +482,8 @@
             "Y": 94,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "box\\btn_ao_konpeki_60x60_gloss.png",
             "TextId": "__SingleUse_UW8N",
             "ReleasedColor": {
               "Red": 255,
@@ -492,8 +495,7 @@
               "Green": 255,
               "Blue": 255
             },
-            "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
+            "TextRotation": "0"
           },
           {
             "Type": "ButtonWithLabel",
@@ -502,8 +504,8 @@
             "Y": 24,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "box\\btn_ao_konpeki_60x60_gloss.png",
             "TextId": "__SingleUse_9HW9",
             "ReleasedColor": {
               "Red": 255,
@@ -515,8 +517,7 @@
               "Green": 255,
               "Blue": 255
             },
-            "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
+            "TextRotation": "0"
           },
           {
             "Type": "ButtonWithLabel",
@@ -526,10 +527,19 @@
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_normal.png",
+            "Released": "box\\btn_coolgray_cool_gray_60x60_gloss.png",
             "TextId": "__SingleUse_VNBM",
-            "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_normal.json"
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0"
           },
           {
             "Type": "ButtonWithLabel",
@@ -538,8 +548,8 @@
             "Y": 94,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "box\\btn_ao_konpeki_60x60_gloss.png",
             "TextId": "__SingleUse_PCJK",
             "ReleasedColor": {
               "Red": 255,
@@ -551,8 +561,7 @@
               "Green": 255,
               "Blue": 255
             },
-            "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
+            "TextRotation": "0"
           },
           {
             "Type": "ButtonWithLabel",
@@ -561,8 +570,8 @@
             "Y": 166,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "box\\btn_ao_konpeki_60x60_gloss.png",
             "TextId": "__SingleUse_7L2H",
             "ReleasedColor": {
               "Red": 255,
@@ -574,8 +583,7 @@
               "Green": 255,
               "Blue": 255
             },
-            "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
+            "TextRotation": "0"
           },
           {
             "Type": "ButtonWithLabel",
@@ -584,8 +592,8 @@
             "Y": 166,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "box\\btn_ao_konpeki_60x60_gloss.png",
             "TextId": "__SingleUse_RBEN",
             "ReleasedColor": {
               "Red": 255,
@@ -597,8 +605,7 @@
               "Green": 255,
               "Blue": 255
             },
-            "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
+            "TextRotation": "0"
           },
           {
             "Type": "ButtonWithLabel",
@@ -607,8 +614,8 @@
             "Y": 166,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "box\\btn_ao_konpeki_60x60_gloss.png",
             "TextId": "__SingleUse_2JSJ",
             "ReleasedColor": {
               "Red": 255,
@@ -620,8 +627,7 @@
               "Green": 255,
               "Blue": 255
             },
-            "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json"
+            "TextRotation": "0"
           },
           {
             "Type": "ButtonWithLabel",
@@ -630,8 +636,8 @@
             "Y": 94,
             "Width": 60,
             "Height": 60,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_disabled.png",
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "box\\btn_ao_konpeki_60x60_gloss.png",
             "TextId": "__SingleUse_H5N5",
             "ReleasedColor": {
               "Red": 255,
@@ -644,7 +650,6 @@
               "Blue": 255
             },
             "TextRotation": "0",
-            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_disabled.json",
             "Clickable": true
           },
           {

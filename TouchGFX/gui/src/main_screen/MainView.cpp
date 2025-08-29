@@ -175,7 +175,7 @@ void MainView::Run()
     lockFor(120);               // ごく短いロック
     // 実処理…
     uint32_t vPhase = presenter->getDesiredValue(SettingType::Phase);
-    AD9833_Set(50, AD9833_SINE, vPhase);
+    AD9833_Set(1000, AD9833_TRIANGLE, vPhase);
     uint32_t vVolt  = presenter->getDesiredValue(SettingType::Voltage);
     AD5292_SetVoltage(vVolt);
 }

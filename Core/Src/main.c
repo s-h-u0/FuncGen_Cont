@@ -157,7 +157,7 @@ int main(void)
   else
 	  CLK_MuxSet(Int_CLK_ToDDS ); 	/*　それ以外(スレーブ)なら外部クロックを使用 → PB6 Low   */
 
-  AD5292_Set(0x400);
+  AD5292_Set(0x7FF);
 
   HAL_Delay(10);
 
