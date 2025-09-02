@@ -29,21 +29,21 @@ MainViewBase::MainViewBase() :
     add(toggleButton_Stop);
 
     button_Volt.setXY(188, 59);
-    button_Volt.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_SUBTLE_ID), touchgfx::Bitmap(BITMAP_BUTTON_HQ_132X60_SHARP_ID));
+    button_Volt.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AKA_HI_IRO_132X60_GLOSS_SUBTLE_ID), touchgfx::Bitmap(BITMAP_BTN_AKA_HI_IRO_132X60_GLOSS_SUBTLE_ID));
     button_Volt.setAction(buttonCallback);
     add(button_Volt);
 
     button_Phas.setXY(188, 244);
-    button_Phas.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_TEAL_MINT_132X60_GLOSS_SUBTLE_ID), touchgfx::Bitmap(BITMAP_BUTTON_HQ_132X60_SHARP_ID));
+    button_Phas.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AKA_HI_IRO_132X60_GLOSS_SUBTLE_ID), touchgfx::Bitmap(BITMAP_BTN_AKA_HI_IRO_132X60_GLOSS_SUBTLE_ID));
     button_Phas.setAction(buttonCallback);
     add(button_Phas);
 
-    MaesVolt.setXY(9, 59);
-    MaesVolt.setBitmap(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_168X72_GLOSS_SUBTLE_ID));
+    MaesVolt.setXY(7, 59);
+    MaesVolt.setBitmap(touchgfx::Bitmap(BITMAP_BTN_AKA_HI_IRO_168X72_GLOSS_SUBTLE_ID));
     add(MaesVolt);
 
     MaesPhas.setXY(7, 238);
-    MaesPhas.setBitmap(touchgfx::Bitmap(BITMAP_BTN_TEAL_MINT_168X72_GLOSS_SUBTLE_ID));
+    MaesPhas.setBitmap(touchgfx::Bitmap(BITMAP_BTN_AKA_HI_IRO_168X72_GLOSS_SUBTLE_ID));
     add(MaesPhas);
 
     MaesCurr.setXY(7, 147);
@@ -108,13 +108,13 @@ MainViewBase::MainViewBase() :
     toggleButton_Run.setAction(buttonCallback);
     add(toggleButton_Run);
 
-    RUN_Text.setPosition(336, 100, 132, 58);
+    RUN_Text.setPosition(336, 95, 132, 63);
     RUN_Text.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     RUN_Text.setLinespacing(0);
     RUN_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_R6D2));
     add(RUN_Text);
 
-    STOP_Text.setPosition(336, 198, 132, 64);
+    STOP_Text.setPosition(336, 194, 132, 68);
     STOP_Text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     STOP_Text.setLinespacing(0);
     STOP_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_C75W));

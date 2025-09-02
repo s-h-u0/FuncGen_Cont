@@ -44,8 +44,8 @@
             "Y": 59,
             "Width": 132,
             "Height": 60,
-            "Pressed": "box\\button_HQ_132x60_sharp.png",
-            "Released": "box\\btn_ao_konpeki_132x60_gloss_subtle.png"
+            "Pressed": "box\\btn_aka_hi-iro_132x60_gloss_subtle.png",
+            "Released": "box\\btn_aka_hi-iro_132x60_gloss_subtle.png"
           },
           {
             "Type": "Button",
@@ -54,17 +54,17 @@
             "Y": 244,
             "Width": 132,
             "Height": 60,
-            "Pressed": "box\\button_HQ_132x60_sharp.png",
-            "Released": "box\\btn_teal_mint_132x60_gloss_subtle.png"
+            "Pressed": "box\\btn_aka_hi-iro_132x60_gloss_subtle.png",
+            "Released": "box\\btn_aka_hi-iro_132x60_gloss_subtle.png"
           },
           {
             "Type": "Image",
             "Name": "MaesVolt",
-            "X": 9,
+            "X": 7,
             "Y": 59,
             "Width": 168,
             "Height": 72,
-            "RelativeFilename": "box\\btn_ao_konpeki_168x72_gloss_subtle.png"
+            "RelativeFilename": "box\\btn_aka_hi-iro_168x72_gloss_subtle.png"
           },
           {
             "Type": "Image",
@@ -73,7 +73,7 @@
             "Y": 238,
             "Width": 168,
             "Height": 72,
-            "RelativeFilename": "box\\btn_teal_mint_168x72_gloss_subtle.png"
+            "RelativeFilename": "box\\btn_aka_hi-iro_168x72_gloss_subtle.png"
           },
           {
             "Type": "Image",
@@ -226,9 +226,9 @@
             "Type": "TextArea",
             "Name": "RUN_Text",
             "X": 336,
-            "Y": 100,
+            "Y": 95,
             "Width": 132,
-            "Height": 58,
+            "Height": 63,
             "TextId": "__SingleUse_R6D2",
             "TextRotation": "0",
             "Color": {
@@ -241,9 +241,9 @@
             "Type": "TextArea",
             "Name": "STOP_Text",
             "X": 336,
-            "Y": 198,
+            "Y": 194,
             "Width": 132,
-            "Height": 64,
+            "Height": 68,
             "TextId": "__SingleUse_C75W",
             "TextRotation": "0"
           },
