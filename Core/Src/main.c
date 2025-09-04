@@ -152,10 +152,10 @@ int main(void)
 
   /*識別子に応じてDDSへ供給するMCLKを外部クロックか、内部クロックかを選択*/
   uint8_t dip = DIP221_Read();      /* 識別子0x0〜0xF を取得 */
-  if (dip == 0x0 || dip == 0xE)     /* 0(Master) もしくは E(Independent) ? */
-      CLK_MuxSet(Ext_CLK_ToDDS ); 	/*　MasterもしくはIndependentなら内部クロックを使用 → PB6 High  */
+  if (dip == 0x0 || dip == 0xF)     /* 0(Master) もしくは Free*/
+      CLK_MuxSet(Int_CLK_ToDDS ); 	/*　MasterもしくはFreeなら内部クロックを使用 → PB6 High  */
   else
-	  CLK_MuxSet(Int_CLK_ToDDS ); 	/*　それ以外(スレーブ)なら外部クロックを使用 → PB6 Low   */
+	  CLK_MuxSet(Ext_CLK_ToDDS ); 	/*　それ以外(スレーブ)なら外部クロックを使用 → PB6 Low   */
 
   AD5292_Set(0x7FF);
 

@@ -8,6 +8,7 @@
 #include <mvp/View.hpp>
 #include <gui/main_screen/MainPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
+#include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <touchgfx/widgets/AnimatedImage.hpp>
 #include <touchgfx/widgets/ToggleButton.hpp>
 #include <touchgfx/widgets/Button.hpp>
@@ -52,6 +53,10 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Box BG_Main;
+    touchgfx::BoxWithBorder boxWithBorder1;
+    touchgfx::BoxWithBorder boxWithBorder1_2;
+    touchgfx::BoxWithBorder boxWithBorder1_1;
+    touchgfx::BoxWithBorder boxWithBorder1_2_1;
     touchgfx::AnimatedImage animatedImage1;
     touchgfx::ToggleButton toggleButton_Stop;
     touchgfx::Button button_Volt;
@@ -72,6 +77,7 @@ protected:
     touchgfx::TextArea textArea1;
     touchgfx::TextArea textArea1_1;
     touchgfx::TextArea textArea1_1_1;
+    touchgfx::TextAreaWithOneWildcard textArea2;
 
     /*
      * Wildcard Buffers
@@ -86,6 +92,8 @@ protected:
     touchgfx::Unicode::UnicodeChar Val_Set_VoltBuffer[VAL_SET_VOLT_SIZE];
     static const uint16_t VAL_SET_PHAS_SIZE = 10;
     touchgfx::Unicode::UnicodeChar Val_Set_PhasBuffer[VAL_SET_PHAS_SIZE];
+    static const uint16_t TEXTAREA2_SIZE = 32;
+    touchgfx::Unicode::UnicodeChar textArea2Buffer[TEXTAREA2_SIZE];
 
 private:
 

@@ -291,10 +291,30 @@ void MainView::setMeasuredVolt_mV(int16_t mv)
  */
 void MainView::handleTickEvent()
 {
-    if (MeasTimer_Consume()) {           // 1秒ごと
-        presenter->updateMeasuredValues();
-    }
+	if (MeasTimer_Consume()) {           // 1秒ごと
+	   presenter->updateMeasuredValues();  // ADC更新
+	   presenter->updateDipValue();       // ★ DIP更新を追加
+	}
     MainViewBase::handleTickEvent();
 }
 
+
+
+void MainView::setDipHex(uint8_t nibble)
+{
+    // ① まず「古い領域」を無効化（これが超重要）
+    textArea2.invalidate();
+
+    const uint8_t v = nibble & 0x0F;
+
+    // ② 1文字を直接代入（printfは使わない）
+    textArea2Buffer[0] = (touchgfx::Unicode::UnicodeChar)((v < 10) ? ('0' + v) : ('A' + (v - 10)));
+    textArea2Buffer[1] = 0;
+
+    // ③ 新しい文字幅に合わせてサイズ更新
+    textArea2.resizeToCurrentText();
+
+    // ④ 新しい領域も無効化（再描画）
+    textArea2.invalidate();
+}
 

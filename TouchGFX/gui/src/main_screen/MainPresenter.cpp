@@ -20,6 +20,7 @@
 
 extern "C" {
 #include "adc_MCP3428.h"
+#include "dipsw_221AMA16R.h"
 }
 
 /** @brief Model の保持値（電圧・位相）を View 表示へ一括同期する内部ユーティリティ
@@ -108,5 +109,12 @@ void MainPresenter::updateMeasuredValues()
 
     int16_t mv = MCP3428_ReadMilliVolt(adcHandle);
     view.setMeasuredVolt_mV(mv);   // ★ 小数表示版を呼ぶ
+}
+
+void MainPresenter::updateDipValue()
+{
+    // 221-AMA16R（4bit）の状態を 0x0〜0xF で取得
+    uint8_t v = DIP221_Read() & 0x0F;
+    view.setDipHex(v);
 }
 

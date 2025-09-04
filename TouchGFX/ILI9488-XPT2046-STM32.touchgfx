@@ -15,6 +15,78 @@
             }
           },
           {
+            "Type": "BoxWithBorder",
+            "Name": "boxWithBorder1",
+            "X": 181,
+            "Y": 55,
+            "Width": 147,
+            "Height": 265,
+            "Color": {
+              "Green": 15,
+              "Blue": 31
+            },
+            "BorderColor": {
+              "Red": 166,
+              "Green": 201,
+              "Blue": 227
+            },
+            "BorderSize": 1
+          },
+          {
+            "Type": "BoxWithBorder",
+            "Name": "boxWithBorder1_2",
+            "X": 181,
+            "Y": 1,
+            "Width": 147,
+            "Height": 55,
+            "Color": {
+              "Green": 15,
+              "Blue": 31
+            },
+            "BorderColor": {
+              "Red": 166,
+              "Green": 201,
+              "Blue": 227
+            },
+            "BorderSize": 1
+          },
+          {
+            "Type": "BoxWithBorder",
+            "Name": "boxWithBorder1_1",
+            "X": 2,
+            "Y": 55,
+            "Width": 180,
+            "Height": 265,
+            "Color": {
+              "Green": 15,
+              "Blue": 31
+            },
+            "BorderColor": {
+              "Red": 166,
+              "Green": 201,
+              "Blue": 227
+            },
+            "BorderSize": 1
+          },
+          {
+            "Type": "BoxWithBorder",
+            "Name": "boxWithBorder1_2_1",
+            "X": 2,
+            "Y": 1,
+            "Width": 180,
+            "Height": 55,
+            "Color": {
+              "Green": 15,
+              "Blue": 31
+            },
+            "BorderColor": {
+              "Red": 166,
+              "Green": 201,
+              "Blue": 227
+            },
+            "BorderSize": 1
+          },
+          {
             "Type": "AnimatedImage",
             "Name": "animatedImage1",
             "X": 348,
@@ -44,8 +116,8 @@
             "Y": 59,
             "Width": 132,
             "Height": 60,
-            "Pressed": "box\\btn_aka_hi-iro_132x60_gloss_subtle.png",
-            "Released": "box\\btn_aka_hi-iro_132x60_gloss_subtle.png"
+            "Pressed": "box\\btn_ao_konpeki_132x60_gloss.png",
+            "Released": "box\\btn_ao_konpeki_132x60_gloss.png"
           },
           {
             "Type": "Button",
@@ -54,8 +126,8 @@
             "Y": 244,
             "Width": 132,
             "Height": 60,
-            "Pressed": "box\\btn_aka_hi-iro_132x60_gloss_subtle.png",
-            "Released": "box\\btn_aka_hi-iro_132x60_gloss_subtle.png"
+            "Pressed": "box\\btn_ao_konpeki_132x60_gloss.png",
+            "Released": "box\\btn_ao_konpeki_132x60_gloss.png"
           },
           {
             "Type": "Image",
@@ -64,7 +136,7 @@
             "Y": 59,
             "Width": 168,
             "Height": 72,
-            "RelativeFilename": "box\\btn_aka_hi-iro_168x72_gloss_subtle.png"
+            "RelativeFilename": "box\\btn_ao_konpeki_168x72_gloss.png"
           },
           {
             "Type": "Image",
@@ -73,7 +145,7 @@
             "Y": 238,
             "Width": 168,
             "Height": 72,
-            "RelativeFilename": "box\\btn_aka_hi-iro_168x72_gloss_subtle.png"
+            "RelativeFilename": "box\\btn_ao_konpeki_168x72_gloss.png"
           },
           {
             "Type": "Image",
@@ -82,7 +154,7 @@
             "Y": 147,
             "Width": 168,
             "Height": 72,
-            "RelativeFilename": "box\\btn_aka_hi-iro_168x72_gloss_subtle.png"
+            "RelativeFilename": "box\\btn_ao_konpeki_168x72_gloss.png"
           },
           {
             "Type": "TextArea",
@@ -90,7 +162,7 @@
             "X": 63,
             "Y": 19,
             "Width": 60,
-            "Height": 28,
+            "Height": 24,
             "TextId": "__SingleUse_TQG0",
             "TextRotation": "0",
             "Color": {
@@ -202,7 +274,7 @@
             "X": 235,
             "Y": 19,
             "Width": 38,
-            "Height": 28,
+            "Height": 24,
             "TextId": "__SingleUse_Y6WD",
             "TextRotation": "0",
             "Color": {
@@ -290,6 +362,26 @@
               "Red": 217,
               "Green": 217,
               "Blue": 217
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea2",
+            "X": 336,
+            "Y": 264,
+            "Width": 156,
+            "Height": 46,
+            "TextId": "__SingleUse_UVTT",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 200,
+              "Green": 211,
+              "Blue": 227
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 32
             }
           }
         ],

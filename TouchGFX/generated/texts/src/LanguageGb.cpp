@@ -13,6 +13,7 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     5,  // T_NUMBERTEXT: "<>"
     34, // T_TOGGLEBUTTONWHITE: "White"
     21, // T_TOGGLEBUTTONORANGE: "Orange"
+    5,  // T___SINGLEUSE_UVTT: "<>"
     85, // T_UNIT_CURR: "A"
     45, // T___SINGLEUSE_C75W: "STOP"
     54, // T___SINGLEUSE_R6D2: "RUN"

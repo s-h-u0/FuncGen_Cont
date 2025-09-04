@@ -115,8 +115,8 @@ void Error_Handler(void);
 #define MCP4728_SDA_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
-#define Ext_CLK_ToDDS  SWITCH_CH_B2  /* 外部クロック：S=High → B2 ↔ A */
-#define Int_CLK_ToDDS  SWITCH_CH_B1  /* 内部クロック：S=Low  → B1 ↔ A */
+#define Ext_CLK_ToDDS  SWITCH_CH_B1  /* 外部クロック：S=High → B2 ↔ A */
+#define Int_CLK_ToDDS  SWITCH_CH_B2  /* 内部クロック：S=Low  → B1 ↔ A */
 
 
 

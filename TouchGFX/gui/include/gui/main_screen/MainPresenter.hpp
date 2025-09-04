@@ -39,6 +39,9 @@ public:
     /// ADC( MCP3428 ) を 1回測定→mV取得→View反映（小数2桁表示は View 側）
     void updateMeasuredValues();
 
+    /** DIPスイッチ(4bit)の値を読み取り、Viewへ16進表示で反映 */
+    void updateDipValue();
+
 private:
     MainView& view;
     // ここに MCP3428 用ハンドルを保持

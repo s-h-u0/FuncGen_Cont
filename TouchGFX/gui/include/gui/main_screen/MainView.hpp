@@ -76,6 +76,9 @@ public:
     void setMeasuredVolt_mV(int16_t mv);/** 測定電圧(mV)を設定（表示用） */
     void setMeasuredCurr(int16_t val);  /** 測定電流を設定（表示用） */
 
+    /** textArea2 に 0〜F を表示 */
+    void setDipHex(uint8_t nibble);
+
 
     /* 関数名"handleTickEvent"
      * 毎フレーム呼ばれる定期更新処理。

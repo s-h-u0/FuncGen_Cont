@@ -16,6 +16,9 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_UVTT" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
       <Text Id="UNIT_Curr" Alignment="Right" TypographyId="Default">
         <Translation Language="GB">A</Translation>
       </Text>
@@ -109,7 +112,7 @@
     </TextGroup>
   </Texts>
   <Typographies>
-    <Typography Id="Default" Font="Asap-Regular.ttf" Size="38" Bpp="4" IsVector="no" Direction="LTR" WildcardCharacters="-+,." WildcardCharacterRanges="0-9" />
+    <Typography Id="Default" Font="Asap-Regular.ttf" Size="38" Bpp="4" IsVector="no" Direction="LTR" WildcardCharacters="-+,." WildcardCharacterRanges="0-F" />
     <Typography Id="key" Font="Asap-Regular.ttf" Size="28" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Label" Font="Asap-Regular.ttf" Size="24" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Typography_00" Font="Asap-Regular.ttf" Size="32" Bpp="4" IsVector="no" Direction="RTL" FallbackCharacter="?" />
