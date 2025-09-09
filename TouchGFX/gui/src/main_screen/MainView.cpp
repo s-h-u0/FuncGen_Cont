@@ -26,6 +26,7 @@
 #include <dds_AD9833.h>
 #include "meas_timer.h"
 #include <touchgfx/Color.hpp>
+#include "usart6_cli.h"
 
 
 
@@ -162,41 +163,32 @@ inline void lockFor(uint32_t ms = kLockMs) {
 // -----------------------------------------------------------------
 
 
-/** @brief Run ボタンのハンドラ（ラッチ＋軽ロック）
- *  @details
- *   - すでに Run 中なら無視（ラッチ）
- *   - まず UI を即時切替 → 120ms ロックで誤連打吸収 → デバイス制御
- *   - デバイス制御内容: AD9833 に周波数/波形/位相、AD5292 に電圧を設定
- */
+
+
 void MainView::Run()
 {
     if (locked() || isRunning) { updateRunStopUI(isRunning); return; }
-    updateRunStopUI(true);      // 先に見た目
-    lockFor(120);               // ごく短いロック
-    // 実処理…
+    updateRunStopUI(true);
+    lockFor(120);
     uint32_t vPhase = presenter->getDesiredValue(SettingType::Phase);
     AD9833_Set(1000, AD9833_TRIANGLE, vPhase);
     uint32_t vVolt  = presenter->getDesiredValue(SettingType::Voltage);
     AD5292_SetVoltage(vVolt);
+
+    // ★CLIへ通知（RUN?が1になる）
+    CLI_SetRunState_FromUI(1);
 }
 
-
-
-
-/** @brief Stop ボタンのハンドラ（ラッチ＋軽ロック）
- *  @details
- *   - すでに停止中なら無視（ラッチ）
- *   - まず UI を即時切替 → 120ms ロック → デバイスを既定の停止値へ
- */
 void MainView::Stop()
 {
     if (locked() || !isRunning) { updateRunStopUI(isRunning); return; }
-    updateRunStopUI(false);     // 先に見た目
-    lockFor(120);               // ごく短いロック
+    updateRunStopUI(false);
+    lockFor(120);
     AD5292_Set(0x400);
+
+    // ★CLIへ通知（RUN?が0になる）
+    CLI_SetRunState_FromUI(0);
 }
-
-
 /** @brief [UI] 電圧設定ボタンのハンドラ
  *  @details 現在の設定対象を Voltage に切り替え、キーボード画面へ遷移する。
  *  @note    デバイスI/Oは行わず、Presenterへの通知＋画面遷移のみ。
