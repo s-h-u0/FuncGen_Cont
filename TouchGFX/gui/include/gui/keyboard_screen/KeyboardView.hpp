@@ -62,6 +62,8 @@ public:
     void Delete_() override;  ///< 1桁削除
     void Enter_()  override;  ///< 入力確定（Presenter 経由で保存→画面遷移）
 
+    void setInitialValue(uint32_t v);
+
 private:
     /** @brief 1キーの最小再押下間隔[ms]（誤連打抑止のためのデバウンス） */
     static constexpr uint32_t kDebounceMs = 120;

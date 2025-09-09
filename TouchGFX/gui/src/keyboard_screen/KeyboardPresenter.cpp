@@ -31,10 +31,10 @@ void KeyboardPresenter::activate()
 {
     if (!model) return;
 
-    SettingType s = model->getCurrentSetting();
-    currentValue  = model->getLastInputValue(s);   // 種別別の last 値
-    clampToCurrentRange();                         // ← 念のため範囲補正
-    view.setLabelAccordingToSetting(s);
+    const SettingType s = model->getCurrentSetting();
+    currentValue = model->getDesiredValue(s);  // ← currentValue を Model で初期化
+
+    view.setLabelAccordingToSetting(s);        // ← ここを修正（名前を合わせる）
     view.updateDisplay();
 }
 

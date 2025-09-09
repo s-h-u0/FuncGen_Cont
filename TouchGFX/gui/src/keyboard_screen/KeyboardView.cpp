@@ -164,6 +164,15 @@ void KeyboardView::pressAction(void (KeyboardPresenter::*fn)(), KeyId id)
     (presenter->*fn)();
 }
 
+void KeyboardView::setInitialValue(uint32_t v)
+{
+    // Presenter 側の currentValue にも反映されている想定だが、
+    // 念のため直接画面の数値も更新
+    Unicode::snprintf(Setting_ValueBuffer, SETTING_VALUE_SIZE, "%u",
+                      static_cast<unsigned>(v));
+    Setting_Value.invalidate();
+}
+
 /* =========================
  *  数字キー → 共通ヘルパへ
  * ========================= */

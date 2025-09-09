@@ -51,6 +51,10 @@ static uint32_t        g_potVolt= 0;       /* AD5292 目標電圧(0..VOLTAGE_MAX
 static volatile uint8_t g_run_state = 0;   /* 0=STOP, 1=RUN */
 static bool             g_echo      = true;
 
+/* --- UIへ通知するための外部関数（MainView.cpp 側で定義） --- */
+void ui_notify_runstop(int running);
+void ui_set_desired_value(int which, uint32_t v);  // which: 0=Volt, 1=Phase
+
 /* ----- 共通ユーティリティ ----- */
 static void rb_push(uint8_t b){
   uint16_t n = (uint16_t)((r_head + 1u) % CLI_RX_BUF_SZ);
@@ -218,16 +222,18 @@ static void handle_command(const char* cmd){
     CLI_Write(name); CLI_Write("\r\n"); return;
   }
 
-  /* 出力: 位相（0..359 度） */
+  /* 出力: 位相 */
   if (strncmp(cmd, "SOUR:PHAS ", 10) == 0) {
     const char* p = cmd + 10;
-    long ph = strtol(p, NULL, 10);
-    if (ph < 0 || ph > 359) { write_err("ERR:RANGE"); }
-    else { g_phase = (uint16_t)ph; apply_dds(); write_ok(); }
-    return;
+    unsigned long deg = strtoul(p, NULL, 10);
+    if (deg > 359) deg = 359;
+    g_phase = (uint16_t)deg;
+    apply_dds();
+    ui_set_desired_value(1, g_phase);   /* Phase=1 をUIへ通知 */
+    write_ok(); return;
   }
   if (strcmp(cmd, "SOUR:PHAS?") == 0) {
-    char buf[16]; snprintf(buf, sizeof(buf), "%u\r\n", (unsigned)g_phase);
+    char buf[8]; snprintf(buf, sizeof(buf), "%u\r\n", (unsigned)g_phase);
     CLI_Write(buf); return;
   }
 
@@ -263,27 +269,38 @@ static void handle_command(const char* cmd){
     return;
   }
 
-  /* AD5292: 目標電圧（RUN時はライブ反映） */
+  /* AD5292: 目標電圧（RUN用） */
   if (strncmp(cmd, "POT:VOLT ", 9) == 0) {
     const char* p = cmd + 9;
     unsigned long v = strtoul(p, NULL, 10);
-    if (v > VOLTAGE_MAX_V) v = VOLTAGE_MAX_V;
-    g_potVolt = (uint32_t)v;
-    if (g_run_state) AD5292_SetVoltage(g_potVolt);
+    if (v > VOLTAGE_MAX_V) v = VOLTAGE_MAX_V;   /* 0..40V にクランプ */
+    g_potVolt = (uint32_t)v;                    /* 保存 */
+    if (g_run_state) {                          /* ← 修正: g_running ではなく g_run_state */
+      AD5292_SetVoltage(g_potVolt);             /* 走行中はライブ反映 */
+    }
+    ui_set_desired_value(0, g_potVolt);         /* Voltage=0 をUIへ通知 */
     write_ok(); return;
   }
   if (strcmp(cmd, "POT:VOLT?") == 0) {
-    char buf[16]; snprintf(buf, sizeof(buf), "%lu\r\n", (unsigned long)g_potVolt);
+    char buf[12]; snprintf(buf, sizeof(buf), "%lu\r\n", (unsigned long)g_potVolt);
     CLI_Write(buf); return;
   }
 
-  /* RUN/STOP/RUN? */
+  /* RUN / STOP */
   if (strcmp(cmd, "RUN") == 0) {
-    if (!g_run_state){ g_run_state = 1; apply_run_on(); }
+    if (!g_run_state) {
+      g_run_state = 1;
+      apply_run_on();
+      ui_notify_runstop(1);
+    }
     write_ok(); return;
   }
   if (strcmp(cmd, "STOP") == 0) {
-    if (g_run_state){ g_run_state = 0; apply_run_off(); }
+    if (g_run_state) {
+      g_run_state = 0;
+      AD5292_Set(0x400);
+      ui_notify_runstop(0);
+    }
     write_ok(); return;
   }
   if (strcmp(cmd, "RUN?") == 0) {
