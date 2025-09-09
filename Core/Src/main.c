@@ -30,7 +30,7 @@
 #include "adc_MCP3428.h"
 #include <stdio.h>
 #include "meas_timer.h"
-
+#include "usart6_cli.h"
 
 /* USER CODE END Includes */
 
@@ -64,6 +64,8 @@ TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim5;
 
+UART_HandleTypeDef huart6;
+
 /* USER CODE BEGIN PV */
 MCP3428_HandleTypeDef hadc3428;
 
@@ -83,6 +85,7 @@ static void MX_SPI3_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_I2C3_Init(void);
 static void MX_TIM5_Init(void);
+static void MX_USART6_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -134,6 +137,7 @@ int main(void)
   MX_I2C1_Init();
   MX_I2C3_Init();
   MX_TIM5_Init();
+  MX_USART6_UART_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
   CLK_MuxInit();     /* PB6 を出力 Low に設定           */
@@ -148,6 +152,8 @@ int main(void)
   MeasTimer_Init(&htim5);
   // TouchGFX 用タイマー IRQ をスタート
   HAL_TIM_Base_Start_IT(&TGFX_T);
+  CLI_Init();
+  CLI_Write("BOOT\n");
 
 
   /*識別子に応じてDDSへ供給するMCLKを外部クロックか、内部クロックかを選択*/
@@ -198,6 +204,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  CLI_Poll();
 	  if (Touch_GotATouch(0))
 		  touchgfxSignalVSync();
     /* USER CODE END WHILE */
@@ -621,6 +628,39 @@ static void MX_TIM5_Init(void)
 }
 
 /**
+  * @brief USART6 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART6_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART6_Init 0 */
+
+  /* USER CODE END USART6_Init 0 */
+
+  /* USER CODE BEGIN USART6_Init 1 */
+
+  /* USER CODE END USART6_Init 1 */
+  huart6.Instance = USART6;
+  huart6.Init.BaudRate = 115200;
+  huart6.Init.WordLength = UART_WORDLENGTH_8B;
+  huart6.Init.StopBits = UART_STOPBITS_1;
+  huart6.Init.Parity = UART_PARITY_NONE;
+  huart6.Init.Mode = UART_MODE_TX_RX;
+  huart6.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart6.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart6) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART6_Init 2 */
+
+  /* USER CODE END USART6_Init 2 */
+
+}
+
+/**
   * Enable DMA controller clock
   */
 static void MX_DMA_Init(void)
@@ -654,6 +694,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
+  __HAL_RCC_GPIOG_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(DISPL_CS_GPIO_Port, DISPL_CS_Pin, GPIO_PIN_SET);
