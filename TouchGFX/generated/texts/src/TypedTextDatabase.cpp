@@ -7,7 +7,7 @@
 
 extern touchgfx::GeneratedFont& getFont_Asap_Regular_38_4bpp();
 extern touchgfx::GeneratedFont& getFont_Asap_Regular_28_4bpp();
-extern touchgfx::GeneratedFont& getFont_Asap_Regular_24_4bpp();
+extern touchgfx::GeneratedFont& getFont_Asap_Regular_27_4bpp();
 extern touchgfx::GeneratedFont& getFont_Asap_Regular_32_4bpp();
 extern touchgfx::GeneratedFont& getFont_Asap_Regular_23_4bpp();
 extern touchgfx::GeneratedFont& getFont_verdana_15_4bpp();
@@ -18,7 +18,7 @@ extern touchgfx::GeneratedFont& getFont_verdana_20_4bpp();
 const touchgfx::Font* touchgfx_fonts[] = {
     &(getFont_Asap_Regular_38_4bpp()),
     &(getFont_Asap_Regular_28_4bpp()),
-    &(getFont_Asap_Regular_24_4bpp()),
+    &(getFont_Asap_Regular_27_4bpp()),
     &(getFont_Asap_Regular_32_4bpp()),
     &(getFont_Asap_Regular_23_4bpp()),
     &(getFont_verdana_15_4bpp()),
@@ -145,7 +145,7 @@ void resetFont(touchgfx::FontId fontId)
         touchgfx_fonts[1] = &(getFont_Asap_Regular_28_4bpp());
         break;
     case 2:
-        touchgfx_fonts[2] = &(getFont_Asap_Regular_24_4bpp());
+        touchgfx_fonts[2] = &(getFont_Asap_Regular_27_4bpp());
         break;
     case 3:
         touchgfx_fonts[3] = &(getFont_Asap_Regular_32_4bpp());

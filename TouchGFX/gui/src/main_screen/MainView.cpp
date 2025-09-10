@@ -148,7 +148,7 @@ void MainView::Run()
     lockFor(120);
 
     uint32_t vPhase = presenter->getDesiredValue(SettingType::Phase);
-    AD9833_Set(1000, AD9833_TRIANGLE, vPhase);     // 必要に応じて presenter値に置換
+    AD9833_Set(50, AD9833_SINE, vPhase);     // 必要に応じて presenter値に置換
     uint32_t vVolt  = presenter->getDesiredValue(SettingType::Voltage);
     AD5292_SetVoltage(vVolt);
 

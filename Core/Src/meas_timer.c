@@ -39,7 +39,7 @@ void MeasTimer_Stop(void)
     }
 }
 
-void MeasTimer_OnPeriodElapsed(TIM_HandleTypeDef *htim)
+void MeasTimer_OnPeriodElapsed(TIM_HandleTypeDef *htim)  //ため込み
 {
     if (htim == s_htim) {
         if (s_req < MEAS_TIMER_MAX_PENDING) s_req++;  // ★ マクロでため込み上限
@@ -48,7 +48,7 @@ void MeasTimer_OnPeriodElapsed(TIM_HandleTypeDef *htim)
     }
 }
 
-bool MeasTimer_Consume(void)
+bool MeasTimer_Consume(void)  //消費
 {
     bool ret = false;
     __disable_irq();

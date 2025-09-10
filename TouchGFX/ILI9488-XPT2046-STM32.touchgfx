@@ -52,6 +52,24 @@
           },
           {
             "Type": "BoxWithBorder",
+            "Name": "boxWithBorder1_2_2",
+            "X": 327,
+            "Y": 265,
+            "Width": 147,
+            "Height": 55,
+            "Color": {
+              "Green": 15,
+              "Blue": 31
+            },
+            "BorderColor": {
+              "Red": 166,
+              "Green": 201,
+              "Blue": 227
+            },
+            "BorderSize": 1
+          },
+          {
+            "Type": "BoxWithBorder",
             "Name": "boxWithBorder1_1",
             "X": 2,
             "Y": 55,
@@ -159,10 +177,10 @@
           {
             "Type": "TextArea",
             "Name": "MeasureValue",
-            "X": 63,
-            "Y": 19,
-            "Width": 60,
-            "Height": 24,
+            "X": 58,
+            "Y": 15,
+            "Width": 67,
+            "Height": 27,
             "TextId": "__SingleUse_TQG0",
             "TextRotation": "0",
             "Color": {
@@ -271,10 +289,10 @@
           {
             "Type": "TextArea",
             "Name": "SetValue",
-            "X": 235,
-            "Y": 19,
-            "Width": 38,
-            "Height": 24,
+            "X": 232,
+            "Y": 15,
+            "Width": 44,
+            "Height": 27,
             "TextId": "__SingleUse_Y6WD",
             "TextRotation": "0",
             "Color": {
@@ -367,9 +385,9 @@
           {
             "Type": "TextArea",
             "Name": "textArea2",
-            "X": 336,
+            "X": 350,
             "Y": 264,
-            "Width": 156,
+            "Width": 52,
             "Height": 46,
             "TextId": "__SingleUse_UVTT",
             "TextRotation": "0",

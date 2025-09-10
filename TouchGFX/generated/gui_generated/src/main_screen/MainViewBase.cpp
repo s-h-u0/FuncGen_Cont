@@ -29,6 +29,12 @@ MainViewBase::MainViewBase() :
     boxWithBorder1_2.setBorderSize(1);
     add(boxWithBorder1_2);
 
+    boxWithBorder1_2_2.setPosition(327, 265, 147, 55);
+    boxWithBorder1_2_2.setColor(touchgfx::Color::getColorFromRGB(0, 15, 31));
+    boxWithBorder1_2_2.setBorderColor(touchgfx::Color::getColorFromRGB(166, 201, 227));
+    boxWithBorder1_2_2.setBorderSize(1);
+    add(boxWithBorder1_2_2);
+
     boxWithBorder1_1.setPosition(2, 55, 180, 265);
     boxWithBorder1_1.setColor(touchgfx::Color::getColorFromRGB(0, 15, 31));
     boxWithBorder1_1.setBorderColor(touchgfx::Color::getColorFromRGB(166, 201, 227));
@@ -74,7 +80,7 @@ MainViewBase::MainViewBase() :
     MaesCurr.setBitmap(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_168X72_GLOSS_ID));
     add(MaesCurr);
 
-    MeasureValue.setXY(63, 19);
+    MeasureValue.setXY(58, 15);
     MeasureValue.setColor(touchgfx::Color::getColorFromRGB(217, 217, 217));
     MeasureValue.setLinespacing(0);
     MeasureValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_TQG0));
@@ -121,7 +127,7 @@ MainViewBase::MainViewBase() :
     Val_Set_Phas.setTypedText(touchgfx::TypedText(T___SINGLEUSE_VR8I));
     add(Val_Set_Phas);
 
-    SetValue.setXY(235, 19);
+    SetValue.setXY(232, 15);
     SetValue.setColor(touchgfx::Color::getColorFromRGB(217, 217, 217));
     SetValue.setLinespacing(0);
     SetValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Y6WD));
@@ -162,7 +168,7 @@ MainViewBase::MainViewBase() :
     textArea1_1_1.setTypedText(touchgfx::TypedText(T_UNIT_DEG));
     add(textArea1_1_1);
 
-    textArea2.setXY(336, 264);
+    textArea2.setXY(350, 264);
     textArea2.setColor(touchgfx::Color::getColorFromRGB(200, 211, 227));
     textArea2.setLinespacing(0);
     textArea2Buffer[0] = 0;

@@ -33,7 +33,7 @@ struct TypographyFontIndex
 {
     static const touchgfx::FontId DEFAULT = 0;       // Asap_Regular_38_4bpp
     static const touchgfx::FontId KEY = 1;           // Asap_Regular_28_4bpp
-    static const touchgfx::FontId LABEL = 2;         // Asap_Regular_24_4bpp
+    static const touchgfx::FontId LABEL = 2;         // Asap_Regular_27_4bpp
     static const touchgfx::FontId TYPOGRAPHY_00 = 3; // Asap_Regular_32_4bpp
     static const touchgfx::FontId TYPOGRAPHY_01 = 4; // Asap_Regular_23_4bpp
     static const touchgfx::FontId CURRENT = 5;       // verdana_15_4bpp

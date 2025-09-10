@@ -55,6 +55,7 @@ protected:
     touchgfx::Box BG_Main;
     touchgfx::BoxWithBorder boxWithBorder1;
     touchgfx::BoxWithBorder boxWithBorder1_2;
+    touchgfx::BoxWithBorder boxWithBorder1_2_2;
     touchgfx::BoxWithBorder boxWithBorder1_1;
     touchgfx::BoxWithBorder boxWithBorder1_2_1;
     touchgfx::AnimatedImage animatedImage1;
