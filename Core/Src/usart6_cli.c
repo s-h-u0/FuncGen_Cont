@@ -208,8 +208,9 @@ void CLI_Write(const char* s){
   RS485_TXmode();
   HAL_UART_Transmit(&huart6, (uint8_t*)s, (uint16_t)strlen(s), 100);
   UART6_WaitTxComplete();
-  delay_us(turnaround_us());     // ← これでOK（extern不要）
   RS485_RXmode();
+  /* ★ブリッジ側と対称に：RXへ戻してからガード時間 */
+  delay_us(turnaround_us());
 }
 
 
