@@ -220,6 +220,7 @@ void MainView::setMeasuredVolt_mV(int16_t mv)
 // --- MainView::handleTickEvent() 内に追加 ---
 void MainView::handleTickEvent()
 {
+
     // CLI → UI : Run/Stop 反映
     if (s_activeView == this && s_cli_run.has) {
         s_cli_run.has = 0;

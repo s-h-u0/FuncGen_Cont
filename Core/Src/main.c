@@ -167,7 +167,7 @@ int main(void)
 
   HAL_Delay(10);
 
-  AD9833_Set(50, AD9833_TRIANGLE, 0); //AD9833_Set(周波数,波形,位相)
+  AD9833_Set(50, AD9833_SINE, 0); //AD9833_Set(周波数,波形,位相)
 
   HAL_Delay(10);
 
@@ -204,13 +204,15 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  CLI_Poll();
+
 	  if (Touch_GotATouch(0))
 		  touchgfxSignalVSync();
     /* USER CODE END WHILE */
 
   MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
+
+  CLI_Poll();
   }
   /* USER CODE END 3 */
 }
@@ -709,6 +711,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(TOUCH_CS_GPIO_Port, TOUCH_CS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(L_Reci_H_Send_GPIO_Port, L_Reci_H_Send_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(AD5292_CS_GPIO_Port, AD5292_CS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
@@ -742,6 +747,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(TOUCH_CS_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : L_Reci_H_Send_Pin CLK_MUX_PIN_S_Pin */
+  GPIO_InitStruct.Pin = L_Reci_H_Send_Pin|CLK_MUX_PIN_S_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
   /*Configure GPIO pin : TOUCH_INT_Pin */
   GPIO_InitStruct.Pin = TOUCH_INT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
@@ -766,13 +778,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : CLK_MUX_PIN_S_Pin */
-  GPIO_InitStruct.Pin = CLK_MUX_PIN_S_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(CLK_MUX_PIN_S_GPIO_Port, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);

@@ -39,6 +39,8 @@
 #include "mux_sn74lvc1g3157.h"
 #include "dpot_AD5292.h"
 
+#include "dipsw_221AMA16R.h"
+
 /* ====== 環境依存ハンドル ======
  * - ボード側で定義されるハンドルを参照（extern）
  * - 本モジュールはそれらを直接用いる
@@ -60,6 +62,23 @@ extern MCP3428_HandleTypeDef hadc3428;
 #ifndef VOLTAGE_MAX_V
 #define VOLTAGE_MAX_V 40U  /* AD5292 目標電圧の上限(0..40V想定) */
 #endif
+
+static int  addr_match_and_strip(char* cmd);
+static bool is_query_cmd(const char* s);
+
+static bool g_silent_reply = false;  // ブロードキャスト時に応答しない
+
+
+static uint8_t g_addr = 0x0;   // 自局アドレス(0..15)
+
+static void delay_us(uint32_t us){
+  uint32_t cycles = (SystemCoreClock / 1000000U) * us;
+  while (cycles--) { __NOP(); }
+}
+static inline uint32_t turnaround_us(void){
+  uint32_t baud = huart6.Init.BaudRate ? huart6.Init.BaudRate : 115200U;
+  return (12U * 1000000U) / baud + 200U; // 1文字(≈10–12bit) + 余裕
+}
 
 /* ====== 受信リングバッファ ======
  * rx_byte : 受信 1 バイト用の作業変数（ISR が書き込む / 再アーム時に指定）
@@ -91,7 +110,7 @@ static uint32_t        g_potVolt= 0;       /* AD5292 目標電圧(0..VOLTAGE_MAX
  * g_echo     : 受信コマンドのエコー出力フラグ
  */
 static volatile uint8_t g_run_state = 0;   /* 0=STOP, 1=RUN */
-static bool             g_echo      = true;
+static bool             g_echo      = false;
 
 /* --- UIへ通知するための外部関数（MainView.cpp 側で定義） ---
  * ui_notify_runstop(running): RUN/STOP の変更通知
@@ -99,6 +118,18 @@ static bool             g_echo      = true;
  */
 void ui_notify_runstop(int running);
 void ui_set_desired_value(int which, uint32_t v);  // which: 0=Volt, 1=Phase
+
+// RS-485 EN制御（PB11 = L_Reci_H_Send）: 0=受信, 1=送信
+static inline void RS485_RXmode(void){
+  HAL_GPIO_WritePin(L_Reci_H_Send_GPIO_Port, L_Reci_H_Send_Pin, GPIO_PIN_RESET);
+}
+static inline void RS485_TXmode(void){
+  HAL_GPIO_WritePin(L_Reci_H_Send_GPIO_Port, L_Reci_H_Send_Pin, GPIO_PIN_SET);
+}
+static inline void UART6_WaitTxComplete(void){
+  while (__HAL_UART_GET_FLAG(&huart6, UART_FLAG_TC) == RESET) { /* wait */ }
+}
+
 
 /* ----- 共通ユーティリティ -------------------------------------
  * rb_push: 受信 1 バイトをリングへ格納（満杯なら捨てる）
@@ -120,8 +151,8 @@ static bool rb_pop(uint8_t* out){
   return true;
 }
 
-static void write_ok(void){ CLI_Write("OK\r\n"); }
-static void write_err(const char* e){ CLI_Write(e); CLI_Write("\r\n"); }
+static void write_ok(void){ if (!g_silent_reply) CLI_Write("OK\r\n"); }
+static void write_err(const char* e){ if (!g_silent_reply){ CLI_Write(e); CLI_Write("\r\n"); } }
 
 /* ====== DDS/DAC/DPOT 反映系ユーティリティ ======================
  * - apply_dds    : 現在の g_freqHz/g_wave/g_phase を DDS へ適用
@@ -165,15 +196,23 @@ static void apply_run_off(void){
  * CLI_GetRunState   : RUN 状態の参照
  * ===============================================================*/
 void CLI_Init(void){
-  /* 「1 バイト受信」で割り込みを開始。完了ごとに ISR で再アームする。 */
+  g_addr = (uint8_t)(DIP221_Read() & 0x0F);   // 0..F
+  RS485_RXmode();
   HAL_UART_Receive_IT(&huart6, (uint8_t*)&rx_byte, 1);
 }
 
+
+
 void CLI_Write(const char* s){
-  /* 簡易の同期送信（ブロッキング）。高速連打は非推奨。 */
   if (!s) return;
+  RS485_TXmode();
   HAL_UART_Transmit(&huart6, (uint8_t*)s, (uint16_t)strlen(s), 100);
+  UART6_WaitTxComplete();
+  delay_us(turnaround_us());     // ← これでOK（extern不要）
+  RS485_RXmode();
 }
+
+
 
 /* UI→CLIへ状態通知（共通で使える単一点）
  * - on!=current なら状態変更し、RUN/STOP に応じて apply_* を呼ぶ。
@@ -249,12 +288,20 @@ void CLI_Poll(void){
   }
   line[e] = '\0';
 
-  /* --- ECHO（デバッグ用）--- */
-  if (g_echo) {
+
+
+  int am = addr_match_and_strip(&line[s]);  // 1=自宛, 0=他宛無視, -1=ブロードキャスト/宛先無し
+  if (am == 0) { acc_len = 0; return; }
+  bool is_q = is_query_cmd(&line[s]);
+  if (am < 0 && is_q) { acc_len = 0; return; }   // ブロードキャスト問い合わせは無視
+  g_silent_reply = (am < 0 && !is_q);            // ブロードキャスト“設定系”は無応答にする
+
+  /* ECHOは基本OFFだが、もしONならブロードキャスト時は抑止 */
+  if (g_echo && !g_silent_reply) {
     CLI_Write("CMD=["); CLI_Write(&line[s]); CLI_Write("]\r\n");
   }
 
-  /* --- コマンド実行 --- */
+  /* ★この1行だけでOK（この後にもう1回呼んでる二重呼び出しを消す）*/
   handle_command(&line[s]);
 
   /* 次行の組み立てに備えてリセット */
@@ -413,18 +460,55 @@ static void handle_command(const char* cmd){
     write_ok(); return;
   }
   if (strcmp(cmd, "STOP") == 0) {
-    if (g_run_state) {
-      g_run_state = 0;
-      AD5292_Set(0x400);
-      ui_notify_runstop(0);
-    }
-    write_ok(); return;
+      if (g_run_state) {
+          g_run_state = 0;
+          apply_run_off();
+          ui_notify_runstop(0);
+      }
+      write_ok(); return;
   }
   if (strcmp(cmd, "RUN?") == 0) {
     char buf[8]; snprintf(buf, sizeof(buf), "%u\r\n", (unsigned)g_run_state);
     CLI_Write(buf); return;
   }
 
+  if (strcmp(cmd, "ADDR?") == 0) {
+    char b[8]; snprintf(b, sizeof(b), "%X\r\n", (unsigned)g_addr);
+    CLI_Write(b); return;
+  }
+
   /* 未定義コマンド */
   write_err("ERR:UNKNOWN_CMD");
 }
+
+
+/* 先頭 "@<hex>" / "#<hex>" / "@*" を解釈する
+ * 戻り値: 1=自分宛, 0=他人宛で無視, -1=ブロードキャストor宛先無し
+ * 受理時は先頭の "@X[: ]*" を削って cmd をコマンド本体にする
+ */
+static int addr_match_and_strip(char* cmd){
+  if (!cmd || !*cmd) return -1;
+  if (cmd[0] == '@' || cmd[0] == '#'){
+    if (cmd[1] == '*'){                   // broadcast
+      char* p = cmd + 2;
+      while (*p==' ' || *p==':' || *p=='-') p++;
+      memmove(cmd, p, strlen(p)+1);
+      return -1;
+    }
+    if (isxdigit((unsigned char)cmd[1]) && !isxdigit((unsigned char)cmd[2])) {
+      uint8_t dst = (uint8_t)strtoul(&cmd[1], NULL, 16) & 0x0F;
+      if (dst != g_addr) return 0;        // 他人宛 → 無視
+      char* p = cmd + 2;
+      while (*p==' ' || *p==':' || *p=='-') p++;
+      memmove(cmd, p, strlen(p)+1);       // 自分宛 → プレフィクス除去
+      return 1;
+    }
+  }
+  return -1; // 宛先無し = ブロードキャスト扱い
+}
+
+/* “クエリか？”（'?' を含むか） */
+static bool is_query_cmd(const char* s){
+  return (s && strchr(s, '?') != NULL);
+}
+
