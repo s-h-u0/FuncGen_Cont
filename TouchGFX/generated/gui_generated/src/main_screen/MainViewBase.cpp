@@ -29,7 +29,7 @@ MainViewBase::MainViewBase() :
     boxWithBorder1_2.setBorderSize(1);
     add(boxWithBorder1_2);
 
-    boxWithBorder1_2_2.setPosition(327, 265, 147, 55);
+    boxWithBorder1_2_2.setPosition(327, 239, 153, 82);
     boxWithBorder1_2_2.setColor(touchgfx::Color::getColorFromRGB(0, 15, 31));
     boxWithBorder1_2_2.setBorderColor(touchgfx::Color::getColorFromRGB(166, 201, 227));
     boxWithBorder1_2_2.setBorderSize(1);
@@ -47,12 +47,12 @@ MainViewBase::MainViewBase() :
     boxWithBorder1_2_1.setBorderSize(1);
     add(boxWithBorder1_2_1);
 
-    animatedImage1.setXY(348, 31);
+    animatedImage1.setXY(340, 15);
     animatedImage1.setBitmaps(BITMAP_IMAGE_WAVE_00_ID, BITMAP_IMAGE_WAVE_23_ID);
     animatedImage1.setUpdateTicksInterval(30);
     add(animatedImage1);
 
-    toggleButton_Stop.setXY(336, 194);
+    toggleButton_Stop.setXY(336, 147);
     toggleButton_Stop.setBitmaps(touchgfx::Bitmap(BITMAP_STOP_INACTIVE_132X60_OUTLINE_NONE_GLOSS_ID), touchgfx::Bitmap(BITMAP_STOP_ACTIVE_132X60_OUTLINE_NONE_GLOSS_ID));
     toggleButton_Stop.forceState(true);
     toggleButton_Stop.setAction(buttonCallback);
@@ -62,6 +62,11 @@ MainViewBase::MainViewBase() :
     button_Volt.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID));
     button_Volt.setAction(buttonCallback);
     add(button_Volt);
+
+    button_ID.setXY(336, 244);
+    button_ID.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID));
+    button_ID.setAction(buttonCallback);
+    add(button_ID);
 
     button_Phas.setXY(188, 244);
     button_Phas.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID));
@@ -133,18 +138,18 @@ MainViewBase::MainViewBase() :
     SetValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Y6WD));
     add(SetValue);
 
-    toggleButton_Run.setXY(336, 95);
+    toggleButton_Run.setXY(336, 55);
     toggleButton_Run.setBitmaps(touchgfx::Bitmap(BITMAP_RUN_INACTIVE_132X60_OUTLINE_NONE_GLOSS_ID), touchgfx::Bitmap(BITMAP_RUN_ACTIVE_132X60_OUTLINE_NONE_GLOSS_ID));
     toggleButton_Run.setAction(buttonCallback);
     add(toggleButton_Run);
 
-    RUN_Text.setPosition(336, 95, 132, 63);
+    RUN_Text.setPosition(336, 55, 132, 63);
     RUN_Text.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     RUN_Text.setLinespacing(0);
     RUN_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_R6D2));
     add(RUN_Text);
 
-    STOP_Text.setPosition(336, 194, 132, 68);
+    STOP_Text.setPosition(336, 147, 132, 68);
     STOP_Text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     STOP_Text.setLinespacing(0);
     STOP_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_C75W));
@@ -168,14 +173,14 @@ MainViewBase::MainViewBase() :
     textArea1_1_1.setTypedText(touchgfx::TypedText(T_UNIT_DEG));
     add(textArea1_1_1);
 
-    textArea2.setXY(350, 264);
-    textArea2.setColor(touchgfx::Color::getColorFromRGB(200, 211, 227));
-    textArea2.setLinespacing(0);
-    textArea2Buffer[0] = 0;
-    textArea2.setWildcard(textArea2Buffer);
-    textArea2.resizeToCurrentText();
-    textArea2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_UVTT));
-    add(textArea2);
+    ID.setXY(350, 252);
+    ID.setColor(touchgfx::Color::getColorFromRGB(200, 211, 227));
+    ID.setLinespacing(0);
+    IDBuffer[0] = 0;
+    ID.setWildcard(IDBuffer);
+    ID.resizeToCurrentText();
+    ID.setTypedText(touchgfx::TypedText(T___SINGLEUSE_UVTT));
+    add(ID);
 }
 
 MainViewBase::~MainViewBase()
@@ -225,5 +230,16 @@ void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //When toggleButton_Stop clicked call virtual function
         //Call Stop
         Stop();
+    }
+    if (&src == &button_ID)
+    {
+        //button_IDClicked
+        //When button_ID clicked call virtual function
+        //Call button_IDClicked
+        button_IDClicked();
+        //InputDataID
+        //When button_ID clicked change screen to Keyboard
+        //Go to Keyboard with no screen transition
+        application().gotoKeyboardScreenNoTransition();
     }
 }

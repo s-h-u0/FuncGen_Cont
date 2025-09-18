@@ -31,9 +31,12 @@ inline void updateBothValuesFromModel(Model* m, MainView& v) {
     if (!m) return;
     const uint32_t vVolt = m->getDesiredValue(SettingType::Voltage);
     const uint32_t vPhas = m->getDesiredValue(SettingType::Phase);
-    v.updateBothValues(vVolt, vPhas);
+    const uint32_t vID   = m->getDesiredValue(SettingType::ID);
+
+    v.updateBothValues(vVolt, vPhas, vID);   // ← 3つ渡す
+    v.setDipHex(static_cast<uint8_t>(vID & 0x0F));  // DesiredValue の ID を表示
 }
-} // namespace
+}
 
 
 /** @brief コンストラクタ：対応する View を束縛 */
@@ -44,7 +47,9 @@ MainPresenter::MainPresenter(MainView& v) : view(v) {}
 void MainPresenter::activate()
 {
     updateBothValuesFromModel(model, view);
+
 }
+
 
 /** @brief 画面終了時のライフサイクルフック（現状処理なし） */
 void MainPresenter::deactivate() {}

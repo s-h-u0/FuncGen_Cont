@@ -87,10 +87,10 @@ private:
     ModelListener* modelListener;
 
     /** @brief Voltage(0), Phase(1) の2要素を格納（順序は cpp の idx() と一致させる） */
-    uint32_t desiredValues[2]   {0, 0};
+    uint32_t desiredValues[3]   {0, 0, 0};
 
     /** @brief 直近の UI 入力値（未確定値の保持などに使用可） */
-    uint32_t lastInputValues[2] {0, 0};
+    uint32_t lastInputValues[3] {0, 0, 0};
 
     /** @brief 現在編集中の設定項目（既定: Voltage） */
     SettingType currentSetting {SettingType::Voltage};

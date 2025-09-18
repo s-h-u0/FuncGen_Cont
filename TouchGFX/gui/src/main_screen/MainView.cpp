@@ -4,19 +4,19 @@
 
 #include <gui/main_screen/MainView.hpp>
 #include <gui/main_screen/MainPresenter.hpp>
-#include <dpot_AD5292.h>
+
 #include <touchgfx/Unicode.hpp>
 #include <algorithm>
 #include "main.h"
 #include "stm32f4xx_hal.h"
-#include <dds_AD9833.h>
+
 #include "meas_timer.h"
 #include <touchgfx/Color.hpp>
-#include "usart6_cli.h"
 
 // extern "C" ブロックは行を分ける（プリプロセッサ用）
 extern "C" {
 #include <stdint.h>
+#include "remote_client.h"   // ★ 追加：remote_* API をCリンケージで
 }
 
 namespace {
@@ -47,7 +47,7 @@ void MainView::updateRunStopUI(bool running)
     toggleButton_Run .setTouchable(!running);
     toggleButton_Stop.setTouchable(running);
 
-    // ★ トグルも明示的に再描画（forceStateは無効矩形を出さない環境がある）
+    // ★ 再描画
     toggleButton_Run.invalidate();
     toggleButton_Stop.invalidate();
 
@@ -84,7 +84,7 @@ void MainView::setupScreen()
 {
     MainViewBase::setupScreen();
 
-    // 数値テキストのワイルドカードを明示バインド（生成コードが済ませていても念のため）
+    // 数値テキストのワイルドカードを明示バインド
     Val_Set_Volt.setWildcard(Val_Set_VoltBuffer);
     Val_Set_Phas.setWildcard(Val_Set_PhasBuffer);
 
@@ -100,13 +100,13 @@ void MainView::setupScreen()
     presenter->setADCHandle(&hadc3428);
 
     MeasTimer_Start();
-
     s_activeView = this;
 
     // 初期表示も明示反映
     updateBothValues(
         presenter->getDesiredValue(SettingType::Voltage),
-        presenter->getDesiredValue(SettingType::Phase)
+        presenter->getDesiredValue(SettingType::Phase),
+        presenter->getDesiredValue(SettingType::ID)      // ← 追加
     );
 }
 
@@ -118,21 +118,24 @@ void MainView::tearDownScreen()
     MainViewBase::tearDownScreen();
 }
 
-/* 設定値表示（Voltage/Phase） */
-void MainView::updateBothValues(uint32_t vVolt, uint32_t vPhas)
+// MainView.cpp
+void MainView::updateBothValues(uint32_t vVolt, uint32_t vPhas, uint32_t vID)
 {
-    // Volt
-    Unicode::snprintf(Val_Set_VoltBuffer, VAL_SET_VOLT_SIZE, "%u",
-                      static_cast<unsigned>(vVolt));
-    Val_Set_Volt.resizeToCurrentText();   // 可変幅なら毎回リサイズ
+    // Voltage
+    Unicode::snprintf(Val_Set_VoltBuffer, VAL_SET_VOLT_SIZE, "%u", vVolt);
+    Val_Set_Volt.resizeToCurrentText();
     Val_Set_Volt.invalidate();
 
     // Phase
-    Unicode::snprintf(Val_Set_PhasBuffer, VAL_SET_PHAS_SIZE, "%u",
-                      static_cast<unsigned>(vPhas));
+    Unicode::snprintf(Val_Set_PhasBuffer, VAL_SET_PHAS_SIZE, "%u", vPhas);
     Val_Set_Phas.resizeToCurrentText();
     Val_Set_Phas.invalidate();
+
+    // ID (1桁Hex)
+    setDipHex(static_cast<uint8_t>(vID & 0x0F));
 }
+
+
 
 /* タップ誤操作抑制ロック */
 static uint32_t s_lockUntilTick = 0;
@@ -147,12 +150,15 @@ void MainView::Run()
     updateRunStopUI(true);
     lockFor(120);
 
+    // UIの値 → 装置へ（1往復APIを使用）
     uint32_t vPhase = presenter->getDesiredValue(SettingType::Phase);
-    AD9833_Set(50, AD9833_SINE, vPhase);     // 必要に応じて presenter値に置換
-    uint32_t vVolt  = presenter->getDesiredValue(SettingType::Voltage);
-    AD5292_SetVoltage(vVolt);
+    remote_set_phas(vPhase);
 
-    CLI_SetRunState_FromUI(1);    // CLI側のRUN?も1へ
+    uint32_t vVolt  = presenter->getDesiredValue(SettingType::Voltage);
+    remote_set_pot_volt(vVolt);        // ← ここを POT:VOLT に
+    remote_run();    // @F RUN 相当
+
+    // 以前は CLI_SetRunState_FromUI(1) を呼んでいたが未配線のため削除
 }
 
 void MainView::Stop()
@@ -161,8 +167,9 @@ void MainView::Stop()
     updateRunStopUI(false);
     lockFor(120);
 
-    AD5292_Set(0x400);
-    CLI_SetRunState_FromUI(0);    // CLI側のRUN?も0へ
+    remote_stop();   // @F STOP 相当
+
+    // 以前は CLI_SetRunState_FromUI(0) を呼んでいたが未配線のため削除
 }
 
 /* 設定ボタン */
@@ -220,7 +227,6 @@ void MainView::setMeasuredVolt_mV(int16_t mv)
 // --- MainView::handleTickEvent() 内に追加 ---
 void MainView::handleTickEvent()
 {
-
     // CLI → UI : Run/Stop 反映
     if (s_activeView == this && s_cli_run.has) {
         s_cli_run.has = 0;
@@ -233,13 +239,14 @@ void MainView::handleTickEvent()
         presenter->setDesiredValue(s_cli.t, s_cli.v);
         updateBothValues(
             presenter->getDesiredValue(SettingType::Voltage),
-            presenter->getDesiredValue(SettingType::Phase)
+            presenter->getDesiredValue(SettingType::Phase),
+            presenter->getDesiredValue(SettingType::ID)      // ← 追加
         );
+
     }
 
     if (MeasTimer_Consume()) {
         presenter->updateMeasuredValues();
-        presenter->updateDipValue();
     }
     MainViewBase::handleTickEvent();
 }
@@ -254,12 +261,12 @@ extern "C" void ui_notify_runstop(int running)
 /* DIP表示 */
 void MainView::setDipHex(uint8_t nibble)
 {
-    textArea2.invalidate();
+    ID.invalidate();
     const uint8_t v = nibble & 0x0F;
-    textArea2Buffer[0] = (touchgfx::Unicode::UnicodeChar)((v < 10) ? ('0' + v) : ('A' + (v - 10)));
-    textArea2Buffer[1] = 0;
-    textArea2.resizeToCurrentText();
-    textArea2.invalidate();
+    IDBuffer[0] = (touchgfx::Unicode::UnicodeChar)((v < 10) ? ('0' + v) : ('A' + (v - 10)));
+    IDBuffer[1] = 0;
+    ID.resizeToCurrentText();
+    ID.invalidate();
 }
 
 /* === CLI→UI 公開ラッパ === */
@@ -273,10 +280,20 @@ void MainView::setDesiredValueFromCLI(SettingType t, uint32_t v)
     presenter->setDesiredValue(t, v);
     updateBothValues(
         presenter->getDesiredValue(SettingType::Voltage),
-        presenter->getDesiredValue(SettingType::Phase)
+        presenter->getDesiredValue(SettingType::Phase),
+        presenter->getDesiredValue(SettingType::ID)      // ← 追加
     );
+
 }
 
+
+void MainView::button_IDClicked()
+{
+    if (presenter) {
+        presenter->setCurrentSetting(SettingType::ID); // ← 今回追加したIDを設定
+        application().gotoKeyboardScreenNoTransition();
+    }
+}
 
 /* === C側から呼び出されるブリッジ === */
 // --- 既存の extern "C" ブリッジを「積むだけ」に変更 ---
@@ -286,5 +303,3 @@ extern "C" void ui_set_desired_value(int which, uint32_t v)
     s_cli.v   = v;
     s_cli.has = 1;  // ← ここでは UI を触らない！
 }
-
-

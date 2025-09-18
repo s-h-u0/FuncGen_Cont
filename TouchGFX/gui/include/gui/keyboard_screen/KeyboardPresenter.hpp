@@ -82,6 +82,10 @@ public:
      */
     uint32_t getCurrentValue() const;
 
+    void onDigitForID(char c);   ///< ID選択用 (A〜F)
+
+    void setDesiredValue(SettingType t, uint32_t v);
+
 private:
     /** @brief 対応する View（描画更新や画面遷移を指示するために使用） */
     KeyboardView& view;

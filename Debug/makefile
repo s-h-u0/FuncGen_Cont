@@ -90,34 +90,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := ILI9488-XPT2046-STM32
+BUILD_ARTIFACT_NAME := Cont_FuncGen
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-ILI9488-XPT2046-STM32.elf \
+Cont_FuncGen.elf \
 
 MAP_FILES += \
-ILI9488-XPT2046-STM32.map \
+Cont_FuncGen.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-ILI9488-XPT2046-STM32.list \
+Cont_FuncGen.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: ILI9488-XPT2046-STM32.elf secondary-outputs
+main-build: Cont_FuncGen.elf secondary-outputs
 
 # Tool invocations
-ILI9488-XPT2046-STM32.elf ILI9488-XPT2046-STM32.map: $(OBJS) $(USER_OBJS) C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\STM32F412ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "ILI9488-XPT2046-STM32.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\STM32F412ZGTX_FLASH.ld" -Wl,-Map="ILI9488-XPT2046-STM32.map" -Wl,--gc-sections -static -L"C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\ILI9488-XPT2046-STM32\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Cont_FuncGen.elf Cont_FuncGen.map: $(OBJS) $(USER_OBJS) C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\Cont_FuncGen\STM32F412ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "Cont_FuncGen.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\Cont_FuncGen\STM32F412ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cont_FuncGen.map" -Wl,--gc-sections -static -LC:/Users/ssshu/STM32CubeIDE/workspace_1.18.0/Cont_FuncGen/Middlewares/ST/touchgfx/lib/core/cortex_m4f/GCC --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -126,14 +126,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-ILI9488-XPT2046-STM32.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "ILI9488-XPT2046-STM32.list"
+Cont_FuncGen.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Cont_FuncGen.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) ILI9488-XPT2046-STM32.elf ILI9488-XPT2046-STM32.list ILI9488-XPT2046-STM32.map default.size.stdout
+	-$(RM) Cont_FuncGen.elf Cont_FuncGen.list Cont_FuncGen.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

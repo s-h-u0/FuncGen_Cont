@@ -16,7 +16,31 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_UVTT" Alignment="Left" TypographyId="Default">
+      <Text Id="ID" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">ID</Translation>
+      </Text>
+      <Text Id="__SingleUse_ANZK" Alignment="Center" TypographyId="key">
+        <Translation Language="GB">F</Translation>
+      </Text>
+      <Text Id="ResourceId2" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_GPFP" Alignment="Center" TypographyId="key">
+        <Translation Language="GB">E</Translation>
+      </Text>
+      <Text Id="__SingleUse_8KO4" Alignment="Center" TypographyId="key">
+        <Translation Language="GB">D</Translation>
+      </Text>
+      <Text Id="__SingleUse_HHRY" Alignment="Center" TypographyId="key">
+        <Translation Language="GB">C</Translation>
+      </Text>
+      <Text Id="__SingleUse_760D" Alignment="Center" TypographyId="key">
+        <Translation Language="GB">B</Translation>
+      </Text>
+      <Text Id="__SingleUse_0JGY" Alignment="Center" TypographyId="key">
+        <Translation Language="GB">A</Translation>
+      </Text>
+      <Text Id="__SingleUse_UVTT" Alignment="Right" TypographyId="Set_val">
         <Translation Language="GB">CH&lt;value&gt;</Translation>
       </Text>
       <Text Id="UNIT_Curr" Alignment="Right" TypographyId="Default">
@@ -44,7 +68,7 @@
         <Translation Language="GB">Voltage</Translation>
       </Text>
       <Text Id="__SingleUse_U4D1" Alignment="Right" TypographyId="Default">
-        <Translation Language="GB">&lt;value&gt; </Translation>
+        <Translation Language="GB">      &lt;value&gt; </Translation>
       </Text>
       <Text Id="ResourceId1" Alignment="Left" TypographyId="Label">
         <Translation Language="GB"></Translation>

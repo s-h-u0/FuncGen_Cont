@@ -32,11 +32,12 @@ void KeyboardPresenter::activate()
     if (!model) return;
 
     const SettingType s = model->getCurrentSetting();
-    currentValue = model->getDesiredValue(s);  // ← currentValue を Model で初期化
+    currentValue = model->getDesiredValue(s);
 
-    view.setLabelAccordingToSetting(s);        // ← ここを修正（名前を合わせる）
+    view.setLabelAccordingToSetting(s);
     view.updateDisplay();
 }
+
 
 /**
  * @brief 数字キー入力を 1 桁追加
@@ -48,10 +49,14 @@ void KeyboardPresenter::activate()
  */
 void KeyboardPresenter::onDigit(uint8_t d)
 {
-    // 追加後の値が種別ごとの上限を超える場合は無視（Voltage:50, Phase:360）
     const SettingType s = getCurrentSetting();
-    const uint32_t maxv = (s == SettingType::Voltage) ? VOLT_MAX : PHASE_MAX;
+    if (s == SettingType::ID) {
+        currentValue = d;      // ← 1桁に固定
+        view.updateDisplay();
+        return;
+    }
 
+    const uint32_t maxv = (s == SettingType::Voltage) ? VOLT_MAX : PHASE_MAX;
     const uint32_t nv = currentValue * 10u + d;
     if (nv <= maxv) {
         currentValue = nv;
@@ -82,11 +87,13 @@ void KeyboardPresenter::onDelete()
 void KeyboardPresenter::onEnter()
 {
     if (!model) return;
-    clampToCurrentRange();  // 念のため確定前に範囲内へ
+    clampToCurrentRange();
+
     const SettingType s = model->getCurrentSetting();
-    model->setDesiredValue(s, currentValue);   // モデルに保存（確定値）
-    model->setLastInputValue(s, currentValue); // 直近入力値も同期
-    view.gotoMainScreen();                     // メイン画面へ戻る
+    model->setDesiredValue(s, currentValue);
+    model->setLastInputValue(s, currentValue);
+
+    view.gotoMainScreen();  // メイン画面へ戻る
 }
 
 /**
@@ -133,13 +140,45 @@ SettingType KeyboardPresenter::getCurrentSetting() const
  */
 void KeyboardPresenter::clampToCurrentRange()
 {
-    // Model が無い場合は保守的に Voltage とみなす
     const SettingType s = model ? model->getCurrentSetting() : SettingType::Voltage;
 
-    const uint32_t minv = (s == SettingType::Voltage) ? VOLT_MIN  : PHASE_MIN; // 現状どちらも 0
-    const uint32_t maxv = (s == SettingType::Voltage) ? VOLT_MAX  : PHASE_MAX;
+    uint32_t minv = 0;
+    uint32_t maxv = 0;
 
-    // 下限・上限の inclusive クランプ
-    if (currentValue < minv) currentValue = minv;   // 例: 負値が入っていた場合など
-    if (currentValue > maxv) currentValue = maxv;   // 例: 51V / 361° など
+    switch (s) {
+    case SettingType::Voltage: minv = VOLT_MIN;  maxv = VOLT_MAX;  break;
+    case SettingType::Phase:   minv = PHASE_MIN; maxv = PHASE_MAX; break;
+    case SettingType::ID:      minv = 0;         maxv = 15;        break;
+    default:                   minv = 0;         maxv = 0;         break;
+    }
+
+    if (currentValue < minv) currentValue = minv;
+    if (currentValue > maxv) currentValue = maxv;
 }
+
+
+
+void KeyboardPresenter::setDesiredValue(SettingType t, uint32_t v) {
+    if (model) {
+        model->setDesiredValue(t, v);
+    }
+}
+
+
+void KeyboardPresenter::onDigitForID(char c)
+{
+    if (!model) return;
+
+    uint32_t idVal = 0;
+    if (c >= '0' && c <= '9')      idVal = c - '0';
+    else if (c >= 'A' && c <= 'F') idVal = 10 + (c - 'A');
+    else return; // 想定外は無視
+
+    currentValue = idVal;     // ← ここだけ更新
+    view.updateDisplay();     // ← キーボード画面の Setting_Value を即反映
+    // Model へは onEnter() まで書かない
+}
+
+
+
+

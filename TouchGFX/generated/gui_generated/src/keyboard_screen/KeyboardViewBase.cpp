@@ -17,25 +17,9 @@ KeyboardViewBase::KeyboardViewBase() :
     BG_Keyboard.setColor(touchgfx::Color::getColorFromRGB(11, 17, 33));
     add(BG_Keyboard);
 
-    MaesCurr.setXY(293, 116);
+    MaesCurr.setXY(297, 72);
     MaesCurr.setBitmap(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_175X50_GLOSS_SUBTLE_ID));
     add(MaesCurr);
-
-    One.setXY(60, 24);
-    One.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
-    One.setLabelText(touchgfx::TypedText(T___SINGLEUSE_KPAO));
-    One.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    One.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    One.setAction(buttonCallback);
-    add(One);
-
-    Enter.setXY(200, 237);
-    Enter.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_TEAL_MINT_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_PRESSED_ID));
-    Enter.setLabelText(touchgfx::TypedText(T___SINGLEUSE_Y85E));
-    Enter.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    Enter.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    Enter.setAction(buttonCallback);
-    add(Enter);
 
     Zero.setXY(60, 237);
     Zero.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
@@ -45,6 +29,14 @@ KeyboardViewBase::KeyboardViewBase() :
     Zero.setAction(buttonCallback);
     add(Zero);
 
+    One.setXY(60, 24);
+    One.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
+    One.setLabelText(touchgfx::TypedText(T___SINGLEUSE_KPAO));
+    One.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    One.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    One.setAction(buttonCallback);
+    add(One);
+
     Two.setXY(131, 24);
     Two.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
     Two.setLabelText(touchgfx::TypedText(T___SINGLEUSE_Z9DS));
@@ -52,14 +44,6 @@ KeyboardViewBase::KeyboardViewBase() :
     Two.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Two.setAction(buttonCallback);
     add(Two);
-
-    Five.setXY(131, 94);
-    Five.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
-    Five.setLabelText(touchgfx::TypedText(T___SINGLEUSE_UW8N));
-    Five.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    Five.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    Five.setAction(buttonCallback);
-    add(Five);
 
     Three.setXY(200, 24);
     Three.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
@@ -69,13 +53,21 @@ KeyboardViewBase::KeyboardViewBase() :
     Three.setAction(buttonCallback);
     add(Three);
 
-    Delete.setXY(131, 237);
-    Delete.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_COOLGRAY_COOL_GRAY_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_PRESSED_ID));
-    Delete.setLabelText(touchgfx::TypedText(T___SINGLEUSE_VNBM));
-    Delete.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    Delete.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    Delete.setAction(buttonCallback);
-    add(Delete);
+    Four.setXY(60, 94);
+    Four.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
+    Four.setLabelText(touchgfx::TypedText(T___SINGLEUSE_H5N5));
+    Four.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Four.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Four.setAction(buttonCallback);
+    add(Four);
+
+    Five.setXY(131, 94);
+    Five.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
+    Five.setLabelText(touchgfx::TypedText(T___SINGLEUSE_UW8N));
+    Five.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Five.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Five.setAction(buttonCallback);
+    add(Five);
 
     Six.setXY(200, 94);
     Six.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
@@ -109,15 +101,71 @@ KeyboardViewBase::KeyboardViewBase() :
     Nine.setAction(buttonCallback);
     add(Nine);
 
-    Four.setXY(60, 94);
-    Four.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
-    Four.setLabelText(touchgfx::TypedText(T___SINGLEUSE_H5N5));
-    Four.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    Four.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    Four.setAction(buttonCallback);
-    add(Four);
+    Enter.setXY(200, 237);
+    Enter.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_TEAL_MINT_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_PRESSED_ID));
+    Enter.setLabelText(touchgfx::TypedText(T___SINGLEUSE_Y85E));
+    Enter.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Enter.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Enter.setAction(buttonCallback);
+    add(Enter);
 
-    Setting_Value.setPosition(293, 122, 100, 38);
+    Delete.setXY(131, 237);
+    Delete.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_COOLGRAY_COOL_GRAY_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_PRESSED_ID));
+    Delete.setLabelText(touchgfx::TypedText(T___SINGLEUSE_VNBM));
+    Delete.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Delete.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Delete.setAction(buttonCallback);
+    add(Delete);
+
+    A.setXY(275, 166);
+    A.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
+    A.setLabelText(touchgfx::TypedText(T___SINGLEUSE_0JGY));
+    A.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    A.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    A.setAction(buttonCallback);
+    add(A);
+
+    B.setXY(344, 166);
+    B.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
+    B.setLabelText(touchgfx::TypedText(T___SINGLEUSE_760D));
+    B.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    B.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    B.setAction(buttonCallback);
+    add(B);
+
+    C.setXY(413, 166);
+    C.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
+    C.setLabelText(touchgfx::TypedText(T___SINGLEUSE_HHRY));
+    C.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    C.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    C.setAction(buttonCallback);
+    add(C);
+
+    D.setXY(275, 237);
+    D.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
+    D.setLabelText(touchgfx::TypedText(T___SINGLEUSE_8KO4));
+    D.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    D.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    D.setAction(buttonCallback);
+    add(D);
+
+    E.setXY(344, 237);
+    E.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
+    E.setLabelText(touchgfx::TypedText(T___SINGLEUSE_GPFP));
+    E.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    E.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    E.setAction(buttonCallback);
+    add(E);
+
+    F.setXY(412, 237);
+    F.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_60X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_OUTLINE_PRESSED_ID));
+    F.setLabelText(touchgfx::TypedText(T___SINGLEUSE_ANZK));
+    F.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    F.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    F.setAction(buttonCallback);
+    add(F);
+
+    Setting_Value.setPosition(297, 75, 100, 38);
     Setting_Value.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Setting_Value.setLinespacing(0);
     Setting_ValueBuffer[0] = 0;
@@ -125,7 +173,7 @@ KeyboardViewBase::KeyboardViewBase() :
     Setting_Value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_U4D1));
     add(Setting_Value);
 
-    Setting_Label.setPosition(301, 61, 138, 46);
+    Setting_Label.setPosition(305, 17, 138, 46);
     Setting_Label.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Setting_Label.setLinespacing(0);
     Setting_LabelBuffer[0] = 0;
@@ -133,7 +181,7 @@ KeyboardViewBase::KeyboardViewBase() :
     Setting_Label.setTypedText(touchgfx::TypedText(T_SETTING_LABEL));
     add(Setting_Label);
 
-    UNIT.setPosition(393, 122, 67, 38);
+    UNIT.setPosition(397, 78, 67, 38);
     UNIT.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     UNIT.setLinespacing(0);
     UNITBuffer[0] = 0;
@@ -237,5 +285,47 @@ void KeyboardViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src
         //When Delete clicked call virtual function
         //Call Delete_
         Delete_();
+    }
+    if (&src == &A)
+    {
+        //A_
+        //When A clicked call virtual function
+        //Call A_
+        A_();
+    }
+    if (&src == &B)
+    {
+        //B_
+        //When B clicked call virtual function
+        //Call B_
+        B_();
+    }
+    if (&src == &C)
+    {
+        //C_
+        //When C clicked call virtual function
+        //Call C_
+        C_();
+    }
+    if (&src == &D)
+    {
+        //D_
+        //When D clicked call virtual function
+        //Call D_
+        D_();
+    }
+    if (&src == &E)
+    {
+        //E_
+        //When E clicked call virtual function
+        //Call E_
+        E_();
+    }
+    if (&src == &F)
+    {
+        //F_
+        //When F clicked call virtual function
+        //Call F_
+        F_();
     }
 }

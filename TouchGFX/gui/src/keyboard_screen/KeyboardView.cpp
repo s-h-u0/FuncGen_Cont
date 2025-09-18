@@ -20,8 +20,6 @@
 #include "stm32f4xx_hal.h"     // HAL_GetTick() を使うならこちらだけでも可
 
 
-
-
 /** @brief コンストラクタ（重い処理はしない） */
 KeyboardView::KeyboardView() : KeyboardViewBase() {}
 
@@ -34,12 +32,20 @@ KeyboardView::KeyboardView() : KeyboardViewBase() {}
 void KeyboardView::setupScreen()
 {
     KeyboardViewBase::setupScreen();
+
+    if (labelOrigW == 0) {
+        labelOrigW = Setting_Label.getWidth();
+        labelOrigH = Setting_Label.getHeight();   // ← これも記憶
+    }
+
     if (presenter) {
         presenter->activate();
-        updateDisplay();                           // 数値表示
-        updateUnit(presenter->getCurrentSetting()); // 単位表示
+        updateDisplay();
+        updateUnit(presenter->getCurrentSetting());
     }
 }
+
+
 
 /** @brief 画面終了処理（現状は Base へ委譲のみ） */
 void KeyboardView::tearDownScreen()
@@ -55,18 +61,31 @@ void KeyboardView::updateDisplay()
 {
     if (!presenter) return;
 
-    uint32_t v = presenter->getCurrentValue();
-    Unicode::snprintf(
-        Setting_ValueBuffer,
-        SETTING_VALUE_SIZE,
-        "%u",
-        static_cast<unsigned>(v)
-    );
-    Setting_Value.invalidate();
+    const SettingType s = presenter->getCurrentSetting();
+    const uint32_t    v = presenter->getCurrentValue();
 
-    // ★ ここで単位更新（数値と単位のズレ防止）
-    updateUnit(presenter->getCurrentSetting());
+    if (s == SettingType::ID) {
+        // 0〜F を 1文字表示
+        touchgfx::Unicode::UnicodeChar ch =
+            (v < 10) ? (touchgfx::Unicode::UnicodeChar)('0' + v)
+                     : (touchgfx::Unicode::UnicodeChar)('A' + (v - 10));
+        Setting_ValueBuffer[0] = ch;
+        Setting_ValueBuffer[1] = 0;
+        Setting_Value.resizeToCurrentText();
+        Setting_Value.invalidate();
+
+        // 単位は不要なら消す（お好みで）
+        // UNIT.setAlpha(0); UNIT.invalidate();
+    } else {
+        Unicode::snprintf(Setting_ValueBuffer, SETTING_VALUE_SIZE, "%u", (unsigned)v);
+        Setting_Value.resizeToCurrentText();
+        Setting_Value.invalidate();
+
+        // Voltage/Phase のときだけ単位更新
+        updateUnit(s);
+    }
 }
+
 
 /**
  * @brief メイン画面へ遷移（Presenter から呼び出されるラッパ）
@@ -86,40 +105,23 @@ void KeyboardView::setLabelAccordingToSetting(SettingType setting)
 {
     if (setting == SettingType::Voltage) {
         Setting_Label.setTypedText(touchgfx::TypedText(T_VOLTAGE));
-        // Unit_Label.setTypedText(touchgfx::TypedText(T_UNIT_VOLT)); // 例: 単位ラベルがあるなら
-    } else {
+    } else if (setting == SettingType::Phase) {
         Setting_Label.setTypedText(touchgfx::TypedText(T_PHASE));
-        // Unit_Label.setTypedText(touchgfx::TypedText(T_UNIT_DEG));  // 例
+    } else { // ID
+        Setting_Label.setTypedText(touchgfx::TypedText(T_ID));
     }
+
+    // 幅/高さを元に戻して配置を崩さない
+    Setting_Label.setPosition(
+        Setting_Label.getX(),
+        Setting_Label.getY(),
+        labelOrigW,
+        labelOrigH
+    );
     Setting_Label.invalidate();
-    // Unit_Label.invalidate();
 }
 
-/**
- * @brief 単位ラベル（V/°）を SettingType に応じて更新
- * @param s Voltage なら "V"、Phase なら "°"
- * @details
- *  - 直接文字列で代入する方法と、texts.xlsx のキーで切り替える方法がある。
- *  - 下の実装は texts.xlsx のキー（T_UNIT_V / T_UNIT_DEG）を利用。
- */
-void KeyboardView::updateUnit(SettingType s)
-{
-    // 1) 直接文字列で入れる方法（サンプル）
-    // if (s == SettingType::Voltage) {
-    //     Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%s", "V"); // ASCII は snprintf でOK
-    // } else {
-    //     // 「°」は Unicode 直接代入
-    //     static const touchgfx::Unicode::UnicodeChar DEGREE_STR[] = { 0x00B0, 0 }; // 0x00B0 = '°'
-    //     touchgfx::Unicode::strncpy(textArea1Buffer, DEGREE_STR, TEXTAREA1_SIZE);
-    // }
-    // textArea1.invalidate();
 
-    // 2) texts.xlsx に T_UNIT_V / T_UNIT_DEG など登録済みならこちらでもOK
-    UNIT.setTypedText(touchgfx::TypedText(
-        s == SettingType::Voltage ? T_UNIT_V : T_UNIT_DEG
-    ));
-    UNIT.invalidate();
-}
 
 /**
  * @brief デバウンス判定（120ms、wrap-around 安全）
@@ -187,8 +189,36 @@ void KeyboardView::Seven_() { pressDigit(7, KeyId::K7); }
 void KeyboardView::Eight_() { pressDigit(8, KeyId::K8); }
 void KeyboardView::Nine_()  { pressDigit(9, KeyId::K9); }
 
+void KeyboardView::A_() { selectID('A'); }
+void KeyboardView::B_() { selectID('B'); }
+void KeyboardView::C_() { selectID('C'); }
+void KeyboardView::D_() { selectID('D'); }
+void KeyboardView::E_() { selectID('E'); }
+void KeyboardView::F_() { selectID('F'); }
+
 /* =========================
  *  アクションキー → 共通ヘルパへ
  * ========================= */
 void KeyboardView::Delete_() { pressAction(&KeyboardPresenter::onDelete, KeyId::KDel); }
 void KeyboardView::Enter_()  { pressAction(&KeyboardPresenter::onEnter , KeyId::KEnter); }
+
+void KeyboardView::selectID(char idChar)
+{
+    if (!presenter) return;
+    presenter->onDigitForID(idChar);  // 編集中の currentValue を更新して画面再描画
+    // ※ここでは Model に保存しない・画面遷移もしない（Enter で確定）
+}
+
+void KeyboardView::updateUnit(SettingType s)
+{
+    if (s == SettingType::Voltage) {
+        UNIT.setTypedText(touchgfx::TypedText(T_UNIT_V));
+        UNIT.setVisible(true);
+    } else if (s == SettingType::Phase) {
+        UNIT.setTypedText(touchgfx::TypedText(T_UNIT_DEG));
+        UNIT.setVisible(true);
+    } else { // SettingType::ID のときは単位非表示
+        UNIT.setVisible(false);
+    }
+    UNIT.invalidate();
+}

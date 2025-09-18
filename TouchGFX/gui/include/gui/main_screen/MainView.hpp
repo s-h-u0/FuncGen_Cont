@@ -32,7 +32,12 @@ public:
     void setDipHex(uint8_t nibble);
 
     // 設定値（表示）を一括更新（Presenter/CLI 共用）
-    void updateBothValues(uint32_t vVolt, uint32_t vPhas);
+    // 既存: 2引数
+    // void updateBothValues(uint32_t vVolt, uint32_t vPhas);
+
+    // 修正版: 3引数（IDも一緒に反映）
+    void updateBothValues(uint32_t vVolt, uint32_t vPhas, uint32_t vID);
+
 
     // CLI→UI ブリッジ（C から呼ぶ）
     void notifyRunStopFromCLI(bool running);
@@ -43,6 +48,9 @@ public:
 
     // 見た目更新API（CLIブリッジからも使うので public）
     void updateRunStopUI(bool running);
+
+    // ★追加: Designerのbutton_IDと対応するコールバック
+    virtual void button_IDClicked();
 
 protected:
     bool isRunning {false};

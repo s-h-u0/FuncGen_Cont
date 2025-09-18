@@ -1,6 +1,7 @@
 #pragma once
 
 enum class SettingType {
-    Voltage,
-    Phase
+    Voltage = 0,
+    Phase   = 1,
+    ID      = 2   // ★ 追加
 };

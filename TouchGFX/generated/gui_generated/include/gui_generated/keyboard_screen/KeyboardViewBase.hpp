@@ -71,6 +71,30 @@ public:
     {
         // Override and implement this function in Keyboard
     }
+    virtual void A_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void B_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void C_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void D_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void E_()
+    {
+        // Override and implement this function in Keyboard
+    }
+    virtual void F_()
+    {
+        // Override and implement this function in Keyboard
+    }
 
 protected:
     FrontendApplication& application() {
@@ -83,18 +107,24 @@ protected:
     touchgfx::Box __background;
     touchgfx::Box BG_Keyboard;
     touchgfx::Image MaesCurr;
-    touchgfx::ButtonWithLabel One;
-    touchgfx::ButtonWithLabel Enter;
     touchgfx::ButtonWithLabel Zero;
+    touchgfx::ButtonWithLabel One;
     touchgfx::ButtonWithLabel Two;
-    touchgfx::ButtonWithLabel Five;
     touchgfx::ButtonWithLabel Three;
-    touchgfx::ButtonWithLabel Delete;
+    touchgfx::ClickListener< touchgfx::ButtonWithLabel > Four;
+    touchgfx::ButtonWithLabel Five;
     touchgfx::ButtonWithLabel Six;
     touchgfx::ButtonWithLabel Seven;
     touchgfx::ButtonWithLabel Eight;
     touchgfx::ButtonWithLabel Nine;
-    touchgfx::ClickListener< touchgfx::ButtonWithLabel > Four;
+    touchgfx::ButtonWithLabel Enter;
+    touchgfx::ButtonWithLabel Delete;
+    touchgfx::ButtonWithLabel A;
+    touchgfx::ButtonWithLabel B;
+    touchgfx::ButtonWithLabel C;
+    touchgfx::ButtonWithLabel D;
+    touchgfx::ButtonWithLabel E;
+    touchgfx::ButtonWithLabel F;
     touchgfx::TextAreaWithOneWildcard Setting_Value;
     touchgfx::TextAreaWithOneWildcard Setting_Label;
     touchgfx::TextAreaWithOneWildcard UNIT;

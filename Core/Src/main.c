@@ -22,15 +22,12 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "dpot_AD5292.h"
-#include "dds_AD9833.h"
+
 #include "dipsw_221AMA16R.h"
-#include "mux_sn74lvc1g3157.h"
-#include "dac_MCP4728.h"
 #include "adc_MCP3428.h"
 #include <stdio.h>
 #include "meas_timer.h"
-#include "usart6_cli.h"
+#include "rs485_bridge.h"
 
 /* USER CODE END Includes */
 
@@ -64,6 +61,7 @@ TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim5;
 
+UART_HandleTypeDef huart3;
 UART_HandleTypeDef huart6;
 
 /* USER CODE BEGIN PV */
@@ -86,6 +84,7 @@ static void MX_I2C1_Init(void);
 static void MX_I2C3_Init(void);
 static void MX_TIM5_Init(void);
 static void MX_USART6_UART_Init(void);
+static void MX_USART3_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -138,11 +137,9 @@ int main(void)
   MX_I2C3_Init();
   MX_TIM5_Init();
   MX_USART6_UART_Init();
+  MX_USART3_UART_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
-  CLK_MuxInit();     /* PB6 を出力 Low に設定           */
-  AD9833_Init(&hspi1);
-  AD5292_Init(&hspi3, AD5292_CS_GPIO_Port, AD5292_CS_Pin, AD5292_RDY_GPIO_Port, AD5292_RDY_Pin);
   Displ_Init(Displ_Orientat_180);			// initialize display controller - set orientation parameter as per TouchGFX setup
   touchgfxSignalVSync();					// ask display syncronization
   Displ_BackLight('I');  					// initialize backlight
@@ -152,49 +149,13 @@ int main(void)
   MeasTimer_Init(&htim5);
   // TouchGFX 用タイマー IRQ をスタート
   HAL_TIM_Base_Start_IT(&TGFX_T);
-  CLI_Init();
-  CLI_Write("BOOT\n");
 
-
-  /*識別子に応じてDDSへ供給するMCLKを外部クロックか、内部クロックかを選択*/
-  uint8_t dip = DIP221_Read();      /* 識別子0x0〜0xF を取得 */
-  if (dip == 0x0 || dip == 0xF)     /* 0(Master) もしくは Free*/
-      CLK_MuxSet(Int_CLK_ToDDS ); 	/*　MasterもしくはFreeなら内部クロックを使用 → PB6 High  */
-  else
-	  CLK_MuxSet(Ext_CLK_ToDDS ); 	/*　それ以外(スレーブ)なら外部クロックを使用 → PB6 Low   */
-
-  AD5292_Set(0x400);  //出力を0に。
-
-  HAL_Delay(10);
-
-  AD9833_Set(50, AD9833_SINE, 0); //AD9833_Set(周波数,波形,位相)
-
-  HAL_Delay(10);
+  // --- ★RS-485ブリッジを起動（PC⇄コントローラ⇄装置） ---
+  RS485_Bridge_Init();
 
 
 
 
-
-  if (!MCP4728_Init(&hi2c1)) {
-	  Error_Handler();  // I2C接続確認
-  }
-
-  // 2.048V基準で 2V出力に相当するDAC値を計算
-  uint16_t val_2v = 4000;
-
-  // 各チャネルに内部Vref + GAIN=1x で設定
-  if (!MCP4728_SetChannel(MCP4728_CHANNEL_A, val_2v, MCP4728_VREF_INTERNAL, MCP4728_GAIN_1X, MCP4728_PD_NORMAL, true)) Error_Handler();
-  if (!MCP4728_SetChannel(MCP4728_CHANNEL_B, val_2v, MCP4728_VREF_INTERNAL, MCP4728_GAIN_1X, MCP4728_PD_NORMAL, false)) Error_Handler();
-  if (!MCP4728_SetChannel(MCP4728_CHANNEL_C, val_2v, MCP4728_VREF_INTERNAL, MCP4728_GAIN_1X, MCP4728_PD_NORMAL, false)) Error_Handler();
-  if (!MCP4728_SetChannel(MCP4728_CHANNEL_D, val_2v, MCP4728_VREF_INTERNAL, MCP4728_GAIN_1X, MCP4728_PD_NORMAL, false)) Error_Handler();
-
-  // 設定をEEPROMへ保存（再起動後も保持）
-  if (!MCP4728_SaveToEEPROM()) {
-	  Error_Handler();
-  }
-
-  // グローバル変数 hadc3428 を初期化
-  if (!MCP3428_Init(&hadc3428, &hi2c3)) { Error_Handler(); }
 
 
 
@@ -211,8 +172,7 @@ int main(void)
 
   MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
-
-  CLI_Poll();
+  RS485_Bridge_Poll();
   }
   /* USER CODE END 3 */
 }
@@ -630,6 +590,39 @@ static void MX_TIM5_Init(void)
 }
 
 /**
+  * @brief USART3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART3_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART3_Init 0 */
+
+  /* USER CODE END USART3_Init 0 */
+
+  /* USER CODE BEGIN USART3_Init 1 */
+
+  /* USER CODE END USART3_Init 1 */
+  huart3.Instance = USART3;
+  huart3.Init.BaudRate = 115200;
+  huart3.Init.WordLength = UART_WORDLENGTH_8B;
+  huart3.Init.StopBits = UART_STOPBITS_1;
+  huart3.Init.Parity = UART_PARITY_NONE;
+  huart3.Init.Mode = UART_MODE_TX_RX;
+  huart3.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart3.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART3_Init 2 */
+
+  /* USER CODE END USART3_Init 2 */
+
+}
+
+/**
   * @brief USART6 Initialization Function
   * @param None
   * @retval None
@@ -780,7 +773,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
-  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 2, 0);
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */

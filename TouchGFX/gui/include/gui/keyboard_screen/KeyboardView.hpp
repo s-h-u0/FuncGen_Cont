@@ -64,6 +64,17 @@ public:
 
     void setInitialValue(uint32_t v);
 
+    // ★追加: A～F ボタン用のハンドラ（DesignerでClicked Actionを設定した前提）
+    void A_() override;
+    void B_() override;
+    void C_() override;
+    void D_() override;
+    void E_() override;
+    void F_() override;
+
+    // ★追加: 実装済みの selectID ユーティリティ
+    void selectID(char idChar);
+
 private:
     /** @brief 1キーの最小再押下間隔[ms]（誤連打抑止のためのデバウンス） */
     static constexpr uint32_t kDebounceMs = 120;
@@ -99,4 +110,7 @@ private:
      * @note  実装は .cpp 側。HAL 依存をヘッダに持ち込まないための分離。
      */
     void pressAction(void (KeyboardPresenter::*fn)(), KeyId id);
+
+    uint16_t labelOrigW = 0;
+    uint16_t labelOrigH = 0;
 };

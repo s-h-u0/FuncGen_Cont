@@ -33,9 +33,7 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 #include "z_displ_ILI9XXX.h"
 #include "z_touch_xpt2046.h"
-#include "mux_sn74lvc1g3157.h"
-#include "dpot_AD5292.h"
-#include "dds_AD9833.h"
+
 
 /* USER CODE END Includes */
 

@@ -7,15 +7,23 @@
  */
 namespace {
 inline uint8_t idx(SettingType t) {
-    return (t == SettingType::Voltage) ? 0 : 1;
+    switch(t) {
+        case SettingType::Voltage: return 0;
+        case SettingType::Phase:   return 1;
+        case SettingType::ID:      return 2;
+    }
+    return 0; // fallback
 }
 }
+
 
 Model::Model() : modelListener(nullptr) {
     desiredValues[0] = 0; // Voltage
     desiredValues[1] = 0; // Phase
+    desiredValues[2] = 0; // Id
     lastInputValues[0] = 0;
     lastInputValues[1] = 0;
+    lastInputValues[2] = 0;
     currentSetting = SettingType::Voltage;
 }
 void Model::bind(ModelListener* listener)

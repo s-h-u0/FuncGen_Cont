@@ -42,6 +42,10 @@ public:
     {
         // Override and implement this function in Main
     }
+    virtual void button_IDClicked()
+    {
+        // Override and implement this function in Main
+    }
 
 protected:
     FrontendApplication& application() {
@@ -61,6 +65,7 @@ protected:
     touchgfx::AnimatedImage animatedImage1;
     touchgfx::ToggleButton toggleButton_Stop;
     touchgfx::Button button_Volt;
+    touchgfx::Button button_ID;
     touchgfx::Button button_Phas;
     touchgfx::Image MaesVolt;
     touchgfx::Image MaesPhas;
@@ -78,7 +83,7 @@ protected:
     touchgfx::TextArea textArea1;
     touchgfx::TextArea textArea1_1;
     touchgfx::TextArea textArea1_1_1;
-    touchgfx::TextAreaWithOneWildcard textArea2;
+    touchgfx::TextAreaWithOneWildcard ID;
 
     /*
      * Wildcard Buffers
@@ -93,8 +98,8 @@ protected:
     touchgfx::Unicode::UnicodeChar Val_Set_VoltBuffer[VAL_SET_VOLT_SIZE];
     static const uint16_t VAL_SET_PHAS_SIZE = 10;
     touchgfx::Unicode::UnicodeChar Val_Set_PhasBuffer[VAL_SET_PHAS_SIZE];
-    static const uint16_t TEXTAREA2_SIZE = 32;
-    touchgfx::Unicode::UnicodeChar textArea2Buffer[TEXTAREA2_SIZE];
+    static const uint16_t ID_SIZE = 32;
+    touchgfx::Unicode::UnicodeChar IDBuffer[ID_SIZE];
 
 private:
 
