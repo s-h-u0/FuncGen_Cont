@@ -16,6 +16,11 @@
 #include <gui/keyboard_screen/KeyboardView.hpp>
 #include <gui/model/Model.hpp>
 
+extern "C" {
+#include "remote_client.h"
+}
+
+
 /** @brief コンストラクタ：対応する View を束縛（Model は ModelListener 経由） */
 KeyboardPresenter::KeyboardPresenter(KeyboardView& v) : view(v) {}
 
@@ -32,7 +37,14 @@ void KeyboardPresenter::activate()
     if (!model) return;
 
     const SettingType s = model->getCurrentSetting();
-    currentValue = model->getDesiredValue(s);
+
+    if (s == SettingType::ID) {
+        // ★ ここで現在のIDをそのまま表示値にする
+        currentValue = g_currentID;
+    } else {
+        // 電圧/位相は Model のキャッシュから
+        currentValue = model->getDesiredValue(s, g_currentID);
+    }
 
     view.setLabelAccordingToSetting(s);
     view.updateDisplay();
@@ -90,11 +102,35 @@ void KeyboardPresenter::onEnter()
     clampToCurrentRange();
 
     const SettingType s = model->getCurrentSetting();
-    model->setDesiredValue(s, currentValue);
-    model->setLastInputValue(s, currentValue);
+    extern uint8_t g_currentID;
+    model->setDesiredValue(s, currentValue, g_currentID);
+    model->setLastInputValue(s, currentValue, g_currentID);
+
+    switch (s) {
+    case SettingType::ID:
+        // ★ g_currentID も更新しておく
+        g_currentID = static_cast<uint8_t>(currentValue & 0x0F);
+        remote_set_id(g_currentID);
+        break;
+
+    case SettingType::Voltage:
+        // ★ 即装置に反映
+        remote_set_pot_volt(currentValue);
+        break;
+
+    case SettingType::Phase:
+        // ★ 即装置に反映
+        remote_set_phas(currentValue);
+        break;
+
+    default:
+        break;
+    }
 
     view.gotoMainScreen();  // メイン画面へ戻る
 }
+
+
 
 /**
  * @brief 編集値を 0 にリセットし、View を更新
@@ -160,9 +196,11 @@ void KeyboardPresenter::clampToCurrentRange()
 
 void KeyboardPresenter::setDesiredValue(SettingType t, uint32_t v) {
     if (model) {
-        model->setDesiredValue(t, v);
+        extern uint8_t g_currentID;
+        model->setDesiredValue(t, v, g_currentID);
     }
 }
+
 
 
 void KeyboardPresenter::onDigitForID(char c)

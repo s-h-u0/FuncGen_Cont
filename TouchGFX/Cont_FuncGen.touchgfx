@@ -513,6 +513,8 @@
           {
             "Type": "Box",
             "Name": "BG_Keyboard",
+            "X": 203,
+            "Y": 581,
             "Width": 480,
             "Height": 320,
             "Color": {
@@ -524,8 +526,8 @@
           {
             "Type": "Image",
             "Name": "MaesCurr",
-            "X": 297,
-            "Y": 72,
+            "X": 262,
+            "Y": 52,
             "Width": 175,
             "Height": 50,
             "RelativeFilename": "box\\btn_ao_konpeki_175x50_gloss_subtle.png"
@@ -533,8 +535,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "Zero",
-            "X": 60,
-            "Y": 237,
+            "X": 24,
+            "Y": 252,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -555,8 +557,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "One",
-            "X": 60,
-            "Y": 24,
+            "X": 24,
+            "Y": 58,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -577,8 +579,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "Two",
-            "X": 131,
-            "Y": 24,
+            "X": 95,
+            "Y": 58,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -599,8 +601,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "Three",
-            "X": 200,
-            "Y": 24,
+            "X": 164,
+            "Y": 58,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -621,8 +623,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "Four",
-            "X": 60,
-            "Y": 94,
+            "X": 24,
+            "Y": 120,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -644,8 +646,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "Five",
-            "X": 131,
-            "Y": 94,
+            "X": 95,
+            "Y": 120,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -666,8 +668,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "Six",
-            "X": 200,
-            "Y": 94,
+            "X": 164,
+            "Y": 120,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -688,8 +690,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "Seven",
-            "X": 60,
-            "Y": 166,
+            "X": 24,
+            "Y": 186,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -710,8 +712,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "Eight",
-            "X": 131,
-            "Y": 166,
+            "X": 95,
+            "Y": 186,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -732,8 +734,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "Nine",
-            "X": 200,
-            "Y": 166,
+            "X": 164,
+            "Y": 186,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -754,8 +756,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "Enter",
-            "X": 200,
-            "Y": 237,
+            "X": 164,
+            "Y": 252,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
@@ -776,8 +778,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "Delete",
-            "X": 131,
-            "Y": 237,
+            "X": 95,
+            "Y": 252,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
@@ -798,8 +800,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "A",
-            "X": 275,
-            "Y": 166,
+            "X": 239,
+            "Y": 186,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -819,9 +821,31 @@
           },
           {
             "Type": "ButtonWithLabel",
+            "Name": "ALL",
+            "X": 308,
+            "Y": 120,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
+            "Released": "box\\btn_ao_konpeki_60x60_gloss.png",
+            "TextId": "__SingleUse_K47M",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0"
+          },
+          {
+            "Type": "ButtonWithLabel",
             "Name": "B",
-            "X": 344,
-            "Y": 166,
+            "X": 308,
+            "Y": 186,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -842,8 +866,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "C",
-            "X": 413,
-            "Y": 166,
+            "X": 377,
+            "Y": 186,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -864,8 +888,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "D",
-            "X": 275,
-            "Y": 237,
+            "X": 239,
+            "Y": 252,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -886,8 +910,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "E",
-            "X": 344,
-            "Y": 237,
+            "X": 308,
+            "Y": 252,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -908,8 +932,8 @@
           {
             "Type": "ButtonWithLabel",
             "Name": "F",
-            "X": 412,
-            "Y": 237,
+            "X": 377,
+            "Y": 252,
             "Width": 60,
             "Height": 60,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.png",
@@ -930,8 +954,8 @@
           {
             "Type": "TextArea",
             "Name": "Setting_Value",
-            "X": 297,
-            "Y": 75,
+            "X": 262,
+            "Y": 58,
             "Width": 100,
             "Height": 38,
             "TextId": "__SingleUse_U4D1",
@@ -949,8 +973,7 @@
           {
             "Type": "TextArea",
             "Name": "Setting_Label",
-            "X": 305,
-            "Y": 17,
+            "X": 270,
             "Width": 138,
             "Height": 46,
             "TextId": "Setting_Label",
@@ -968,8 +991,8 @@
           {
             "Type": "TextArea",
             "Name": "UNIT",
-            "X": 397,
-            "Y": 78,
+            "X": 362,
+            "Y": 61,
             "Width": 67,
             "Height": 38,
             "TextId": "UNIT",

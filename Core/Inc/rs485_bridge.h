@@ -35,7 +35,8 @@ bool RS485_Transact(rs485_origin_t origin,
                     const char* line,
                     char* out, size_t out_sz,
                     uint32_t timeout_ms,
-                    bool ascii_sanitize);
+                    bool do_ascii_sanitize,
+                    bool add_dip_prefix);
 #endif
 
 #ifdef __cplusplus

@@ -16,6 +16,9 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_K47M" Alignment="Center" TypographyId="key">
+        <Translation Language="GB">ALL</Translation>
+      </Text>
       <Text Id="ID" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">ID</Translation>
       </Text>

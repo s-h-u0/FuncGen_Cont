@@ -10,14 +10,13 @@
 #include <stdio.h>
 #include <string.h>
 
-static uint8_t g_currentID = 0;
 
 static bool txrx_with_id(const char* cmd, char* out, size_t out_sz, uint32_t to);
 
 
 /* 内部ユーティリティ: RS485でコマンド送信＆応答取得 */
 static inline bool txrx(const char* cmd, char* out, size_t out_sz, uint32_t to) {
-    return RS485_Transact(ORIGIN_UI, cmd, out, out_sz, to, true);
+    return RS485_Transact(ORIGIN_UI, cmd, out, out_sz, to, true, false);
 }
 
 /* --- 実装 --- */
@@ -80,8 +79,14 @@ bool remote_meas_volt_mV(int32_t* mv) {
     return false;
 }
 
+uint8_t g_currentID = 0;
+
 void remote_set_id(uint8_t id) {
     g_currentID = id & 0x0F;
+}
+
+uint8_t remote_get_id(void) {
+    return g_currentID;
 }
 
 // 共通ユーティリティ
@@ -91,5 +96,11 @@ static bool txrx_with_id(const char* cmd, char* out, size_t out_sz, uint32_t to)
         snprintf(fullcmd, sizeof(fullcmd), "@%X %s", g_currentID, cmd);
     else
         snprintf(fullcmd, sizeof(fullcmd), "%s", cmd);  // ID未設定ならプレフィクスなし
-    return RS485_Transact(ORIGIN_UI, fullcmd, out, out_sz, to, true);
+    // ★ デバッグ
+    printf("fullcmd='%s'\r\n", fullcmd);
+
+    printf("TX: '%s'\r\n", fullcmd);
+
+
+    return RS485_Transact(ORIGIN_UI, fullcmd, out, out_sz, to, false, false);
 }

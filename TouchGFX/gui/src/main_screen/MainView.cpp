@@ -150,16 +150,10 @@ void MainView::Run()
     updateRunStopUI(true);
     lockFor(120);
 
-    // UIの値 → 装置へ（1往復APIを使用）
-    uint32_t vPhase = presenter->getDesiredValue(SettingType::Phase);
-    remote_set_phas(vPhase);
-
-    uint32_t vVolt  = presenter->getDesiredValue(SettingType::Voltage);
-    remote_set_pot_volt(vVolt);        // ← ここを POT:VOLT に
-    remote_run();    // @F RUN 相当
-
-    // 以前は CLI_SetRunState_FromUI(1) を呼んでいたが未配線のため削除
+    // 設定値は Enter で既に送られているので、ここでは RUN のみ
+    remote_run();
 }
+
 
 void MainView::Stop()
 {
@@ -167,10 +161,9 @@ void MainView::Stop()
     updateRunStopUI(false);
     lockFor(120);
 
-    remote_stop();   // @F STOP 相当
-
-    // 以前は CLI_SetRunState_FromUI(0) を呼んでいたが未配線のため削除
+    remote_stop();
 }
+
 
 /* 設定ボタン */
 void MainView::button_VoltClicked()

@@ -41,34 +41,12 @@ public:
 
     // ★ 新API：種類を指定して set/get
 
-    /**
-     * @brief  設定値を保存（Voltage/Phase）
-     * @param  t 設定対象（Voltage or Phase）
-     * @param  v 設定値
-     * @note   範囲チェックは呼び出し側で行う想定（必要ならここでクランプ）
-     */
-    void setDesiredValue(SettingType t, uint32_t v);
+    void setDesiredValue(SettingType t, uint32_t v, uint8_t id);
+    uint32_t getDesiredValue(SettingType t, uint8_t id) const;
 
-    /**
-     * @brief  設定値を取得
-     * @param  t 取得対象（Voltage or Phase）
-     * @return 保存済みの設定値（未設定なら既定値 0）
-     */
-    uint32_t getDesiredValue(SettingType t) const;
+    void setLastInputValue(SettingType t, uint32_t v, uint8_t id);
+    uint32_t getLastInputValue(SettingType t, uint8_t id) const;
 
-    /**
-     * @brief  直近の入力値（UI入力のエコーバッファ等）を保存
-     * @param  t 対象（Voltage or Phase）
-     * @param  v 値
-     */
-    void setLastInputValue(SettingType t, uint32_t v);
-
-    /**
-     * @brief  直近の入力値を取得
-     * @param  t 対象（Voltage or Phase）
-     * @return 保存済みの値（未設定なら既定値 0）
-     */
-    uint32_t getLastInputValue(SettingType t) const;
 
     /**
      * @brief  現在編集中の設定項目を切替
@@ -86,11 +64,12 @@ private:
     /** @brief Presenter へ通知するためのリスナ */
     ModelListener* modelListener;
 
-    /** @brief Voltage(0), Phase(1) の2要素を格納（順序は cpp の idx() と一致させる） */
-    uint32_t desiredValues[3]   {0, 0, 0};
+    static constexpr int MAX_ID = 16;
 
-    /** @brief 直近の UI 入力値（未確定値の保持などに使用可） */
-    uint32_t lastInputValues[3] {0, 0, 0};
+    uint32_t desiredVoltages[MAX_ID]   {0};
+    uint32_t desiredPhases[MAX_ID]     {0};
+    uint32_t lastInputVoltages[MAX_ID] {0};
+    uint32_t lastInputPhases[MAX_ID]   {0};
 
     /** @brief 現在編集中の設定項目（既定: Voltage） */
     SettingType currentSetting {SettingType::Voltage};

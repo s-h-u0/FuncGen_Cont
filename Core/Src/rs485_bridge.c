@@ -219,25 +219,26 @@ bool RS485_Transact(rs485_origin_t origin,
                     const char* line,
                     char* out, size_t out_sz,
                     uint32_t timeout_ms,
-                    bool do_ascii_sanitize)
+                    bool do_ascii_sanitize,
+                    bool add_dip_prefix)
 {
-  (void)origin; /* 今は未使用（必要になればログ分岐に利用可） */
-  if (!line || !*line) return false;
+	if (!line || !*line) return false;
 
-  /* 占有開始（簡易スピン。UIスレッドからのみ呼ばれる想定） */
-  while (s_ui_busy) { /* wait */ }
-  s_ui_busy = true;
+	/* 占有開始（簡易スピン。UIスレッドからのみ呼ばれる想定） */
+	 while (s_ui_busy) { /* wait */ }
+	s_ui_busy = true;
 
-  /* 宛先付与：DIPスイッチ下位4bit（@F 等） */
-  char tx[LINE_MAX + 8];
-  uint8_t dip = (uint8_t)(DIP221_Read() & 0x0F);
-  int n = snprintf(tx, sizeof(tx), "@%X %s", (unsigned)dip, line);
-  if (n <= 0 || n >= (int)sizeof(tx)) { s_ui_busy=false; return false; }
+	char tx[LINE_MAX + 8];
+	if (add_dip_prefix) {
+	    uint8_t dip = (uint8_t)(DIP221_Read() & 0x0F);
+	    snprintf(tx, sizeof(tx), "@%X %s", (unsigned)dip, line);
+	} else {
+	    snprintf(tx, sizeof(tx), "%s", line);
+	}
 
-  /* 残骸クリア → 送信（TX→TC→RX→guard） */
-  bus_drop_garbage();
-  bus_send_line(tx);
-
+	/* 残骸クリア → 送信（TX→TC→RX→guard） */
+	bus_drop_garbage();
+	bus_send_line(tx);
   /* 受信：\n まで or timeout */
   size_t w = 0;
   uint32_t t0 = HAL_GetTick();

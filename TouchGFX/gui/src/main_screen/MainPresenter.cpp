@@ -21,7 +21,10 @@
 extern "C" {
 #include "adc_MCP3428.h"
 #include "dipsw_221AMA16R.h"
+#include "remote_client.h"
 }
+
+extern uint8_t g_currentID;
 
 /** @brief Model の保持値（電圧・位相）を View 表示へ一括同期する内部ユーティリティ
  *  @note  activate()/setDesiredValue() から呼び出され、表示の一貫性を保つ。
@@ -29,13 +32,14 @@ extern "C" {
 namespace {
 inline void updateBothValuesFromModel(Model* m, MainView& v) {
     if (!m) return;
-    const uint32_t vVolt = m->getDesiredValue(SettingType::Voltage);
-    const uint32_t vPhas = m->getDesiredValue(SettingType::Phase);
-    const uint32_t vID   = m->getDesiredValue(SettingType::ID);
 
-    v.updateBothValues(vVolt, vPhas, vID);   // ← 3つ渡す
-    v.setDipHex(static_cast<uint8_t>(vID & 0x0F));  // DesiredValue の ID を表示
+    const uint32_t vVolt = m->getDesiredValue(SettingType::Voltage, g_currentID);
+    const uint32_t vPhas = m->getDesiredValue(SettingType::Phase,   g_currentID);
+
+    v.updateBothValues(vVolt, vPhas, g_currentID);  // ← vIDの代わりにg_currentIDを渡す
+    v.setDipHex(static_cast<uint8_t>(g_currentID & 0x0F));
 }
+
 }
 
 
@@ -61,7 +65,7 @@ void MainPresenter::deactivate() {}
  */
 void MainPresenter::setDesiredValue(SettingType t, uint32_t v)
 {
-    if (model) model->setDesiredValue(t, v);
+	if (model) model->setDesiredValue(t, v, g_currentID);
     updateBothValuesFromModel(model, view);
 }
 
@@ -72,7 +76,8 @@ void MainPresenter::setDesiredValue(SettingType t, uint32_t v)
  */
 uint32_t MainPresenter::getDesiredValue(SettingType t) const
 {
-    return model ? model->getDesiredValue(t) : 0;
+	return model ? model->getDesiredValue(t, g_currentID) : 0;
+
 }
 
 

@@ -9,6 +9,9 @@
 extern "C" {
 #endif
 
+extern uint8_t g_currentID;
+
+
 // --- 一致させる ---
 bool remote_ping(char* out, size_t out_sz);   // 引数ありに統一
 bool remote_run(void);
@@ -18,6 +21,8 @@ bool remote_set_func(const char* name);       // const char* に統一
 bool remote_set_phas(uint16_t deg);           // .c 側と同じ uint16_t
 bool remote_set_pot_volt(uint32_t volt);
 bool remote_meas_volt_mV(int32_t* mv);        // int32_t* に統一
+void remote_set_id(uint8_t id);
+uint8_t remote_get_id(void);
 
 #ifdef __cplusplus
 }
