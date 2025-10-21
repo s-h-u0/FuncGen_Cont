@@ -12,30 +12,21 @@
 
 #include "meas_timer.h"
 #include <touchgfx/Color.hpp>
+#include <touchgfx/Application.hpp>
 
 // extern "C" ブロックは行を分ける（プリプロセッサ用）
 extern "C" {
 #include <stdint.h>
 #include "remote_client.h"   // ★ 追加：remote_* API をCリンケージで
+#include <cstdio>
+#include "rs485_bridge.h"   // ← これを追加
+#include <cctype>
+
 }
 
-namespace {
-    static MainView* s_activeView = nullptr;
 
-    struct PendingCLI {
-        volatile uint8_t has;      // 0/1
-        SettingType t;
-        uint32_t v;
-    };
-    static PendingCLI s_cli = {0, SettingType::Voltage, 0};
-}
 
-namespace {
-    static struct {
-        volatile uint8_t has;
-        uint8_t running; // 0/1
-    } s_cli_run = {0, 0};
-}
+
 
 /* UI内部ヘルパ：Run/Stopの見た目 */
 void MainView::updateRunStopUI(bool running)
@@ -100,21 +91,27 @@ void MainView::setupScreen()
     presenter->setADCHandle(&hadc3428);
 
     MeasTimer_Start();
-    s_activeView = this;
 
     // 初期表示も明示反映
     updateBothValues(
         presenter->getDesiredValue(SettingType::Voltage),
         presenter->getDesiredValue(SettingType::Phase),
-        presenter->getDesiredValue(SettingType::ID)      // ← 追加
+		remote_get_id()  // または g_currentID を extern 宣言して使う
     );
+
+}
+
+void MainView::showRemoteLine(const char* line)
+{
+    // 画面上に出さないならログだけでも可
+    printf("[UI] RS485 line: %s\r\n", line ? line : "(null)");
+    // 必要なら今後ここでテキストエリアに追記など
 }
 
 /* 画面終了 */
 void MainView::tearDownScreen()
 {
     MeasTimer_Stop();
-    if (s_activeView == this) s_activeView = nullptr;
     MainViewBase::tearDownScreen();
 }
 
@@ -220,36 +217,12 @@ void MainView::setMeasuredVolt_mV(int16_t mv)
 // --- MainView::handleTickEvent() 内に追加 ---
 void MainView::handleTickEvent()
 {
-    // CLI → UI : Run/Stop 反映
-    if (s_activeView == this && s_cli_run.has) {
-        s_cli_run.has = 0;
-        notifyRunStopFromCLI(s_cli_run.running != 0);
-    }
-
-    // 既存の DesiredValue ペンディング処理
-    if (s_activeView == this && s_cli.has) {
-        s_cli.has = 0;
-        presenter->setDesiredValue(s_cli.t, s_cli.v);
-        updateBothValues(
-            presenter->getDesiredValue(SettingType::Voltage),
-            presenter->getDesiredValue(SettingType::Phase),
-            presenter->getDesiredValue(SettingType::ID)      // ← 追加
-        );
-
-    }
-
     if (MeasTimer_Consume()) {
         presenter->updateMeasuredValues();
     }
     MainViewBase::handleTickEvent();
 }
 
-// --- C 側から呼ばれる関数を実装 ---
-extern "C" void ui_notify_runstop(int running)
-{
-    s_cli_run.running = (running != 0);
-    s_cli_run.has = 1;   // UI スレッドで処理させる
-}
 
 /* DIP表示 */
 void MainView::setDipHex(uint8_t nibble)
@@ -268,16 +241,7 @@ void MainView::notifyRunStopFromCLI(bool running)
     updateRunStopUI(running);
 }
 
-void MainView::setDesiredValueFromCLI(SettingType t, uint32_t v)
-{
-    presenter->setDesiredValue(t, v);
-    updateBothValues(
-        presenter->getDesiredValue(SettingType::Voltage),
-        presenter->getDesiredValue(SettingType::Phase),
-        presenter->getDesiredValue(SettingType::ID)      // ← 追加
-    );
 
-}
 
 
 void MainView::button_IDClicked()
@@ -288,11 +252,21 @@ void MainView::button_IDClicked()
     }
 }
 
-/* === C側から呼び出されるブリッジ === */
-// --- 既存の extern "C" ブリッジを「積むだけ」に変更 ---
-extern "C" void ui_set_desired_value(int which, uint32_t v)
+
+
+
+
+
+void MainView::requestRedraw()
 {
-    s_cli.t   = (which == 0) ? SettingType::Voltage : SettingType::Phase;
-    s_cli.v   = v;
-    s_cli.has = 1;  // ← ここでは UI を触らない！
+    invalidate();  // ← これは MainViewBase(Screen) 内の protected を呼べる
+}
+
+
+void MainView::triggerRefreshFromPresenter()
+{
+    // 画面全体を再描画
+    touchgfx::Rect fullRect(0, 0, 480, 320);
+    // または touchgfx::HAL::DISPLAY_WIDTH / HEIGHT でもOK
+    touchgfx::Application::getInstance()->invalidateArea(fullRect);
 }

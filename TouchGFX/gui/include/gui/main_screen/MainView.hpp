@@ -43,6 +43,11 @@ public:
     void notifyRunStopFromCLI(bool running);
     void setDesiredValueFromCLI(SettingType t, uint32_t v);
 
+
+    void setDesiredValueFromCLI_ByID(uint8_t id, SettingType t, uint32_t v);
+
+    void requestRedraw();
+
     // tick（計測トリガ）
     virtual void handleTickEvent();
 
@@ -51,6 +56,10 @@ public:
 
     // ★追加: Designerのbutton_IDと対応するコールバック
     virtual void button_IDClicked();
+
+    void showRemoteLine(const char* line);
+
+    void triggerRefreshFromPresenter();   // Presenterから呼ぶ
 
 protected:
     bool isRunning {false};

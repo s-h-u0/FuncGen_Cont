@@ -29,6 +29,10 @@ public:
      */
     virtual void onSomeEvent() {}
 
+    // RS-485ブリッジから上がってくる“1行メッセージ”の汎用フック
+    // 既定では何もしない（後方互換）
+    virtual void onRemoteLine(const char* /*line*/) {}
+
 protected:
     /** @brief 参照元 Model（必要に応じて参照に利用） */
     Model* model;

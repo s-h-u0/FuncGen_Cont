@@ -22,6 +22,10 @@ extern "C" {
 void RS485_Bridge_Init(void);
 void RS485_Bridge_Poll(void);
 
+// ===== UI行通知（イベント駆動）: 行(\n終端)を受信したら即通知 =====
+typedef void (*rs485_ui_callback_t)(const char* line);  // CR/LF除去済みのヌル終端文字列
+void RS485_RegisterUICallback(rs485_ui_callback_t cb);
+
 #if RS485_ENABLE_UI_API
 // ★ ここでのみ定義する
 typedef enum {

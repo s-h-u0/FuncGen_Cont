@@ -79,28 +79,27 @@ bool remote_meas_volt_mV(int32_t* mv) {
     return false;
 }
 
-uint8_t g_currentID = 0;
+// --- UI側(MainPresenterなど)で管理するg_currentIDを参照する ---
+// グローバル定義を削除して、外部参照にする
+extern uint8_t g_currentID;
 
 void remote_set_id(uint8_t id) {
-    g_currentID = id & 0x0F;
+    g_currentID = id & 0x0F;  // UIの実体を更新
 }
 
 uint8_t remote_get_id(void) {
-    return g_currentID;
+    return g_currentID;       // UIの実体を返す
 }
 
-// 共通ユーティリティ
-static bool txrx_with_id(const char* cmd, char* out, size_t out_sz, uint32_t to) {
+
+static bool txrx_with_id(const char* cmd, char* out, size_t out_sz, uint32_t to)
+{
     char fullcmd[96];
-    if (g_currentID)
-        snprintf(fullcmd, sizeof(fullcmd), "@%X %s", g_currentID, cmd);
-    else
-        snprintf(fullcmd, sizeof(fullcmd), "%s", cmd);  // ID未設定ならプレフィクスなし
-    // ★ デバッグ
-    printf("fullcmd='%s'\r\n", fullcmd);
+    // ★ 常に @ID を付けて送信する（0でも）
+    snprintf(fullcmd, sizeof(fullcmd), "@%X %s", g_currentID, cmd);
 
-    printf("TX: '%s'\r\n", fullcmd);
-
+    // ★ デバッグ出力
+    printf("TX(fullcmd): '%s'\r\n", fullcmd);
 
     return RS485_Transact(ORIGIN_UI, fullcmd, out, out_sz, to, false, false);
 }

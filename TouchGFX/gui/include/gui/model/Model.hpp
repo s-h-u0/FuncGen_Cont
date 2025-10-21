@@ -60,6 +60,9 @@ public:
      */
     SettingType getCurrentSetting() const;
 
+    // （内部用）RS-485受信行の処理入口
+    void handleRemoteLine(const char* line);
+
 private:
     /** @brief Presenter へ通知するためのリスナ */
     ModelListener* modelListener;

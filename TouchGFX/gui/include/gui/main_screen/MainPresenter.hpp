@@ -29,9 +29,17 @@ public:
     void activate()   override;
     void deactivate() override;
 
+
+    // RS-485からの1行通知（Modelから届く）
+    void onRemoteLine(const char* line) override;
+
+
+
     // 種類を指定して値を保存/取得
     void     setDesiredValue(SettingType t, uint32_t v);
     uint32_t getDesiredValue(SettingType t) const;
+
+    void setDesiredValueByID(uint8_t id, SettingType t, uint32_t v);
 
     void setCurrentSetting(SettingType s);
     SettingType getCurrentSetting() const;

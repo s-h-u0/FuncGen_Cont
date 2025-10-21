@@ -47,6 +47,23 @@ static void pc_write(const char* s){ if (!s || !*s) return; HAL_UART_Transmit(&P
 static void pc_write_bin(const uint8_t* p, uint16_t n){ if (!p || !n) return; HAL_UART_Transmit(&PC_UART, (uint8_t*)p, n, 200); }
 static void pc_log2(const char* tag, const char* s){ pc_write(tag); pc_write(s); pc_write("\r\n"); }
 
+/* ====== UI通知コールバック ====== */
+static rs485_ui_callback_t s_ui_cb = NULL;
+void RS485_RegisterUICallback(rs485_ui_callback_t cb){ s_ui_cb = cb; }
+static void ui_notify_line(const uint8_t* buf, size_t len){
+  if (!s_ui_cb || !buf || !len) return;
+  /* CR/LFを取り除いて安全にヌル終端したワークを作る */
+  char line[LINE_MAX];
+  size_t w = 0;
+  for (size_t i = 0; i < len && w + 1 < sizeof(line); ++i){
+    uint8_t c = buf[i];
+    if (c == '\r' || c == '\n') continue;
+    if (c >= 0x20 && c <= 0x7E) line[w++] = (char)c;   /* 可視ASCIIのみ */
+  }
+  line[w] = '\0';
+  if (w) s_ui_cb(line);
+}
+
 /* BUSへ行単位送信（CRLF付加, DE/RE制御：TX→TC→RX→guard） */
 static void bus_send_line(const char* line){
   pc_log2(">> ", line);
@@ -137,6 +154,8 @@ void RS485_Bridge_Poll(void){
       if (b == '\n'){                                /* 行確定で即出力 */
         pc_write("<< ");
         pc_write_bin(ans, (uint16_t)ans_len);
+        /* ★ UIへも通知（CR/LF除去・ASCII化済み） */
+        ui_notify_line(ans, ans_len);
         ans_len = 0;
       }
       t_ref = HAL_GetTick();
@@ -150,6 +169,8 @@ void RS485_Bridge_Poll(void){
         /* 行の途中で静かになった：溜まりを吐く */
         pc_write("<< ");
         pc_write_bin(ans, (uint16_t)ans_len);
+        /* ★ 残りもUIへ通知（“途中行”だが、現状は区切りとして扱う） */
+        ui_notify_line(ans, ans_len);
         ans_len = 0;
         waiting_reply = false;                        /* これは“応答あり”扱い */
       } else {

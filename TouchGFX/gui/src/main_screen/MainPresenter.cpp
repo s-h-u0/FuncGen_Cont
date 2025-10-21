@@ -22,6 +22,10 @@ extern "C" {
 #include "adc_MCP3428.h"
 #include "dipsw_221AMA16R.h"
 #include "remote_client.h"
+#include <cstdio>   // printf()
+#include <cstring>  // strlen(), strcmp(), strncmp()
+#include <cstdlib>  // atoi()
+#include <cctype>   // tolower()
 }
 
 extern uint8_t g_currentID;
@@ -127,4 +131,75 @@ void MainPresenter::updateDipValue()
     uint8_t v = DIP221_Read() & 0x0F;
     view.setDipHex(v);
 }
+
+
+
+
+// ==========================================================
+// RS-485受信イベント：UIに反映
+// ==========================================================
+#include <cstring>
+#include <cstdio>
+#include <cctype>
+void MainPresenter::onRemoteLine(const char* line)
+{
+    if (!line) return;
+
+    // 小文字化
+    char buf[64];
+    size_t len = strlen(line);
+    if (len >= sizeof(buf)) len = sizeof(buf) - 1;
+    for (size_t i = 0; i < len; ++i) buf[i] = (char)tolower((unsigned char)line[i]);
+    buf[len] = '\0';
+
+    // ID抽出
+    uint8_t id = 0xFF;
+    const char* p = buf;
+    if ((p[0] == '#' || p[0] == '@') && isxdigit((unsigned char)p[1])) {
+        id = (uint8_t)strtoul(&p[1], nullptr, 16) & 0x0F;
+        p += 2;
+        while (*p == ' ' || *p == ':') ++p;
+    }
+
+    // パターン
+    if (strcmp(p, "run") == 0) {
+        view.notifyRunStopFromCLI(true);
+    } else if (strcmp(p, "stop") == 0) {
+        view.notifyRunStopFromCLI(false);
+    } else if (strncmp(p, "stat:volt", 9) == 0) {
+        p += 9; while (*p == ' ' || *p == ':') ++p;
+        uint32_t v = (uint32_t)(atoi(p) / 1000);
+        if (id != 0xFF && model) model->setDesiredValue(SettingType::Voltage, v, id);
+    } else if (strncmp(p, "stat:phas", 9) == 0) {
+        p += 9; while (*p == ' ' || *p == ':') ++p;
+        uint32_t deg = (uint32_t)atoi(p);
+        if (id != 0xFF && model) model->setDesiredValue(SettingType::Phase, deg, id);
+    } else {
+        view.showRemoteLine(line); // ログのみ
+    }
+
+    // ★表示中IDだけ即描画（遅延なし）
+    if (id != 0xFF && id == g_currentID) {
+        updateBothValuesFromModel(model, view); // Textをinvalidateまで面倒見てくれる
+        view.triggerRefreshFromPresenter();     // 画面再描画
+    }
+}
+
+
+
+
+void MainPresenter::setDesiredValueByID(uint8_t id, SettingType t, uint32_t v)
+{
+    if (model)
+        model->setDesiredValue(t, v, id);
+
+    // ★ IDが有効か確認（0xFFは無効値）し、かつ表示中IDのみ再描画
+    if (id != 0xFF && id == g_currentID) {
+        updateBothValuesFromModel(model, view);
+        view.triggerRefreshFromPresenter();
+    }
+}
+
+
+
 
