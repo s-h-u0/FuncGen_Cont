@@ -26,6 +26,7 @@ extern "C" {
 #include <cstring>  // strlen(), strcmp(), strncmp()
 #include <cstdlib>  // atoi()
 #include <cctype>   // tolower()
+#include "rs485_bridge.h"
 }
 
 extern uint8_t g_currentID;
@@ -55,6 +56,8 @@ MainPresenter::MainPresenter(MainView& v) : view(v) {}
 void MainPresenter::activate()
 {
     updateBothValuesFromModel(model, view);
+    remote_query_state(); // 応答は既存 onRemoteLine() 経由でModel/表示に反映
+
 
 }
 
@@ -111,19 +114,57 @@ void MainPresenter::setADCHandle(MCP3428_HandleTypeDef* h)
  *   - 設定: CHANNEL_4 / 16BIT / ONESHOT / GAIN_1X
  *   - 表示: View::setMeasuredVolt_mV(mV) で "X.YY" に整形して表示
  */
+#include "rs485_bridge.h"  // RS485_PcHasPending() を使う
+
 void MainPresenter::updateMeasuredValues()
 {
-    if (!adcHandle) return;
 
-    MCP3428_SetConfig(adcHandle,
-        MCP3428_CHANNEL_4,
-        MCP3428_RESOLUTION_16BIT,
-        MCP3428_MODE_ONESHOT,
-        MCP3428_GAIN_1X);
+    // ② 他のUI往復中ならやめる（既存）
+    if (RS485_IsBusy()) return;
 
-    int16_t mv = MCP3428_ReadMilliVolt(adcHandle);
-    view.setMeasuredVolt_mV(mv);   // ★ 小数表示版を呼ぶ
+    static uint32_t lastProbeTick[16] = {0};
+    static uint8_t  failStreak  [16] = {0};
+
+    const uint8_t  id  = g_currentID & 0x0F;
+    const uint32_t now = HAL_GetTick();
+
+    const bool likelyAlive = model ? model->isLikelyAlive(id, 1500) : false;
+
+    // ③ 生きてる時でも叩きすぎ防止（最小周期 150ms）
+    const uint32_t minPeriodAlive = 150u;
+    if (likelyAlive) {
+        if ((int32_t)(now - lastProbeTick[id]) < (int32_t)minPeriodAlive) return;
+    }
+
+    // ④ 失敗が続く or 生存不明は指数バックオフ（80,160,320,640,1280ms）
+    uint32_t backoff = 0;
+    if (!likelyAlive || failStreak[id] > 0) {
+        uint8_t s = failStreak[id];
+        if (s > 4) s = 4;
+        backoff = 80u << s;
+        if ((int32_t)(now - lastProbeTick[id]) < (int32_t)backoff) return;
+    }
+
+    // ⑤ 叩く。死んでそうなら短TOで軽く、元気なら少し長め
+    const uint32_t to_ms = likelyAlive ? 120u : 80u;
+
+    int32_t mv = 0;
+    const bool ok = remote_meas_volt_mV_to(&mv, to_ms);
+
+    lastProbeTick[id] = now;
+
+    if (ok) {
+        if (mv >  32767) mv =  32767;
+        if (mv < -32768) mv = -32768;
+        view.setMeasuredVolt_mV((int16_t)mv);
+        if (model) model->noteAlive(id);
+        failStreak[id] = 0;
+    } else {
+        view.setMeasuredVolt_mV(INT16_MIN);     // "--"
+        if (failStreak[id] < 8) ++failStreak[id];
+    }
 }
+
 
 void MainPresenter::updateDipValue()
 {

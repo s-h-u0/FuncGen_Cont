@@ -63,11 +63,15 @@ public:
     // （内部用）RS-485受信行の処理入口
     void handleRemoteLine(const char* line);
 
+    static constexpr uint8_t MAX_ID = 16;
+
+    void noteAlive(uint8_t id);
+    bool isLikelyAlive(uint8_t id, uint32_t alive_ms = 1500) const;
+
 private:
     /** @brief Presenter へ通知するためのリスナ */
     ModelListener* modelListener;
 
-    static constexpr int MAX_ID = 16;
 
     uint32_t desiredVoltages[MAX_ID]   {0};
     uint32_t desiredPhases[MAX_ID]     {0};

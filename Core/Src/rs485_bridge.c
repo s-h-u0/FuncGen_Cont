@@ -64,9 +64,8 @@ static void ui_notify_line(const uint8_t* buf, size_t len){
   if (w) s_ui_cb(line);
 }
 
-/* BUSへ行単位送信（CRLF付加, DE/RE制御：TX→TC→RX→guard） */
-static void bus_send_line(const char* line){
-  pc_log2(">> ", line);
+static void bus_send_line(const char* line, bool log_to_pc){
+  if (log_to_pc) pc_log2(">> ", line);
   RS485_TXmode();
   size_t n = strlen(line);
   if (n) HAL_UART_Transmit(&BUS_UART, (uint8_t*)line, (uint16_t)n, 200);
@@ -74,9 +73,9 @@ static void bus_send_line(const char* line){
   HAL_UART_Transmit(&BUS_UART, (uint8_t*)crlf, 2, 200);
   BUS_WaitTC();
   RS485_RXmode();
-  /* ★半二重の向き切替は“RXに戻した後”にガード時間をとる */
   delay_us(turnaround_us());
 }
+
 
 /* ====== 初期化 ====== */
 void RS485_Bridge_Init(void){
@@ -87,7 +86,7 @@ void RS485_Bridge_Init(void){
   pc_write("BOOT\r\n");
 
   /* 起動時に ECHO OFF を一度要求（応答待ちは通常ループに任せる） */
-  bus_send_line("ECHO OFF");
+  bus_send_line("ECHO OFF", true);
   pc_log2("info ", "bridge ready");
 }
 
@@ -126,7 +125,7 @@ void RS485_Bridge_Poll(void){
         uint8_t dump; while (rb_pop(&bus_rb, &dump)) {}
 
         /* コマンド送信 */
-        bus_send_line(cmd);
+        bus_send_line(cmd, true);
 
         /* 送った内容を保持（無応答時の再送に使う） */
         strncpy(last_cmd, cmd, sizeof(last_cmd)-1);
@@ -184,7 +183,7 @@ void RS485_Bridge_Poll(void){
           /* 取り残し破棄 → バックオフ → 再送 */
           uint8_t dump; while (rb_pop(&bus_rb, &dump)) {}
           HAL_Delay(RETRY_BACKOFF_MS);
-          bus_send_line(last_cmd);
+          bus_send_line(last_cmd, true);   // PC由来の送信はログ出す
 
           /* 再度待ちへ */
           got_any_reply = false;
@@ -211,6 +210,8 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef* hu){
   if      (hu->Instance == USART3){ HAL_UART_Receive_IT(&PC_UART,  (uint8_t*)&pc_rx,  1); }
   else if (hu->Instance == USART6){ HAL_UART_Receive_IT(&BUS_UART, (uint8_t*)&bus_rx, 1); }
 }
+
+
 
 /* =================================================================
  * ここから下：UI向け 1往復API（RS485_ENABLE_UI_API=1 のときだけ有効）
@@ -259,7 +260,7 @@ bool RS485_Transact(rs485_origin_t origin,
 
 	/* 残骸クリア → 送信（TX→TC→RX→guard） */
 	bus_drop_garbage();
-	bus_send_line(tx);
+	bus_send_line(tx, /*log_to_pc=*/(origin == ORIGIN_PC));;
   /* 受信：\n まで or timeout */
   size_t w = 0;
   uint32_t t0 = HAL_GetTick();

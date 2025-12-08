@@ -23,6 +23,9 @@ bool remote_set_pot_volt(uint32_t volt);
 bool remote_meas_volt_mV(int32_t* mv);        // int32_t* に統一
 void remote_set_id(uint8_t id);
 uint8_t remote_get_id(void);
+bool remote_query_state(void);
+bool remote_meas_volt_mV_to(int32_t* mv, uint32_t timeout_ms);
+
 
 #ifdef __cplusplus
 }

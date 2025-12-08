@@ -2,6 +2,7 @@
 #include "rs485_bridge.h"
 #include <string.h>
 #include <stdio.h>
+#include "stm32f4xx_hal.h"   // HAL_GetTick 用
 
 // ===== 追加: 受信キュー =====
 #ifndef REM_LINE_MAX
@@ -91,11 +92,9 @@ void Model::handleRemoteLine(const char* line)
     // 短いクリティカルセクション（競合回避）
     __disable_irq();
     uint8_t next = (uint8_t)((remHead + 1) % REM_Q_SZ);
-    if (next != remTail) {                    // フルでなければ積む
-        memcpy(remLines[remHead], line, n);
-        remLines[remHead][n] = '\0';
-        remHead = next;
-    }
+    if (next == remTail) { remTail = (uint8_t)((remTail + 1) % REM_Q_SZ); } // 古いのを落とす
+    memcpy(remLines[remHead], line, n); remLines[remHead][n]='\0'; remHead = next;
+
     // フルの場合は“捨てる”ポリシー（必要なら上書きに変えてもOK）
     __enable_irq();
 }
@@ -114,4 +113,20 @@ void Model::tick()
 
         if (modelListener) modelListener->onRemoteLine(line);
     }
+}
+
+
+namespace {
+    uint32_t s_lastSeenTick[Model::MAX_ID] = {0};
+}
+
+void Model::noteAlive(uint8_t id) {
+    if (id < MAX_ID) s_lastSeenTick[id] = HAL_GetTick();
+}
+
+bool Model::isLikelyAlive(uint8_t id, uint32_t alive_ms) const {
+    if (id >= MAX_ID) return false;
+    const uint32_t t = s_lastSeenTick[id];
+    if (!t) return false;
+    return (int32_t)(HAL_GetTick() - t) < (int32_t)alive_ms;
 }

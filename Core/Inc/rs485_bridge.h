@@ -2,7 +2,9 @@
 #define RS485_BRIDGE_H
 
 #include "main.h"
-#include <stdbool.h>   // ← 追加
+#include "main.h"
+#include <stdbool.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -22,12 +24,17 @@ extern "C" {
 void RS485_Bridge_Init(void);
 void RS485_Bridge_Poll(void);
 
-// ===== UI行通知（イベント駆動）: 行(\n終端)を受信したら即通知 =====
-typedef void (*rs485_ui_callback_t)(const char* line);  // CR/LF除去済みのヌル終端文字列
+
+// ===== UI行通知（イベント駆動）
+typedef void (*rs485_ui_callback_t)(const char* line);
 void RS485_RegisterUICallback(rs485_ui_callback_t cb);
 
+bool RS485_PcHasPending(void);   // PC側(UART3)に未送出の入力があるか
+
+
+// --- ここをこう分岐させる ---
 #if RS485_ENABLE_UI_API
-// ★ ここでのみ定義する
+
 typedef enum {
     ORIGIN_PC = 0,
     ORIGIN_UI = 1
@@ -41,8 +48,11 @@ bool RS485_Transact(rs485_origin_t origin,
                     uint32_t timeout_ms,
                     bool do_ascii_sanitize,
                     bool add_dip_prefix);
-#endif
 
+#else
+// UI API 無効ビルド時：RS485_IsBusyは“常に空き”として使えるようにする
+static inline bool RS485_IsBusy(void) { return false; }
+#endif
 #ifdef __cplusplus
 }
 #endif
