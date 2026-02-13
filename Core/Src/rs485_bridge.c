@@ -76,7 +76,6 @@ static void bus_send_line(const char* line, bool log_to_pc){
   delay_us(turnaround_us());
 }
 
-
 /* ====== 初期化 ====== */
 void RS485_Bridge_Init(void){
   RS485_RXmode();
@@ -90,10 +89,7 @@ void RS485_Bridge_Init(void){
   pc_log2("info ", "bridge ready");
 }
 
-/* ====== ポーリング ======
- * PC→装置 : 1行ずつ送信して“応答待ち”に。新コマンド送信前に装置側の取り残しを破棄。
- * 装置→PC : '\n'で行出力。無通信(BUS_SILENCE_MS)なら残りを吐き、完全無応答のみ [TIMEOUT]/再送。
- */
+/* ====== ポーリング ====== */
 void RS485_Bridge_Poll(void){
   static char     cmd[LINE_MAX];
   static size_t   cmd_len = 0;
@@ -147,6 +143,12 @@ void RS485_Bridge_Poll(void){
 
   /* ==== 装置→PC：応答集約・吐き出し ==== */
   if (waiting_reply){
+  #if RS485_ENABLE_UI_API
+    if (RS485_IsBusy()) {
+      t_ref = HAL_GetTick();   // ★タイマを止める（暴発防止）
+      return;
+    }
+  #endif
     while (rb_pop(&bus_rb, &b)){
       if (ans_len + 1 < sizeof(ans)) ans[ans_len++] = b;
       got_any_reply = true;
@@ -168,7 +170,7 @@ void RS485_Bridge_Poll(void){
         /* 行の途中で静かになった：溜まりを吐く */
         pc_write("<< ");
         pc_write_bin(ans, (uint16_t)ans_len);
-        /* ★ 残りもUIへ通知（“途中行”だが、現状は区切りとして扱う） */
+        /* ★ 残りもUIへ通知 */
         ui_notify_line(ans, ans_len);
         ans_len = 0;
         waiting_reply = false;                        /* これは“応答あり”扱い */
@@ -211,8 +213,6 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef* hu){
   else if (hu->Instance == USART6){ HAL_UART_Receive_IT(&BUS_UART, (uint8_t*)&bus_rx, 1); }
 }
 
-
-
 /* =================================================================
  * ここから下：UI向け 1往復API（RS485_ENABLE_UI_API=1 のときだけ有効）
  * ================================================================= */
@@ -244,23 +244,24 @@ bool RS485_Transact(rs485_origin_t origin,
                     bool do_ascii_sanitize,
                     bool add_dip_prefix)
 {
-	if (!line || !*line) return false;
+  if (!line || !*line) return false;
 
-	/* 占有開始（簡易スピン。UIスレッドからのみ呼ばれる想定） */
-	 while (s_ui_busy) { /* wait */ }
-	s_ui_busy = true;
+  /* 占有開始（簡易。暴走防止に1ms待ち） */
+  while (s_ui_busy) { HAL_Delay(1); }
+  s_ui_busy = true;
 
-	char tx[LINE_MAX + 8];
-	if (add_dip_prefix) {
-	    uint8_t dip = (uint8_t)(DIP221_Read() & 0x0F);
-	    snprintf(tx, sizeof(tx), "@%X %s", (unsigned)dip, line);
-	} else {
-	    snprintf(tx, sizeof(tx), "%s", line);
-	}
+  char tx[LINE_MAX + 8];
+  if (add_dip_prefix) {
+    uint8_t dip = (uint8_t)(DIP221_Read() & 0x0F);
+    snprintf(tx, sizeof(tx), "@%X %s", (unsigned)dip, line);
+  } else {
+    snprintf(tx, sizeof(tx), "%s", line);
+  }
 
-	/* 残骸クリア → 送信（TX→TC→RX→guard） */
-	bus_drop_garbage();
-	bus_send_line(tx, /*log_to_pc=*/(origin == ORIGIN_PC));;
+  /* 残骸クリア → 送信（TX→TC→RX→guard） */
+  bus_drop_garbage();
+  bus_send_line(tx, /*log_to_pc=*/(origin == ORIGIN_PC));
+
   /* 受信：\n まで or timeout */
   size_t w = 0;
   uint32_t t0 = HAL_GetTick();
@@ -271,8 +272,8 @@ bool RS485_Transact(rs485_origin_t origin,
 
     uint8_t c;
     if (!rb_pop(&bus_rb, &c)) {
-        HAL_Delay(1);   // 1msスリープ
-        continue;
+      HAL_Delay(1);
+      continue;
     }
     t0 = HAL_GetTick();                  /* 受信があればタイマ更新 */
 
@@ -283,7 +284,7 @@ bool RS485_Transact(rs485_origin_t origin,
   }
   if (out && out_sz) out[w] = '\0';
 
-  /* 任意のサニタイズ（改行は送っていないので不要だが保険で） */
+  /* 任意のサニタイズ（保険） */
   if (out && do_ascii_sanitize && w){
     (void)ascii_sanitize(out, w);
   }

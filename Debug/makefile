@@ -90,34 +90,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := Cont_FuncGen
+BUILD_ARTIFACT_NAME := FuncGen_Cont
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-Cont_FuncGen.elf \
+FuncGen_Cont.elf \
 
 MAP_FILES += \
-Cont_FuncGen.map \
+FuncGen_Cont.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-Cont_FuncGen.list \
+FuncGen_Cont.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: Cont_FuncGen.elf secondary-outputs
+main-build: FuncGen_Cont.elf secondary-outputs
 
 # Tool invocations
-Cont_FuncGen.elf Cont_FuncGen.map: $(OBJS) $(USER_OBJS) C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\Cont_FuncGen\STM32F412ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "Cont_FuncGen.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\ssshu\STM32CubeIDE\workspace_1.18.0\Cont_FuncGen\STM32F412ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cont_FuncGen.map" -Wl,--gc-sections -static -LC:/Users/ssshu/STM32CubeIDE/workspace_1.18.0/Cont_FuncGen/Middlewares/ST/touchgfx/lib/core/cortex_m4f/GCC --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+FuncGen_Cont.elf FuncGen_Cont.map: $(OBJS) $(USER_OBJS) C:\Users\shu-morishima\STM32CubeIDE\workspace_1.17.0\FuncGen_Cont\STM32F412ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "FuncGen_Cont.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\shu-morishima\STM32CubeIDE\workspace_1.17.0\FuncGen_Cont\STM32F412ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FuncGen_Cont.map" -Wl,--gc-sections -static -LC:/Users/shu-morishima/STM32CubeIDE/workspace_1.17.0/FuncGen_Cont/Middlewares/ST/touchgfx/lib/core/cortex_m4f/GCC --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -126,14 +126,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Cont_FuncGen.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Cont_FuncGen.list"
+FuncGen_Cont.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "FuncGen_Cont.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) Cont_FuncGen.elf Cont_FuncGen.list Cont_FuncGen.map default.size.stdout
+	-$(RM) FuncGen_Cont.elf FuncGen_Cont.list FuncGen_Cont.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

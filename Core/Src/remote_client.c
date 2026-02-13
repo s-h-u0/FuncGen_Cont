@@ -10,9 +10,10 @@
 #include <stdio.h>
 #include <string.h>
 
+/* --- UI側(MainPresenterなど)で管理するg_currentIDを参照する --- */
+extern uint8_t g_currentID;
 
 static bool txrx_with_id(const char* cmd, char* out, size_t out_sz, uint32_t to);
-
 
 /* 内部ユーティリティ: RS485でコマンド送信＆応答取得 */
 static inline bool txrx(const char* cmd, char* out, size_t out_sz, uint32_t to) {
@@ -23,7 +24,7 @@ static inline bool txrx(const char* cmd, char* out, size_t out_sz, uint32_t to) 
 
 bool remote_ping(char* out, size_t out_sz) {
     char buf[64];
-    if (!txrx("PING", buf, sizeof(buf), 400)) return false;
+    if (!txrx_with_id("PING", buf, sizeof(buf), 400)) return false;
     if (out && out_sz) {
         strncpy(out, buf, out_sz - 1);
         out[out_sz - 1] = 0;
@@ -44,17 +45,14 @@ bool remote_stop(void) {
 bool remote_set_freq(uint32_t hz) {
     char cmd[48], b[8];
     snprintf(cmd, sizeof(cmd), "SOUR:FREQ %lu", (unsigned long)hz);
-    // 旧: return txrx(cmd, b, sizeof(b), 800) && !strcmp(b, "OK");
     return txrx_with_id(cmd, b, sizeof(b), 600) && !strcmp(b, "OK");
 }
 
 bool remote_set_func(const char* name) {
     char cmd[48], b[8];
     snprintf(cmd, sizeof(cmd), "SOUR:FUNC %s", name);
-    // 旧: return txrx(cmd, b, sizeof(b), 800) && !strcmp(b, "OK");
     return txrx_with_id(cmd, b, sizeof(b), 600) && !strcmp(b, "OK");
 }
-
 
 bool remote_set_phas(uint16_t deg) {
     if (deg > 359) deg = 359;
@@ -70,11 +68,9 @@ bool remote_set_pot_volt(uint32_t volt) {
     return txrx_with_id(cmd, b, sizeof(b), 800) && !strcmp(b, "OK");
 }
 
-
 bool remote_meas_volt_mV(int32_t* mv) {
     char buf[32];
-    // 旧: if (!txrx("MEAS:VOLT?", buf, sizeof(buf), 800)) return false;
-    if (!txrx_with_id("MEAS:VOLT?", buf, sizeof(buf), 200)) return false; // ← ID付き & 短めTO
+    if (!txrx_with_id("MEAS:VOLT?", buf, sizeof(buf), 200)) return false; // ID付き & 短めTO
 
     long whole = 0, frac = 0;
     if (sscanf(buf, "%ld.%03ld", &whole, &frac) == 2) {
@@ -84,10 +80,10 @@ bool remote_meas_volt_mV(int32_t* mv) {
     return false;
 }
 
-
 bool remote_meas_volt_mV_to(int32_t* mv, uint32_t to_ms) {
-    char cmd[16], buf[32];
-    snprintf(cmd, sizeof(cmd), "@%X MEAS:VOLT?", g_currentID & 0x0F);
+    char cmd[32], buf[32];
+    snprintf(cmd, sizeof(cmd), "@%X MEAS:VOLT?", (unsigned)(g_currentID & 0x0F));
+
     if (!RS485_Transact(ORIGIN_UI, cmd, buf, sizeof(buf), to_ms, true, false))
         return false;
 
@@ -99,36 +95,29 @@ bool remote_meas_volt_mV_to(int32_t* mv, uint32_t to_ms) {
     return false;
 }
 
-
-
-// --- UI側(MainPresenterなど)で管理するg_currentIDを参照する ---
-// グローバル定義を削除して、外部参照にする
-extern uint8_t g_currentID;
-
 void remote_set_id(uint8_t id) {
-    g_currentID = id & 0x0F;  // UIの実体を更新
+    g_currentID = id & 0x0F;
 }
 
 uint8_t remote_get_id(void) {
-    return g_currentID;       // UIの実体を返す
+    return g_currentID;
 }
-
 
 static bool txrx_with_id(const char* cmd, char* out, size_t out_sz, uint32_t to)
 {
     char fullcmd[96];
-    // ★ 常に @ID を付けて送信する（0でも）
-    snprintf(fullcmd, sizeof(fullcmd), "@%X %s", g_currentID, cmd);
+    snprintf(fullcmd, sizeof(fullcmd), "@%X %s", (unsigned)(g_currentID & 0x0F), cmd);
 
-    // ★ デバッグ出力
+    /* デバッグ出力（必要なら有効化） */
+    #ifdef REMOTE_CLIENT_DEBUG
     printf("TX(fullcmd): '%s'\r\n", fullcmd);
+    #endif
 
-    return RS485_Transact(ORIGIN_UI, fullcmd, out, out_sz, to, false, false);
+    /* ID付けはここで完結してるので add_dip_prefix=false のまま */
+    return RS485_Transact(ORIGIN_UI, fullcmd, out, out_sz, to, true, false);
 }
 
 bool remote_query_state(void){
     char b[8];
-    // 旧: RS485_Transact(..., "STATE?", ...)
     return txrx_with_id("STATE?", b, sizeof(b), 200);
 }
-

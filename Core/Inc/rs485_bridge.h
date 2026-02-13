@@ -18,7 +18,7 @@ extern "C" {
 #define RETRY_BACKOFF_MS     50
 
 #ifndef RS485_ENABLE_UI_API
-#define RS485_ENABLE_UI_API 0
+#define RS485_ENABLE_UI_API 1
 #endif
 
 void RS485_Bridge_Init(void);
@@ -29,7 +29,7 @@ void RS485_Bridge_Poll(void);
 typedef void (*rs485_ui_callback_t)(const char* line);
 void RS485_RegisterUICallback(rs485_ui_callback_t cb);
 
-bool RS485_PcHasPending(void);   // PC側(UART3)に未送出の入力があるか
+
 
 
 // --- ここをこう分岐させる ---
