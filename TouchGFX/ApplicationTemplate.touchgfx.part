@@ -19,7 +19,7 @@
     "SubFamily": "STM32F412",
     "Platform": "m4",
     "Toolchain": "STM32CubeIDE",
-    "ProjectFile": "../Cont_FuncGen.ioc",
+    "ProjectFile": "../FuncGen_Cont.ioc",
     "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
     "OptionalComponents": [
     ],

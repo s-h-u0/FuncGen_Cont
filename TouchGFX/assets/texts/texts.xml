@@ -16,6 +16,9 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_WN51" Alignment="Right" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
       <Text Id="__SingleUse_MW3V" Alignment="Right" TypographyId="Set_val">
         <Translation Language="GB">&lt;value&gt;A</Translation>
       </Text>
@@ -89,9 +92,6 @@
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_HNTL" Alignment="Right" TypographyId="Default">
-        <Translation Language="GB">&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="__SingleUse_WN51" Alignment="Right" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_VNBM" Alignment="Center" TypographyId="key">

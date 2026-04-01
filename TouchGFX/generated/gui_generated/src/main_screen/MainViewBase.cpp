@@ -33,23 +33,19 @@ MainViewBase::MainViewBase() :
     button_Volt.setAction(buttonCallback);
     add(button_Volt);
 
-    button_Volt_1.setXY(188, 59);
-    button_Volt_1.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID));
-    add(button_Volt_1);
-
-    button_Curr_1.setXY(188, 153);
-    button_Curr_1.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID));
-    add(button_Curr_1);
-
-    button_ID.setXY(21, 244);
-    button_ID.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID));
-    button_ID.setAction(buttonCallback);
-    add(button_ID);
+    button_Curr.setXY(188, 153);
+    button_Curr.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID));
+    add(button_Curr);
 
     button_Phas.setXY(188, 244);
     button_Phas.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID));
     button_Phas.setAction(buttonCallback);
     add(button_Phas);
+
+    button_ID.setXY(25, 244);
+    button_ID.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID));
+    button_ID.setAction(buttonCallback);
+    add(button_ID);
 
     MaesVolt.setXY(7, 59);
     MaesVolt.setBitmap(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_168X72_GLOSS_ID));
@@ -65,7 +61,7 @@ MainViewBase::MainViewBase() :
     MeasureValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_TQG0));
     add(MeasureValue);
 
-    Val_Meas_Phas.setPosition(28, 256, 114, 60);
+    Val_Meas_Phas.setPosition(35, 252, 114, 60);
     Val_Meas_Phas.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Meas_Phas.setLinespacing(0);
     Val_Meas_PhasBuffer[0] = 0;
@@ -97,13 +93,13 @@ MainViewBase::MainViewBase() :
     Val_Set_Volt.setTypedText(touchgfx::TypedText(T___SINGLEUSE_211V));
     add(Val_Set_Volt);
 
-    Val_Set_Volt_1.setPosition(199, 168, 110, 37);
-    Val_Set_Volt_1.setColor(touchgfx::Color::getColorFromRGB(217, 217, 217));
-    Val_Set_Volt_1.setLinespacing(0);
-    Val_Set_Volt_1Buffer[0] = 0;
-    Val_Set_Volt_1.setWildcard(Val_Set_Volt_1Buffer);
-    Val_Set_Volt_1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_MW3V));
-    add(Val_Set_Volt_1);
+    Val_Set_Curr.setPosition(199, 168, 110, 37);
+    Val_Set_Curr.setColor(touchgfx::Color::getColorFromRGB(217, 217, 217));
+    Val_Set_Curr.setLinespacing(0);
+    Val_Set_CurrBuffer[0] = 0;
+    Val_Set_Curr.setWildcard(Val_Set_CurrBuffer);
+    Val_Set_Curr.setTypedText(touchgfx::TypedText(T___SINGLEUSE_MW3V));
+    add(Val_Set_Curr);
 
     Val_Set_Phas.setPosition(199, 256, 110, 44);
     Val_Set_Phas.setColor(touchgfx::Color::getColorFromRGB(217, 217, 217));
@@ -149,7 +145,7 @@ MainViewBase::MainViewBase() :
     textArea1_1.setTypedText(touchgfx::TypedText(T_UNIT_CURR));
     add(textArea1_1);
 
-    ID.setXY(35, 252);
+    ID.setXY(35, 258);
     ID.setColor(touchgfx::Color::getColorFromRGB(200, 211, 227));
     ID.setLinespacing(0);
     IDBuffer[0] = 0;
@@ -212,10 +208,6 @@ void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //button_IDClicked
         //When button_ID clicked call virtual function
         //Call button_IDClicked
-        button_IDClicked();
-        //InputDataID
-        //When button_ID clicked change screen to Keyboard
-        //Go to Keyboard with no screen transition
-        application().gotoKeyboardScreenNoTransition();
+        button_IDClicked();
     }
 }

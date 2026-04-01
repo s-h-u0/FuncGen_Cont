@@ -59,10 +59,9 @@ protected:
     touchgfx::AnimatedImage animatedImage1;
     touchgfx::ToggleButton toggleButton_Stop;
     touchgfx::Button button_Volt;
-    touchgfx::Button button_Volt_1;
-    touchgfx::Button button_Curr_1;
-    touchgfx::Button button_ID;
+    touchgfx::Button button_Curr;
     touchgfx::Button button_Phas;
+    touchgfx::Button button_ID;
     touchgfx::Image MaesVolt;
     touchgfx::Image MaesCurr;
     touchgfx::TextArea MeasureValue;
@@ -70,7 +69,7 @@ protected:
     touchgfx::TextAreaWithOneWildcard Val_Meas_Curr;
     touchgfx::TextAreaWithOneWildcard Val_Meas_Volt;
     touchgfx::TextAreaWithOneWildcard Val_Set_Volt;
-    touchgfx::TextAreaWithOneWildcard Val_Set_Volt_1;
+    touchgfx::TextAreaWithOneWildcard Val_Set_Curr;
     touchgfx::TextAreaWithOneWildcard Val_Set_Phas;
     touchgfx::TextArea SetValue;
     touchgfx::ToggleButton toggleButton_Run;
@@ -91,8 +90,8 @@ protected:
     touchgfx::Unicode::UnicodeChar Val_Meas_VoltBuffer[VAL_MEAS_VOLT_SIZE];
     static const uint16_t VAL_SET_VOLT_SIZE = 10;
     touchgfx::Unicode::UnicodeChar Val_Set_VoltBuffer[VAL_SET_VOLT_SIZE];
-    static const uint16_t VAL_SET_VOLT_1_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar Val_Set_Volt_1Buffer[VAL_SET_VOLT_1_SIZE];
+    static const uint16_t VAL_SET_CURR_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar Val_Set_CurrBuffer[VAL_SET_CURR_SIZE];
     static const uint16_t VAL_SET_PHAS_SIZE = 10;
     touchgfx::Unicode::UnicodeChar Val_Set_PhasBuffer[VAL_SET_PHAS_SIZE];
     static const uint16_t ID_SIZE = 32;

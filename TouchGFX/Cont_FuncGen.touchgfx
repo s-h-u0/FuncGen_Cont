@@ -49,17 +49,7 @@
           },
           {
             "Type": "Button",
-            "Name": "button_Volt_1",
-            "X": 188,
-            "Y": 59,
-            "Width": 132,
-            "Height": 60,
-            "Pressed": "box\\btn_ao_konpeki_132x60_gloss.png",
-            "Released": "box\\btn_ao_konpeki_132x60_gloss.png"
-          },
-          {
-            "Type": "Button",
-            "Name": "button_Curr_1",
+            "Name": "button_Curr",
             "X": 188,
             "Y": 153,
             "Width": 132,
@@ -69,8 +59,8 @@
           },
           {
             "Type": "Button",
-            "Name": "button_ID",
-            "X": 21,
+            "Name": "button_Phas",
+            "X": 188,
             "Y": 244,
             "Width": 132,
             "Height": 60,
@@ -79,8 +69,8 @@
           },
           {
             "Type": "Button",
-            "Name": "button_Phas",
-            "X": 188,
+            "Name": "button_ID",
+            "X": 25,
             "Y": 244,
             "Width": 132,
             "Height": 60,
@@ -111,7 +101,7 @@
             "X": 58,
             "Y": 15,
             "Width": 67,
-            "Height": 27,
+            "Height": 31,
             "TextId": "__SingleUse_TQG0",
             "TextRotation": "0",
             "Color": {
@@ -124,8 +114,8 @@
           {
             "Type": "TextArea",
             "Name": "Val_Meas_Phas",
-            "X": 28,
-            "Y": 256,
+            "X": 35,
+            "Y": 252,
             "Width": 114,
             "Height": 60,
             "TextId": "__SingleUse_WN51",
@@ -199,7 +189,7 @@
           },
           {
             "Type": "TextArea",
-            "Name": "Val_Set_Volt_1",
+            "Name": "Val_Set_Curr",
             "X": 199,
             "Y": 168,
             "Width": 110,
@@ -242,7 +232,7 @@
             "X": 232,
             "Y": 15,
             "Width": 44,
-            "Height": 27,
+            "Height": 31,
             "TextId": "__SingleUse_Y6WD",
             "TextRotation": "0",
             "Color": {
@@ -321,9 +311,9 @@
             "Type": "TextArea",
             "Name": "ID",
             "X": 35,
-            "Y": 252,
+            "Y": 258,
             "Width": 38,
-            "Height": 34,
+            "Height": 32,
             "TextId": "__SingleUse_UVTT",
             "TextRotation": "0",
             "Color": {
@@ -421,8 +411,7 @@
           {
             "InteractionName": "InputDataID",
             "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "button_ID"
+              "Type": "TriggerClicked"
             },
             "Action": {
               "Type": "ActionGotoScreen",
@@ -1183,7 +1172,7 @@
     "SubFamily": "STM32F412",
     "Toolchain": "STM32CubeIDE",
     "Platform": "m4",
-    "ProjectFile": "../Cont_FuncGen.ioc",
+    "ProjectFile": "../FuncGen_Cont.ioc",
     "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
     "OptionalComponents": [],
     "AdditionalFeatures": []
