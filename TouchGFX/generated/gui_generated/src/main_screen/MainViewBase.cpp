@@ -17,36 +17,6 @@ MainViewBase::MainViewBase() :
     BG_Main.setColor(touchgfx::Color::getColorFromRGB(0, 15, 31));
     add(BG_Main);
 
-    boxWithBorder1.setPosition(181, 55, 147, 265);
-    boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(0, 15, 31));
-    boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(166, 201, 227));
-    boxWithBorder1.setBorderSize(1);
-    add(boxWithBorder1);
-
-    boxWithBorder1_2.setPosition(181, 1, 147, 55);
-    boxWithBorder1_2.setColor(touchgfx::Color::getColorFromRGB(0, 15, 31));
-    boxWithBorder1_2.setBorderColor(touchgfx::Color::getColorFromRGB(166, 201, 227));
-    boxWithBorder1_2.setBorderSize(1);
-    add(boxWithBorder1_2);
-
-    boxWithBorder1_2_2.setPosition(327, 239, 153, 82);
-    boxWithBorder1_2_2.setColor(touchgfx::Color::getColorFromRGB(0, 15, 31));
-    boxWithBorder1_2_2.setBorderColor(touchgfx::Color::getColorFromRGB(166, 201, 227));
-    boxWithBorder1_2_2.setBorderSize(1);
-    add(boxWithBorder1_2_2);
-
-    boxWithBorder1_1.setPosition(2, 55, 180, 265);
-    boxWithBorder1_1.setColor(touchgfx::Color::getColorFromRGB(0, 15, 31));
-    boxWithBorder1_1.setBorderColor(touchgfx::Color::getColorFromRGB(166, 201, 227));
-    boxWithBorder1_1.setBorderSize(1);
-    add(boxWithBorder1_1);
-
-    boxWithBorder1_2_1.setPosition(2, 1, 180, 55);
-    boxWithBorder1_2_1.setColor(touchgfx::Color::getColorFromRGB(0, 15, 31));
-    boxWithBorder1_2_1.setBorderColor(touchgfx::Color::getColorFromRGB(166, 201, 227));
-    boxWithBorder1_2_1.setBorderSize(1);
-    add(boxWithBorder1_2_1);
-
     animatedImage1.setXY(340, 15);
     animatedImage1.setBitmaps(BITMAP_IMAGE_WAVE_00_ID, BITMAP_IMAGE_WAVE_23_ID);
     animatedImage1.setUpdateTicksInterval(30);
@@ -63,7 +33,15 @@ MainViewBase::MainViewBase() :
     button_Volt.setAction(buttonCallback);
     add(button_Volt);
 
-    button_ID.setXY(336, 244);
+    button_Volt_1.setXY(188, 59);
+    button_Volt_1.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID));
+    add(button_Volt_1);
+
+    button_Curr_1.setXY(188, 153);
+    button_Curr_1.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID));
+    add(button_Curr_1);
+
+    button_ID.setXY(21, 244);
     button_ID.setBitmaps(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID), touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_132X60_GLOSS_ID));
     button_ID.setAction(buttonCallback);
     add(button_ID);
@@ -76,10 +54,6 @@ MainViewBase::MainViewBase() :
     MaesVolt.setXY(7, 59);
     MaesVolt.setBitmap(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_168X72_GLOSS_ID));
     add(MaesVolt);
-
-    MaesPhas.setXY(7, 238);
-    MaesPhas.setBitmap(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_168X72_GLOSS_ID));
-    add(MaesPhas);
 
     MaesCurr.setXY(7, 147);
     MaesCurr.setBitmap(touchgfx::Bitmap(BITMAP_BTN_AO_KONPEKI_168X72_GLOSS_ID));
@@ -122,6 +96,14 @@ MainViewBase::MainViewBase() :
     Val_Set_Volt.setWildcard(Val_Set_VoltBuffer);
     Val_Set_Volt.setTypedText(touchgfx::TypedText(T___SINGLEUSE_211V));
     add(Val_Set_Volt);
+
+    Val_Set_Volt_1.setPosition(199, 168, 110, 37);
+    Val_Set_Volt_1.setColor(touchgfx::Color::getColorFromRGB(217, 217, 217));
+    Val_Set_Volt_1.setLinespacing(0);
+    Val_Set_Volt_1Buffer[0] = 0;
+    Val_Set_Volt_1.setWildcard(Val_Set_Volt_1Buffer);
+    Val_Set_Volt_1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_MW3V));
+    add(Val_Set_Volt_1);
 
     Val_Set_Phas.setPosition(199, 256, 110, 44);
     Val_Set_Phas.setColor(touchgfx::Color::getColorFromRGB(217, 217, 217));
@@ -167,13 +149,7 @@ MainViewBase::MainViewBase() :
     textArea1_1.setTypedText(touchgfx::TypedText(T_UNIT_CURR));
     add(textArea1_1);
 
-    textArea1_1_1.setPosition(111, 256, 54, 54);
-    textArea1_1_1.setColor(touchgfx::Color::getColorFromRGB(217, 217, 217));
-    textArea1_1_1.setLinespacing(0);
-    textArea1_1_1.setTypedText(touchgfx::TypedText(T_UNIT_DEG));
-    add(textArea1_1_1);
-
-    ID.setXY(350, 252);
+    ID.setXY(35, 252);
     ID.setColor(touchgfx::Color::getColorFromRGB(200, 211, 227));
     ID.setLinespacing(0);
     IDBuffer[0] = 0;

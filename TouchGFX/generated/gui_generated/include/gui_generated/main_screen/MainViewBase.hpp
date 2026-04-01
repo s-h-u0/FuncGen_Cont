@@ -8,7 +8,6 @@
 #include <mvp/View.hpp>
 #include <gui/main_screen/MainPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <touchgfx/widgets/AnimatedImage.hpp>
 #include <touchgfx/widgets/ToggleButton.hpp>
 #include <touchgfx/widgets/Button.hpp>
@@ -57,24 +56,21 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Box BG_Main;
-    touchgfx::BoxWithBorder boxWithBorder1;
-    touchgfx::BoxWithBorder boxWithBorder1_2;
-    touchgfx::BoxWithBorder boxWithBorder1_2_2;
-    touchgfx::BoxWithBorder boxWithBorder1_1;
-    touchgfx::BoxWithBorder boxWithBorder1_2_1;
     touchgfx::AnimatedImage animatedImage1;
     touchgfx::ToggleButton toggleButton_Stop;
     touchgfx::Button button_Volt;
+    touchgfx::Button button_Volt_1;
+    touchgfx::Button button_Curr_1;
     touchgfx::Button button_ID;
     touchgfx::Button button_Phas;
     touchgfx::Image MaesVolt;
-    touchgfx::Image MaesPhas;
     touchgfx::Image MaesCurr;
     touchgfx::TextArea MeasureValue;
     touchgfx::TextAreaWithOneWildcard Val_Meas_Phas;
     touchgfx::TextAreaWithOneWildcard Val_Meas_Curr;
     touchgfx::TextAreaWithOneWildcard Val_Meas_Volt;
     touchgfx::TextAreaWithOneWildcard Val_Set_Volt;
+    touchgfx::TextAreaWithOneWildcard Val_Set_Volt_1;
     touchgfx::TextAreaWithOneWildcard Val_Set_Phas;
     touchgfx::TextArea SetValue;
     touchgfx::ToggleButton toggleButton_Run;
@@ -82,7 +78,6 @@ protected:
     touchgfx::TextArea STOP_Text;
     touchgfx::TextArea textArea1;
     touchgfx::TextArea textArea1_1;
-    touchgfx::TextArea textArea1_1_1;
     touchgfx::TextAreaWithOneWildcard ID;
 
     /*
@@ -96,6 +91,8 @@ protected:
     touchgfx::Unicode::UnicodeChar Val_Meas_VoltBuffer[VAL_MEAS_VOLT_SIZE];
     static const uint16_t VAL_SET_VOLT_SIZE = 10;
     touchgfx::Unicode::UnicodeChar Val_Set_VoltBuffer[VAL_SET_VOLT_SIZE];
+    static const uint16_t VAL_SET_VOLT_1_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar Val_Set_Volt_1Buffer[VAL_SET_VOLT_1_SIZE];
     static const uint16_t VAL_SET_PHAS_SIZE = 10;
     touchgfx::Unicode::UnicodeChar Val_Set_PhasBuffer[VAL_SET_PHAS_SIZE];
     static const uint16_t ID_SIZE = 32;

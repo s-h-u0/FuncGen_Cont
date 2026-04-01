@@ -120,6 +120,7 @@ protected:
     touchgfx::ButtonWithLabel Enter;
     touchgfx::ButtonWithLabel Delete;
     touchgfx::ButtonWithLabel A;
+    touchgfx::ButtonWithLabel ALL;
     touchgfx::ButtonWithLabel B;
     touchgfx::ButtonWithLabel C;
     touchgfx::ButtonWithLabel D;

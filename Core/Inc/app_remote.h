@@ -40,6 +40,7 @@ bool AppRemote_Run(void);
 bool AppRemote_Stop(void);
 bool AppRemote_QueryState(void);
 bool AppRemote_MeasVolt(int32_t* mv, uint32_t to_ms);
+bool AppRemote_MeasCurr(int32_t* mv, uint32_t to_ms);
 
 bool AppRemote_SetVolt(uint32_t mv);
 bool AppRemote_SetPhas(uint16_t deg);

@@ -128,6 +128,11 @@ bool AppRemote_MeasVolt(int32_t* mv, uint32_t to_ms)
     return remote_meas_volt_mV_to(s.current_id, mv, to_ms);
 }
 
+bool AppRemote_MeasCurr(int32_t* mv, uint32_t to_ms)
+{
+    return remote_meas_curr_mV_to(s.current_id, mv, to_ms);
+}
+
 bool AppRemote_SetVolt(uint32_t mv)
 {
     return remote_set_pot_volt_to(s.current_id, mv);

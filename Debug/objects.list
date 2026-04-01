@@ -1,5 +1,4 @@
 "./Core/Src/app_remote.o"
-"./Core/Src/dipsw_221AMA16R.o"
 "./Core/Src/main.o"
 "./Core/Src/meas_timer.o"
 "./Core/Src/remote_client.o"

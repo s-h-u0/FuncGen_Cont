@@ -206,6 +206,80 @@ void MainView::setMeasuredVolt_mV(int16_t mv)
     Val_Meas_Volt.invalidate();
 }
 
+void MainView::setMeasuredVolt_Phys_mV(int32_t mv)
+{
+    if (mv == INT32_MIN) {
+        Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE, "--");
+        Val_Meas_Volt.resizeToCurrentText();
+        Val_Meas_Volt.invalidate();
+        return;
+    }
+
+    bool neg = (mv < 0);
+    int32_t v = mv;
+    if (v < 0) v = -v;
+
+    int32_t whole = v / 1000;
+    int32_t rem   = v % 1000;
+    int32_t frac2 = (rem + 5) / 10;
+
+    if (frac2 == 100) {
+        frac2 = 0;
+        whole += 1;
+    }
+
+    int whole_i = (int)whole;
+    int frac2_i = (int)frac2;
+
+    if (neg) {
+        Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE, "-%d.%02d",
+                          whole_i, frac2_i);
+    } else {
+        Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE, "%d.%02d",
+                          whole_i, frac2_i);
+    }
+
+    Val_Meas_Volt.resizeToCurrentText();
+    Val_Meas_Volt.invalidate();
+}
+
+void MainView::setMeasuredCurr_mA(int32_t ma)
+{
+    if (ma == INT32_MIN) {
+        Unicode::snprintf(Val_Meas_CurrBuffer, VAL_MEAS_CURR_SIZE, "--");
+        Val_Meas_Curr.resizeToCurrentText();
+        Val_Meas_Curr.invalidate();
+        return;
+    }
+
+    bool neg = (ma < 0);
+    int32_t v = ma;
+    if (v < 0) v = -v;
+
+    int32_t whole = v / 1000;
+    int32_t rem   = v % 1000;
+    int32_t frac2 = (rem + 5) / 10;
+
+    if (frac2 == 100) {
+        frac2 = 0;
+        whole += 1;
+    }
+
+    int whole_i = (int)whole;
+    int frac2_i = (int)frac2;
+
+    if (neg) {
+        Unicode::snprintf(Val_Meas_CurrBuffer, VAL_MEAS_CURR_SIZE, "-%d.%02d",
+                          whole_i, frac2_i);
+    } else {
+        Unicode::snprintf(Val_Meas_CurrBuffer, VAL_MEAS_CURR_SIZE, "%d.%02d",
+                          whole_i, frac2_i);
+    }
+
+    Val_Meas_Curr.resizeToCurrentText();
+    Val_Meas_Curr.invalidate();
+}
+
 // --- MainView::handleTickEvent() 内に追加 ---
 void MainView::handleTickEvent()
 {

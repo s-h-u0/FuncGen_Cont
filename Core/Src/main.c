@@ -23,7 +23,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "dipsw_221AMA16R.h"
 #include <stdio.h>
 #include "meas_timer.h"
 #include "app_remote.h"

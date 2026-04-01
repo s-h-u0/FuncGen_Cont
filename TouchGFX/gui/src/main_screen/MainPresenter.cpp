@@ -19,7 +19,6 @@
 
 
 extern "C" {
-#include "dipsw_221AMA16R.h"
 #include "app_remote.h"
 #include <cstdio>   // printf()
 #include <cstring>  // strlen(), strcmp(), strncmp()
@@ -120,27 +119,36 @@ SettingType MainPresenter::getCurrentSetting() const
 
 #include "rs485_bridge.h"  // RS485_PcHasPending() を使う
 
+/** @brief リモート子機の最新計測値を View に反映
+ *  @details
+ *   - 電圧: 子機の MEAS:VOLT? 応答を実電圧[mV]として取得し、
+ *           View::setMeasuredVolt_Phys_mV() へ渡す
+ *   - 電流: 子機の MEAS:CURR? 応答を実電流[mA]として取得し、
+ *           View::setMeasuredCurr_mA() へ渡す
+ *   - 通信失敗時は各表示を "--" にする
+ */
 void MainPresenter::updateMeasuredValues()
 {
-
-    // ② 他のUI往復中ならやめる（既存）
     if (RS485_IsBusy()) return;
 
     static uint32_t lastProbeTick[16] = {0};
-    static uint8_t  failStreak  [16] = {0};
+    static uint8_t  failStreak[16]    = {0};
+
+    static int32_t  lastVolt_mV[16]   = {0};
+    static int32_t  lastCurr_mA[16]   = {0};
+    static uint8_t  hasVolt[16]       = {0};
+    static uint8_t  hasCurr[16]       = {0};
 
     const uint8_t id = AppRemote_GetID();
     const uint32_t now = HAL_GetTick();
 
     const bool likelyAlive = model ? model->isLikelyAlive(id, now, 1500) : false;
 
-    // ③ 生きてる時でも叩きすぎ防止（最小周期 150ms）
     const uint32_t minPeriodAlive = 150u;
     if (likelyAlive) {
         if ((int32_t)(now - lastProbeTick[id]) < (int32_t)minPeriodAlive) return;
     }
 
-    // ④ 失敗が続く or 生存不明は指数バックオフ（80,160,320,640,1280ms）
     uint32_t backoff = 0;
     if (!likelyAlive || failStreak[id] > 0) {
         uint8_t s = failStreak[id];
@@ -149,33 +157,50 @@ void MainPresenter::updateMeasuredValues()
         if ((int32_t)(now - lastProbeTick[id]) < (int32_t)backoff) return;
     }
 
-    // ⑤ 叩く。死んでそうなら短TOで軽く、元気なら少し長め
-    //const uint32_t to_ms = likelyAlive ? 120u : 80u;
     const uint32_t to_ms = 400u;
 
-    int32_t mv = 0;
-    const bool ok = AppRemote_MeasVolt(&mv, to_ms);
+    int32_t volt_phys_mv = 0;
+    int32_t curr_ma      = 0;
+
+    const bool okVolt = AppRemote_MeasVolt(&volt_phys_mv, to_ms);
+    const bool okCurr = AppRemote_MeasCurr(&curr_ma, to_ms);
 
     lastProbeTick[id] = now;
 
-    if (ok) {
-        if (mv >  32767) mv =  32767;
-        if (mv < -32768) mv = -32768;
-        view.setMeasuredVolt_mV((int16_t)mv);
+    if (okVolt) {
+        lastVolt_mV[id] = volt_phys_mv;
+        hasVolt[id] = 1;
+        view.setMeasuredVolt_Phys_mV(volt_phys_mv);
+    } else if (hasVolt[id]) {
+        view.setMeasuredVolt_Phys_mV(lastVolt_mV[id]);
+    } else {
+        view.setMeasuredVolt_Phys_mV(INT32_MIN);
+    }
+
+    if (okCurr) {
+        lastCurr_mA[id] = curr_ma;
+        hasCurr[id] = 1;
+        view.setMeasuredCurr_mA(curr_ma);
+    } else if (hasCurr[id]) {
+        view.setMeasuredCurr_mA(lastCurr_mA[id]);
+    } else {
+        view.setMeasuredCurr_mA(INT32_MIN);
+    }
+
+    if (okVolt || okCurr) {
         if (model) model->noteAlive(id, now);
         failStreak[id] = 0;
     } else {
-        view.setMeasuredVolt_mV(INT16_MIN);     // "--"
         if (failStreak[id] < 8) ++failStreak[id];
+
+        /* たとえば3回以上連続で両方失敗したら無効表示 */
+        if (failStreak[id] >= 3) {
+            hasVolt[id] = 0;
+            hasCurr[id] = 0;
+            view.setMeasuredVolt_Phys_mV(INT32_MIN);
+            view.setMeasuredCurr_mA(INT32_MIN);
+        }
     }
-}
-
-
-void MainPresenter::updateDipValue()
-{
-    // 221-AMA16R（4bit）の状態を 0x0〜0xF で取得
-    uint8_t v = DIP221_Read() & 0x0F;
-    view.setDipHex(v);
 }
 
 

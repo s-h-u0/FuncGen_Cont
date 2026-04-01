@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <ctype.h>
+#include "app_remote.h"
 
 /* ====== どのUARTを使うか（Nucleo F412ZG 既定） ====== */
 extern UART_HandleTypeDef huart3;
@@ -217,7 +218,6 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef* hu){
  * ここから下：UI向け 1往復API（RS485_ENABLE_UI_API=1 のときだけ有効）
  * ================================================================= */
 #if RS485_ENABLE_UI_API
-#include "dipsw_221AMA16R.h"
 
 static volatile bool s_ui_busy = false;
 bool RS485_IsBusy(void){ return s_ui_busy; }
@@ -252,8 +252,8 @@ bool RS485_Transact(rs485_origin_t origin,
 
   char tx[LINE_MAX + 8];
   if (add_dip_prefix) {
-    uint8_t dip = (uint8_t)(DIP221_Read() & 0x0F);
-    snprintf(tx, sizeof(tx), "@%X %s", (unsigned)dip, line);
+      uint8_t id = AppRemote_GetID();
+      snprintf(tx, sizeof(tx), "@%X %s", (unsigned)id, line);
   } else {
     snprintf(tx, sizeof(tx), "%s", line);
   }
