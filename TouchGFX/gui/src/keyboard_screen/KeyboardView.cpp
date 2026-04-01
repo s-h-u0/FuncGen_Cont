@@ -64,26 +64,24 @@ void KeyboardView::updateDisplay()
     const SettingType s = presenter->getCurrentSetting();
     const uint32_t    v = presenter->getCurrentValue();
 
+    // 文字列を先にクリア
+    Unicode::snprintf(Setting_ValueBuffer, SETTING_VALUE_SIZE, "");
+
     if (s == SettingType::ID) {
-        // 0〜F を 1文字表示
         touchgfx::Unicode::UnicodeChar ch =
             (v < 10) ? (touchgfx::Unicode::UnicodeChar)('0' + v)
                      : (touchgfx::Unicode::UnicodeChar)('A' + (v - 10));
         Setting_ValueBuffer[0] = ch;
         Setting_ValueBuffer[1] = 0;
-        Setting_Value.resizeToCurrentText();
-        Setting_Value.invalidate();
-
-        // 単位は不要なら消す（お好みで）
-        // UNIT.setAlpha(0); UNIT.invalidate();
     } else {
         Unicode::snprintf(Setting_ValueBuffer, SETTING_VALUE_SIZE, "%u", (unsigned)v);
-        Setting_Value.resizeToCurrentText();
-        Setting_Value.invalidate();
-
-        // Voltage/Phase のときだけ単位更新
         updateUnit(s);
     }
+
+    // ★ 幅は変えない
+    // Setting_Value.resizeToCurrentText();  ← 消す
+
+    Setting_Value.invalidate();
 }
 
 
