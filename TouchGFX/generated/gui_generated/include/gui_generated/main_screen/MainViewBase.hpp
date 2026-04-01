@@ -8,7 +8,6 @@
 #include <mvp/View.hpp>
 #include <gui/main_screen/MainPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/widgets/AnimatedImage.hpp>
 #include <touchgfx/widgets/ToggleButton.hpp>
 #include <touchgfx/widgets/Button.hpp>
 #include <touchgfx/widgets/Image.hpp>
@@ -56,7 +55,6 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Box BG_Main;
-    touchgfx::AnimatedImage animatedImage1;
     touchgfx::ToggleButton toggleButton_Stop;
     touchgfx::Button button_Volt;
     touchgfx::Button button_Curr;

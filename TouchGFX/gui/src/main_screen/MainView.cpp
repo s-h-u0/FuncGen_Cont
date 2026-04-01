@@ -49,16 +49,7 @@ void MainView::updateRunStopUI(bool running)
     RUN_Text.invalidate();
     STOP_Text.invalidate();
 
-    // スピナー制御
-    if (running) {
-        animatedImage1.setVisible(true);
-        animatedImage1.startAnimation(false /*rev*/, true /*reset*/, true /*loop*/);
-        animatedImage1.invalidate();
-    } else {
-        animatedImage1.stopAnimation();
-        animatedImage1.invalidate();
-        animatedImage1.setVisible(false);
-    }
+
 }
 
 /* コンストラクタ */
@@ -75,13 +66,7 @@ void MainView::setupScreen()
     Val_Set_Volt.setWildcard(Val_Set_VoltBuffer);
     Val_Set_Phas.setWildcard(Val_Set_PhasBuffer);
 
-    // スピナー初期状態
-    animatedImage1.stopAnimation();
-    animatedImage1.setVisible(false);
-    animatedImage1.invalidate();
 
-    isRunning = false;
-    updateRunStopUI(false);
 
     MeasTimer_Start();
 
@@ -136,23 +121,22 @@ inline void lockFor(uint32_t ms = kLockMs) { s_lockUntilTick = HAL_GetTick() + m
 void MainView::Run()
 {
     if (locked() || isRunning) { updateRunStopUI(isRunning); return; }
-    updateRunStopUI(true);
     lockFor(120);
 
-    // 設定値は Enter で既に送られているので、ここでは RUN のみ
-    AppRemote_Run();
+    if (presenter) {
+        presenter->runCurrent();
+    }
 }
-
 
 void MainView::Stop()
 {
     if (locked() || !isRunning) { updateRunStopUI(isRunning); return; }
-    updateRunStopUI(false);
     lockFor(120);
 
-    AppRemote_Stop();
+    if (presenter) {
+        presenter->stopCurrent();
+    }
 }
-
 
 /* 設定ボタン */
 void MainView::button_VoltClicked()

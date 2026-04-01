@@ -17,11 +17,6 @@ MainViewBase::MainViewBase() :
     BG_Main.setColor(touchgfx::Color::getColorFromRGB(0, 15, 31));
     add(BG_Main);
 
-    animatedImage1.setXY(340, 15);
-    animatedImage1.setBitmaps(BITMAP_IMAGE_WAVE_00_ID, BITMAP_IMAGE_WAVE_23_ID);
-    animatedImage1.setUpdateTicksInterval(30);
-    add(animatedImage1);
-
     toggleButton_Stop.setXY(336, 147);
     toggleButton_Stop.setBitmaps(touchgfx::Bitmap(BITMAP_STOP_INACTIVE_132X60_OUTLINE_NONE_GLOSS_ID), touchgfx::Bitmap(BITMAP_STOP_ACTIVE_132X60_OUTLINE_NONE_GLOSS_ID));
     toggleButton_Stop.forceState(true);
@@ -78,7 +73,7 @@ MainViewBase::MainViewBase() :
     add(Val_Meas_Curr);
 
     Val_Meas_Volt.setPosition(21, 71, 113, 60);
-    Val_Meas_Volt.setColor(touchgfx::Color::getColorFromRGB(217, 217, 217));
+    Val_Meas_Volt.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Meas_Volt.setLinespacing(0);
     Val_Meas_VoltBuffer[0] = 0;
     Val_Meas_Volt.setWildcard(Val_Meas_VoltBuffer);
@@ -86,7 +81,7 @@ MainViewBase::MainViewBase() :
     add(Val_Meas_Volt);
 
     Val_Set_Volt.setPosition(199, 73, 110, 37);
-    Val_Set_Volt.setColor(touchgfx::Color::getColorFromRGB(217, 217, 217));
+    Val_Set_Volt.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Set_Volt.setLinespacing(0);
     Val_Set_VoltBuffer[0] = 0;
     Val_Set_Volt.setWildcard(Val_Set_VoltBuffer);
@@ -94,7 +89,7 @@ MainViewBase::MainViewBase() :
     add(Val_Set_Volt);
 
     Val_Set_Curr.setPosition(199, 168, 110, 37);
-    Val_Set_Curr.setColor(touchgfx::Color::getColorFromRGB(217, 217, 217));
+    Val_Set_Curr.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Set_Curr.setLinespacing(0);
     Val_Set_CurrBuffer[0] = 0;
     Val_Set_Curr.setWildcard(Val_Set_CurrBuffer);
@@ -102,7 +97,7 @@ MainViewBase::MainViewBase() :
     add(Val_Set_Curr);
 
     Val_Set_Phas.setPosition(199, 256, 110, 44);
-    Val_Set_Phas.setColor(touchgfx::Color::getColorFromRGB(217, 217, 217));
+    Val_Set_Phas.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Set_Phas.setLinespacing(0);
     Val_Set_Phas.setWideTextAction(WIDE_TEXT_WORDWRAP_ELLIPSIS);
     Val_Set_PhasBuffer[0] = 0;
@@ -146,7 +141,7 @@ MainViewBase::MainViewBase() :
     add(textArea1_1);
 
     ID.setXY(35, 258);
-    ID.setColor(touchgfx::Color::getColorFromRGB(200, 211, 227));
+    ID.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     ID.setLinespacing(0);
     IDBuffer[0] = 0;
     ID.setWildcard(IDBuffer);

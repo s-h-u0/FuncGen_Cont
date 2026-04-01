@@ -54,9 +54,13 @@ MainPresenter::MainPresenter(MainView& v) : view(v) {}
 void MainPresenter::activate()
 {
     updateBothValuesFromModel(model, view);
+
+    const uint8_t id = AppRemote_GetID();
+    const bool running = model ? model->isRunning(id) : false;
+    view.notifyRunStopFromCLI(running);
+
     AppRemote_QueryState();
 }
-
 
 /** @brief 画面終了時のライフサイクルフック（現状処理なし） */
 void MainPresenter::deactivate() {}
@@ -226,7 +230,7 @@ void MainPresenter::onRemoteLine(const char* line)
 
     switch (ev.type) {
     case APPREMOTE_EVT_RUN: {
-        const uint8_t id = AppRemote_GetID();
+        const uint8_t id = (ev.id != 0xFF) ? ev.id : AppRemote_GetID();
         const uint32_t now = HAL_GetTick();
 
         AppRemote_SetRunning(true);
@@ -236,12 +240,14 @@ void MainPresenter::onRemoteLine(const char* line)
             model->noteAlive(id, now);
         }
 
-        view.notifyRunStopFromCLI(true);
+        if (id == AppRemote_GetID()) {
+            view.notifyRunStopFromCLI(true);
+        }
         break;
     }
 
     case APPREMOTE_EVT_STOP: {
-        const uint8_t id = AppRemote_GetID();
+        const uint8_t id = (ev.id != 0xFF) ? ev.id : AppRemote_GetID();
         const uint32_t now = HAL_GetTick();
 
         AppRemote_SetRunning(false);
@@ -251,9 +257,12 @@ void MainPresenter::onRemoteLine(const char* line)
             model->noteAlive(id, now);
         }
 
-        view.notifyRunStopFromCLI(false);
+        if (id == AppRemote_GetID()) {
+            view.notifyRunStopFromCLI(false);
+        }
         break;
     }
+
 
     case APPREMOTE_EVT_STAT_VOLT: {
         const uint32_t now = HAL_GetTick();
@@ -297,6 +306,30 @@ void MainPresenter::setDesiredValueByID(uint8_t id, SettingType t, uint32_t v)
     if (id != 0xFF && id == current) {
         updateBothValuesFromModel(model, view);
         view.triggerRefreshFromPresenter();
+    }
+}
+
+void MainPresenter::runCurrent()
+{
+    const uint8_t id = AppRemote_GetID();
+
+    if (AppRemote_Run()) {
+        if (model) {
+            model->setRunning(id, true);
+        }
+        view.notifyRunStopFromCLI(true);
+    }
+}
+
+void MainPresenter::stopCurrent()
+{
+    const uint8_t id = AppRemote_GetID();
+
+    if (AppRemote_Stop()) {
+        if (model) {
+            model->setRunning(id, false);
+        }
+        view.notifyRunStopFromCLI(false);
     }
 }
 

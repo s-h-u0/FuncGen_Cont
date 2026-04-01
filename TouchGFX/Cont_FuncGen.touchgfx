@@ -15,18 +15,6 @@
             }
           },
           {
-            "Type": "AnimatedImage",
-            "Name": "animatedImage1",
-            "X": 340,
-            "Y": 15,
-            "Width": 120,
-            "Height": 24,
-            "FileNameFirst": "sine_wave_frames_24\\image_wave_00.png",
-            "FileNameLast": "sine_wave_frames_24\\image_wave_23.png",
-            "UpdateTicksInterval": 500,
-            "LoopEnabled": true
-          },
-          {
             "Type": "ToggleButton",
             "Name": "toggleButton_Stop",
             "X": 336,
@@ -159,9 +147,9 @@
             "TextId": "__SingleUse_YVKD",
             "TextRotation": "0",
             "Color": {
-              "Red": 217,
-              "Green": 217,
-              "Blue": 217
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
             },
             "Wildcard1": {
               "UseBuffer": true,
@@ -178,9 +166,9 @@
             "TextId": "__SingleUse_211V",
             "TextRotation": "0",
             "Color": {
-              "Red": 217,
-              "Green": 217,
-              "Blue": 217
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
             },
             "Wildcard1": {
               "UseBuffer": true,
@@ -197,9 +185,9 @@
             "TextId": "__SingleUse_MW3V",
             "TextRotation": "0",
             "Color": {
-              "Red": 217,
-              "Green": 217,
-              "Blue": 217
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
             },
             "Wildcard1": {
               "UseBuffer": true,
@@ -216,9 +204,9 @@
             "TextId": "__SingleUse_VR8I",
             "TextRotation": "0",
             "Color": {
-              "Red": 217,
-              "Green": 217,
-              "Blue": 217
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
             },
             "Wildcard1": {
               "UseBuffer": true,
@@ -317,9 +305,9 @@
             "TextId": "__SingleUse_UVTT",
             "TextRotation": "0",
             "Color": {
-              "Red": 200,
-              "Green": 211,
-              "Blue": 227
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
             },
             "AutoSize": true,
             "Wildcard1": {

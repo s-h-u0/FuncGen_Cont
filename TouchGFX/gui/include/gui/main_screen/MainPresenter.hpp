@@ -37,6 +37,9 @@ public:
     /** DIPスイッチ(4bit)の値を読み取り、Viewへ16進表示で反映 */
     void updateDipValue();
 
+    void runCurrent();
+    void stopCurrent();
+
 private:
     MainView& view;
 };
