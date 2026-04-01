@@ -24,10 +24,9 @@
 /* USER CODE BEGIN Includes */
 
 #include "dipsw_221AMA16R.h"
-#include "adc_MCP3428.h"
 #include <stdio.h>
 #include "meas_timer.h"
-#include "rs485_bridge.h"
+#include "app_remote.h"
 
 /* USER CODE END Includes */
 
@@ -65,7 +64,7 @@ UART_HandleTypeDef huart3;
 UART_HandleTypeDef huart6;
 
 /* USER CODE BEGIN PV */
-MCP3428_HandleTypeDef hadc3428;
+
 
 /* USER CODE END PV */
 
@@ -150,10 +149,7 @@ int main(void)
   // TouchGFX 用タイマー IRQ をスタート
   HAL_TIM_Base_Start_IT(&TGFX_T);
 
-  // --- ★RS-485ブリッジを起動（PC⇄コントローラ⇄装置） ---
-  RS485_Bridge_Init();
-
-
+  AppRemote_Init();
 
 
 
@@ -172,7 +168,7 @@ int main(void)
 
   MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
-  RS485_Bridge_Poll();
+  AppRemote_Process();
   }
   /* USER CODE END 3 */
 }

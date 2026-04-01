@@ -1,132 +1,123 @@
 #include <gui/model/Model.hpp>
-#include "rs485_bridge.h"
-#include <string.h>
-#include <stdio.h>
-#include "stm32f4xx_hal.h"   // HAL_GetTick 用
+#include "app_remote.h"
 
-// ===== 追加: 受信キュー =====
-#ifndef REM_LINE_MAX
-#define REM_LINE_MAX  64
-#endif
-#ifndef REM_Q_SZ
-#define REM_Q_SZ      8
-#endif
-
-static volatile uint8_t remHead = 0, remTail = 0;
-static char remLines[REM_Q_SZ][REM_LINE_MAX];
-
-// g_currentID の実体をここで定義（UI全体で共有される）
-uint8_t g_currentID = 0;
-
-static Model* s_model_singleton = nullptr;
-
-namespace {
-inline uint8_t idx(SettingType t) {
-    switch(t) {
-        case SettingType::Voltage: return 0;
-        case SettingType::Phase:   return 1;
-        default:                   return 0;
-    }
-}
-}
-
-
-
-extern "C" void RS485_UI_Trampoline(const char* line)
+Model::Model() : modelListener(nullptr)
 {
-    if (s_model_singleton) s_model_singleton->handleRemoteLine(line);
-}
-
-
-Model::Model() : modelListener(nullptr) {
-	s_model_singleton = this;
-	RS485_RegisterUICallback(RS485_UI_Trampoline);
-    for (int i = 0; i < MAX_ID; i++) {
-        desiredVoltages[i]   = 0;
-        desiredPhases[i]     = 0;
-        lastInputVoltages[i] = 0;
-        lastInputPhases[i]   = 0;
-    }
+	for (int i = 0; i < MAX_ID; i++) {
+	    desiredVoltages[i]   = 0;
+	    desiredPhases[i]     = 0;
+	    lastInputVoltages[i] = 0;
+	    lastInputPhases[i]   = 0;
+	    lastSeenTick[i]      = 0;
+	    running[i]           = false;
+	}
     currentSetting = SettingType::Voltage;
 }
 
-void Model::bind(ModelListener* listener) { modelListener = listener; }
-void Model::triggerSomeEvent() { if (modelListener) modelListener->onSomeEvent(); }
-
-void Model::setDesiredValue(SettingType t, uint32_t v, uint8_t id) {
-    if (id >= MAX_ID) return;
-    if (t == SettingType::Voltage) desiredVoltages[id] = v;
-    else if (t == SettingType::Phase) desiredPhases[id] = v;
-}
-
-uint32_t Model::getDesiredValue(SettingType t, uint8_t id) const {
-    if (id >= MAX_ID) return 0;
-    if (t == SettingType::Voltage) return desiredVoltages[id];
-    else if (t == SettingType::Phase) return desiredPhases[id];
-    return 0;
-}
-
-void Model::setLastInputValue(SettingType t, uint32_t v, uint8_t id) {
-    if (id >= MAX_ID) return;
-    if (t == SettingType::Voltage) lastInputVoltages[id] = v;
-    else if (t == SettingType::Phase) lastInputPhases[id] = v;
-}
-
-uint32_t Model::getLastInputValue(SettingType t, uint8_t id) const {
-    if (id >= MAX_ID) return 0;
-    if (t == SettingType::Voltage) return lastInputVoltages[id];
-    else if (t == SettingType::Phase) return lastInputPhases[id];
-    return 0;
-}
-
-void Model::setCurrentSetting(SettingType s) { currentSetting = s; }
-SettingType Model::getCurrentSetting() const { return currentSetting; }
-
-
-// ★ 差し替え: ここは“即Presenter呼び出し”をやめて、キューに積むだけ
-void Model::handleRemoteLine(const char* line)
+void Model::bind(ModelListener* listener)
 {
-    if (!line || !*line) return;
-    size_t n = strnlen(line, REM_LINE_MAX - 1);
-
-    // 短いクリティカルセクション（競合回避）
-    __disable_irq();
-    uint8_t next = (uint8_t)((remHead + 1) % REM_Q_SZ);
-    if (next == remTail) { remTail = (uint8_t)((remTail + 1) % REM_Q_SZ); } // 古いのを落とす
-    memcpy(remLines[remHead], line, n); remLines[remHead][n]='\0'; remHead = next;
-
-    // フルの場合は“捨てる”ポリシー（必要なら上書きに変えてもOK）
-    __enable_irq();
+    modelListener = listener;
 }
 
-// ★ 差し替え: tick() でキューを吐く（= GUIスレッドで Presenter を呼ぶ）
-void Model::tick()
+void Model::triggerSomeEvent()
 {
-    for (;;) {
-        char line[REM_LINE_MAX];
-
-        __disable_irq();
-        if (remTail == remHead) { __enable_irq(); break; } // 空なら終了
-        strcpy(line, remLines[remTail]);
-        remTail = (uint8_t)((remTail + 1) % REM_Q_SZ);
-        __enable_irq();
-
-        if (modelListener) modelListener->onRemoteLine(line);
+    if (modelListener) {
+        modelListener->onSomeEvent();
     }
 }
 
+void Model::setDesiredValue(SettingType t, uint32_t v, uint8_t id)
+{
+    if (id >= MAX_ID) return;
 
-namespace {
-    uint32_t s_lastSeenTick[Model::MAX_ID] = {0};
+    if (t == SettingType::Voltage) {
+        desiredVoltages[id] = v;
+    } else if (t == SettingType::Phase) {
+        desiredPhases[id] = v;
+    }
 }
 
-void Model::noteAlive(uint8_t id) {
-    if (id < MAX_ID) s_lastSeenTick[id] = HAL_GetTick();
+uint32_t Model::getDesiredValue(SettingType t, uint8_t id) const
+{
+    if (id >= MAX_ID) return 0;
+
+    if (t == SettingType::Voltage) return desiredVoltages[id];
+    if (t == SettingType::Phase)   return desiredPhases[id];
+    return 0;
 }
 
-bool Model::isLikelyAlive(uint8_t id, uint32_t alive_ms) const {
+void Model::setLastInputValue(SettingType t, uint32_t v, uint8_t id)
+{
+    if (id >= MAX_ID) return;
+
+    if (t == SettingType::Voltage) {
+        lastInputVoltages[id] = v;
+    } else if (t == SettingType::Phase) {
+        lastInputPhases[id] = v;
+    }
+}
+
+uint32_t Model::getLastInputValue(SettingType t, uint8_t id) const
+{
+    if (id >= MAX_ID) return 0;
+
+    if (t == SettingType::Voltage) return lastInputVoltages[id];
+    if (t == SettingType::Phase)   return lastInputPhases[id];
+    return 0;
+}
+
+void Model::setCurrentSetting(SettingType s)
+{
+    currentSetting = s;
+}
+
+SettingType Model::getCurrentSetting() const
+{
+    return currentSetting;
+}
+
+void Model::tick()
+{
+    char line[64];
+
+    while (AppRemote_PopLine(line, sizeof(line))) {
+        pushRemoteLine(line);
+    }
+}
+
+void Model::pushRemoteLine(const char* line)
+{
+    if (modelListener && line) {
+        modelListener->onRemoteLine(line);
+    }
+}
+
+void Model::noteAlive(uint8_t id, uint32_t now_ms)
+{
+    if (id < MAX_ID) {
+        lastSeenTick[id] = now_ms;
+    }
+}
+
+bool Model::isLikelyAlive(uint8_t id, uint32_t now_ms, uint32_t alive_ms) const
+{
     if (id >= MAX_ID) return false;
-    const uint32_t t = s_lastSeenTick[id];
+
+    const uint32_t t = lastSeenTick[id];
     if (!t) return false;
-    return (int32_t)(HAL_GetTick() - t) < (int32_t)alive_ms;
+
+    return (int32_t)(now_ms - t) < (int32_t)alive_ms;
+}
+
+void Model::setRunning(uint8_t id, bool r)
+{
+    if (id < MAX_ID) {
+        running[id] = r;
+    }
+}
+
+bool Model::isRunning(uint8_t id) const
+{
+    if (id >= MAX_ID) return false;
+    return running[id];
 }

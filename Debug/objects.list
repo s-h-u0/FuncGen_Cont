@@ -1,4 +1,4 @@
-"./Core/Src/adc_MCP3428.o"
+"./Core/Src/app_remote.o"
 "./Core/Src/dipsw_221AMA16R.o"
 "./Core/Src/main.o"
 "./Core/Src/meas_timer.o"

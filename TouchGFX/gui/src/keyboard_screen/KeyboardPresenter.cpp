@@ -17,9 +17,8 @@
 #include <gui/model/Model.hpp>
 
 extern "C" {
-#include "remote_client.h"
+#include "app_remote.h"
 }
-
 
 /** @brief コンストラクタ：対応する View を束縛（Model は ModelListener 経由） */
 KeyboardPresenter::KeyboardPresenter(KeyboardView& v) : view(v) {}
@@ -40,10 +39,11 @@ void KeyboardPresenter::activate()
 
     if (s == SettingType::ID) {
         // ★ ここで現在のIDをそのまま表示値にする
-        currentValue = g_currentID;
+        currentValue = AppRemote_GetID();
     } else {
         // 電圧/位相は Model のキャッシュから
-        currentValue = model->getDesiredValue(s, g_currentID);
+    	const uint8_t id = AppRemote_GetID();
+    	currentValue = model->getDesiredValue(s, id);
     }
 
     view.setLabelAccordingToSetting(s);
@@ -102,31 +102,27 @@ void KeyboardPresenter::onEnter()
     clampToCurrentRange();
 
     const SettingType s = model->getCurrentSetting();
-    extern uint8_t g_currentID;
-    model->setDesiredValue(s, currentValue, g_currentID);
-    model->setLastInputValue(s, currentValue, g_currentID);
+    const uint8_t id = AppRemote_GetID();
+
+    model->setDesiredValue(s, currentValue, id);
+    model->setLastInputValue(s, currentValue, id);
 
     switch (s) {
     case SettingType::ID:
-        // ★ g_currentID も更新しておく
-        g_currentID = static_cast<uint8_t>(currentValue & 0x0F);
-        remote_set_id(g_currentID);
+        AppRemote_SetID((uint8_t)(currentValue & 0x0F));
         break;
 
     case SettingType::Voltage:
-        // ★ 即装置に反映
-        remote_set_pot_volt(currentValue);
+        AppRemote_SetVolt(currentValue);
         break;
 
     case SettingType::Phase:
-        // ★ 即装置に反映
-        remote_set_phas(currentValue);
+        AppRemote_SetPhas((uint16_t)currentValue);
         break;
 
     default:
         break;
     }
-
     view.gotoMainScreen();  // メイン画面へ戻る
 }
 
@@ -196,8 +192,8 @@ void KeyboardPresenter::clampToCurrentRange()
 
 void KeyboardPresenter::setDesiredValue(SettingType t, uint32_t v) {
     if (model) {
-        extern uint8_t g_currentID;
-        model->setDesiredValue(t, v, g_currentID);
+    	const uint8_t id = AppRemote_GetID();
+    	model->setDesiredValue(t, v, id);
     }
 }
 

@@ -17,13 +17,9 @@
 // extern "C" ブロックは行を分ける（プリプロセッサ用）
 extern "C" {
 #include <stdint.h>
-#include "remote_client.h"   // ★ 追加：remote_* API をCリンケージで
+#include "app_remote.h"
 #include <cstdio>
-#include "rs485_bridge.h"   // ← これを追加
-#include <cctype>
-
 }
-
 
 
 
@@ -87,18 +83,14 @@ void MainView::setupScreen()
     isRunning = false;
     updateRunStopUI(false);
 
-    extern MCP3428_HandleTypeDef hadc3428;
-    presenter->setADCHandle(&hadc3428);
-
     MeasTimer_Start();
 
     // 初期表示も明示反映
     updateBothValues(
         presenter->getDesiredValue(SettingType::Voltage),
         presenter->getDesiredValue(SettingType::Phase),
-		remote_get_id()  // または g_currentID を extern 宣言して使う
+        AppRemote_GetID()
     );
-
 }
 
 void MainView::showRemoteLine(const char* line)
@@ -148,7 +140,7 @@ void MainView::Run()
     lockFor(120);
 
     // 設定値は Enter で既に送られているので、ここでは RUN のみ
-    remote_run();
+    AppRemote_Run();
 }
 
 
@@ -158,7 +150,7 @@ void MainView::Stop()
     updateRunStopUI(false);
     lockFor(120);
 
-    remote_stop();
+    AppRemote_Stop();
 }
 
 

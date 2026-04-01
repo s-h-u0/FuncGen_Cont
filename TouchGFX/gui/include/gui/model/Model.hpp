@@ -27,11 +27,10 @@ public:
      */
     void bind(ModelListener* listener);
 
-    /**
-     * @brief  1フレームごとの更新フック
-     * @note   現状は処理なし。将来ポーリング等を追加する場合ここに実装
-     */
+    void pushRemoteLine(const char* line);
+
     void tick();
+
 
     /**
      * @brief  サンプル用イベントを発火（ModelListener へ通知）
@@ -60,13 +59,17 @@ public:
      */
     SettingType getCurrentSetting() const;
 
-    // （内部用）RS-485受信行の処理入口
-    void handleRemoteLine(const char* line);
+
 
     static constexpr uint8_t MAX_ID = 16;
 
-    void noteAlive(uint8_t id);
-    bool isLikelyAlive(uint8_t id, uint32_t alive_ms = 1500) const;
+    void noteAlive(uint8_t id, uint32_t now_ms);
+    bool isLikelyAlive(uint8_t id, uint32_t now_ms, uint32_t alive_ms = 1500) const;
+
+    bool running[MAX_ID];
+
+    void setRunning(uint8_t id, bool r);
+    bool isRunning(uint8_t id) const;
 
 private:
     /** @brief Presenter へ通知するためのリスナ */
@@ -77,6 +80,10 @@ private:
     uint32_t desiredPhases[MAX_ID]     {0};
     uint32_t lastInputVoltages[MAX_ID] {0};
     uint32_t lastInputPhases[MAX_ID]   {0};
+
+    uint32_t lastSeenTick[MAX_ID];
+
+
 
     /** @brief 現在編集中の設定項目（既定: Voltage） */
     SettingType currentSetting {SettingType::Voltage};

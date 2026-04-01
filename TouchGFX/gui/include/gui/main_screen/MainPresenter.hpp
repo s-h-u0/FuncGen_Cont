@@ -1,13 +1,3 @@
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "adc_MCP3428.h"    // Core/Inc にあるヘッダへの相対パスを調整
-#ifdef __cplusplus
-}
-#endif
-
-
 #pragma once
 #include <mvp/Presenter.hpp>
 #include <gui/model/ModelListener.hpp>
@@ -22,9 +12,6 @@ class MainPresenter : public touchgfx::Presenter,
 public:
     explicit MainPresenter(MainView& v);
 
-
-    // ★ 追加（MainView::setupScreen() で呼ばれてるやつ）
-    void setADCHandle(MCP3428_HandleTypeDef* h);
 
     void activate()   override;
     void deactivate() override;
@@ -52,6 +39,4 @@ public:
 
 private:
     MainView& view;
-    // ここに MCP3428 用ハンドルを保持
-    MCP3428_HandleTypeDef* adcHandle = nullptr;  ///< ここを追加
 };
