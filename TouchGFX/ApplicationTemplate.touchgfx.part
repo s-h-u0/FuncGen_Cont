@@ -1,7 +1,7 @@
 
 {
   "Application": {
-    "Name": "Cont_FuncGen",
+    "Name": "FuncGen_Cont",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "AvailableColorDepths": [ 16 ],
     "AvailableLCDs":

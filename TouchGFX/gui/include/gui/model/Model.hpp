@@ -76,10 +76,13 @@ private:
     ModelListener* modelListener;
 
 
-    uint32_t desiredVoltages[MAX_ID]   {0};
-    uint32_t desiredPhases[MAX_ID]     {0};
-    uint32_t lastInputVoltages[MAX_ID] {0};
-    uint32_t lastInputPhases[MAX_ID]   {0};
+    uint32_t desiredVoltages[MAX_ID];
+    uint32_t desiredCurrents[MAX_ID];
+    uint32_t desiredPhases[MAX_ID];
+
+    uint32_t lastInputVoltages[MAX_ID];
+    uint32_t lastInputCurrents[MAX_ID];
+    uint32_t lastInputPhases[MAX_ID];
 
     uint32_t lastSeenTick[MAX_ID];
 

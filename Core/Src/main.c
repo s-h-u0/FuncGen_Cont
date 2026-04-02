@@ -50,6 +50,8 @@ CRC_HandleTypeDef hcrc;
 I2C_HandleTypeDef hi2c1;
 I2C_HandleTypeDef hi2c3;
 
+IWDG_HandleTypeDef hiwdg;
+
 SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi2;
 SPI_HandleTypeDef hspi3;
@@ -83,6 +85,7 @@ static void MX_I2C3_Init(void);
 static void MX_TIM5_Init(void);
 static void MX_USART6_UART_Init(void);
 static void MX_USART3_UART_Init(void);
+static void MX_IWDG_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -136,22 +139,28 @@ int main(void)
   MX_TIM5_Init();
   MX_USART6_UART_Init();
   MX_USART3_UART_Init();
+  //MX_IWDG_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
+  HAL_Delay(200);
+
   Displ_Init(Displ_Orientat_180);			// initialize display controller - set orientation parameter as per TouchGFX setup
-  touchgfxSignalVSync();					// ask display syncronization
-  Displ_BackLight('I');  					// initialize backlight
-  Displ_BackLight('1');
+  HAL_Delay(200);
+  //touchgfxSignalVSync();					// ask display syncronization
+  HAL_Delay(200);
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 100);
   MeasTimer_Init(&htim5);
   // TouchGFX 用タイマー IRQ をスタート
   HAL_TIM_Base_Start_IT(&TGFX_T);
 
+
+  HAL_Delay(200);
+  Displ_BackLight('I');  					// initialize backlight
+  Displ_BackLight('1');
+
+
   AppRemote_Init();
-
-
-
 
 
   /* USER CODE END 2 */
@@ -161,14 +170,15 @@ int main(void)
   while (1)
   {
 
-	  if (Touch_GotATouch(0))
-		  touchgfxSignalVSync();
+	  //if (Touch_GotATouch(0))
+		  //touchgfxSignalVSync();
     /* USER CODE END WHILE */
 
   MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
   AppRemote_Process();
   }
+  //HAL_IWDG_Refresh(&hiwdg);
   /* USER CODE END 3 */
 }
 
@@ -189,9 +199,10 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_LSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
   RCC_OscInitStruct.PLL.PLLM = 8;
@@ -328,6 +339,34 @@ static void MX_I2C3_Init(void)
   /* USER CODE BEGIN I2C3_Init 2 */
 
   /* USER CODE END I2C3_Init 2 */
+
+}
+
+/**
+  * @brief IWDG Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_IWDG_Init(void)
+{
+
+  /* USER CODE BEGIN IWDG_Init 0 */
+
+  /* USER CODE END IWDG_Init 0 */
+
+  /* USER CODE BEGIN IWDG_Init 1 */
+
+  /* USER CODE END IWDG_Init 1 */
+  hiwdg.Instance = IWDG;
+  hiwdg.Init.Prescaler = IWDG_PRESCALER_32;
+  hiwdg.Init.Reload = 4095;
+  if (HAL_IWDG_Init(&hiwdg) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN IWDG_Init 2 */
+
+  /* USER CODE END IWDG_Init 2 */
 
 }
 

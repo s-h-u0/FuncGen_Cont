@@ -37,14 +37,13 @@ inline void updateBothValuesFromModel(Model* m, MainView& v) {
     const uint8_t id = AppRemote_GetID();
 
     const uint32_t vVolt = m->getDesiredValue(SettingType::Voltage, id);
+    const uint32_t vCurr = m->getDesiredValue(SettingType::Current, id);   // ★追加
     const uint32_t vPhas = m->getDesiredValue(SettingType::Phase,   id);
 
-    v.updateBothValues(vVolt, vPhas, id);
+    v.updateBothValues(vVolt, vCurr, vPhas, id);
     v.setDipHex(static_cast<uint8_t>(id & 0x0F));
 }
-
 }
-
 
 /** @brief コンストラクタ：対応する View を束縛 */
 MainPresenter::MainPresenter(MainView& v) : view(v) {}
@@ -79,9 +78,15 @@ void MainPresenter::setDesiredValue(SettingType t, uint32_t v)
     case SettingType::Voltage:
         ok = AppRemote_SetVolt(v);
         break;
+
+    case SettingType::Current:
+        ok = true;   // ★ まずはUI/Model更新だけ通す
+        break;
+
     case SettingType::Phase:
         ok = AppRemote_SetPhas((uint16_t)v);
         break;
+
     default:
         break;
     }
@@ -92,7 +97,6 @@ void MainPresenter::setDesiredValue(SettingType t, uint32_t v)
 
     updateBothValuesFromModel(model, view);
 }
-
 /** @brief Modelから設定値(PVではなく設定値)を取得
  *  @param t 取得対象の種別（電圧/位相など）
  *  @return 設定値（存在しなければ0）

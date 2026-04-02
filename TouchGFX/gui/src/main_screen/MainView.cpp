@@ -62,17 +62,15 @@ void MainView::setupScreen()
 {
     MainViewBase::setupScreen();
 
-    // 数値テキストのワイルドカードを明示バインド
     Val_Set_Volt.setWildcard(Val_Set_VoltBuffer);
+    Val_Set_Curr.setWildcard(Val_Set_CurrBuffer);   // ★追加
     Val_Set_Phas.setWildcard(Val_Set_PhasBuffer);
-
-
 
     MeasTimer_Start();
 
-    // 初期表示も明示反映
     updateBothValues(
         presenter->getDesiredValue(SettingType::Voltage),
+        presenter->getDesiredValue(SettingType::Current),  // ★追加
         presenter->getDesiredValue(SettingType::Phase),
         AppRemote_GetID()
     );
@@ -93,22 +91,26 @@ void MainView::tearDownScreen()
 }
 
 // MainView.cpp
-void MainView::updateBothValues(uint32_t vVolt, uint32_t vPhas, uint32_t vID)
+void MainView::updateBothValues(uint32_t vVolt, uint32_t vCurr, uint32_t vPhas, uint32_t vID)
 {
     // Voltage
-    Unicode::snprintf(Val_Set_VoltBuffer, VAL_SET_VOLT_SIZE, "%u", vVolt);
+    Unicode::snprintf(Val_Set_VoltBuffer, VAL_SET_VOLT_SIZE, "%u", (unsigned)vVolt);
     Val_Set_Volt.resizeToCurrentText();
     Val_Set_Volt.invalidate();
 
+    // Current
+    Unicode::snprintf(Val_Set_CurrBuffer, VAL_SET_CURR_SIZE, "%u", (unsigned)vCurr);
+    Val_Set_Curr.resizeToCurrentText();
+    Val_Set_Curr.invalidate();
+
     // Phase
-    Unicode::snprintf(Val_Set_PhasBuffer, VAL_SET_PHAS_SIZE, "%u", vPhas);
+    Unicode::snprintf(Val_Set_PhasBuffer, VAL_SET_PHAS_SIZE, "%u", (unsigned)vPhas);
     Val_Set_Phas.resizeToCurrentText();
     Val_Set_Phas.invalidate();
 
-    // ID (1桁Hex)
+    // ID
     setDipHex(static_cast<uint8_t>(vID & 0x0F));
 }
-
 
 
 /* タップ誤操作抑制ロック */
@@ -151,6 +153,22 @@ void MainView::button_PhasClicked()
 {
     if (presenter) {
         presenter->setCurrentSetting(SettingType::Phase);
+        application().gotoKeyboardScreenNoTransition();
+    }
+}
+
+void MainView::button_CurrClicked()
+{
+    if (presenter) {
+        presenter->setCurrentSetting(SettingType::Current);
+        application().gotoKeyboardScreenNoTransition();
+    }
+}
+
+void MainView::button_IDClicked()
+{
+    if (presenter) {
+        presenter->setCurrentSetting(SettingType::ID); // ← 今回追加したIDを設定
         application().gotoKeyboardScreenNoTransition();
     }
 }
@@ -294,13 +312,7 @@ void MainView::notifyRunStopFromCLI(bool running)
 
 
 
-void MainView::button_IDClicked()
-{
-    if (presenter) {
-        presenter->setCurrentSetting(SettingType::ID); // ← 今回追加したIDを設定
-        application().gotoKeyboardScreenNoTransition();
-    }
-}
+
 
 
 

@@ -22,7 +22,8 @@ public:
     virtual void Stop();
     virtual void button_VoltClicked();
     virtual void button_PhasClicked();
-
+    virtual void button_CurrClicked();
+    virtual void button_IDClicked();
     // 測定表示（Presenter から）
     void setMeasuredCurr(int16_t val);
     void setMeasuredVolt(int16_t val);
@@ -35,8 +36,8 @@ public:
     // 既存: 2引数
     // void updateBothValues(uint32_t vVolt, uint32_t vPhas);
 
-    // 修正版: 3引数（IDも一緒に反映）
-    void updateBothValues(uint32_t vVolt, uint32_t vPhas, uint32_t vID);
+    // 修正版: 4引数（IDも一緒に反映）
+    void updateBothValues(uint32_t vVolt, uint32_t vCurr, uint32_t vPhas, uint32_t vID);
 
 
     // CLI→UI ブリッジ（C から呼ぶ）
@@ -54,8 +55,7 @@ public:
     // 見た目更新API（CLIブリッジからも使うので public）
     void updateRunStopUI(bool running);
 
-    // ★追加: Designerのbutton_IDと対応するコールバック
-    virtual void button_IDClicked();
+
 
     void showRemoteLine(const char* line);
 

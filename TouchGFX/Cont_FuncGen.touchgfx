@@ -10,15 +10,16 @@
             "Width": 480,
             "Height": 320,
             "Color": {
-              "Green": 15,
-              "Blue": 31
+              "Red": 1,
+              "Green": 4,
+              "Blue": 8
             }
           },
           {
             "Type": "ToggleButton",
             "Name": "toggleButton_Stop",
             "X": 336,
-            "Y": 147,
+            "Y": 148,
             "Width": 132,
             "Height": 60,
             "InitialStatePressed": true,
@@ -29,7 +30,7 @@
             "Type": "Button",
             "Name": "button_Volt",
             "X": 188,
-            "Y": 59,
+            "Y": 62,
             "Width": 132,
             "Height": 60,
             "Pressed": "box\\btn_ao_konpeki_132x60_gloss.png",
@@ -39,7 +40,7 @@
             "Type": "Button",
             "Name": "button_Curr",
             "X": 188,
-            "Y": 153,
+            "Y": 150,
             "Width": 132,
             "Height": 60,
             "Pressed": "box\\btn_ao_konpeki_132x60_gloss.png",
@@ -49,7 +50,7 @@
             "Type": "Button",
             "Name": "button_Phas",
             "X": 188,
-            "Y": 244,
+            "Y": 240,
             "Width": 132,
             "Height": 60,
             "Pressed": "box\\btn_ao_konpeki_132x60_gloss.png",
@@ -58,8 +59,8 @@
           {
             "Type": "Button",
             "Name": "button_ID",
-            "X": 25,
-            "Y": 244,
+            "X": 336,
+            "Y": 240,
             "Width": 132,
             "Height": 60,
             "Pressed": "box\\btn_ao_konpeki_132x60_gloss.png",
@@ -69,7 +70,7 @@
             "Type": "Image",
             "Name": "MaesVolt",
             "X": 7,
-            "Y": 59,
+            "Y": 56,
             "Width": 168,
             "Height": 72,
             "RelativeFilename": "box\\btn_ao_konpeki_168x72_gloss.png"
@@ -78,7 +79,7 @@
             "Type": "Image",
             "Name": "MaesCurr",
             "X": 7,
-            "Y": 147,
+            "Y": 144,
             "Width": 168,
             "Height": 72,
             "RelativeFilename": "box\\btn_ao_konpeki_168x72_gloss.png"
@@ -89,7 +90,7 @@
             "X": 58,
             "Y": 15,
             "Width": 67,
-            "Height": 31,
+            "Height": 27,
             "TextId": "__SingleUse_TQG0",
             "TextRotation": "0",
             "Color": {
@@ -101,28 +102,9 @@
           },
           {
             "Type": "TextArea",
-            "Name": "Val_Meas_Phas",
-            "X": 35,
-            "Y": 252,
-            "Width": 114,
-            "Height": 60,
-            "TextId": "__SingleUse_WN51",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "Wildcard1": {
-              "UseBuffer": true,
-              "BufferSize": 10
-            }
-          },
-          {
-            "Type": "TextArea",
             "Name": "Val_Meas_Curr",
             "X": 21,
-            "Y": 168,
+            "Y": 154,
             "Width": 113,
             "Height": 60,
             "TextId": "__SingleUse_HNTL",
@@ -141,7 +123,7 @@
             "Type": "TextArea",
             "Name": "Val_Meas_Volt",
             "X": 21,
-            "Y": 71,
+            "Y": 62,
             "Width": 113,
             "Height": 60,
             "TextId": "__SingleUse_YVKD",
@@ -160,7 +142,7 @@
             "Type": "TextArea",
             "Name": "Val_Set_Volt",
             "X": 199,
-            "Y": 73,
+            "Y": 76,
             "Width": 110,
             "Height": 37,
             "TextId": "__SingleUse_211V",
@@ -179,7 +161,7 @@
             "Type": "TextArea",
             "Name": "Val_Set_Curr",
             "X": 199,
-            "Y": 168,
+            "Y": 162,
             "Width": 110,
             "Height": 37,
             "TextId": "__SingleUse_MW3V",
@@ -198,7 +180,7 @@
             "Type": "TextArea",
             "Name": "Val_Set_Phas",
             "X": 199,
-            "Y": 256,
+            "Y": 252,
             "Width": 110,
             "Height": 44,
             "TextId": "__SingleUse_VR8I",
@@ -220,7 +202,7 @@
             "X": 232,
             "Y": 15,
             "Width": 44,
-            "Height": 31,
+            "Height": 27,
             "TextId": "__SingleUse_Y6WD",
             "TextRotation": "0",
             "Color": {
@@ -234,7 +216,7 @@
             "Type": "ToggleButton",
             "Name": "toggleButton_Run",
             "X": 336,
-            "Y": 55,
+            "Y": 56,
             "Width": 132,
             "Height": 60,
             "Pressed": "box\\RUN_active_132x60_outline-none_gloss.png",
@@ -244,7 +226,7 @@
             "Type": "TextArea",
             "Name": "RUN_Text",
             "X": 336,
-            "Y": 55,
+            "Y": 62,
             "Width": 132,
             "Height": 63,
             "TextId": "__SingleUse_R6D2",
@@ -259,7 +241,7 @@
             "Type": "TextArea",
             "Name": "STOP_Text",
             "X": 336,
-            "Y": 147,
+            "Y": 153,
             "Width": 132,
             "Height": 68,
             "TextId": "__SingleUse_C75W",
@@ -268,40 +250,40 @@
           {
             "Type": "TextArea",
             "Name": "textArea1",
-            "X": 116,
-            "Y": 71,
+            "X": 125,
+            "Y": 72,
             "Width": 37,
             "Height": 41,
             "TextId": "UNIT_V",
             "TextRotation": "0",
             "Color": {
-              "Red": 217,
-              "Green": 217,
-              "Blue": 217
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
             }
           },
           {
             "Type": "TextArea",
             "Name": "textArea1_1",
-            "X": 120,
-            "Y": 168,
+            "X": 125,
+            "Y": 160,
             "Width": 37,
             "Height": 41,
             "TextId": "UNIT_Curr",
             "TextRotation": "0",
             "Color": {
-              "Red": 217,
-              "Green": 217,
-              "Blue": 217
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
             }
           },
           {
             "Type": "TextArea",
             "Name": "ID",
-            "X": 35,
-            "Y": 258,
+            "X": 350,
+            "Y": 254,
             "Width": 38,
-            "Height": 32,
+            "Height": 34,
             "TextId": "__SingleUse_UVTT",
             "TextRotation": "0",
             "Color": {
@@ -314,6 +296,15 @@
               "UseBuffer": true,
               "BufferSize": 32
             }
+          },
+          {
+            "Type": "Image",
+            "Name": "Image1",
+            "X": 41,
+            "Y": 229,
+            "Width": 100,
+            "Height": 67,
+            "RelativeFilename": "kos21logo\\kos21.png"
           }
         ],
         "Interactions": [
@@ -330,7 +321,7 @@
             }
           },
           {
-            "InteractionName": "InputPhaseVolt",
+            "InteractionName": "InputDataPhase",
             "Trigger": {
               "Type": "TriggerClicked",
               "TriggerComponent": "button_Phas"
@@ -405,6 +396,29 @@
               "Type": "ActionGotoScreen",
               "ScreenTransitionType": "ScreenTransitionNone",
               "ActionComponent": "Keyboard"
+            }
+          },
+          {
+            "InteractionName": "InputDateCurr",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "button_Curr"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Keyboard"
+            }
+          },
+          {
+            "InteractionName": "button_CurrClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "button_Curr"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "button_CurrClicked"
             }
           }
         ]

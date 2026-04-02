@@ -3,14 +3,18 @@
 
 Model::Model() : modelListener(nullptr)
 {
-	for (int i = 0; i < MAX_ID; i++) {
-	    desiredVoltages[i]   = 0;
-	    desiredPhases[i]     = 0;
-	    lastInputVoltages[i] = 0;
-	    lastInputPhases[i]   = 0;
-	    lastSeenTick[i]      = 0;
-	    running[i]           = false;
-	}
+    for (int i = 0; i < MAX_ID; i++) {
+        desiredVoltages[i]   = 0;
+        desiredCurrents[i]   = 0;
+        desiredPhases[i]     = 0;
+
+        lastInputVoltages[i] = 0;
+        lastInputCurrents[i] = 0;
+        lastInputPhases[i]   = 0;
+
+        lastSeenTick[i]      = 0;
+        running[i]           = false;
+    }
     currentSetting = SettingType::Voltage;
 }
 
@@ -32,6 +36,8 @@ void Model::setDesiredValue(SettingType t, uint32_t v, uint8_t id)
 
     if (t == SettingType::Voltage) {
         desiredVoltages[id] = v;
+    } else if (t == SettingType::Current) {
+        desiredCurrents[id] = v;
     } else if (t == SettingType::Phase) {
         desiredPhases[id] = v;
     }
@@ -42,6 +48,7 @@ uint32_t Model::getDesiredValue(SettingType t, uint8_t id) const
     if (id >= MAX_ID) return 0;
 
     if (t == SettingType::Voltage) return desiredVoltages[id];
+    if (t == SettingType::Current) return desiredCurrents[id];
     if (t == SettingType::Phase)   return desiredPhases[id];
     return 0;
 }
@@ -52,6 +59,8 @@ void Model::setLastInputValue(SettingType t, uint32_t v, uint8_t id)
 
     if (t == SettingType::Voltage) {
         lastInputVoltages[id] = v;
+    } else if (t == SettingType::Current) {
+        lastInputCurrents[id] = v;
     } else if (t == SettingType::Phase) {
         lastInputPhases[id] = v;
     }
@@ -62,6 +71,7 @@ uint32_t Model::getLastInputValue(SettingType t, uint8_t id) const
     if (id >= MAX_ID) return 0;
 
     if (t == SettingType::Voltage) return lastInputVoltages[id];
+    if (t == SettingType::Current) return lastInputCurrents[id];
     if (t == SettingType::Phase)   return lastInputPhases[id];
     return 0;
 }

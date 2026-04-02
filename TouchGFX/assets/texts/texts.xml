@@ -16,9 +16,6 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_WN51" Alignment="Right" TypographyId="Default">
-        <Translation Language="GB">&lt;value&gt;</Translation>
-      </Text>
       <Text Id="__SingleUse_MW3V" Alignment="Right" TypographyId="Set_val">
         <Translation Language="GB">&lt;value&gt;A</Translation>
       </Text>
@@ -75,6 +72,9 @@
       </Text>
       <Text Id="VOLTAGE" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Voltage</Translation>
+      </Text>
+      <Text Id="CURRENT" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Current</Translation>
       </Text>
       <Text Id="__SingleUse_U4D1" Alignment="Right" TypographyId="Default">
         <Translation Language="GB">      &lt;value&gt; </Translation>

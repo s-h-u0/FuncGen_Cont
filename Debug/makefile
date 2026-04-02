@@ -16,6 +16,7 @@ RM := rm -rf
 -include TouchGFX/gui/src/keyboard_screen/subdir.mk
 -include TouchGFX/gui/src/common/subdir.mk
 -include TouchGFX/generated/texts/src/subdir.mk
+-include TouchGFX/generated/images/src/kos21logo/subdir.mk
 -include TouchGFX/generated/images/src/box/subdir.mk
 -include TouchGFX/generated/images/src/__generated/subdir.mk
 -include TouchGFX/generated/images/src/subdir.mk

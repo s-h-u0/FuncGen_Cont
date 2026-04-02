@@ -2,6 +2,7 @@
 
 enum class SettingType {
     Voltage = 0,
-    Phase   = 1,
-    ID      = 2   // ★ 追加
+    Current = 1,   // ★ 追加
+    Phase   = 2,
+    ID      = 3
 };

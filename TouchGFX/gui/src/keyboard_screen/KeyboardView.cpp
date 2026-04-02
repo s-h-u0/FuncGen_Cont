@@ -103,13 +103,14 @@ void KeyboardView::setLabelAccordingToSetting(SettingType setting)
 {
     if (setting == SettingType::Voltage) {
         Setting_Label.setTypedText(touchgfx::TypedText(T_VOLTAGE));
+    } else if (setting == SettingType::Current) {
+        Setting_Label.setTypedText(touchgfx::TypedText(T_CURRENT));
     } else if (setting == SettingType::Phase) {
         Setting_Label.setTypedText(touchgfx::TypedText(T_PHASE));
-    } else { // ID
+    } else {
         Setting_Label.setTypedText(touchgfx::TypedText(T_ID));
     }
 
-    // 幅/高さを元に戻して配置を崩さない
     Setting_Label.setPosition(
         Setting_Label.getX(),
         Setting_Label.getY(),
@@ -118,8 +119,6 @@ void KeyboardView::setLabelAccordingToSetting(SettingType setting)
     );
     Setting_Label.invalidate();
 }
-
-
 
 /**
  * @brief デバウンス判定（120ms、wrap-around 安全）
@@ -212,10 +211,13 @@ void KeyboardView::updateUnit(SettingType s)
     if (s == SettingType::Voltage) {
         UNIT.setTypedText(touchgfx::TypedText(T_UNIT_V));
         UNIT.setVisible(true);
+    } else if (s == SettingType::Current) {
+        UNIT.setTypedText(touchgfx::TypedText(T_UNIT_CURR));
+        UNIT.setVisible(true);
     } else if (s == SettingType::Phase) {
         UNIT.setTypedText(touchgfx::TypedText(T_UNIT_DEG));
         UNIT.setVisible(true);
-    } else { // SettingType::ID のときは単位非表示
+    } else {
         UNIT.setVisible(false);
     }
     UNIT.invalidate();

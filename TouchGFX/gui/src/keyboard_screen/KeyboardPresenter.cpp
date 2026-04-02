@@ -63,12 +63,19 @@ void KeyboardPresenter::onDigit(uint8_t d)
 {
     const SettingType s = getCurrentSetting();
     if (s == SettingType::ID) {
-        currentValue = d;      // ← 1桁に固定
+        currentValue = d;
         view.updateDisplay();
         return;
     }
 
-    const uint32_t maxv = (s == SettingType::Voltage) ? VOLT_MAX : PHASE_MAX;
+    uint32_t maxv = 0;
+    switch (s) {
+    case SettingType::Voltage: maxv = VOLT_MAX;  break;
+    case SettingType::Current: maxv = CURR_MAX;  break;
+    case SettingType::Phase:   maxv = PHASE_MAX; break;
+    default:                   maxv = 0;         break;
+    }
+
     const uint32_t nv = currentValue * 10u + d;
     if (nv <= maxv) {
         currentValue = nv;
@@ -116,6 +123,11 @@ void KeyboardPresenter::onEnter()
         AppRemote_SetVolt(currentValue);
         break;
 
+    case SettingType::Current:
+        // 今は Model/UI 反映のみ
+        // AppRemote_SetCurr(currentValue); ができたら追加
+        break;
+
     case SettingType::Phase:
         AppRemote_SetPhas((uint16_t)currentValue);
         break;
@@ -123,9 +135,9 @@ void KeyboardPresenter::onEnter()
     default:
         break;
     }
-    view.gotoMainScreen();  // メイン画面へ戻る
-}
 
+    view.gotoMainScreen();
+}
 
 
 /**
@@ -179,6 +191,7 @@ void KeyboardPresenter::clampToCurrentRange()
 
     switch (s) {
     case SettingType::Voltage: minv = VOLT_MIN;  maxv = VOLT_MAX;  break;
+    case SettingType::Current: minv = CURR_MIN;  maxv = CURR_MAX;  break;
     case SettingType::Phase:   minv = PHASE_MIN; maxv = PHASE_MAX; break;
     case SettingType::ID:      minv = 0;         maxv = 15;        break;
     default:                   minv = 0;         maxv = 0;         break;
@@ -187,8 +200,6 @@ void KeyboardPresenter::clampToCurrentRange()
     if (currentValue < minv) currentValue = minv;
     if (currentValue > maxv) currentValue = maxv;
 }
-
-
 
 void KeyboardPresenter::setDesiredValue(SettingType t, uint32_t v) {
     if (model) {

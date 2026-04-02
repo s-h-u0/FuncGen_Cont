@@ -44,6 +44,10 @@ public:
     {
         // Override and implement this function in Main
     }
+    virtual void button_CurrClicked()
+    {
+        // Override and implement this function in Main
+    }
 
 protected:
     FrontendApplication& application() {
@@ -63,7 +67,6 @@ protected:
     touchgfx::Image MaesVolt;
     touchgfx::Image MaesCurr;
     touchgfx::TextArea MeasureValue;
-    touchgfx::TextAreaWithOneWildcard Val_Meas_Phas;
     touchgfx::TextAreaWithOneWildcard Val_Meas_Curr;
     touchgfx::TextAreaWithOneWildcard Val_Meas_Volt;
     touchgfx::TextAreaWithOneWildcard Val_Set_Volt;
@@ -76,12 +79,11 @@ protected:
     touchgfx::TextArea textArea1;
     touchgfx::TextArea textArea1_1;
     touchgfx::TextAreaWithOneWildcard ID;
+    touchgfx::Image Image1;
 
     /*
      * Wildcard Buffers
      */
-    static const uint16_t VAL_MEAS_PHAS_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar Val_Meas_PhasBuffer[VAL_MEAS_PHAS_SIZE];
     static const uint16_t VAL_MEAS_CURR_SIZE = 10;
     touchgfx::Unicode::UnicodeChar Val_Meas_CurrBuffer[VAL_MEAS_CURR_SIZE];
     static const uint16_t VAL_MEAS_VOLT_SIZE = 10;

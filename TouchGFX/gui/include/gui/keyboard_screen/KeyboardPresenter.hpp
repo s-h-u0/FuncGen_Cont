@@ -5,6 +5,7 @@
  * @details
  *  - 入力上限は SettingType ごとに異なる:
  *      Voltage: 0..50
+ *      Current: 0..999
  *      Phase  : 0..360
  *  - onDigit() は現在の SettingType の上限を超える入力を無視する。
  */
@@ -27,78 +28,33 @@ class KeyboardPresenter : public touchgfx::Presenter,
                           public ModelListener
 {
 public:
-    /**
-     * @brief  コンストラクタ：対応する View を束縛
-     * @param  v キーボード画面の View
-     * @note   Model への参照は ModelListener 経由で得る想定。
-     */
     explicit KeyboardPresenter(KeyboardView& v);
 
-    /**
-     * @brief  画面表示の初期化シーケンス（Model → View 同期）
-     * @details
-     *  現在の編集対象（SettingType）と直近入力値を Model から取得し、
-     *  View に初期表示させる。
-     */
     void activate() override;
-
-    /**
-     * @brief  数字キー入力を1桁追加（範囲超過は無視）
-     * @param  d 追加する桁（0..9）
-     * @note   追加後の値が MAX_INPUT を超える場合は currentValue は変化しない。
-     *         変更があれば View に再描画を指示する。
-     */
     void onDigit(uint8_t d);
-
-    /**
-     * @brief  末尾の1桁を削除（/10）
-     * @note   0 のときは 0 のまま。変更があれば View に再描画を指示。
-     */
     void onDelete();
-
-    /**
-     * @brief  入力を確定
-     * @details
-     *  currentValue を Model の該当設定（desired/last 等の実装方針に従う）
-     *  に保存し、View 側でメイン画面への遷移を行う。
-     */
     void onEnter();
-
-    /**
-     * @brief  編集値を 0 にリセットし、View を更新
-     */
     void reset();
 
-    /**
-     * @brief  現在の編集対象（電圧/位相など）を取得
-     * @return SettingType
-     * @note   実体は Model 側の状態に依存。
-     */
     SettingType getCurrentSetting() const;
-
-    /**
-     * @brief  現在の編集中の数値を取得（View の表示用）
-     * @return currentValue（0..MAX_INPUT）
-     */
     uint32_t getCurrentValue() const;
 
     void onDigitForID(char c);   ///< ID選択用 (A〜F)
-
     void setDesiredValue(SettingType t, uint32_t v);
 
 private:
-    /** @brief 対応する View（描画更新や画面遷移を指示するために使用） */
     KeyboardView& view;
-
-    /** @brief 編集中の数値（常に 0..MAX_INPUT に収まる） */
     uint32_t currentValue{0};
 
     // ---- 入力範囲（上限は inclusive）----
     static constexpr uint32_t VOLT_MIN  = 0;
     static constexpr uint32_t VOLT_MAX  = 50;
+
+    static constexpr uint32_t CURR_MIN  = 0;     // ★追加
+    static constexpr uint32_t CURR_MAX  = 5;   // ★追加
+
     static constexpr uint32_t PHASE_MIN = 0;
     static constexpr uint32_t PHASE_MAX = 360;
 
-    /** @brief 現在の SettingType に応じて currentValue を範囲内へ丸める（防御的） */
     void clampToCurrentRange();
 };
