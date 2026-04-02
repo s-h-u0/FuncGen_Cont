@@ -79,6 +79,13 @@ bool remote_set_pot_volt_to(uint8_t id, uint32_t volt)
     return txrx_with_id(id, cmd, b, sizeof(b), 800) && !strcmp(b, "OK");
 }
 
+bool remote_set_curr_to(uint8_t id, uint32_t ma)
+{
+    char cmd[48], b[8];
+    snprintf(cmd, sizeof(cmd), "TRIP:CURR %lu", (unsigned long)ma);
+    return txrx_with_id(id, cmd, b, sizeof(b), 600) && !strcmp(b, "OK");
+}
+
 bool remote_meas_volt_mV_to(uint8_t id, int32_t* mv, uint32_t to_ms)
 {
     char buf[32];
@@ -132,3 +139,5 @@ static bool txrx_with_id(uint8_t id, const char* cmd, char* out, size_t out_sz, 
 
     return RS485_Transact(ORIGIN_UI, fullcmd, out, out_sz, to, true, false);
 }
+
+

@@ -150,13 +150,16 @@ int main(void)
   HAL_Delay(200);
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 100);
+  HAL_Delay(200);
   MeasTimer_Init(&htim5);
   // TouchGFX 用タイマー IRQ をスタート
+  HAL_Delay(200);
   HAL_TIM_Base_Start_IT(&TGFX_T);
 
 
   HAL_Delay(200);
   Displ_BackLight('I');  					// initialize backlight
+  HAL_Delay(200);
   Displ_BackLight('1');
 
 

@@ -21,6 +21,7 @@ typedef enum {
     APPREMOTE_EVT_RUN,
     APPREMOTE_EVT_STOP,
     APPREMOTE_EVT_STAT_VOLT,
+	APPREMOTE_EVT_STAT_CURR,
     APPREMOTE_EVT_STAT_PHAS
 } AppRemote_EventType;
 
@@ -44,6 +45,7 @@ bool AppRemote_MeasCurr(int32_t* mv, uint32_t to_ms);
 
 bool AppRemote_SetVolt(uint32_t mv);
 bool AppRemote_SetPhas(uint16_t deg);
+bool AppRemote_SetCurr(uint32_t ma);
 
 bool AppRemote_IsRunning(void);
 void AppRemote_SetRunning(bool running);

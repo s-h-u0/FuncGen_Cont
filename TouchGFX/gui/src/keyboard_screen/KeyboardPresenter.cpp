@@ -124,8 +124,7 @@ void KeyboardPresenter::onEnter()
         break;
 
     case SettingType::Current:
-        // 今は Model/UI 反映のみ
-        // AppRemote_SetCurr(currentValue); ができたら追加
+        AppRemote_SetCurr(currentValue);
         break;
 
     case SettingType::Phase:

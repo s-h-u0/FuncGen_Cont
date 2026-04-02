@@ -80,7 +80,7 @@ void MainPresenter::setDesiredValue(SettingType t, uint32_t v)
         break;
 
     case SettingType::Current:
-        ok = true;   // ★ まずはUI/Model更新だけ通す
+        ok = AppRemote_SetCurr(v);
         break;
 
     case SettingType::Phase:
@@ -273,6 +273,17 @@ void MainPresenter::onRemoteLine(const char* line)
 
         if (ev.id != 0xFF && model) {
             model->setLastInputValue(SettingType::Voltage, ev.value, ev.id);
+            model->noteAlive(ev.id, now);
+        }
+        break;
+    }
+
+    case APPREMOTE_EVT_STAT_CURR: {
+        const uint32_t now = HAL_GetTick();
+
+        if (ev.id != 0xFF && model) {
+            model->setLastInputValue(SettingType::Current, ev.value, ev.id);
+            model->setDesiredValue(SettingType::Current, ev.value, ev.id);
             model->noteAlive(ev.id, now);
         }
         break;

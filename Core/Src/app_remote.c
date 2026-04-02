@@ -138,10 +138,16 @@ bool AppRemote_SetVolt(uint32_t mv)
     return remote_set_pot_volt_to(s.current_id, mv);
 }
 
+bool AppRemote_SetCurr(uint32_t ma)
+{
+    return remote_set_curr_to(s.current_id, ma);
+}
+
 bool AppRemote_SetPhas(uint16_t deg)
 {
     return remote_set_phas_to(s.current_id, deg);
 }
+
 
 bool AppRemote_IsRunning(void)
 {
@@ -209,6 +215,14 @@ bool AppRemote_ParseLine(const char* line, AppRemote_Event* ev)
         p += 9;
         while (*p == ' ' || *p == ':') ++p;
         ev->type = APPREMOTE_EVT_STAT_PHAS;
+        ev->value = (uint32_t)atoi(p);
+        return true;
+    }
+
+    if (strncmp(p, "stat:curr", 9) == 0) {
+        p += 9;
+        while (*p == ' ' || *p == ':') ++p;
+        ev->type = APPREMOTE_EVT_STAT_CURR;
         ev->value = (uint32_t)atoi(p);
         return true;
     }
