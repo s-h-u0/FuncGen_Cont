@@ -212,7 +212,7 @@ void KeyboardView::updateUnit(SettingType s)
         UNIT.setTypedText(touchgfx::TypedText(T_UNIT_V));
         UNIT.setVisible(true);
     } else if (s == SettingType::Current) {
-        UNIT.setTypedText(touchgfx::TypedText(T_UNIT_CURR));
+        UNIT.setTypedText(touchgfx::TypedText(  T_UNIT_SET_CURR));
         UNIT.setVisible(true);
     } else if (s == SettingType::Phase) {
         UNIT.setTypedText(touchgfx::TypedText(T_UNIT_DEG));

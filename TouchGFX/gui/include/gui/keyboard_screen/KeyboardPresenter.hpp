@@ -4,9 +4,9 @@
  * @brief  キーボード画面の Presenter（View と Model の仲介）
  * @details
  *  - 入力上限は SettingType ごとに異なる:
- *      Voltage: 0..50
- *      Current: 0..999
- *      Phase  : 0..360
+ *      Voltage: 0..50[v]
+ *      Current: 0..5000[mA]
+ *      Phase  : 0..360[deg]
  *  - onDigit() は現在の SettingType の上限を超える入力を無視する。
  */
 
@@ -50,8 +50,8 @@ private:
     static constexpr uint32_t VOLT_MIN  = 0;
     static constexpr uint32_t VOLT_MAX  = 50;
 
-    static constexpr uint32_t CURR_MIN  = 0;     // ★追加
-    static constexpr uint32_t CURR_MAX  = 5;   // ★追加
+    static constexpr uint32_t CURR_MIN  = 0;
+    static constexpr uint32_t CURR_MAX  = 5000;
 
     static constexpr uint32_t PHASE_MIN = 0;
     static constexpr uint32_t PHASE_MAX = 360;

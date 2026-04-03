@@ -17,7 +17,7 @@
     </TextGroup>
     <TextGroup Id="Unsorted">
       <Text Id="__SingleUse_MW3V" Alignment="Right" TypographyId="Set_val">
-        <Translation Language="GB">&lt;value&gt;A</Translation>
+        <Translation Language="GB">&lt;value&gt;mA</Translation>
       </Text>
       <Text Id="__SingleUse_K47M" Alignment="Center" TypographyId="key">
         <Translation Language="GB">ALL</Translation>
@@ -79,8 +79,8 @@
       <Text Id="__SingleUse_U4D1" Alignment="Right" TypographyId="Default">
         <Translation Language="GB">      &lt;value&gt; </Translation>
       </Text>
-      <Text Id="ResourceId1" Alignment="Left" TypographyId="Label">
-        <Translation Language="GB"></Translation>
+      <Text Id="UNIT_SET_CURR" Alignment="Left" TypographyId="UNIT">
+        <Translation Language="GB">mA</Translation>
       </Text>
       <Text Id="__SingleUse_VR8I" Alignment="Right" TypographyId="Set_val">
         <Translation Language="GB">&lt;value&gt;deg</Translation>
