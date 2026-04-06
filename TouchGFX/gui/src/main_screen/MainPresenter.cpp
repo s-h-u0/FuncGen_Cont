@@ -9,8 +9,10 @@
  *      * Model は子機から最後に確認した状態の親機キャッシュ
  *      * setDesiredValue()/runCurrent()/stopCurrent() は送信要求を出すだけ
  *      * 確定反映は AppRemote_QueryState() 後の onRemoteLine() で行う
- *      * 画面表示直後や送信直後の Model 値は仮表示であり、
- *        子機応答受信後に同期済み状態へ遷移する
+ *      * RUN/STOP も送信成功時点では確定しない。AppRemote_Run()/AppRemote_Stop() は要求送信のみ行い、
+ *        AppRemote_QueryState() 後に受信した RUN/STOP イベントを onRemoteLine() で Model::running[id] へ確定反映する
+ *      * synced は、親機キャッシュがその時点で子機確認済みかどうかを表し、
+ *        要求送信後や画面表示直後の再確認前は false、子機応答で確定反映できたら true になる
  **************************************************************/
 
 
@@ -50,8 +52,13 @@ inline void updateBothValuesFromModel(Model* m, MainView& v) {
 /** @brief コンストラクタ：対応する View を束縛 */
 MainPresenter::MainPresenter(MainView& v) : view(v) {}
 
-
-/** @brief 画面表示の初期同期（Model → View） */
+/** @brief 画面表示時に Model キャッシュを仮表示し、子機との再同期を開始する
+ *  @details
+ *   - まず Model に保持している現在IDのキャッシュ値を View に反映する
+ *   - 問い合わせ完了を待たずに直前キャッシュを先に見せることで、画面表示の応答性を保つ
+ *   - この時点ではまだ子機へ最新確認していないため、synced は false にする
+ *   - その後 AppRemote_QueryState() を発行し、子機から返る状態を onRemoteLine() で確定反映する
+ */
 void MainPresenter::activate()
 {
     const uint8_t id = AppRemote_GetID();
@@ -202,6 +209,15 @@ void MainPresenter::updateMeasuredValues()
 #include <cstdio>
 #include <cctype>
 
+
+/** @brief 子機から受信した状態行を親機キャッシュへ確定反映する
+ *  @details
+ *   - 本プロジェクトでは子機が正本であり、送信成功だけでは状態確定しない
+ *   - RUN/STOP の親機内キャッシュは Model::running[id] のみを正とする
+ *   - 子機からの状態イベントを受けたこの関数で、必要な Model 更新と
+ *     Model::setSynced(id, true) を行って確定反映する
+ *   - current ID と一致する場合のみ View の見た目も更新する
+ */
 void MainPresenter::onRemoteLine(const char* line)
 {
     if (!line) return;
@@ -220,11 +236,13 @@ void MainPresenter::onRemoteLine(const char* line)
     const uint8_t id = ev.id;
     const uint8_t current = AppRemote_GetID();
 
+
+    /* STAT_* は子機から返った確認済み設定値を表す。
+     * ここで Model::desired... を親機キャッシュとして確定更新する。
+     */
     switch (ev.type) {
     case APPREMOTE_EVT_RUN: {
         const uint32_t now = HAL_GetTick();
-
-        AppRemote_SetRunning(true);
 
         if (model) {
             model->setRunning(id, true);
@@ -241,8 +259,6 @@ void MainPresenter::onRemoteLine(const char* line)
     case APPREMOTE_EVT_STOP: {
         const uint32_t now = HAL_GetTick();
 
-        AppRemote_SetRunning(false);
-
         if (model) {
             model->setRunning(id, false);
             model->noteAlive(id, now);
@@ -258,7 +274,6 @@ void MainPresenter::onRemoteLine(const char* line)
     case APPREMOTE_EVT_STAT_VOLT: {
         const uint32_t now = HAL_GetTick();
         if (model) {
-            model->setLastInputValue(SettingType::Voltage, ev.value, id);
             model->setDesiredValue(SettingType::Voltage, ev.value, id);
             model->noteAlive(id, now);
             model->setSynced(id, true);
@@ -269,7 +284,6 @@ void MainPresenter::onRemoteLine(const char* line)
     case APPREMOTE_EVT_STAT_CURR: {
         const uint32_t now = HAL_GetTick();
         if (model) {
-            model->setLastInputValue(SettingType::Current, ev.value, id);
             model->setDesiredValue(SettingType::Current, ev.value, id);
             model->noteAlive(id, now);
             model->setSynced(id, true);
@@ -280,7 +294,6 @@ void MainPresenter::onRemoteLine(const char* line)
     case APPREMOTE_EVT_STAT_PHAS: {
         const uint32_t now = HAL_GetTick();
         if (model) {
-            model->setLastInputValue(SettingType::Phase, ev.value, id);
             model->setDesiredValue(SettingType::Phase, ev.value, id);
             model->noteAlive(id, now);
             model->setSynced(id, true);
@@ -292,6 +305,9 @@ void MainPresenter::onRemoteLine(const char* line)
         break;
     }
 
+    /* 現在表示中のIDに対する確定反映なら、設定値表示を Model から更新し、
+     * あわせて同期状態などの補助UIも再評価して画面へ反映する。
+     */
     if (id == current) {
         updateBothValuesFromModel(model, view);
         view.triggerRefreshFromPresenter();
@@ -304,6 +320,7 @@ void MainPresenter::onRemoteLine(const char* line)
  *  @param v 設定値
  *  @details
  *   - この関数では親機 Model の確定値は更新しない
+ *   - 送信成功時は、その時点ではまだ子機確認前なので synced を false にする
  *   - 送信成功時に AppRemote_QueryState() を発行し、
  *     子機から返る状態を onRemoteLine() で確定反映する
  */
@@ -336,6 +353,13 @@ void MainPresenter::setDesiredValue(SettingType t, uint32_t v)
 }
 
 
+/** @brief 現在選択中IDの子機へ RUN 要求を送る
+ *  @details
+ *   - この関数は RUN コマンド送信だけを行い、親機の RUN 状態はここでは確定しない
+ *   - 送信成功時は、その時点ではまだ子機確認前なので synced を false にする
+ *   - その後 AppRemote_QueryState() を発行し、RUN の確定反映は
+ *     onRemoteLine() で受けた APPREMOTE_EVT_RUN に委ねる
+ */
 void MainPresenter::runCurrent()
 {
     const uint8_t id = AppRemote_GetID();
@@ -345,6 +369,14 @@ void MainPresenter::runCurrent()
     }
 }
 
+
+/** @brief 現在選択中IDの子機へ STOP 要求を送る
+ *  @details
+ *   - この関数は STOP コマンド送信だけを行い、親機の STOP 状態はここでは確定しない
+ *   - 送信成功時は、その時点ではまだ子機確認前なので synced を false にする
+ *   - その後 AppRemote_QueryState() を発行し、STOP の確定反映は
+ *     onRemoteLine() で受けた APPREMOTE_EVT_STOP に委ねる
+ */
 void MainPresenter::stopCurrent()
 {
     const uint8_t id = AppRemote_GetID();

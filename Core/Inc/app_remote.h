@@ -37,8 +37,13 @@ void    AppRemote_Init(void);
 void    AppRemote_SetID(uint8_t id);
 uint8_t AppRemote_GetID(void);
 
+/* RUN/STOP は要求送信のみ行う。
+ * 親機内の RUN/STOP 状態はここでは保持・確定せず、
+ * 上位層が QueryState 後の受信イベントで反映する。
+ */
 bool AppRemote_Run(void);
 bool AppRemote_Stop(void);
+
 bool AppRemote_QueryState(void);
 bool AppRemote_MeasVolt(int32_t* mv, uint32_t to_ms);
 bool AppRemote_MeasCurr(int32_t* mv, uint32_t to_ms);
@@ -47,8 +52,6 @@ bool AppRemote_SetVolt(uint32_t mv);
 bool AppRemote_SetPhas(uint16_t deg);
 bool AppRemote_SetCurr(uint32_t ma);
 
-bool AppRemote_IsRunning(void);
-void AppRemote_SetRunning(bool running);
 
 void AppRemote_HandleLine(const char* line);
 bool AppRemote_PopLine(char* out, size_t out_sz);

@@ -47,7 +47,7 @@ private:
 
     // ---- 入力範囲（上限は inclusive）----
     static constexpr uint32_t VOLT_MIN  = 0;
-    static constexpr uint32_t VOLT_MAX  = 50;
+    static constexpr uint32_t VOLT_MAX  = 40;
 
     static constexpr uint32_t CURR_MIN  = 0;
     static constexpr uint32_t CURR_MAX  = 5000;

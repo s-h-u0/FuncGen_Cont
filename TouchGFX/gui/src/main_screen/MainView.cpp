@@ -329,6 +329,12 @@ void MainView::requestRedraw()
 }
 
 
+
+/** @brief Presenter からの確定反映後に、同期状態などの補助UIを更新して再描画する
+ *  @details
+ *   - 設定値そのものの反映は MainPresenter 側の updateBothValuesFromModel() が担当する
+ *   - この関数は synced 表示など、補助的な画面状態の再評価と再描画を担当する
+ */
 void MainView::triggerRefreshFromPresenter()
 {
     if (presenter) {

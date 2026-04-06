@@ -24,7 +24,6 @@
 
 typedef struct {
     uint8_t current_id;
-    bool running;
 } app_remote_state_t;
 
 static app_remote_state_t s;
@@ -81,7 +80,6 @@ static void AppRemote_RS485Callback(const char* line)
 void AppRemote_Init(void)
 {
     s.current_id = 0;
-    s.running = false;
 
     s_q_head = 0;
     s_q_tail = 0;
@@ -100,10 +98,14 @@ uint8_t AppRemote_GetID(void)
     return s.current_id;
 }
 
+
+/* AppRemote は通信ユースケース層であり、RUN/STOP 状態は保持しない。
+ * ここでは current_id 宛てにコマンドを送るだけで、
+ * 状態の確定反映は MainPresenter::onRemoteLine() 側で行う。
+ */
 bool AppRemote_Run(void)
 {
     if (remote_run_to(s.current_id)) {
-        s.running = true;
         return true;
     }
     return false;
@@ -112,7 +114,6 @@ bool AppRemote_Run(void)
 bool AppRemote_Stop(void)
 {
     if (remote_stop_to(s.current_id)) {
-        s.running = false;
         return true;
     }
     return false;
@@ -149,15 +150,6 @@ bool AppRemote_SetPhas(uint16_t deg)
 }
 
 
-bool AppRemote_IsRunning(void)
-{
-    return s.running;
-}
-
-void AppRemote_SetRunning(bool running)
-{
-    s.running = running;
-}
 
 void AppRemote_HandleLine(const char* line)
 {
