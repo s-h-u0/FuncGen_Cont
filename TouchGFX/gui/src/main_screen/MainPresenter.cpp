@@ -69,7 +69,7 @@ void MainPresenter::activate()
     updateBothValuesFromModel(model, view);
 
     const bool running = model ? model->isRunning(id) : false;
-    view.notifyRunStopFromCLI(running);
+    view.updateRunStopUI(running);
 
     AppRemote_QueryState();
 }
@@ -284,7 +284,7 @@ void MainPresenter::onRemoteLine(const char* line)
         }
 
         if (id == current) {
-            view.notifyRunStopFromCLI(true);
+            view.updateRunStopUI(true);
         }
         break;
     }
@@ -299,7 +299,7 @@ void MainPresenter::onRemoteLine(const char* line)
         }
 
         if (id == current) {
-            view.notifyRunStopFromCLI(false);
+            view.updateRunStopUI(false);
         }
         break;
     }

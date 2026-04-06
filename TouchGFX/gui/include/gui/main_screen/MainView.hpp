@@ -32,20 +32,8 @@ public:
     // DIP 表示（Presenter から）
     void setDipHex(uint8_t nibble);
 
-    // 設定値（表示）を一括更新（Presenter/CLI 共用）
-    // 既存: 2引数
-    // void updateBothValues(uint32_t vVolt, uint32_t vPhas);
-
-    // 修正版: 4引数（IDも一緒に反映）
+    // Presenter から確定済みキャッシュを表示へ反映
     void updateBothValues(uint32_t vVolt, uint32_t vCurr, uint32_t vPhas, uint32_t vID);
-
-
-    // CLI→UI ブリッジ（C から呼ぶ）
-    void notifyRunStopFromCLI(bool running);
-    void setDesiredValueFromCLI(SettingType t, uint32_t v);
-
-
-    void setDesiredValueFromCLI_ByID(uint8_t id, SettingType t, uint32_t v);
 
     void requestRedraw();
 

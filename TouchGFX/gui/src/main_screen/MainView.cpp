@@ -307,21 +307,6 @@ void MainView::setDipHex(uint8_t nibble)
     ID.invalidate();
 }
 
-/* === CLI→UI 公開ラッパ === */
-void MainView::notifyRunStopFromCLI(bool running)
-{
-    updateRunStopUI(running);
-}
-
-
-
-
-
-
-
-
-
-
 
 void MainView::requestRedraw()
 {
