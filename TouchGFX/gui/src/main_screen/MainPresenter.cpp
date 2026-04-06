@@ -21,7 +21,6 @@
 #include <gui/model/Model.hpp>
 
 
-
 extern "C" {
 #include "app_remote.h"
 #include <cstdio>   // printf()
@@ -115,91 +114,125 @@ bool MainPresenter::isCurrentIdSynced() const
 
 #include "rs485_bridge.h"  // RS485_PcHasPending() を使う
 
-/** @brief リモート子機の最新計測値を View に反映
+/** @brief 現在選択中IDの子機から計測値を同期取得し、Viewへ反映する
  *  @details
- *   - 電圧: 子機の MEAS:VOLT? 応答を実電圧[mV]として取得し、
- *           View::setMeasuredVolt_Phys_mV() へ渡す
- *   - 電流: 子機の MEAS:CURR? 応答を実電流[mA]として取得し、
- *           View::setMeasuredCurr_mA() へ渡す
- *   - 通信失敗時は各表示を "--" にする
+ *   - 1回の呼び出しで取得するのは Voltage / Current のどちらか片方のみ
+ *   - 種別は ID ごとの nextQueryIsVolt[] により交互に切り替える
+ *   - 通信成功時は最新値を lastVolt_mV[] / lastCurr_mA[] に保存し、Viewへ反映する
+ *   - 通信失敗時は直前の成功値があればそれを表示し続ける
+ *   - 連続失敗がしきい値に達した場合のみ、その種別の表示を "--" 相当に落とす
+ *   - failVolt[] / failCurr[] と backoff により、失敗時の再試行間隔を伸ばして通信負荷を抑える
+ *   - lastDoneTick[] は ID ごとの問い合わせ完了時刻を表し、問い合わせ周期の下限管理に使う
  */
 void MainPresenter::updateMeasuredValues()
 {
     if (RS485_IsBusy()) return;
 
-    static uint32_t lastProbeTick[16] = {0};
-    static uint8_t  failStreak[16]    = {0};
+    constexpr uint32_t kAliveWindowMs      = 1500u;
+    constexpr uint32_t kMinPeriodAliveMs   = 150u;
+    constexpr uint32_t kMeasTimeoutMs      = 150u;
+    constexpr uint32_t kBackoffBaseMs      = 80u;
+    constexpr uint8_t  kBackoffShiftMax    = 4u;
+    constexpr uint8_t  kFailHideThreshold  = 3u;
+    constexpr uint8_t  kFailStreakMax      = 8u;
 
-    static int32_t  lastVolt_mV[16]   = {0};
-    static int32_t  lastCurr_mA[16]   = {0};
-    static uint8_t  hasVolt[16]       = {0};
-    static uint8_t  hasCurr[16]       = {0};
+
+    static uint32_t lastDoneTick[Model::kMaxId]    = {0};
+    static uint8_t  failVolt[Model::kMaxId]        = {0};
+    static uint8_t  failCurr[Model::kMaxId]        = {0};
+
+    static int32_t  lastVolt_mV[Model::kMaxId]     = {0};
+    static int32_t  lastCurr_mA[Model::kMaxId]     = {0};
+    static uint8_t  hasVolt[Model::kMaxId]         = {0};
+    static uint8_t  hasCurr[Model::kMaxId]         = {0};
+    static uint8_t  nextQueryIsVolt[Model::kMaxId] = {1};
 
     const uint8_t id = AppRemote_GetID();
-    const uint32_t now = HAL_GetTick();
+    const uint32_t startTick = HAL_GetTick();
 
-    const bool likelyAlive = model ? model->isLikelyAlive(id, now, 1500) : false;
+    const bool likelyAlive = model ? model->isLikelyAlive(id, startTick, kAliveWindowMs) : false;
 
-    const uint32_t minPeriodAlive = 150u;
     if (likelyAlive) {
-        if ((int32_t)(now - lastProbeTick[id]) < (int32_t)minPeriodAlive) return;
+        if ((int32_t)(startTick - lastDoneTick[id]) < (int32_t)kMinPeriodAliveMs) return;
     }
+
+    const uint32_t to_ms = kMeasTimeoutMs;
+    const bool doVoltQuery = (nextQueryIsVolt[id] != 0);
 
     uint32_t backoff = 0;
-    if (!likelyAlive || failStreak[id] > 0) {
-        uint8_t s = failStreak[id];
-        if (s > 4) s = 4;
-        backoff = 80u << s;
-        if ((int32_t)(now - lastProbeTick[id]) < (int32_t)backoff) return;
-    }
+    const uint8_t streak = doVoltQuery ? failVolt[id] : failCurr[id];
 
-    const uint32_t to_ms = 400u;
+    if (!likelyAlive || streak > 0) {
+        uint8_t s = streak;
+        if (s > kBackoffShiftMax) s = kBackoffShiftMax;
+        backoff = kBackoffBaseMs << s;
+        if ((int32_t)(startTick - lastDoneTick[id]) < (int32_t)backoff) return;
+    }
 
     int32_t volt_phys_mv = 0;
     int32_t curr_ma      = 0;
 
-    const bool okVolt = AppRemote_MeasVolt(&volt_phys_mv, to_ms);
-    const bool okCurr = AppRemote_MeasCurr(&curr_ma, to_ms);
+    bool okVolt = false;
+    bool okCurr = false;
 
-    lastProbeTick[id] = now;
-
-    if (okVolt) {
-        lastVolt_mV[id] = volt_phys_mv;
-        hasVolt[id] = 1;
-        view.setMeasuredVolt_Phys_mV(volt_phys_mv);
-    } else if (hasVolt[id]) {
-        view.setMeasuredVolt_Phys_mV(lastVolt_mV[id]);
+    if (doVoltQuery) {
+        okVolt = AppRemote_MeasVolt(&volt_phys_mv, to_ms);
     } else {
-        view.setMeasuredVolt_Phys_mV(INT32_MIN);
+        okCurr = AppRemote_MeasCurr(&curr_ma, to_ms);
     }
 
-    if (okCurr) {
-        lastCurr_mA[id] = curr_ma;
-        hasCurr[id] = 1;
-        view.setMeasuredCurr_mA(curr_ma);
-    } else if (hasCurr[id]) {
-        view.setMeasuredCurr_mA(lastCurr_mA[id]);
-    } else {
-        view.setMeasuredCurr_mA(INT32_MIN);
-    }
+    const uint32_t doneTick = HAL_GetTick();
 
-    if (okVolt || okCurr) {
-        if (model) model->noteAlive(id, now);
-        failStreak[id] = 0;
-    } else {
-        if (failStreak[id] < 8) ++failStreak[id];
+    lastDoneTick[id] = doneTick;
 
-        /* たとえば3回以上連続で両方失敗したら無効表示 */
-        if (failStreak[id] >= 3) {
-            hasVolt[id] = 0;
-            hasCurr[id] = 0;
+    if (doVoltQuery) {
+        if (okVolt) {
+            lastVolt_mV[id] = volt_phys_mv;
+            hasVolt[id] = 1;
+            view.setMeasuredVolt_Phys_mV(volt_phys_mv);
+        } else if (hasVolt[id]) {
+            view.setMeasuredVolt_Phys_mV(lastVolt_mV[id]);
+        } else {
             view.setMeasuredVolt_Phys_mV(INT32_MIN);
+        }
+    } else {
+        if (okCurr) {
+            lastCurr_mA[id] = curr_ma;
+            hasCurr[id] = 1;
+            view.setMeasuredCurr_mA(curr_ma);
+        } else if (hasCurr[id]) {
+            view.setMeasuredCurr_mA(lastCurr_mA[id]);
+        } else {
             view.setMeasuredCurr_mA(INT32_MIN);
         }
     }
+
+    if (doVoltQuery) {
+        if (okVolt) {
+            if (model) model->noteAlive(id, doneTick);
+            failVolt[id] = 0;
+        } else {
+        	if (failVolt[id] < kFailStreakMax) ++failVolt[id];
+        	if (failVolt[id] >= kFailHideThreshold) {
+                hasVolt[id] = 0;
+                view.setMeasuredVolt_Phys_mV(INT32_MIN);
+            }
+        }
+    } else {
+        if (okCurr) {
+            if (model) model->noteAlive(id, doneTick);
+            failCurr[id] = 0;
+        } else {
+            if (failCurr[id] < kFailStreakMax) ++failCurr[id];
+            if (failCurr[id] >= kFailHideThreshold) {
+                hasCurr[id] = 0;
+                view.setMeasuredCurr_mA(INT32_MIN);
+            }
+        }
+    }
+
+    nextQueryIsVolt[id] ^= 1u;
 }
-
-
 
 
 // ==========================================================

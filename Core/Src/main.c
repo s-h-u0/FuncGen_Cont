@@ -139,28 +139,22 @@ int main(void)
   MX_TIM5_Init();
   MX_USART6_UART_Init();
   MX_USART3_UART_Init();
-  //MX_IWDG_Init();
+  MX_IWDG_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
   HAL_Delay(200);
 
   Displ_Init(Displ_Orientat_180);			// initialize display controller - set orientation parameter as per TouchGFX setup
   HAL_Delay(200);
-  //touchgfxSignalVSync();					// ask display syncronization
-  HAL_Delay(200);
-  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
-  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 100);
+  //HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+  //__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 100);
   HAL_Delay(200);
   MeasTimer_Init(&htim5);
   // TouchGFX 用タイマー IRQ をスタート
-  HAL_Delay(200);
   HAL_TIM_Base_Start_IT(&TGFX_T);
 
-
-  HAL_Delay(200);
-  Displ_BackLight('I');  					// initialize backlight
-  HAL_Delay(200);
-  Displ_BackLight('1');
+  Displ_BackLight('I');  //バックライト初期化
+  Displ_BackLight('1');  //輝度最大
 
 
   AppRemote_Init();
@@ -180,8 +174,9 @@ int main(void)
   MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
   AppRemote_Process();
+  HAL_IWDG_Refresh(&hiwdg);
   }
-  //HAL_IWDG_Refresh(&hiwdg);
+
   /* USER CODE END 3 */
 }
 

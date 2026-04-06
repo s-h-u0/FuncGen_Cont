@@ -19,6 +19,9 @@
 class Model
 {
 public:
+
+	static constexpr uint8_t kMaxId = 16;
+
     /** @brief 既定値（0）で初期化 */
     Model();
 
@@ -96,6 +99,8 @@ public:
      */
     void setSynced(uint8_t id, bool v);
     bool isSynced(uint8_t id) const;
+
+
 
 private:
     /** @brief Presenter へ通知するためのリスナ */
