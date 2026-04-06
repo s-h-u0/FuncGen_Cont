@@ -4,12 +4,9 @@
  * @details
  *  - 役割:
  *      * View からの入力イベント（数字/削除/確定）を受けて編集中値を更新し、View に再描画を指示
- *      * 確定時（onEnter）に Model へ値を保存し、画面遷移（メイン画面へ戻る）をトリガ
- *  - 不変条件:
- *      * currentValue は常に 0..MAX_INPUT の範囲内
- *      * getCurrentSetting() は有効な SettingType を返す（Model 依存）
- *  - パフォーマンス:
- *      * 全処理は O(1)、動的確保なし（割込み/RTOSなしの TouchGFX 単スレッド前提）
+ *      * 確定時（onEnter）は子機へ設定コマンドを送信する
+ *      * 親機 Model には UI 入力履歴として lastInputValue を保持する
+ *      * 確定値の反映は AppRemote_QueryState() → MainPresenter::onRemoteLine() に委ねる
  */
 
 #include <gui/keyboard_screen/KeyboardPresenter.hpp>
@@ -27,7 +24,8 @@ KeyboardPresenter::KeyboardPresenter(KeyboardView& v) : view(v) {}
  * @brief 画面表示の初期化（Model → View 同期）
  * @details
  *  - 現在の編集対象（SettingType）を Model から取得
- *  - 対象ごとの直近入力値（lastInputValue）で currentValue を初期化
+ *  - ID以外は、子機から最後に確認した設定キャッシュ（desiredValue）を初期値として表示する
+ *  - IDは現在選択中の AppRemote_GetID() を表示する
  *  - ラベルと数値表示を更新
  * @note  model はアプリ起動時に bind されている想定。null の場合は何もしない。
  */
@@ -99,9 +97,12 @@ void KeyboardPresenter::onDelete()
  * @brief 入力を確定
  * @details
  *  - 現在の編集対象（SettingType）を取得
- *  - currentValue を Model の desiredValue / lastInputValue に保存
+ *  - currentValue を UI入力履歴として lastInputValue に保存
+ *  - 子機へ設定コマンドを送信
+ *  - 送信成功時は AppRemote_QueryState() を発行し、
+ *    子機から返る状態をメイン画面側で確定反映させる
  *  - View にメイン画面への遷移を依頼
- * @note  model が null の場合は何もしない（防御的プログラミング）
+ * @note  model が null の場合は何もしない
  */
 void KeyboardPresenter::onEnter()
 {
@@ -109,35 +110,39 @@ void KeyboardPresenter::onEnter()
     clampToCurrentRange();
 
     const SettingType s = model->getCurrentSetting();
-    const uint8_t id = AppRemote_GetID();
+    bool ok = false;
 
-    model->setDesiredValue(s, currentValue, id);
-    model->setLastInputValue(s, currentValue, id);
+    if (s == SettingType::ID) {
+        const uint8_t newId = (uint8_t)(currentValue & 0x0F);
+        AppRemote_SetID(newId);
+        ok = true;
+    } else {
+        const uint8_t id = AppRemote_GetID();
 
-    switch (s) {
-    case SettingType::ID:
-        AppRemote_SetID((uint8_t)(currentValue & 0x0F));
-        break;
+        // UI入力履歴として残す
+        model->setLastInputValue(s, currentValue, id);
 
-    case SettingType::Voltage:
-        AppRemote_SetVolt(currentValue);
-        break;
+        switch (s) {
+        case SettingType::Voltage:
+            ok = AppRemote_SetVolt(currentValue);
+            break;
+        case SettingType::Current:
+            ok = AppRemote_SetCurr(currentValue);
+            break;
+        case SettingType::Phase:
+            ok = AppRemote_SetPhas((uint16_t)currentValue);
+            break;
+        default:
+            break;
+        }
+    }
 
-    case SettingType::Current:
-        AppRemote_SetCurr(currentValue);
-        break;
-
-    case SettingType::Phase:
-        AppRemote_SetPhas((uint16_t)currentValue);
-        break;
-
-    default:
-        break;
+    if (ok) {
+        AppRemote_QueryState();
     }
 
     view.gotoMainScreen();
 }
-
 
 /**
  * @brief 編集値を 0 にリセットし、View を更新
@@ -199,14 +204,6 @@ void KeyboardPresenter::clampToCurrentRange()
     if (currentValue < minv) currentValue = minv;
     if (currentValue > maxv) currentValue = maxv;
 }
-
-void KeyboardPresenter::setDesiredValue(SettingType t, uint32_t v) {
-    if (model) {
-    	const uint8_t id = AppRemote_GetID();
-    	model->setDesiredValue(t, v, id);
-    }
-}
-
 
 
 void KeyboardPresenter::onDigitForID(char c)

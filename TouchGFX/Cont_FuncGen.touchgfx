@@ -249,7 +249,7 @@
           },
           {
             "Type": "TextArea",
-            "Name": "textArea1",
+            "Name": "READ_UNIT_V",
             "X": 125,
             "Y": 72,
             "Width": 37,
@@ -264,7 +264,7 @@
           },
           {
             "Type": "TextArea",
-            "Name": "textArea1_1",
+            "Name": "READ_UNIT_Curr",
             "X": 125,
             "Y": 160,
             "Width": 37,
@@ -280,8 +280,8 @@
           {
             "Type": "TextArea",
             "Name": "ID",
-            "X": 350,
-            "Y": 254,
+            "X": 351,
+            "Y": 253,
             "Width": 38,
             "Height": 34,
             "TextId": "__SingleUse_UVTT",
@@ -305,6 +305,23 @@
             "Width": 100,
             "Height": 67,
             "RelativeFilename": "kos21logo\\kos21.png"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "SyncStatusText",
+            "X": 346,
+            "Y": 11,
+            "Width": 85,
+            "Height": 34,
+            "Visible": false,
+            "TextId": "__SingleUse_7WQK",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
           }
         ],
         "Interactions": [

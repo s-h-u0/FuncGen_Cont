@@ -40,6 +40,8 @@ public:
     void runCurrent();
     void stopCurrent();
 
+    bool isCurrentIdSynced() const;
+
 private:
     MainView& view;
 };

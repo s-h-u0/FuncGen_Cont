@@ -64,6 +64,8 @@ public:
     void setMeasuredVolt_Phys_mV(int32_t mv);
     void setMeasuredCurr_mA(int32_t ma);
 
+    void updateSyncStateUI(bool synced);
+
 protected:
     bool isRunning {false};
 };

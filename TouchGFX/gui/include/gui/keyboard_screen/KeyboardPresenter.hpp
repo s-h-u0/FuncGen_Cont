@@ -40,7 +40,6 @@ public:
     uint32_t getCurrentValue() const;
 
     void onDigitForID(char c);   ///< ID選択用 (A〜F)
-    void setDesiredValue(SettingType t, uint32_t v);
 
 private:
     KeyboardView& view;

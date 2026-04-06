@@ -63,17 +63,21 @@ void MainView::setupScreen()
     MainViewBase::setupScreen();
 
     Val_Set_Volt.setWildcard(Val_Set_VoltBuffer);
-    Val_Set_Curr.setWildcard(Val_Set_CurrBuffer);   // ★追加
+    Val_Set_Curr.setWildcard(Val_Set_CurrBuffer);
     Val_Set_Phas.setWildcard(Val_Set_PhasBuffer);
 
     MeasTimer_Start();
 
     updateBothValues(
         presenter->getDesiredValue(SettingType::Voltage),
-        presenter->getDesiredValue(SettingType::Current),  // ★追加
+        presenter->getDesiredValue(SettingType::Current),
         presenter->getDesiredValue(SettingType::Phase),
         AppRemote_GetID()
     );
+
+    if (presenter) {
+        updateSyncStateUI(presenter->isCurrentIdSynced());
+    }
 }
 
 void MainView::showRemoteLine(const char* line)
@@ -327,8 +331,16 @@ void MainView::requestRedraw()
 
 void MainView::triggerRefreshFromPresenter()
 {
-    // 画面全体を再描画
+    if (presenter) {
+        updateSyncStateUI(presenter->isCurrentIdSynced());
+    }
+
     touchgfx::Rect fullRect(0, 0, 480, 320);
-    // または touchgfx::HAL::DISPLAY_WIDTH / HEIGHT でもOK
     touchgfx::Application::getInstance()->invalidateArea(fullRect);
+}
+
+void MainView::updateSyncStateUI(bool synced)
+{
+    SyncStatusText.setVisible(!synced);
+    SyncStatusText.invalidate();
 }

@@ -145,6 +145,13 @@ MainViewBase::MainViewBase() :
     Image1.setXY(41, 229);
     Image1.setBitmap(touchgfx::Bitmap(BITMAP_KOS21_ID));
     add(Image1);
+
+    SyncStatusText.setXY(346, 11);
+    SyncStatusText.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    SyncStatusText.setLinespacing(0);
+    SyncStatusText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7WQK));
+    SyncStatusText.setVisible(false);
+    add(SyncStatusText);
 }
 
 MainViewBase::~MainViewBase()

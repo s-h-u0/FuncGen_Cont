@@ -16,6 +16,9 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_7WQK" Alignment="Left" TypographyId="key">
+        <Translation Language="GB">SYNC...</Translation>
+      </Text>
       <Text Id="__SingleUse_MW3V" Alignment="Right" TypographyId="Set_val">
         <Translation Language="GB">&lt;value&gt;mA</Translation>
       </Text>

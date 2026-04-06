@@ -237,6 +237,8 @@ static size_t ascii_sanitize(char* s, size_t len){
   return w;
 }
 
+#define UI_REPLY_SILENCE_MS  15U
+
 bool RS485_Transact(rs485_origin_t origin,
                     const char* line,
                     char* out, size_t out_sz,
@@ -263,33 +265,91 @@ bool RS485_Transact(rs485_origin_t origin,
   bus_send_line(tx, /*log_to_pc=*/(origin == ORIGIN_PC));
 
   /* 受信：\n まで or timeout */
-  size_t w = 0;
-  uint32_t t0 = HAL_GetTick();
+  /* 受信：複数行を受ける。
+   * - 最初の1行だけ out に返す
+   * - 受けた各行は ui_notify_line() へ流す
+   * - 一定時間無通信になったら終了
+   */
+
+  uint8_t linebuf[LINE_MAX];
+  size_t line_len = 0;
+  bool got_any = false;
+  bool out_filled = false;
+  uint32_t t_start = HAL_GetTick();
+  uint32_t t_last_rx = t_start;
+
   if (out && out_sz) out[0] = '\0';
 
-  for (;;){
-    if ((HAL_GetTick() - t0) >= timeout_ms) break;
+  for (;;) {
+    uint32_t now = HAL_GetTick();
+
+    /* 全体タイムアウト */
+    if ((now - t_start) >= timeout_ms) break;
+
+    /* 何か受けた後は、短い無通信で終了 */
+    if (got_any && (now - t_last_rx) >= UI_REPLY_SILENCE_MS) break;
 
     uint8_t c;
     if (!rb_pop(&bus_rb, &c)) {
       HAL_Delay(1);
       continue;
     }
-    t0 = HAL_GetTick();                  /* 受信があればタイマ更新 */
+
+    t_last_rx = HAL_GetTick();
+    got_any = true;
 
     if (c == '\r') continue;
-    if (c == '\n') break;
-    if (do_ascii_sanitize && (c < 0x20 || c > 0x7E)) continue;
-    if (out && w + 1 < out_sz) out[w++] = (char)c;
-  }
-  if (out && out_sz) out[w] = '\0';
 
-  /* 任意のサニタイズ（保険） */
-  if (out && do_ascii_sanitize && w){
-    (void)ascii_sanitize(out, w);
+    if (c == '\n') {
+      if (line_len > 0) {
+        linebuf[line_len] = '\0';
+
+        if (do_ascii_sanitize) {
+          (void)ascii_sanitize((char*)linebuf, line_len);
+          line_len = strlen((char*)linebuf);
+        }
+
+        if (line_len > 0) {
+          if (!out_filled && out && out_sz) {
+            strncpy(out, (char*)linebuf, out_sz - 1);
+            out[out_sz - 1] = '\0';
+            out_filled = true;
+          }
+          ui_notify_line(linebuf, line_len);
+        }
+
+        line_len = 0;
+      }
+      continue;
+    }
+
+    if (do_ascii_sanitize && (c < 0x20 || c > 0x7E)) continue;
+
+    if (line_len + 1 < sizeof(linebuf)) {
+      linebuf[line_len++] = c;
+    }
+  }
+
+  /* タイムアウト時に行途中が残っていたら最後に吐く */
+  if (line_len > 0) {
+    linebuf[line_len] = '\0';
+
+    if (do_ascii_sanitize) {
+      (void)ascii_sanitize((char*)linebuf, line_len);
+      line_len = strlen((char*)linebuf);
+    }
+
+    if (line_len > 0) {
+      if (!out_filled && out && out_sz) {
+        strncpy(out, (char*)linebuf, out_sz - 1);
+        out[out_sz - 1] = '\0';
+      }
+
+      ui_notify_line(linebuf, line_len);
+    }
   }
 
   s_ui_busy = false;
-  return (w > 0);
+  return got_any;
 }
 #endif /* RS485_ENABLE_UI_API */

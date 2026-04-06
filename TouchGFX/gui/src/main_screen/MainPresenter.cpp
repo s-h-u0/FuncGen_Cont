@@ -2,13 +2,15 @@
  * @file    MainPresenter.cpp
  * @brief   Main 画面の Presenter（View と Model の仲介）
  * @details
- *  - 役割: View からの要求を Model/ドライバへ橋渡し、結果を View に反映
- *  - 測定フロー:
- *      * updateMeasuredValues():
- *          - MCP3428 を Ch4 / 16bit / OneShot / Gain1x で設定
- *          - mV を取得し View::setMeasuredVolt_mV() に渡す
- *  - 設定フロー:
- *      * setDesiredValue() で Model に保存 → View 表示を updateBothValues() で同期
+ *  - 役割: View からの要求を子機へのコマンド送信へ橋渡しし、
+ *          子機から返ってきた状態を View / Model に反映する
+ *  - 設計:
+ *      * 子機が正本
+ *      * Model は子機から最後に確認した状態の親機キャッシュ
+ *      * setDesiredValue()/runCurrent()/stopCurrent() は送信要求を出すだけ
+ *      * 確定反映は AppRemote_QueryState() 後の onRemoteLine() で行う
+ *      * 画面表示直後や送信直後の Model 値は仮表示であり、
+ *        子機応答受信後に同期済み状態へ遷移する
  **************************************************************/
 
 
@@ -37,7 +39,7 @@ inline void updateBothValuesFromModel(Model* m, MainView& v) {
     const uint8_t id = AppRemote_GetID();
 
     const uint32_t vVolt = m->getDesiredValue(SettingType::Voltage, id);
-    const uint32_t vCurr = m->getDesiredValue(SettingType::Current, id);   // ★追加
+    const uint32_t vCurr = m->getDesiredValue(SettingType::Current, id);
     const uint32_t vPhas = m->getDesiredValue(SettingType::Phase,   id);
 
     v.updateBothValues(vVolt, vCurr, vPhas, id);
@@ -52,9 +54,14 @@ MainPresenter::MainPresenter(MainView& v) : view(v) {}
 /** @brief 画面表示の初期同期（Model → View） */
 void MainPresenter::activate()
 {
+    const uint8_t id = AppRemote_GetID();
+
+    if (model) {
+        model->setSynced(id, false);
+    }
+
     updateBothValuesFromModel(model, view);
 
-    const uint8_t id = AppRemote_GetID();
     const bool running = model ? model->isRunning(id) : false;
     view.notifyRunStopFromCLI(running);
 
@@ -65,38 +72,6 @@ void MainPresenter::activate()
 void MainPresenter::deactivate() {}
 
 
-/** @brief 設定値を Model に反映し、View 表示も直ちに同期
- *  @param t 設定項目（電圧/位相など）
- *  @param v 設定値
- */
-void MainPresenter::setDesiredValue(SettingType t, uint32_t v)
-{
-    const uint8_t id = AppRemote_GetID();
-    bool ok = false;
-
-    switch (t) {
-    case SettingType::Voltage:
-        ok = AppRemote_SetVolt(v);
-        break;
-
-    case SettingType::Current:
-        ok = AppRemote_SetCurr(v);
-        break;
-
-    case SettingType::Phase:
-        ok = AppRemote_SetPhas((uint16_t)v);
-        break;
-
-    default:
-        break;
-    }
-
-    if (ok && model) {
-        model->setDesiredValue(t, v, id);
-    }
-
-    updateBothValuesFromModel(model, view);
-}
 /** @brief Modelから設定値(PVではなく設定値)を取得
  *  @param t 取得対象の種別（電圧/位相など）
  *  @return 設定値（存在しなければ0）
@@ -120,6 +95,12 @@ void MainPresenter::setCurrentSetting(SettingType s)
 SettingType MainPresenter::getCurrentSetting() const
 {
     return model ? model->getCurrentSetting() : SettingType::Voltage;
+}
+
+bool MainPresenter::isCurrentIdSynced() const
+{
+    const uint8_t id = AppRemote_GetID();
+    return model ? model->isSynced(id) : false;
 }
 
 
@@ -221,7 +202,6 @@ void MainPresenter::updateMeasuredValues()
 #include <cstdio>
 #include <cctype>
 
-
 void MainPresenter::onRemoteLine(const char* line)
 {
     if (!line) return;
@@ -232,9 +212,16 @@ void MainPresenter::onRemoteLine(const char* line)
         return;
     }
 
+    if (ev.id == 0xFF) {
+        view.showRemoteLine(line);
+        return;
+    }
+
+    const uint8_t id = ev.id;
+    const uint8_t current = AppRemote_GetID();
+
     switch (ev.type) {
     case APPREMOTE_EVT_RUN: {
-        const uint8_t id = (ev.id != 0xFF) ? ev.id : AppRemote_GetID();
         const uint32_t now = HAL_GetTick();
 
         AppRemote_SetRunning(true);
@@ -242,16 +229,16 @@ void MainPresenter::onRemoteLine(const char* line)
         if (model) {
             model->setRunning(id, true);
             model->noteAlive(id, now);
+            model->setSynced(id, true);
         }
 
-        if (id == AppRemote_GetID()) {
+        if (id == current) {
             view.notifyRunStopFromCLI(true);
         }
         break;
     }
 
     case APPREMOTE_EVT_STOP: {
-        const uint8_t id = (ev.id != 0xFF) ? ev.id : AppRemote_GetID();
         const uint32_t now = HAL_GetTick();
 
         AppRemote_SetRunning(false);
@@ -259,42 +246,44 @@ void MainPresenter::onRemoteLine(const char* line)
         if (model) {
             model->setRunning(id, false);
             model->noteAlive(id, now);
+            model->setSynced(id, true);
         }
 
-        if (id == AppRemote_GetID()) {
+        if (id == current) {
             view.notifyRunStopFromCLI(false);
         }
         break;
     }
 
-
     case APPREMOTE_EVT_STAT_VOLT: {
         const uint32_t now = HAL_GetTick();
-
-        if (ev.id != 0xFF && model) {
-            model->setLastInputValue(SettingType::Voltage, ev.value, ev.id);
-            model->noteAlive(ev.id, now);
+        if (model) {
+            model->setLastInputValue(SettingType::Voltage, ev.value, id);
+            model->setDesiredValue(SettingType::Voltage, ev.value, id);
+            model->noteAlive(id, now);
+            model->setSynced(id, true);
         }
         break;
     }
 
     case APPREMOTE_EVT_STAT_CURR: {
         const uint32_t now = HAL_GetTick();
-
-        if (ev.id != 0xFF && model) {
-            model->setLastInputValue(SettingType::Current, ev.value, ev.id);
-            model->setDesiredValue(SettingType::Current, ev.value, ev.id);
-            model->noteAlive(ev.id, now);
+        if (model) {
+            model->setLastInputValue(SettingType::Current, ev.value, id);
+            model->setDesiredValue(SettingType::Current, ev.value, id);
+            model->noteAlive(id, now);
+            model->setSynced(id, true);
         }
         break;
     }
 
     case APPREMOTE_EVT_STAT_PHAS: {
         const uint32_t now = HAL_GetTick();
-
-        if (ev.id != 0xFF && model) {
-            model->setLastInputValue(SettingType::Phase, ev.value, ev.id);
-            model->noteAlive(ev.id, now);
+        if (model) {
+            model->setLastInputValue(SettingType::Phase, ev.value, id);
+            model->setDesiredValue(SettingType::Phase, ev.value, id);
+            model->noteAlive(id, now);
+            model->setSynced(id, true);
         }
         break;
     }
@@ -303,51 +292,65 @@ void MainPresenter::onRemoteLine(const char* line)
         break;
     }
 
-    const uint8_t current = AppRemote_GetID();
-    if (ev.id != 0xFF && ev.id == current) {
+    if (id == current) {
         updateBothValuesFromModel(model, view);
         view.triggerRefreshFromPresenter();
     }
 }
 
 
-void MainPresenter::setDesiredValueByID(uint8_t id, SettingType t, uint32_t v)
+/** @brief 設定変更コマンドを子機へ送信する
+ *  @param t 設定項目（電圧/電流/位相）
+ *  @param v 設定値
+ *  @details
+ *   - この関数では親機 Model の確定値は更新しない
+ *   - 送信成功時に AppRemote_QueryState() を発行し、
+ *     子機から返る状態を onRemoteLine() で確定反映する
+ */
+void MainPresenter::setDesiredValue(SettingType t, uint32_t v)
 {
-    if (model)
-        model->setDesiredValue(t, v, id);
+    bool ok = false;
+    const uint8_t id = AppRemote_GetID();
 
-    const uint8_t current = AppRemote_GetID();
+    switch (t) {
+    case SettingType::Voltage:
+        ok = AppRemote_SetVolt(v);
+        break;
 
-    if (id != 0xFF && id == current) {
-        updateBothValuesFromModel(model, view);
-        view.triggerRefreshFromPresenter();
+    case SettingType::Current:
+        ok = AppRemote_SetCurr(v);
+        break;
+
+    case SettingType::Phase:
+        ok = AppRemote_SetPhas((uint16_t)v);
+        break;
+
+    default:
+        break;
+    }
+
+    if (ok) {
+        if (model) model->setSynced(id, false);
+        AppRemote_QueryState();
     }
 }
+
 
 void MainPresenter::runCurrent()
 {
     const uint8_t id = AppRemote_GetID();
-
     if (AppRemote_Run()) {
-        if (model) {
-            model->setRunning(id, true);
-        }
-        view.notifyRunStopFromCLI(true);
+        if (model) model->setSynced(id, false);
+        AppRemote_QueryState();
     }
 }
 
 void MainPresenter::stopCurrent()
 {
     const uint8_t id = AppRemote_GetID();
-
     if (AppRemote_Stop()) {
-        if (model) {
-            model->setRunning(id, false);
-        }
-        view.notifyRunStopFromCLI(false);
+        if (model) model->setSynced(id, false);
+        AppRemote_QueryState();
     }
 }
-
-
-
 

@@ -80,6 +80,7 @@ protected:
     touchgfx::TextArea textArea1_1;
     touchgfx::TextAreaWithOneWildcard ID;
     touchgfx::Image Image1;
+    touchgfx::TextArea SyncStatusText;
 
     /*
      * Wildcard Buffers

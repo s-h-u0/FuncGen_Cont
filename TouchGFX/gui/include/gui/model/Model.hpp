@@ -71,6 +71,9 @@ public:
     void setRunning(uint8_t id, bool r);
     bool isRunning(uint8_t id) const;
 
+    void setSynced(uint8_t id, bool v);
+    bool isSynced(uint8_t id) const;
+
 private:
     /** @brief Presenter へ通知するためのリスナ */
     ModelListener* modelListener;
@@ -85,6 +88,8 @@ private:
     uint32_t lastInputPhases[MAX_ID];
 
     uint32_t lastSeenTick[MAX_ID];
+
+    bool synced[MAX_ID];
 
 
 

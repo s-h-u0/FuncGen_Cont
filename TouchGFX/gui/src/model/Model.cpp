@@ -14,6 +14,7 @@ Model::Model() : modelListener(nullptr)
 
         lastSeenTick[i]      = 0;
         running[i]           = false;
+        synced[i] = false;
     }
     currentSetting = SettingType::Voltage;
 }
@@ -130,4 +131,17 @@ bool Model::isRunning(uint8_t id) const
 {
     if (id >= MAX_ID) return false;
     return running[id];
+}
+
+void Model::setSynced(uint8_t id, bool v)
+{
+    if (id < MAX_ID) {
+        synced[id] = v;
+    }
+}
+
+bool Model::isSynced(uint8_t id) const
+{
+    if (id >= MAX_ID) return false;
+    return synced[id];
 }
