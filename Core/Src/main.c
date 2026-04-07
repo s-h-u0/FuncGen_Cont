@@ -64,6 +64,7 @@ TIM_HandleTypeDef htim5;
 UART_HandleTypeDef huart3;
 UART_HandleTypeDef huart6;
 
+
 /* USER CODE BEGIN PV */
 
 
@@ -152,9 +153,11 @@ int main(void)
   MeasTimer_Init(&htim5);
   // TouchGFX 用タイマー IRQ をスタート
   HAL_TIM_Base_Start_IT(&TGFX_T);
-
+  HAL_Delay(200);
   Displ_BackLight('I');  //バックライト初期化
+  HAL_Delay(200);
   Displ_BackLight('1');  //輝度最大
+  HAL_Delay(200);
 
 
   AppRemote_Init();

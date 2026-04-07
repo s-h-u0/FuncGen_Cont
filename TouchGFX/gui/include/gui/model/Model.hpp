@@ -100,6 +100,16 @@ public:
     void setSynced(uint8_t id, bool v);
     bool isSynced(uint8_t id) const;
 
+    // Model.hpp
+    void setDesiredFreq(uint8_t id, uint32_t hz);
+    uint32_t getDesiredFreq(uint8_t id) const;
+
+    void setDdsArmed(uint8_t id, bool v);
+    bool isDdsArmed(uint8_t id) const;
+
+    void setMclkEnabled(uint8_t id, bool v);
+    bool isMclkEnabled(uint8_t id) const;
+
 
 
 private:
@@ -116,6 +126,11 @@ private:
     uint32_t lastInputPhases[MAX_ID];
 
     uint32_t lastSeenTick[MAX_ID];
+
+    // Model のメンバ
+    uint32_t desiredFreqs[kMaxId];
+    bool     ddsArmed[kMaxId];
+    bool     mclkEnabled[kMaxId];
 
     /** @brief 親機キャッシュが現在の子機状態と同期済みかを表すフラグ */
     bool synced[MAX_ID];

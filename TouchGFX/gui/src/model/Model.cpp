@@ -15,6 +15,9 @@ Model::Model() : modelListener(nullptr)
         lastSeenTick[i]      = 0;
         running[i]           = false;
         synced[i] = false;
+        desiredFreqs[i] = 0;
+        ddsArmed[i] = false;
+        mclkEnabled[i] = false;
     }
     currentSetting = SettingType::Voltage;
 }
@@ -144,4 +147,43 @@ bool Model::isSynced(uint8_t id) const
 {
     if (id >= MAX_ID) return false;
     return synced[id];
+}
+
+void Model::setDesiredFreq(uint8_t id, uint32_t hz)
+{
+    if (id < MAX_ID) {
+        desiredFreqs[id] = hz;
+    }
+}
+
+uint32_t Model::getDesiredFreq(uint8_t id) const
+{
+    if (id >= MAX_ID) return 0;
+    return desiredFreqs[id];
+}
+
+void Model::setDdsArmed(uint8_t id, bool v)
+{
+    if (id < MAX_ID) {
+        ddsArmed[id] = v;
+    }
+}
+
+bool Model::isDdsArmed(uint8_t id) const
+{
+    if (id >= MAX_ID) return false;
+    return ddsArmed[id];
+}
+
+void Model::setMclkEnabled(uint8_t id, bool v)
+{
+    if (id < MAX_ID) {
+        mclkEnabled[id] = v;
+    }
+}
+
+bool Model::isMclkEnabled(uint8_t id) const
+{
+    if (id >= MAX_ID) return false;
+    return mclkEnabled[id];
 }

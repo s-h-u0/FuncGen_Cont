@@ -334,6 +334,36 @@ void MainPresenter::onRemoteLine(const char* line)
         break;
     }
 
+    case APPREMOTE_EVT_STAT_FREQ: {
+        const uint32_t now = HAL_GetTick();
+        if (model) {
+            model->setDesiredFreq(id, ev.value);
+            model->noteAlive(id, now);
+            model->setSynced(id, true);
+        }
+        break;
+    }
+
+    case APPREMOTE_EVT_STAT_ARM: {
+        const uint32_t now = HAL_GetTick();
+        if (model) {
+            model->setDdsArmed(id, ev.value != 0);
+            model->noteAlive(id, now);
+            model->setSynced(id, true);
+        }
+        break;
+    }
+
+    case APPREMOTE_EVT_STAT_MCLK: {
+        const uint32_t now = HAL_GetTick();
+        if (model) {
+            model->setMclkEnabled(id, ev.value != 0);
+            model->noteAlive(id, now);
+            model->setSynced(id, true);
+        }
+        break;
+    }
+
     default:
         break;
     }

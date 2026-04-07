@@ -66,6 +66,10 @@ void MainView::setupScreen()
     Val_Set_Curr.setWildcard(Val_Set_CurrBuffer);
     Val_Set_Phas.setWildcard(Val_Set_PhasBuffer);
 
+    isRunning = false;
+    updateRunStopUI(false);
+
+
     MeasTimer_Start();
 
     updateBothValues(

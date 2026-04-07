@@ -19,7 +19,7 @@
 #endif
 
 #ifndef APPREMOTE_Q_SZ
-#define APPREMOTE_Q_SZ 8
+#define APPREMOTE_Q_SZ 32
 #endif
 
 typedef struct {
@@ -216,6 +216,30 @@ bool AppRemote_ParseLine(const char* line, AppRemote_Event* ev)
         while (*p == ' ' || *p == ':') ++p;
         ev->type = APPREMOTE_EVT_STAT_CURR;
         ev->value = (uint32_t)atoi(p);
+        return true;
+    }
+
+    if (strncmp(p, "stat:freq", 9) == 0) {
+        p += 9;
+        while (*p == ' ' || *p == ':') ++p;
+        ev->type = APPREMOTE_EVT_STAT_FREQ;
+        ev->value = (uint32_t)strtoul(p, NULL, 10);
+        return true;
+    }
+
+    if (strncmp(p, "stat:arm", 8) == 0) {
+        p += 8;
+        while (*p == ' ' || *p == ':') ++p;
+        ev->type = APPREMOTE_EVT_STAT_ARM;
+        ev->value = (uint32_t)strtoul(p, NULL, 10);
+        return true;
+    }
+
+    if (strncmp(p, "stat:mclk", 9) == 0) {
+        p += 9;
+        while (*p == ' ' || *p == ':') ++p;
+        ev->type = APPREMOTE_EVT_STAT_MCLK;
+        ev->value = (uint32_t)strtoul(p, NULL, 10);
         return true;
     }
 
