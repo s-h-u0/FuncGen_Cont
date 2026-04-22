@@ -140,4 +140,56 @@ static bool txrx_with_id(uint8_t id, const char* cmd, char* out, size_t out_sz, 
     return RS485_Transact(ORIGIN_UI, fullcmd, out, out_sz, to, true, false);
 }
 
+bool remote_sync_go_master(void)
+{
+    char b[8];
+    return txrx_with_id(0x0U, "MCLK ON", b, sizeof(b), 600) && !strcmp(b, "OK");
+}
 
+bool remote_sync_arm_all(void)
+{
+    /* broadcast は設定系無応答なので、短いtimeoutで投げるだけ */
+    return RS485_Transact(ORIGIN_UI,
+                          "@* SYNC:ARM",
+                          NULL, 0,
+                          30,
+                          true,
+                          false);
+}
+
+bool remote_sync_stop_master(void)
+{
+    char b[8];
+    return txrx_with_id(0x0U, "MCLK OFF", b, sizeof(b), 600) && !strcmp(b, "OK");
+}
+
+bool remote_sync_release_all(void)
+{
+    /* broadcast は設定系無応答なので、短いtimeoutで投げるだけ */
+    return RS485_Transact(ORIGIN_UI,
+                          "@* DDS:RELEASE",
+                          NULL, 0,
+                          30,
+                          true,
+                          false);
+}
+
+bool remote_query_sync_stat_to(uint8_t id, RemoteSyncStat* st, uint32_t to_ms)
+{
+    char buf[64];
+    if (!st) return false;
+
+    if (!txrx_with_id(id, "SYNC:STAT?", buf, sizeof(buf), to_ms)) {
+        return false;
+    }
+
+    unsigned ready = 0, dirty = 0, mclk = 0;
+    if (sscanf(buf, "READY=%u,DIRTY=%u,MCLK=%u", &ready, &dirty, &mclk) != 3) {
+        return false;
+    }
+
+    st->ready = (uint8_t)(ready ? 1U : 0U);
+    st->dirty = (uint8_t)(dirty ? 1U : 0U);
+    st->mclk  = (uint8_t)(mclk ? 1U : 0U);
+    return true;
+}

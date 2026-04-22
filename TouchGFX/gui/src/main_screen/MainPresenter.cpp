@@ -344,7 +344,7 @@ void MainPresenter::onRemoteLine(const char* line)
         break;
     }
 
-    case APPREMOTE_EVT_STAT_ARM: {
+    case APPREMOTE_EVT_STAT_READY: {
         const uint32_t now = HAL_GetTick();
         if (model) {
             model->setDdsArmed(id, ev.value != 0);

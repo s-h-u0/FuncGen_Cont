@@ -9,6 +9,7 @@
 #include "app_remote.h"
 #include "remote_client.h"
 #include "rs485_bridge.h"
+#include "main.h"
 
 #include <string.h>
 #include <stdlib.h>
@@ -227,10 +228,10 @@ bool AppRemote_ParseLine(const char* line, AppRemote_Event* ev)
         return true;
     }
 
-    if (strncmp(p, "stat:arm", 8) == 0) {
-        p += 8;
+    if (strncmp(p, "stat:ready", 10) == 0) {
+        p += 10;
         while (*p == ' ' || *p == ':') ++p;
-        ev->type = APPREMOTE_EVT_STAT_ARM;
+        ev->type = APPREMOTE_EVT_STAT_READY;
         ev->value = (uint32_t)strtoul(p, NULL, 10);
         return true;
     }
@@ -250,4 +251,49 @@ bool AppRemote_ParseLine(const char* line, AppRemote_Event* ev)
 void AppRemote_Process(void)
 {
     RS485_Bridge_Poll();
+}
+
+bool AppRemote_SyncGo(void)
+{
+    return remote_sync_go_master();
+}
+
+
+bool AppRemote_SyncStart(void)
+{
+    if (!AppRemote_SyncArmAll()) return false;
+    HAL_Delay(100);
+
+    if (!AppRemote_SyncStopMaster()) return false;
+    HAL_Delay(20);
+
+    if (!AppRemote_SyncReleaseAll()) return false;
+    HAL_Delay(100);
+
+    return AppRemote_SyncGoMaster();
+}
+
+bool AppRemote_SyncArmAll(void)
+{
+    return remote_sync_arm_all();
+}
+
+bool AppRemote_SyncGoMaster(void)
+{
+    return remote_sync_go_master();
+}
+
+bool AppRemote_SyncStopMaster(void)
+{
+    return remote_sync_stop_master();
+}
+
+bool AppRemote_SyncReleaseAll(void)
+{
+    return remote_sync_release_all();
+}
+
+bool AppRemote_QuerySyncStat(RemoteSyncStat* st, uint32_t to_ms)
+{
+    return remote_query_sync_stat_to(s.current_id, st, to_ms);
 }

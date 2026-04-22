@@ -11,6 +11,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
+#include "remote_client.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -24,7 +25,7 @@ typedef enum {
 	APPREMOTE_EVT_STAT_CURR,
     APPREMOTE_EVT_STAT_PHAS,
     APPREMOTE_EVT_STAT_FREQ,
-    APPREMOTE_EVT_STAT_ARM,
+    APPREMOTE_EVT_STAT_READY,
     APPREMOTE_EVT_STAT_MCLK
 } AppRemote_EventType;
 
@@ -60,6 +61,14 @@ void AppRemote_HandleLine(const char* line);
 bool AppRemote_PopLine(char* out, size_t out_sz);
 
 void AppRemote_Process(void);
+bool AppRemote_SyncGo(void);
+
+bool AppRemote_SyncStart(void);
+bool AppRemote_SyncArmAll(void);
+bool AppRemote_SyncGoMaster(void);
+bool AppRemote_SyncStopMaster(void);
+bool AppRemote_SyncReleaseAll(void);
+bool AppRemote_QuerySyncStat(RemoteSyncStat* st, uint32_t to_ms);
 
 #ifdef __cplusplus
 }
