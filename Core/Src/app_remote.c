@@ -34,7 +34,25 @@ static volatile uint8_t s_q_head = 0;
 static volatile uint8_t s_q_tail = 0;
 static char s_q_lines[APPREMOTE_Q_SZ][APPREMOTE_LINE_MAX];
 
-static bool query_ready_pair(uint8_t expect_ready, uint32_t to_ms);
+#ifndef APPREMOTE_SYNC_FIRST_ID
+#define APPREMOTE_SYNC_FIRST_ID 0U
+#endif
+
+#ifndef APPREMOTE_SYNC_LAST_ID
+#define APPREMOTE_SYNC_LAST_ID 7U
+#endif
+
+#ifndef APPREMOTE_SYNC_QUERY_TIMEOUT_MS
+#define APPREMOTE_SYNC_QUERY_TIMEOUT_MS 200U
+#endif
+
+static bool query_sync_group(uint8_t begin,
+                             uint8_t end,
+                             uint8_t expect_ready,
+                             uint8_t require_clean,
+                             uint32_t to_ms);
+
+
 
 static void appremote_queue_push(const char* line)
 {
@@ -293,6 +311,45 @@ static bool verify_sync_group(uint8_t begin, uint8_t end)
     return all_ok;
 }
 
+static bool query_sync_group(uint8_t begin,
+                             uint8_t end,
+                             uint8_t expect_ready,
+                             uint8_t require_clean,
+                             uint32_t to_ms)
+{
+    bool all_ok = true;
+
+    if (end >= 8U) {
+        end = 7U;
+    }
+
+    for (uint8_t id = begin; id <= end; ++id) {
+        RemoteSyncStat st;
+
+        if (!remote_query_sync_stat_to(id, &st, to_ms)) {
+            s_last_sync_ok[id] = 0U;
+            all_ok = false;
+            continue;
+        }
+
+        if (st.ready != expect_ready) {
+            s_last_sync_ok[id] = 0U;
+            all_ok = false;
+            continue;
+        }
+
+        if (require_clean && st.dirty != 0U) {
+            s_last_sync_ok[id] = 0U;
+            all_ok = false;
+            continue;
+        }
+
+        s_last_sync_ok[id] = 1U;
+    }
+
+    return all_ok;
+}
+
 
 
 bool AppRemote_GetLastSyncOk(uint8_t id)
@@ -314,9 +371,15 @@ bool AppRemote_SyncStart(void)
     HAL_Delay(100);
 
     /* 2) ARM後、まだ RELEASE 前なので READY=0 を確認
-     * ここは今まで通り pair 確認でもよい
+     *
      */
-    if (!query_ready_pair(0U, 200)) return false;
+    if (!query_sync_group(APPREMOTE_SYNC_FIRST_ID,
+                          APPREMOTE_SYNC_LAST_ID,
+                          0U,
+                          0U,
+                          APPREMOTE_SYNC_QUERY_TIMEOUT_MS)) {
+        return false;
+    }
 
     /* 3) master(node0) の共有MCLK配布を停止 */
     if (!AppRemote_SyncStopMaster()) return false;
@@ -328,15 +391,22 @@ bool AppRemote_SyncStart(void)
     remote_sync_release_all();
     HAL_Delay(100);
 
-    /* 5) RELEASE後、両ノードが READY=1 になったか確認 */
-    if (!query_ready_pair(1U, 200)) return false;
+    /* 5) RELEASE後、0〜7 全ノードが READY=1 かつ DIRTY=0 か確認 */
+    if (!query_sync_group(APPREMOTE_SYNC_FIRST_ID,
+                          APPREMOTE_SYNC_LAST_ID,
+                          1U,
+                          1U,
+                          APPREMOTE_SYNC_QUERY_TIMEOUT_MS)) {
+        return false;
+    }
 
     /* 6) master(node0) で共有MCLK配布開始 */
     if (!AppRemote_SyncGoMaster()) return false;
     HAL_Delay(50);
 
     /* 7) 最終的に 0〜7ch を順に確認し、結果を保存 */
-    return verify_sync_group(0U, 7U);
+    return verify_sync_group(APPREMOTE_SYNC_FIRST_ID,
+                             APPREMOTE_SYNC_LAST_ID);
 }
 
 bool AppRemote_SyncArmAll(void)
@@ -363,18 +433,4 @@ bool AppRemote_QuerySyncStat(RemoteSyncStat* st, uint32_t to_ms)
 {
     return remote_query_sync_stat_to(s.current_id, st, to_ms);
 }
-
-static bool query_ready_pair(uint8_t expect_ready, uint32_t to_ms)
-{
-    RemoteSyncStat st0, st4;
-
-    if (!remote_query_sync_stat_to(0x0U, &st0, to_ms)) return false;
-    if (!remote_query_sync_stat_to(0x4U, &st4, to_ms)) return false;
-
-    if (st0.ready != expect_ready) return false;
-    if (st4.ready != expect_ready) return false;
-
-    return true;
-}
-
 
