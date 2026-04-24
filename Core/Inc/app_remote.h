@@ -17,12 +17,16 @@
 extern "C" {
 #endif
 
+
 typedef enum {
     APPREMOTE_EVT_NONE = 0,
     APPREMOTE_EVT_RUN,
     APPREMOTE_EVT_STOP,
     APPREMOTE_EVT_STAT_VOLT,
-	APPREMOTE_EVT_STAT_CURR,
+
+    APPREMOTE_EVT_STAT_TRIP_CURR,
+    APPREMOTE_EVT_STAT_CURR = APPREMOTE_EVT_STAT_TRIP_CURR,  // 互換名
+
     APPREMOTE_EVT_STAT_PHAS,
     APPREMOTE_EVT_STAT_FREQ,
     APPREMOTE_EVT_STAT_READY,
@@ -50,10 +54,14 @@ bool AppRemote_Stop(void);
 
 bool AppRemote_QueryState(void);
 bool AppRemote_MeasVolt(int32_t* mv, uint32_t to_ms);
-bool AppRemote_MeasCurr(int32_t* mv, uint32_t to_ms);
+bool AppRemote_MeasCurr(int32_t* ma, uint32_t to_ms);
 
 bool AppRemote_SetVolt(uint32_t mv);
 bool AppRemote_SetPhas(uint16_t deg);
+/* 正式名: TRIP:CURR を設定する */
+bool AppRemote_SetTripCurr(uint32_t ma);
+
+/* 互換名: 既存 Presenter 移行まで残す */
 bool AppRemote_SetCurr(uint32_t ma);
 
 
@@ -69,6 +77,8 @@ bool AppRemote_SyncGoMaster(void);
 bool AppRemote_SyncStopMaster(void);
 bool AppRemote_SyncReleaseAll(void);
 bool AppRemote_QuerySyncStat(RemoteSyncStat* st, uint32_t to_ms);
+
+bool AppRemote_GetLastSyncOk(uint8_t id);
 
 #ifdef __cplusplus
 }

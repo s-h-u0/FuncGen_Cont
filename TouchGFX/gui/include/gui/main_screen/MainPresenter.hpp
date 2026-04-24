@@ -42,6 +42,11 @@ public:
 
     bool isCurrentIdSynced() const;
 
+    void syncStart();
+    bool isSyncNeeded(uint8_t id) const;
+
 private:
     MainView& view;
+
+
 };

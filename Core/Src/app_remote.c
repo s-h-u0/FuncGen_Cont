@@ -34,6 +34,8 @@ static volatile uint8_t s_q_head = 0;
 static volatile uint8_t s_q_tail = 0;
 static char s_q_lines[APPREMOTE_Q_SZ][APPREMOTE_LINE_MAX];
 
+static bool query_ready_pair(uint8_t expect_ready, uint32_t to_ms);
+
 static void appremote_queue_push(const char* line)
 {
     if (!line || !*line) return;
@@ -122,7 +124,7 @@ bool AppRemote_Stop(void)
 
 bool AppRemote_QueryState(void)
 {
-    return remote_query_state_to(s.current_id);
+    return remote_request_state_report_to(s.current_id, 600);
 }
 
 bool AppRemote_MeasVolt(int32_t* mv, uint32_t to_ms)
@@ -130,9 +132,9 @@ bool AppRemote_MeasVolt(int32_t* mv, uint32_t to_ms)
     return remote_meas_volt_mV_to(s.current_id, mv, to_ms);
 }
 
-bool AppRemote_MeasCurr(int32_t* mv, uint32_t to_ms)
+bool AppRemote_MeasCurr(int32_t* ma, uint32_t to_ms)
 {
-    return remote_meas_curr_mV_to(s.current_id, mv, to_ms);
+    return remote_meas_curr_mA_to(s.current_id, ma, to_ms);
 }
 
 bool AppRemote_SetVolt(uint32_t mv)
@@ -140,16 +142,20 @@ bool AppRemote_SetVolt(uint32_t mv)
     return remote_set_pot_volt_to(s.current_id, mv);
 }
 
+bool AppRemote_SetTripCurr(uint32_t ma)
+{
+    return remote_set_trip_curr_to(s.current_id, ma);
+}
+
 bool AppRemote_SetCurr(uint32_t ma)
 {
-    return remote_set_curr_to(s.current_id, ma);
+    return AppRemote_SetTripCurr(ma);
 }
 
 bool AppRemote_SetPhas(uint16_t deg)
 {
-    return remote_set_phas_to(s.current_id, deg);
+    return remote_set_phase_to(s.current_id, deg);
 }
-
 
 
 void AppRemote_HandleLine(const char* line)
@@ -212,10 +218,10 @@ bool AppRemote_ParseLine(const char* line, AppRemote_Event* ev)
         return true;
     }
 
-    if (strncmp(p, "stat:curr", 9) == 0) {
-        p += 9;
+    if (strncmp(p, "stat:tcurr", 10) == 0) {
+        p += 10;
         while (*p == ' ' || *p == ':') ++p;
-        ev->type = APPREMOTE_EVT_STAT_CURR;
+        ev->type = APPREMOTE_EVT_STAT_TRIP_CURR;
         ev->value = (uint32_t)atoi(p);
         return true;
     }
@@ -258,19 +264,79 @@ bool AppRemote_SyncGo(void)
     return remote_sync_go_master();
 }
 
+static uint8_t s_last_sync_ok[8] = {0};
+
+static void clear_last_sync_ok(void)
+{
+    for (uint8_t i = 0; i < 8; ++i) {
+        s_last_sync_ok[i] = 0;
+    }
+}
+
+static bool verify_sync_group(uint8_t begin, uint8_t end)
+{
+    bool all_ok = true;
+
+    for (uint8_t id = begin; id <= end; ++id) {
+        RemoteSyncStat st;
+
+        if (remote_query_sync_stat_to(id, &st, 200) &&
+            st.ready == 1 &&
+            st.dirty == 0) {
+            s_last_sync_ok[id] = 1;
+        } else {
+            s_last_sync_ok[id] = 0;
+            all_ok = false;
+        }
+    }
+
+    return all_ok;
+}
+
+
+
+bool AppRemote_GetLastSyncOk(uint8_t id)
+{
+    if (id >= 8) return false;
+    return s_last_sync_ok[id] != 0;
+}
+
+
 
 bool AppRemote_SyncStart(void)
 {
-    if (!AppRemote_SyncArmAll()) return false;
+    clear_last_sync_ok();
+
+    /* 1) 全ノードへ ARM
+     * broadcast 無応答なので、戻り値では判定しない
+     */
+    remote_sync_arm_all();
     HAL_Delay(100);
 
+    /* 2) ARM後、まだ RELEASE 前なので READY=0 を確認
+     * ここは今まで通り pair 確認でもよい
+     */
+    if (!query_ready_pair(0U, 200)) return false;
+
+    /* 3) master(node0) の共有MCLK配布を停止 */
     if (!AppRemote_SyncStopMaster()) return false;
     HAL_Delay(20);
 
-    if (!AppRemote_SyncReleaseAll()) return false;
+    /* 4) 全ノードで DDS reset 解除
+     * これも broadcast 無応答なので、戻り値では判定しない
+     */
+    remote_sync_release_all();
     HAL_Delay(100);
 
-    return AppRemote_SyncGoMaster();
+    /* 5) RELEASE後、両ノードが READY=1 になったか確認 */
+    if (!query_ready_pair(1U, 200)) return false;
+
+    /* 6) master(node0) で共有MCLK配布開始 */
+    if (!AppRemote_SyncGoMaster()) return false;
+    HAL_Delay(50);
+
+    /* 7) 最終的に 0〜7ch を順に確認し、結果を保存 */
+    return verify_sync_group(0U, 7U);
 }
 
 bool AppRemote_SyncArmAll(void)
@@ -297,3 +363,18 @@ bool AppRemote_QuerySyncStat(RemoteSyncStat* st, uint32_t to_ms)
 {
     return remote_query_sync_stat_to(s.current_id, st, to_ms);
 }
+
+static bool query_ready_pair(uint8_t expect_ready, uint32_t to_ms)
+{
+    RemoteSyncStat st0, st4;
+
+    if (!remote_query_sync_stat_to(0x0U, &st0, to_ms)) return false;
+    if (!remote_query_sync_stat_to(0x4U, &st4, to_ms)) return false;
+
+    if (st0.ready != expect_ready) return false;
+    if (st4.ready != expect_ready) return false;
+
+    return true;
+}
+
+

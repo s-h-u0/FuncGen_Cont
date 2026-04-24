@@ -69,18 +69,18 @@ void MainView::setupScreen()
     isRunning = false;
     updateRunStopUI(false);
 
-
     MeasTimer_Start();
 
-    updateBothValues(
-        presenter->getDesiredValue(SettingType::Voltage),
-        presenter->getDesiredValue(SettingType::Current),
-        presenter->getDesiredValue(SettingType::Phase),
-        AppRemote_GetID()
-    );
-
     if (presenter) {
-        updateSyncStateUI(presenter->isCurrentIdSynced());
+        updateBothValues(
+            presenter->getDesiredValue(SettingType::Voltage),
+            presenter->getDesiredValue(SettingType::TripCurrent),
+            presenter->getDesiredValue(SettingType::Phase),
+            AppRemote_GetID()
+        );
+
+        const uint8_t id = AppRemote_GetID();
+        updateSyncButtonUI(presenter->isSyncNeeded(id));
     }
 }
 
@@ -153,7 +153,7 @@ void MainView::button_VoltClicked()
 {
     if (presenter) {
         presenter->setCurrentSetting(SettingType::Voltage);
-        application().gotoKeyboardScreenNoTransition();
+        //application().gotoKeyboardScreenNoTransition();
     }
 }
 
@@ -161,15 +161,15 @@ void MainView::button_PhasClicked()
 {
     if (presenter) {
         presenter->setCurrentSetting(SettingType::Phase);
-        application().gotoKeyboardScreenNoTransition();
+        //application().gotoKeyboardScreenNoTransition();
     }
 }
 
 void MainView::button_CurrClicked()
 {
     if (presenter) {
-        presenter->setCurrentSetting(SettingType::Current);
-        application().gotoKeyboardScreenNoTransition();
+        presenter->setCurrentSetting(SettingType::TripCurrent);
+        //application().gotoKeyboardScreenNoTransition();
     }
 }
 
@@ -180,6 +180,8 @@ void MainView::button_IDClicked()
         application().gotoKeyboardScreenNoTransition();
     }
 }
+
+
 
 /* 測定表示 */
 void MainView::setMeasuredCurr(int16_t val)
@@ -326,16 +328,33 @@ void MainView::requestRedraw()
  */
 void MainView::triggerRefreshFromPresenter()
 {
-    if (presenter) {
-        updateSyncStateUI(presenter->isCurrentIdSynced());
-    }
-
     touchgfx::Rect fullRect(0, 0, 480, 320);
     touchgfx::Application::getInstance()->invalidateArea(fullRect);
 }
 
-void MainView::updateSyncStateUI(bool synced)
+
+
+void MainView::updateSyncButtonUI(bool needed)
 {
-    SyncStatusText.setVisible(!synced);
-    SyncStatusText.invalidate();
+    syncNeeded = needed;
+    toggleButton_Sync.forceState(syncNeeded);
+    toggleButton_Sync.invalidate();
+}
+
+void MainView::button_SyncClicked()
+{
+    if (!presenter) {
+        return;
+    }
+
+    // ToggleButton の自動反転を、Model由来の正しい状態で打ち消す
+    const uint8_t id = AppRemote_GetID();
+    updateSyncButtonUI(presenter->isSyncNeeded(id));
+
+    if (locked()) {
+        return;
+    }
+    lockFor(200);
+
+    presenter->syncStart();
 }

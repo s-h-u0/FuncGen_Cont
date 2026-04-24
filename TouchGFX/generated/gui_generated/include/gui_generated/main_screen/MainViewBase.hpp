@@ -48,6 +48,10 @@ public:
     {
         // Override and implement this function in Main
     }
+    virtual void button_SyncClicked()
+    {
+        // Override and implement this function in Main
+    }
 
 protected:
     FrontendApplication& application() {
@@ -76,11 +80,11 @@ protected:
     touchgfx::ToggleButton toggleButton_Run;
     touchgfx::TextArea RUN_Text;
     touchgfx::TextArea STOP_Text;
-    touchgfx::TextArea textArea1;
-    touchgfx::TextArea textArea1_1;
+    touchgfx::TextArea READ_UNIT_V;
+    touchgfx::TextArea READ_UNIT_Curr;
     touchgfx::TextAreaWithOneWildcard ID;
     touchgfx::Image Image1;
-    touchgfx::TextArea SyncStatusText;
+    touchgfx::ToggleButton toggleButton_Sync;
 
     /*
      * Wildcard Buffers

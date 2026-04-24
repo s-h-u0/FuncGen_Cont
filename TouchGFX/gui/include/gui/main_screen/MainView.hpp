@@ -24,6 +24,7 @@ public:
     virtual void button_PhasClicked();
     virtual void button_CurrClicked();
     virtual void button_IDClicked();
+
     // 測定表示（Presenter から）
     void setMeasuredCurr(int16_t val);
     void setMeasuredVolt(int16_t val);
@@ -52,8 +53,11 @@ public:
     void setMeasuredVolt_Phys_mV(int32_t mv);
     void setMeasuredCurr_mA(int32_t ma);
 
-    void updateSyncStateUI(bool synced);
+
+    virtual void button_SyncClicked();
+    void updateSyncButtonUI(bool syncNeeded);
 
 protected:
     bool isRunning {false};
+    bool syncNeeded {true};
 };

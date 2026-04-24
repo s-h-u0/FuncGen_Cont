@@ -75,6 +75,8 @@
 "./TouchGFX/generated/images/src/SVGDatabase.o"
 "./TouchGFX/generated/images/src/__generated/image_alternate_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.o"
 "./TouchGFX/generated/images/src/__generated/image_alternate_theme_images_widgets_button_icon_rounded_tiny_outline_pressed.o"
+"./TouchGFX/generated/images/src/__generated/image_alternate_theme_images_widgets_togglebutton_large_round_off_light.o"
+"./TouchGFX/generated/images/src/__generated/image_alternate_theme_images_widgets_togglebutton_large_round_on_active.o"
 "./TouchGFX/generated/images/src/box/image_RUN_active_132x60_outline-none_gloss.o"
 "./TouchGFX/generated/images/src/box/image_RUN_inactive_132x60_outline-none_gloss.o"
 "./TouchGFX/generated/images/src/box/image_STOP_active_132x60_outline-none_gloss.o"

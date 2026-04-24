@@ -17,7 +17,7 @@ MainViewBase::MainViewBase() :
     BG_Main.setColor(touchgfx::Color::getColorFromRGB(1, 4, 8));
     add(BG_Main);
 
-    toggleButton_Stop.setXY(336, 148);
+    toggleButton_Stop.setXY(336, 160);
     toggleButton_Stop.setBitmaps(touchgfx::Bitmap(BITMAP_STOP_INACTIVE_132X60_OUTLINE_NONE_GLOSS_ID), touchgfx::Bitmap(BITMAP_STOP_ACTIVE_132X60_OUTLINE_NONE_GLOSS_ID));
     toggleButton_Stop.forceState(true);
     toggleButton_Stop.setAction(buttonCallback);
@@ -57,7 +57,7 @@ MainViewBase::MainViewBase() :
     MeasureValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_TQG0));
     add(MeasureValue);
 
-    Val_Meas_Curr.setPosition(21, 154, 113, 60);
+    Val_Meas_Curr.setPosition(35, 155, 113, 60);
     Val_Meas_Curr.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Meas_Curr.setLinespacing(0);
     Val_Meas_CurrBuffer[0] = 0;
@@ -65,7 +65,7 @@ MainViewBase::MainViewBase() :
     Val_Meas_Curr.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HNTL));
     add(Val_Meas_Curr);
 
-    Val_Meas_Volt.setPosition(21, 62, 113, 60);
+    Val_Meas_Volt.setPosition(35, 64, 113, 60);
     Val_Meas_Volt.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Val_Meas_Volt.setLinespacing(0);
     Val_Meas_VoltBuffer[0] = 0;
@@ -104,36 +104,36 @@ MainViewBase::MainViewBase() :
     SetValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Y6WD));
     add(SetValue);
 
-    toggleButton_Run.setXY(336, 56);
+    toggleButton_Run.setXY(336, 76);
     toggleButton_Run.setBitmaps(touchgfx::Bitmap(BITMAP_RUN_INACTIVE_132X60_OUTLINE_NONE_GLOSS_ID), touchgfx::Bitmap(BITMAP_RUN_ACTIVE_132X60_OUTLINE_NONE_GLOSS_ID));
     toggleButton_Run.setAction(buttonCallback);
     add(toggleButton_Run);
 
-    RUN_Text.setPosition(336, 62, 132, 63);
+    RUN_Text.setPosition(336, 80, 132, 63);
     RUN_Text.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     RUN_Text.setLinespacing(0);
     RUN_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_R6D2));
     add(RUN_Text);
 
-    STOP_Text.setPosition(336, 153, 132, 68);
+    STOP_Text.setPosition(336, 165, 132, 68);
     STOP_Text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     STOP_Text.setLinespacing(0);
     STOP_Text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_C75W));
     add(STOP_Text);
 
-    textArea1.setPosition(125, 72, 37, 41);
-    textArea1.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    textArea1.setLinespacing(0);
-    textArea1.setTypedText(touchgfx::TypedText(T_UNIT_V));
-    add(textArea1);
+    READ_UNIT_V.setPosition(125, 72, 37, 41);
+    READ_UNIT_V.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    READ_UNIT_V.setLinespacing(0);
+    READ_UNIT_V.setTypedText(touchgfx::TypedText(T_UNIT_V));
+    add(READ_UNIT_V);
 
-    textArea1_1.setPosition(125, 160, 37, 41);
-    textArea1_1.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    textArea1_1.setLinespacing(0);
-    textArea1_1.setTypedText(touchgfx::TypedText(T_UNIT_CURR));
-    add(textArea1_1);
+    READ_UNIT_Curr.setPosition(125, 160, 37, 41);
+    READ_UNIT_Curr.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    READ_UNIT_Curr.setLinespacing(0);
+    READ_UNIT_Curr.setTypedText(touchgfx::TypedText(T_UNIT_CURR));
+    add(READ_UNIT_Curr);
 
-    ID.setXY(350, 254);
+    ID.setXY(351, 253);
     ID.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     ID.setLinespacing(0);
     IDBuffer[0] = 0;
@@ -142,16 +142,14 @@ MainViewBase::MainViewBase() :
     ID.setTypedText(touchgfx::TypedText(T___SINGLEUSE_UVTT));
     add(ID);
 
-    Image1.setXY(41, 229);
+    Image1.setXY(351, 5);
     Image1.setBitmap(touchgfx::Bitmap(BITMAP_KOS21_ID));
     add(Image1);
 
-    SyncStatusText.setXY(346, 11);
-    SyncStatusText.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    SyncStatusText.setLinespacing(0);
-    SyncStatusText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7WQK));
-    SyncStatusText.setVisible(false);
-    add(SyncStatusText);
+    toggleButton_Sync.setXY(19, 236);
+    toggleButton_Sync.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_LARGE_ROUND_ON_ACTIVE_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_LARGE_ROUND_OFF_LIGHT_ID));
+    toggleButton_Sync.setAction(buttonCallback);
+    add(toggleButton_Sync);
 }
 
 MainViewBase::~MainViewBase()
@@ -219,5 +217,12 @@ void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //When button_Curr clicked call virtual function
         //Call button_CurrClicked
         button_CurrClicked();
+    }
+    if (&src == &toggleButton_Sync)
+    {
+        //button_SyncClicked
+        //When toggleButton_Sync clicked call virtual function
+        //Call button_SyncClicked
+        button_SyncClicked();
     }
 }

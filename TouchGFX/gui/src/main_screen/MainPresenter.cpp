@@ -30,7 +30,7 @@ extern "C" {
 }
 
 
-/** @brief Model の保持値（電圧・位相）を View 表示へ一括同期する内部ユーティリティ
+/** @brief Model の保持値（電圧・トリップ電流・位相）を View 表示へ一括同期する内部ユーティリティ
  *  @note  activate()/setDesiredValue() から呼び出され、表示の一貫性を保つ。
  */
 namespace {
@@ -40,7 +40,7 @@ inline void updateBothValuesFromModel(Model* m, MainView& v) {
     const uint8_t id = AppRemote_GetID();
 
     const uint32_t vVolt = m->getDesiredValue(SettingType::Voltage, id);
-    const uint32_t vCurr = m->getDesiredValue(SettingType::Current, id);
+    const uint32_t vCurr = m->getDesiredValue(SettingType::TripCurrent, id);
     const uint32_t vPhas = m->getDesiredValue(SettingType::Phase,   id);
 
     v.updateBothValues(vVolt, vCurr, vPhas, id);
@@ -314,10 +314,10 @@ void MainPresenter::onRemoteLine(const char* line)
         break;
     }
 
-    case APPREMOTE_EVT_STAT_CURR: {
+    case APPREMOTE_EVT_STAT_TRIP_CURR: {
         const uint32_t now = HAL_GetTick();
         if (model) {
-            model->setDesiredValue(SettingType::Current, ev.value, id);
+            model->setDesiredValue(SettingType::TripCurrent, ev.value, id);
             model->noteAlive(id, now);
             model->setSynced(id, true);
         }
@@ -397,8 +397,8 @@ void MainPresenter::setDesiredValue(SettingType t, uint32_t v)
         ok = AppRemote_SetVolt(v);
         break;
 
-    case SettingType::Current:
-        ok = AppRemote_SetCurr(v);
+    case SettingType::TripCurrent:
+        ok = AppRemote_SetTripCurr(v);
         break;
 
     case SettingType::Phase:
@@ -410,6 +410,14 @@ void MainPresenter::setDesiredValue(SettingType t, uint32_t v)
     }
 
     if (ok) {
+        if (t == SettingType::Phase) {
+            if (model) {
+                for (uint8_t i = 0; i < Model::kMaxId; ++i) {
+                    model->setSyncNeeded(i, true);
+                }
+            }
+            view.updateSyncButtonUI(true);
+        }
         if (model) model->setSynced(id, false);
         AppRemote_QueryState();
     }
@@ -449,3 +457,29 @@ void MainPresenter::stopCurrent()
     }
 }
 
+
+
+
+void MainPresenter::syncStart()
+{
+    const bool all_ok = AppRemote_SyncStart();
+
+    if (model) {
+        for (uint8_t id = 0; id < 8; ++id) {
+            const bool ok = AppRemote_GetLastSyncOk(id);
+            model->setSyncNeeded(id, !ok);
+        }
+    }
+
+    const uint8_t current = AppRemote_GetID();
+    view.updateSyncButtonUI(model ? model->isSyncNeeded(current) : true);
+
+    if (!all_ok) {
+        view.showRemoteLine("SYNC failed");
+    }
+}
+
+bool MainPresenter::isSyncNeeded(uint8_t id) const
+{
+    return model ? model->isSyncNeeded(id) : true;
+}

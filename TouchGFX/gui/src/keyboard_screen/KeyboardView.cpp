@@ -96,14 +96,14 @@ void KeyboardView::gotoMainScreen()
 
 /**
  * @brief SettingType に応じて見出しラベルを切り替え
- * @param setting Voltage / Phase
+ * @param setting Voltage / TripCurrent / Phase / ID
  * @note  texts.xlsx 側に T_VOLTAGE / T_PHASE を登録しておくこと
  */
 void KeyboardView::setLabelAccordingToSetting(SettingType setting)
 {
     if (setting == SettingType::Voltage) {
         Setting_Label.setTypedText(touchgfx::TypedText(T_VOLTAGE));
-    } else if (setting == SettingType::Current) {
+    } else if (setting == SettingType::TripCurrent) {
         Setting_Label.setTypedText(touchgfx::TypedText(T_CURRENT));
     } else if (setting == SettingType::Phase) {
         Setting_Label.setTypedText(touchgfx::TypedText(T_PHASE));
@@ -211,8 +211,8 @@ void KeyboardView::updateUnit(SettingType s)
     if (s == SettingType::Voltage) {
         UNIT.setTypedText(touchgfx::TypedText(T_UNIT_V));
         UNIT.setVisible(true);
-    } else if (s == SettingType::Current) {
-        UNIT.setTypedText(touchgfx::TypedText(  T_UNIT_SET_CURR));
+    } else if (s == SettingType::TripCurrent) {
+        UNIT.setTypedText(touchgfx::TypedText(T_UNIT_SET_CURR));
         UNIT.setVisible(true);
     } else if (s == SettingType::Phase) {
         UNIT.setTypedText(touchgfx::TypedText(T_UNIT_DEG));
@@ -222,3 +222,4 @@ void KeyboardView::updateUnit(SettingType s)
     }
     UNIT.invalidate();
 }
+

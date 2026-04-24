@@ -69,7 +69,7 @@ void KeyboardPresenter::onDigit(uint8_t d)
     uint32_t maxv = 0;
     switch (s) {
     case SettingType::Voltage: maxv = VOLT_MAX;  break;
-    case SettingType::Current: maxv = CURR_MAX;  break;
+    case SettingType::TripCurrent: maxv = CURR_MAX;  break;
     case SettingType::Phase:   maxv = PHASE_MAX; break;
     default:                   maxv = 0;         break;
     }
@@ -126,8 +126,8 @@ void KeyboardPresenter::onEnter()
         case SettingType::Voltage:
             ok = AppRemote_SetVolt(currentValue);
             break;
-        case SettingType::Current:
-            ok = AppRemote_SetCurr(currentValue);
+        case SettingType::TripCurrent:
+            ok = AppRemote_SetTripCurr(currentValue);
             break;
         case SettingType::Phase:
             ok = AppRemote_SetPhas((uint16_t)currentValue);
@@ -137,9 +137,17 @@ void KeyboardPresenter::onEnter()
         }
     }
 
+    if (ok && s == SettingType::Phase) {
+        for (uint8_t i = 0; i < Model::kMaxId; ++i) {
+            model->setSyncNeeded(i, true);
+        }
+    }
+
     if (ok) {
         AppRemote_QueryState();
     }
+
+
 
     view.gotoMainScreen();
 }
@@ -195,7 +203,7 @@ void KeyboardPresenter::clampToCurrentRange()
 
     switch (s) {
     case SettingType::Voltage: minv = VOLT_MIN;  maxv = VOLT_MAX;  break;
-    case SettingType::Current: minv = CURR_MIN;  maxv = CURR_MAX;  break;
+    case SettingType::TripCurrent: minv = CURR_MIN;  maxv = CURR_MAX;  break;
     case SettingType::Phase:   minv = PHASE_MIN; maxv = PHASE_MAX; break;
     case SettingType::ID:      minv = 0;         maxv = 15;        break;
     default:                   minv = 0;         maxv = 0;         break;

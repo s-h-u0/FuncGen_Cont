@@ -1,8 +1,11 @@
 #pragma once
 
 enum class SettingType {
-    Voltage = 0,
-    Current = 1,   // ★ 追加
-    Phase   = 2,
-    ID      = 3
+    Voltage,
+
+    TripCurrent,
+    Current = TripCurrent,   // 互換名: 既存コード移行まで残す
+
+    Phase,
+    ID
 };

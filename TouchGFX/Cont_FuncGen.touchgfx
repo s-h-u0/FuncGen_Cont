@@ -19,7 +19,7 @@
             "Type": "ToggleButton",
             "Name": "toggleButton_Stop",
             "X": 336,
-            "Y": 148,
+            "Y": 160,
             "Width": 132,
             "Height": 60,
             "InitialStatePressed": true,
@@ -103,8 +103,8 @@
           {
             "Type": "TextArea",
             "Name": "Val_Meas_Curr",
-            "X": 21,
-            "Y": 154,
+            "X": 35,
+            "Y": 155,
             "Width": 113,
             "Height": 60,
             "TextId": "__SingleUse_HNTL",
@@ -122,8 +122,8 @@
           {
             "Type": "TextArea",
             "Name": "Val_Meas_Volt",
-            "X": 21,
-            "Y": 62,
+            "X": 35,
+            "Y": 64,
             "Width": 113,
             "Height": 60,
             "TextId": "__SingleUse_YVKD",
@@ -216,7 +216,7 @@
             "Type": "ToggleButton",
             "Name": "toggleButton_Run",
             "X": 336,
-            "Y": 56,
+            "Y": 76,
             "Width": 132,
             "Height": 60,
             "Pressed": "box\\RUN_active_132x60_outline-none_gloss.png",
@@ -226,7 +226,7 @@
             "Type": "TextArea",
             "Name": "RUN_Text",
             "X": 336,
-            "Y": 62,
+            "Y": 80,
             "Width": 132,
             "Height": 63,
             "TextId": "__SingleUse_R6D2",
@@ -241,7 +241,7 @@
             "Type": "TextArea",
             "Name": "STOP_Text",
             "X": 336,
-            "Y": 153,
+            "Y": 165,
             "Width": 132,
             "Height": 68,
             "TextId": "__SingleUse_C75W",
@@ -300,28 +300,22 @@
           {
             "Type": "Image",
             "Name": "Image1",
-            "X": 41,
-            "Y": 229,
+            "X": 351,
+            "Y": 5,
             "Width": 100,
             "Height": 67,
             "RelativeFilename": "kos21logo\\kos21.png"
           },
           {
-            "Type": "TextArea",
-            "Name": "SyncStatusText",
-            "X": 346,
-            "Y": 11,
-            "Width": 85,
-            "Height": 32,
-            "Visible": false,
-            "TextId": "__SingleUse_7WQK",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true
+            "Type": "ToggleButton",
+            "Name": "toggleButton_Sync",
+            "X": 19,
+            "Y": 236,
+            "Width": 144,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_togglebutton_large_round_off_light.png",
+            "Released": "__generated\\alternate_theme_images_widgets_togglebutton_large_round_on_active.png",
+            "Preset": "alternate_theme\\presets\\togglebutton\\large\\round_active.json"
           }
         ],
         "Interactions": [
@@ -436,6 +430,17 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "button_CurrClicked"
+            }
+          },
+          {
+            "InteractionName": "button_SyncClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "toggleButton_Sync"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "button_SyncClicked"
             }
           }
         ]
