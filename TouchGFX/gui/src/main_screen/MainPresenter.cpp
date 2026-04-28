@@ -462,7 +462,7 @@ void MainPresenter::stopCurrent()
 
 void MainPresenter::syncStart()
 {
-    const bool all_ok = AppRemote_SyncStart();
+	const bool all_ok = AppRemote_SyncStart();
 
     if (model) {
         for (uint8_t id = 0; id < 8; ++id) {

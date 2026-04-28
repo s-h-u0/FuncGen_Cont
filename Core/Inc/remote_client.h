@@ -18,6 +18,10 @@ typedef struct {
 
 /* ===== 基本制御 ===== */
 bool remote_ping_to(uint8_t id, char* out, size_t out_sz);
+bool remote_ping_to_timeout(uint8_t id,
+                            char* out,
+                            size_t out_sz,
+                            uint32_t timeout_ms);
 
 bool remote_run_to(uint8_t id);
 bool remote_stop_to(uint8_t id);
@@ -56,6 +60,11 @@ bool remote_sync_stop_master(void);
 bool remote_sync_arm_all(void);
 bool remote_sync_release_all(void);
 bool remote_query_sync_stat_to(uint8_t id, RemoteSyncStat* st, uint32_t timeout_ms);
+
+bool remote_sync_prime_master(void);
+
+bool remote_sync_arm_to(uint8_t id);
+bool remote_sync_release_to(uint8_t id);
 
 bool remote_get_addr_to(uint8_t id, uint8_t* addr, uint32_t timeout_ms);
 bool remote_get_mclk_to(uint8_t id, uint8_t* on, uint32_t timeout_ms);

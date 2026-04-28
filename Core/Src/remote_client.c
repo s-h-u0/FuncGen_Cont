@@ -73,18 +73,28 @@ static bool parse_fixed3_to_milli(const char* s, int32_t* out)
 
 /* ===== 新API: 明示的にIDを渡す ===== */
 
-bool remote_ping_to(uint8_t id, char* out, size_t out_sz)
+bool remote_ping_to_timeout(uint8_t id,
+                            char* out,
+                            size_t out_sz,
+                            uint32_t timeout_ms)
 {
     char buf[64];
-    if (!txrx_with_id(id, "PING", buf, sizeof(buf), 400)) {
+
+    if (!txrx_with_id(id, "PING", buf, sizeof(buf), timeout_ms)) {
         return false;
     }
 
     if (out && out_sz) {
         strncpy(out, buf, out_sz - 1);
-        out[out_sz - 1] = 0;
+        out[out_sz - 1] = '\0';
     }
+
     return (strcmp(buf, "PONG") == 0);
+}
+
+bool remote_ping_to(uint8_t id, char* out, size_t out_sz)
+{
+    return remote_ping_to_timeout(id, out, out_sz, 400U);
 }
 
 bool remote_run_to(uint8_t id)
@@ -268,6 +278,18 @@ bool remote_sync_stop_master(void)
     return txrx_with_id(0x0U, "MCLK OFF", b, sizeof(b), 600) && (strcmp(b, "OK") == 0);
 }
 
+bool remote_sync_prime_master(void)
+{
+    char b[8];
+
+    return txrx_with_id(0x0U,
+                        "MCLK PRIME",
+                        b,
+                        sizeof(b),
+                        1000U) &&
+           (strcmp(b, "OK") == 0);
+}
+
 bool remote_sync_arm_all(void)
 {
     /* broadcast 設定系は無応答 */
@@ -306,6 +328,30 @@ bool remote_query_sync_stat_to(uint8_t id, RemoteSyncStat* st, uint32_t timeout_
     st->dirty = (uint8_t)(dirty ? 1U : 0U);
     st->mclk  = (uint8_t)(mclk  ? 1U : 0U);
     return true;
+}
+
+bool remote_sync_arm_to(uint8_t id)
+{
+    char b[8];
+
+    return txrx_with_id(id,
+                        "SYNC:ARM",
+                        b,
+                        sizeof(b),
+                        600U) &&
+           (strcmp(b, "OK") == 0);
+}
+
+bool remote_sync_release_to(uint8_t id)
+{
+    char b[8];
+
+    return txrx_with_id(id,
+                        "DDS:RELEASE",
+                        b,
+                        sizeof(b),
+                        600U) &&
+           (strcmp(b, "OK") == 0);
 }
 
 /* ------------------------------------------------------------

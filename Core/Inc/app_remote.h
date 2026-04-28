@@ -80,6 +80,12 @@ bool AppRemote_QuerySyncStat(RemoteSyncStat* st, uint32_t to_ms);
 
 bool AppRemote_GetLastSyncOk(uint8_t id);
 
+bool AppRemote_ScanSyncTargets(uint32_t timeout_ms);
+uint8_t AppRemote_GetSyncTargetCount(void);
+uint8_t AppRemote_GetSyncTargetId(uint8_t index);
+
+bool AppRemote_SyncStart_Test_0_3(void);
+
 #ifdef __cplusplus
 }
 #endif
