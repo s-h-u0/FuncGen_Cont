@@ -21,7 +21,77 @@ extern "C" {
 #include <cstdio>
 }
 
+namespace {
+constexpr uint32_t kTapLockMs = 120U;
+static uint32_t s_lockUntilTick = 0U;
 
+inline bool isTapLocked()
+{
+    return (int32_t)(HAL_GetTick() - s_lockUntilTick) < 0;
+}
+
+inline void lockTapFor(uint32_t ms = kTapLockMs)
+{
+    s_lockUntilTick = HAL_GetTick() + ms;
+}
+
+template <typename TextAreaT>
+void refreshText(TextAreaT& text)
+{
+    text.resizeToCurrentText();
+    text.invalidate();
+}
+
+struct FixedPoint2 {
+    bool negative;
+    int32_t whole;
+    int32_t frac2;
+};
+
+FixedPoint2 toFixedPoint2(int32_t milli)
+{
+    FixedPoint2 out = {};
+
+    out.negative = (milli < 0);
+    int32_t absMilli = out.negative ? -milli : milli;
+
+    out.whole = absMilli / 1000;
+    out.frac2 = ((absMilli % 1000) + 5) / 10;
+
+    if (out.frac2 == 100) {
+        out.frac2 = 0;
+        out.whole += 1;
+    }
+
+    return out;
+}
+
+template <typename TextAreaT>
+void setFixedPoint2Text(TextAreaT& text,
+                        Unicode::UnicodeChar* buffer,
+                        uint16_t bufferSize,
+                        int32_t milli,
+                        int32_t invalidValue)
+{
+    if (milli == invalidValue) {
+        Unicode::snprintf(buffer, bufferSize, "--");
+        refreshText(text);
+        return;
+    }
+
+    const FixedPoint2 fp = toFixedPoint2(milli);
+
+    if (fp.negative) {
+        Unicode::snprintf(buffer, bufferSize, "-%d.%02d",
+                          (int)fp.whole, (int)fp.frac2);
+    } else {
+        Unicode::snprintf(buffer, bufferSize, "%d.%02d",
+                          (int)fp.whole, (int)fp.frac2);
+    }
+
+    refreshText(text);
+}
+}
 
 
 /* UI内部ヘルパ：Run/Stopの見た目 */
@@ -34,11 +104,9 @@ void MainView::updateRunStopUI(bool running)
     toggleButton_Run .setTouchable(!running);
     toggleButton_Stop.setTouchable(running);
 
-    // ★ 再描画
     toggleButton_Run.invalidate();
     toggleButton_Stop.invalidate();
 
-    // ラベル色を更新
     if (running) {
         RUN_Text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
         STOP_Text.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -48,8 +116,6 @@ void MainView::updateRunStopUI(bool running)
     }
     RUN_Text.invalidate();
     STOP_Text.invalidate();
-
-
 }
 
 /* コンストラクタ */
@@ -98,40 +164,25 @@ void MainView::tearDownScreen()
     MainViewBase::tearDownScreen();
 }
 
-// MainView.cpp
 void MainView::updateBothValues(uint32_t vVolt, uint32_t vCurr, uint32_t vPhas, uint32_t vID)
 {
-    // Voltage
     Unicode::snprintf(Val_Set_VoltBuffer, VAL_SET_VOLT_SIZE, "%u", (unsigned)vVolt);
-    Val_Set_Volt.resizeToCurrentText();
-    Val_Set_Volt.invalidate();
+    refreshText(Val_Set_Volt);
 
-    // Current
     Unicode::snprintf(Val_Set_CurrBuffer, VAL_SET_CURR_SIZE, "%u", (unsigned)vCurr);
-    Val_Set_Curr.resizeToCurrentText();
-    Val_Set_Curr.invalidate();
+    refreshText(Val_Set_Curr);
 
-    // Phase
     Unicode::snprintf(Val_Set_PhasBuffer, VAL_SET_PHAS_SIZE, "%u", (unsigned)vPhas);
-    Val_Set_Phas.resizeToCurrentText();
-    Val_Set_Phas.invalidate();
+    refreshText(Val_Set_Phas);
 
-    // ID
     setDipHex(static_cast<uint8_t>(vID & 0x0F));
 }
-
-
-/* タップ誤操作抑制ロック */
-static uint32_t s_lockUntilTick = 0;
-constexpr uint32_t kLockMs = 120;
-inline bool locked() { return (int32_t)(HAL_GetTick() - s_lockUntilTick) < 0; }
-inline void lockFor(uint32_t ms = kLockMs) { s_lockUntilTick = HAL_GetTick() + ms; }
 
 /* Run/Stop ボタン */
 void MainView::Run()
 {
-    if (locked() || isRunning) { updateRunStopUI(isRunning); return; }
-    lockFor(120);
+    if (isTapLocked() || isRunning) { updateRunStopUI(isRunning); return; }
+    lockTapFor();
 
     if (presenter) {
         presenter->runCurrent();
@@ -140,8 +191,8 @@ void MainView::Run()
 
 void MainView::Stop()
 {
-    if (locked() || !isRunning) { updateRunStopUI(isRunning); return; }
-    lockFor(120);
+    if (isTapLocked() || !isRunning) { updateRunStopUI(isRunning); return; }
+    lockTapFor();
 
     if (presenter) {
         presenter->stopCurrent();
@@ -176,7 +227,7 @@ void MainView::button_CurrClicked()
 void MainView::button_IDClicked()
 {
     if (presenter) {
-        presenter->setCurrentSetting(SettingType::ID); // ← 今回追加したIDを設定
+        presenter->setCurrentSetting(SettingType::ID);
         application().gotoKeyboardScreenNoTransition();
     }
 }
@@ -187,112 +238,42 @@ void MainView::button_IDClicked()
 void MainView::setMeasuredCurr(int16_t val)
 {
     Unicode::snprintf(Val_Meas_CurrBuffer, VAL_MEAS_CURR_SIZE, "%d", static_cast<int>(val));
-    Val_Meas_Curr.resizeToCurrentText();
-    Val_Meas_Curr.invalidate();
+    refreshText(Val_Meas_Curr);
 }
 
 void MainView::setMeasuredVolt(int16_t val)
 {
     Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE, "%d", static_cast<int>(val));
-    Val_Meas_Volt.resizeToCurrentText();
-    Val_Meas_Volt.invalidate();
+    refreshText(Val_Meas_Volt);
 }
 
 void MainView::setMeasuredVolt_mV(int16_t mv)
 {
-    if (mv == INT16_MIN) {
-        Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE, "--");
-        Val_Meas_Volt.resizeToCurrentText();
-        Val_Meas_Volt.invalidate();
-        return;
-    }
-    bool neg = (mv < 0);
-    int v = (int)mv; if (v < 0) v = -v;
-    int whole = v / 1000;
-    int rem   = v % 1000;
-    int frac2 = (rem + 5) / 10;
-    if (frac2 == 100) { frac2 = 0; whole += 1; }
-    if (neg) Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE, "-%d.%02d", whole, frac2);
-    else     Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE,  "%d.%02d", whole, frac2);
-    Val_Meas_Volt.resizeToCurrentText();
-    Val_Meas_Volt.invalidate();
+    setFixedPoint2Text(Val_Meas_Volt,
+                       Val_Meas_VoltBuffer,
+                       VAL_MEAS_VOLT_SIZE,
+                       static_cast<int32_t>(mv),
+                       static_cast<int32_t>(INT16_MIN));
 }
 
 void MainView::setMeasuredVolt_Phys_mV(int32_t mv)
 {
-    if (mv == INT32_MIN) {
-        Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE, "--");
-        Val_Meas_Volt.resizeToCurrentText();
-        Val_Meas_Volt.invalidate();
-        return;
-    }
-
-    bool neg = (mv < 0);
-    int32_t v = mv;
-    if (v < 0) v = -v;
-
-    int32_t whole = v / 1000;
-    int32_t rem   = v % 1000;
-    int32_t frac2 = (rem + 5) / 10;
-
-    if (frac2 == 100) {
-        frac2 = 0;
-        whole += 1;
-    }
-
-    int whole_i = (int)whole;
-    int frac2_i = (int)frac2;
-
-    if (neg) {
-        Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE, "-%d.%02d",
-                          whole_i, frac2_i);
-    } else {
-        Unicode::snprintf(Val_Meas_VoltBuffer, VAL_MEAS_VOLT_SIZE, "%d.%02d",
-                          whole_i, frac2_i);
-    }
-
-    Val_Meas_Volt.resizeToCurrentText();
-    Val_Meas_Volt.invalidate();
+    setFixedPoint2Text(Val_Meas_Volt,
+                       Val_Meas_VoltBuffer,
+                       VAL_MEAS_VOLT_SIZE,
+                       mv,
+                       INT32_MIN);
 }
 
 void MainView::setMeasuredCurr_mA(int32_t ma)
 {
-    if (ma == INT32_MIN) {
-        Unicode::snprintf(Val_Meas_CurrBuffer, VAL_MEAS_CURR_SIZE, "--");
-        Val_Meas_Curr.resizeToCurrentText();
-        Val_Meas_Curr.invalidate();
-        return;
-    }
-
-    bool neg = (ma < 0);
-    int32_t v = ma;
-    if (v < 0) v = -v;
-
-    int32_t whole = v / 1000;
-    int32_t rem   = v % 1000;
-    int32_t frac2 = (rem + 5) / 10;
-
-    if (frac2 == 100) {
-        frac2 = 0;
-        whole += 1;
-    }
-
-    int whole_i = (int)whole;
-    int frac2_i = (int)frac2;
-
-    if (neg) {
-        Unicode::snprintf(Val_Meas_CurrBuffer, VAL_MEAS_CURR_SIZE, "-%d.%02d",
-                          whole_i, frac2_i);
-    } else {
-        Unicode::snprintf(Val_Meas_CurrBuffer, VAL_MEAS_CURR_SIZE, "%d.%02d",
-                          whole_i, frac2_i);
-    }
-
-    Val_Meas_Curr.resizeToCurrentText();
-    Val_Meas_Curr.invalidate();
+    setFixedPoint2Text(Val_Meas_Curr,
+                       Val_Meas_CurrBuffer,
+                       VAL_MEAS_CURR_SIZE,
+                       ma,
+                       INT32_MIN);
 }
 
-// --- MainView::handleTickEvent() 内に追加 ---
 void MainView::handleTickEvent()
 {
     if (MeasTimer_Consume()) {
@@ -316,7 +297,7 @@ void MainView::setDipHex(uint8_t nibble)
 
 void MainView::requestRedraw()
 {
-    invalidate();  // ← これは MainViewBase(Screen) 内の protected を呼べる
+    invalidate();
 }
 
 
@@ -351,10 +332,10 @@ void MainView::button_SyncClicked()
     const uint8_t id = AppRemote_GetID();
     updateSyncButtonUI(presenter->isSyncNeeded(id));
 
-    if (locked()) {
+    if (isTapLocked()) {
         return;
     }
-    lockFor(200);
+    lockTapFor(200U);
 
     presenter->syncStart();
 }

@@ -2,13 +2,12 @@
 #define REMOTE_CLIENT_H
 
 #include <stdbool.h>
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 
 typedef struct {
     uint8_t ready;
@@ -51,25 +50,24 @@ bool remote_get_trip_temp_to(uint8_t id, int32_t* deci_c, uint32_t timeout_ms);
 bool remote_meas_volt_mV_to(uint8_t id, int32_t* mv, uint32_t timeout_ms);
 bool remote_meas_curr_mA_to(uint8_t id, int32_t* ma, uint32_t timeout_ms);
 
-/* ===== 状態通知要求 ===== */
+/* ===== 状態取得 ===== */
 bool remote_request_state_report_to(uint8_t id, uint32_t timeout_ms);
-
-/* ===== 同期制御 ===== */
-bool remote_sync_go_master(void);
-bool remote_sync_stop_master(void);
-bool remote_sync_arm_all(void);
-bool remote_sync_release_all(void);
-bool remote_query_sync_stat_to(uint8_t id, RemoteSyncStat* st, uint32_t timeout_ms);
-
-bool remote_sync_prime_master(void);
-
-bool remote_sync_arm_to(uint8_t id);
-bool remote_sync_release_to(uint8_t id);
 
 bool remote_get_addr_to(uint8_t id, uint8_t* addr, uint32_t timeout_ms);
 bool remote_get_mclk_to(uint8_t id, uint8_t* on, uint32_t timeout_ms);
 bool remote_get_sync_ready_to(uint8_t id, uint8_t* ready, uint32_t timeout_ms);
+bool remote_query_sync_stat_to(uint8_t id, RemoteSyncStat* st, uint32_t timeout_ms);
 
+/* ===== 同期制御 ===== */
+bool remote_sync_go_master(void);
+bool remote_sync_stop_master(void);
+bool remote_sync_prime_master(void);
+
+bool remote_sync_arm_all(void);
+bool remote_sync_release_all(void);
+
+bool remote_sync_arm_to(uint8_t id);
+bool remote_sync_release_to(uint8_t id);
 
 #ifdef __cplusplus
 }

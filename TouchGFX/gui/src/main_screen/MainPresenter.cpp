@@ -20,33 +20,69 @@
 #include <gui/main_screen/MainView.hpp>
 #include <gui/model/Model.hpp>
 
+#include <cstdint>
 
 extern "C" {
 #include "app_remote.h"
-#include <cstdio>   // printf()
-#include <cstring>  // strlen(), strcmp(), strncmp()
-#include <cstdlib>  // atoi()
-#include <cctype>   // tolower()
+#include "rs485_bridge.h"
+#include <cstdio>
 }
 
 
-/** @brief Model の保持値（電圧・トリップ電流・位相）を View 表示へ一括同期する内部ユーティリティ
- *  @note  activate()/setDesiredValue() から呼び出され、表示の一貫性を保つ。
- */
 namespace {
-inline void updateBothValuesFromModel(Model* m, MainView& v) {
+
+/** Model の保持値を、現在選択中IDの画面表示へ反映する。 */
+inline void updateBothValuesFromModel(Model* m, MainView& v)
+{
     if (!m) return;
 
     const uint8_t id = AppRemote_GetID();
 
     const uint32_t vVolt = m->getDesiredValue(SettingType::Voltage, id);
     const uint32_t vCurr = m->getDesiredValue(SettingType::TripCurrent, id);
-    const uint32_t vPhas = m->getDesiredValue(SettingType::Phase,   id);
+    const uint32_t vPhas = m->getDesiredValue(SettingType::Phase, id);
 
     v.updateBothValues(vVolt, vCurr, vPhas, id);
     v.setDipHex(static_cast<uint8_t>(id & 0x0F));
 }
+
+/** 子機から確認済みの状態を受けたことを Model に記録する。 */
+inline void markConfirmed(Model* m, uint8_t id)
+{
+    if (!m) return;
+
+    m->noteAlive(id, HAL_GetTick());
+    m->setSynced(id, true);
 }
+
+/** コマンド送信直後の「未確認」状態に戻す。 */
+inline void markUnsynced(Model* m, uint8_t id)
+{
+    if (m) {
+        m->setSynced(id, false);
+    }
+}
+
+/** コマンド送信後、状態問い合わせを発行して確定反映を待つ。 */
+inline void requestStateRefresh(Model* m, uint8_t id)
+{
+    markUnsynced(m, id);
+    AppRemote_QueryState();
+}
+
+/** 位相変更後は全chを再同期対象として扱う。 */
+inline void markAllChannelsSyncNeeded(Model* m, MainView& v)
+{
+    if (m) {
+        for (uint8_t i = 0; i < Model::kMaxId; ++i) {
+            m->setSyncNeeded(i, true);
+        }
+    }
+
+    v.updateSyncButtonUI(true);
+}
+
+}  // namespace
 
 /** @brief コンストラクタ：対応する View を束縛 */
 MainPresenter::MainPresenter(MainView& v) : view(v) {}
@@ -62,9 +98,7 @@ void MainPresenter::activate()
 {
     const uint8_t id = AppRemote_GetID();
 
-    if (model) {
-        model->setSynced(id, false);
-    }
+    markUnsynced(model, id);
 
     updateBothValuesFromModel(model, view);
 
@@ -84,9 +118,8 @@ void MainPresenter::deactivate() {}
  */
 uint32_t MainPresenter::getDesiredValue(SettingType t) const
 {
-	const uint8_t id = AppRemote_GetID();
-	return model ? model->getDesiredValue(t, id) : 0;
-
+    const uint8_t id = AppRemote_GetID();
+    return model ? model->getDesiredValue(t, id) : 0;
 }
 
 
@@ -110,10 +143,6 @@ bool MainPresenter::isCurrentIdSynced() const
 }
 
 
-
-
-#include "rs485_bridge.h"  // RS485_PcHasPending() を使う
-
 /** @brief 現在選択中IDの子機から計測値を同期取得し、Viewへ反映する
  *  @details
  *   - 1回の呼び出しで取得するのは Voltage / Current のどちらか片方のみ
@@ -128,6 +157,7 @@ void MainPresenter::updateMeasuredValues()
 {
     if (RS485_IsBusy()) return;
 
+    constexpr uint32_t kStatePollPeriodMs  = 2000u;
     constexpr uint32_t kAliveWindowMs      = 1500u;
     constexpr uint32_t kMinPeriodAliveMs   = 150u;
     constexpr uint32_t kMeasTimeoutMs      = 150u;
@@ -135,11 +165,14 @@ void MainPresenter::updateMeasuredValues()
     constexpr uint8_t  kBackoffShiftMax    = 4u;
     constexpr uint8_t  kFailHideThreshold  = 3u;
     constexpr uint8_t  kFailStreakMax      = 8u;
+    constexpr uint32_t kMeasStaleSyncLostMs = 3000u;
 
+    static uint32_t lastStatePollTick[Model::kMaxId] = {0};
 
     static uint32_t lastDoneTick[Model::kMaxId]    = {0};
     static uint8_t  failVolt[Model::kMaxId]        = {0};
     static uint8_t  failCurr[Model::kMaxId]        = {0};
+    static uint32_t lastMeasOkTick[Model::kMaxId]  = {0};
 
     static int32_t  lastVolt_mV[Model::kMaxId]     = {0};
     static int32_t  lastCurr_mA[Model::kMaxId]     = {0};
@@ -149,6 +182,19 @@ void MainPresenter::updateMeasuredValues()
 
     const uint8_t id = AppRemote_GetID();
     const uint32_t startTick = HAL_GetTick();
+
+    /*
+     * 取りこぼし補正用の低頻度 STATE?。
+     * RUN/STOP/STAT通知を取りこぼしても、次回STATEでModelキャッシュを修復する。
+     * 測定問い合わせとは同じタイミングで重ねない。
+     */
+    if ((int32_t)(startTick - lastStatePollTick[id]) >= (int32_t)kStatePollPeriodMs) {
+        lastStatePollTick[id] = startTick;
+        lastDoneTick[id] = startTick;
+
+        AppRemote_QueryState();
+        return;
+    }
 
     const bool likelyAlive = model ? model->isLikelyAlive(id, startTick, kAliveWindowMs) : false;
 
@@ -187,6 +233,7 @@ void MainPresenter::updateMeasuredValues()
 
     if (doVoltQuery) {
         if (okVolt) {
+        	lastMeasOkTick[id] = doneTick;
             lastVolt_mV[id] = volt_phys_mv;
             hasVolt[id] = 1;
             view.setMeasuredVolt_Phys_mV(volt_phys_mv);
@@ -197,6 +244,7 @@ void MainPresenter::updateMeasuredValues()
         }
     } else {
         if (okCurr) {
+        	lastMeasOkTick[id] = doneTick;
             lastCurr_mA[id] = curr_ma;
             hasCurr[id] = 1;
             view.setMeasuredCurr_mA(curr_ma);
@@ -231,6 +279,18 @@ void MainPresenter::updateMeasuredValues()
         }
     }
 
+    if (lastMeasOkTick[id] != 0U &&
+        (int32_t)(doneTick - lastMeasOkTick[id]) >= (int32_t)kMeasStaleSyncLostMs) {
+
+        if (model) {
+            model->setSyncNeeded(id, true);
+        }
+
+        if (id == AppRemote_GetID()) {
+            view.updateSyncButtonUI(true);
+        }
+    }
+
     nextQueryIsVolt[id] ^= 1u;
 }
 
@@ -238,10 +298,6 @@ void MainPresenter::updateMeasuredValues()
 // ==========================================================
 // RS-485受信イベント：UIに反映
 // ==========================================================
-#include <cstring>
-#include <cstdio>
-#include <cctype>
-
 
 /** @brief 子機から受信した状態行を親機キャッシュへ確定反映する
  *  @details
@@ -270,99 +326,71 @@ void MainPresenter::onRemoteLine(const char* line)
     const uint8_t current = AppRemote_GetID();
 
 
-    /* STAT_* は子機から返った確認済み設定値を表す。
-     * ここで Model::desired... を親機キャッシュとして確定更新する。
+    /* STAT_* は子機から返った確認済み設定値。
+     * ここで Model の親機キャッシュへ確定反映する。
      */
     switch (ev.type) {
-    case APPREMOTE_EVT_RUN: {
-        const uint32_t now = HAL_GetTick();
-
+    case APPREMOTE_EVT_RUN:
         if (model) {
             model->setRunning(id, true);
-            model->noteAlive(id, now);
-            model->setSynced(id, true);
+            markConfirmed(model, id);
         }
-
         if (id == current) {
             view.updateRunStopUI(true);
         }
         break;
-    }
 
-    case APPREMOTE_EVT_STOP: {
-        const uint32_t now = HAL_GetTick();
-
+    case APPREMOTE_EVT_STOP:
         if (model) {
             model->setRunning(id, false);
-            model->noteAlive(id, now);
-            model->setSynced(id, true);
+            markConfirmed(model, id);
         }
-
         if (id == current) {
             view.updateRunStopUI(false);
         }
         break;
-    }
 
-    case APPREMOTE_EVT_STAT_VOLT: {
-        const uint32_t now = HAL_GetTick();
+    case APPREMOTE_EVT_STAT_VOLT:
         if (model) {
             model->setDesiredValue(SettingType::Voltage, ev.value, id);
-            model->noteAlive(id, now);
-            model->setSynced(id, true);
+            markConfirmed(model, id);
         }
         break;
-    }
 
-    case APPREMOTE_EVT_STAT_TRIP_CURR: {
-        const uint32_t now = HAL_GetTick();
+    case APPREMOTE_EVT_STAT_TRIP_CURR:
         if (model) {
             model->setDesiredValue(SettingType::TripCurrent, ev.value, id);
-            model->noteAlive(id, now);
-            model->setSynced(id, true);
+            markConfirmed(model, id);
         }
         break;
-    }
 
-    case APPREMOTE_EVT_STAT_PHAS: {
-        const uint32_t now = HAL_GetTick();
+    case APPREMOTE_EVT_STAT_PHAS:
         if (model) {
             model->setDesiredValue(SettingType::Phase, ev.value, id);
-            model->noteAlive(id, now);
-            model->setSynced(id, true);
+            markConfirmed(model, id);
         }
         break;
-    }
 
-    case APPREMOTE_EVT_STAT_FREQ: {
-        const uint32_t now = HAL_GetTick();
+    case APPREMOTE_EVT_STAT_FREQ:
         if (model) {
             model->setDesiredFreq(id, ev.value);
-            model->noteAlive(id, now);
-            model->setSynced(id, true);
+            markConfirmed(model, id);
         }
         break;
-    }
 
-    case APPREMOTE_EVT_STAT_READY: {
-        const uint32_t now = HAL_GetTick();
+    case APPREMOTE_EVT_STAT_READY:
         if (model) {
             model->setDdsArmed(id, ev.value != 0);
-            model->noteAlive(id, now);
-            model->setSynced(id, true);
+            markConfirmed(model, id);
         }
         break;
-    }
 
-    case APPREMOTE_EVT_STAT_MCLK: {
-        const uint32_t now = HAL_GetTick();
+    case APPREMOTE_EVT_STAT_MCLK:
         if (model) {
             model->setMclkEnabled(id, ev.value != 0);
-            model->noteAlive(id, now);
-            model->setSynced(id, true);
+            markConfirmed(model, id);
         }
         break;
-    }
 
     default:
         break;
@@ -411,15 +439,10 @@ void MainPresenter::setDesiredValue(SettingType t, uint32_t v)
 
     if (ok) {
         if (t == SettingType::Phase) {
-            if (model) {
-                for (uint8_t i = 0; i < Model::kMaxId; ++i) {
-                    model->setSyncNeeded(i, true);
-                }
-            }
-            view.updateSyncButtonUI(true);
+            markAllChannelsSyncNeeded(model, view);
         }
-        if (model) model->setSynced(id, false);
-        AppRemote_QueryState();
+
+        requestStateRefresh(model, id);
     }
 }
 
@@ -434,9 +457,9 @@ void MainPresenter::setDesiredValue(SettingType t, uint32_t v)
 void MainPresenter::runCurrent()
 {
     const uint8_t id = AppRemote_GetID();
+
     if (AppRemote_Run()) {
-        if (model) model->setSynced(id, false);
-        AppRemote_QueryState();
+        requestStateRefresh(model, id);
     }
 }
 
@@ -451,18 +474,17 @@ void MainPresenter::runCurrent()
 void MainPresenter::stopCurrent()
 {
     const uint8_t id = AppRemote_GetID();
+
     if (AppRemote_Stop()) {
-        if (model) model->setSynced(id, false);
-        AppRemote_QueryState();
+        requestStateRefresh(model, id);
     }
 }
 
 
-
-
 void MainPresenter::syncStart()
 {
-	const bool all_ok = AppRemote_SyncStart();
+    const bool all_ok = AppRemote_SyncStart();
+
 
     if (model) {
         for (uint8_t id = 0; id < 8; ++id) {
